@@ -2,17 +2,17 @@
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-| Topic              | Technology                  |
-|--------------------|-----------------------------|
-| Main Framework     | 	Next.js (App Router)       |
-| Langage            | 	TypeScript                 |
-| Package manager    | 	pnpm                       |
-| Linter / formatter | 	Biome                      |
-| Build              | 	Vite                       |
-| Design System      | 	Storybook                  |
-| Style              | 	Native CSS                 |
-| Content            | 	Markdown with Contentlayer |
-| Architecture       | 	Hexagonal / DDD            |
+| Topic              | Technology                   |
+|--------------------|------------------------------|
+| Main Framework     | 	Next.js (App Router)        |
+| Langage            | 	TypeScript                  |
+| Package manager    | 	pnpm                        |
+| Linter / formatter | 	Biome                       |
+| Build              | 	Turbopack                   |
+| Design System      | 	Storybook                   |
+| Style              | 	Native CSS                  |
+| Content            | 	MarkdownX with Contentlayer |
+| Architecture       | 	Hexagonal / DDD             |
 
 ## Getting Started
 

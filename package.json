@@ -1,28 +1,31 @@
 {
-  "name": "ccsscade",
+  "name": "csscade",
   "version": "1.0.0",
   "private": true,
   "description": "Csscade website",
   "author": "Manon Carbonnel",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev": "next dev --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write"
   },
   "dependencies": {
+    "contentlayer": "^0.3.4",
+    "date-fns": "^4.1.0",
+    "next": "16.0.1",
+    "next-contentlayer": "^0.3.4",
     "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "next": "16.0.1"
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@biomejs/biome": "2.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@biomejs/biome": "2.2.0"
+    "typescript": "^5"
   },
   "workspaces": [
     "src/*"
