@@ -1,4 +1,5 @@
 onlyBuiltDependencies:
   - contentlayer
+  - core-js-pure
   - esbuild
   - protobufjs
