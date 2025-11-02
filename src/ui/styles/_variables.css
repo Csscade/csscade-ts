@@ -1,0 +1,48 @@
+:root {
+  /* COLORS */
+  --barberry: #dbeb19;
+  --catskill-white: #f2f7f9;
+  --foam: #daf1fb;
+  --fog: #dbc3ff;
+  --gunmetal: #2f2e41;
+  --lightening-yellow: #f8c920;
+  --magnolia: #f7f1fc;
+  --shakespeare: #59b7d3;
+  --shark: #202428;
+  --shuttle-gray: #5a6671;
+  --water: #daf2fb;
+  --white: #fff;
+
+  /* MAIN THEME COLORS */
+  --color-dark: var(--shark);
+  --color-dark-muted: var(--shuttle-gray);
+  --color-light: var(--white);
+  --color-light-muted: var(--catskill-white);
+  --color-blue: var(--shakespeare);
+  --color-lightblue: var(--foam);
+  --color-lightgreen: var(--barberry);
+  --color-lightorange: var(--lightening-yellow);
+  --color-lightpurple: var(--fog);
+  --color-primary: var(--color-blue);
+  --color-secondary: var(--color-lightblue);
+
+  /* FONTS */
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Krona One", "Poppins", sans-serif;
+  --font-code: "Fira Code", monospace;
+
+  /* BORDER RADIUS */
+  --br-normal: 0.625rem;
+  --br-rounded: 50px;
+  --br-circle: 50%;
+
+  /* TRANSITIONS */
+  --transition-duration--general: 0.1s;
+
+  /* BREAKPOINTS */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}

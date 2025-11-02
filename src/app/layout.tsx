@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import type { Metadata } from "next";
 import { Fira_Code, Krona_One, Poppins } from "next/font/google";
-import "./globals.css";
+import "../ui/styles/theme.css";
 
 const poppins = Poppins({
   weight: "400",

@@ -1,0 +1,138 @@
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+  font-family: var(--font-primary), sans-serif;
+  font-size: 16px;
+}
+
+html {
+  background: var(--background-primary);
+  box-sizing: border-box;
+  font-family: var(--font-primary), sans-serif;
+  font-size: 16px;
+  color: var(--font-color);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+
+.body {
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: var(--breakpoint-md)) {
+  .body {
+    padding-top: 0;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(350px);
+  margin-top: 3rem;
+}
+
+h1 {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.section {
+  width: 100%;
+}
+
+.section__title {
+  margin-bottom: 20px;
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 2rem;
+  line-height: 40px;
+}
+
+.section__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section__footer > * {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: var(--breakpoint-sm)) {
+  .section__footer > * {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: var(--breakpoint-md)) {
+  .section__footer > * {
+    margin-bottom: 0;
+  }
+}
+
+.list--empty {
+  padding: 2rem 0;
+  border-radius: var(--br-normal);
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: var(--background-secondary);
+}
+
+.list--empty i {
+  font-size: 1.5rem;
+}
+
+.skip-links {
+  --i: 0;
+  --position-offset: 0.5rem;
+  --shadow-offset: 0.25rem;
+  position: fixed;
+  top: var(--position-offset);
+  left: var(--position-offset);
+  z-index: 9999;
+  padding: 1rem;
+  border: 0.125rem solid;
+  background-color: var(--white);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0;
+  translate: 0
+    calc(
+      (100% + var(--position-offset) + var(--shadow-offset)) *
+      (var(--i) - 1)
+    );
+  transition: translate 0.2s;
+}
+
+.skip-links:focus-within {
+  --i: 1;
+}

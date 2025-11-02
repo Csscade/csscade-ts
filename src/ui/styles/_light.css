@@ -1,0 +1,11 @@
+[data-theme="light"] {
+  /* FONTS */
+  --font-color: var(--color-dark);
+  --font-color-muted: var(--color-dark-muted);
+
+  /* BACKGROUND COLORS */
+  --background-primary: var(--white);
+  --background-secondary: var(--catskill-white);
+  --background-lilac: var(--fog);
+  --background-reverse: var(--gunmetal);
+}
