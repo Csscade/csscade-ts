@@ -1,50 +1,57 @@
 # Csscade
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Csscade Banner](https://drive.google.com/drive-viewer/AKGpihZbrhj6Wg_yfVaz6x3cWx7b-JZbKc3L1ZdZtbLh-aKEnHJ5sF7q4TOh2jH3yawxLFrYyNlzziJNHTiTQuMnXARNaLFUUk0lJzE=s1600-rw-v1)
+
+![next badge](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs)
+![pnpm badge](https://img.shields.io/badge/Typescript-000000?style=flat&logo=typescript)
+![pnpm badge](https://img.shields.io/badge/PNPM-000000?style=flat&logo=pnpm)
+![pnpm badge](https://img.shields.io/badge/Biome-000000?style=flat&logo=biome)
+![pnpm badge](https://img.shields.io/badge/Turbopack-000000?style=flat&logo=turbopack)
+![pnpm badge](https://img.shields.io/badge/Storybook-000000?style=flat&logo=storybook)
+![pnpm badge](https://img.shields.io/badge/Native%20CSS-000000?style=flat&logo=css)
+![pnpm badge](https://img.shields.io/badge/MarkdownX-000000?style=flat&logo=markdown)
+![pnpm badge](https://img.shields.io/badge/Contentlayer-000000?style=flat&logo=contentlayer)
+![pnpm badge](https://img.shields.io/badge/Lefthook-000000?style=flat&logo=lefthook)
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Getting Started](#getting-started)
+- [Design system](#design-system)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 | Topic              | Technology                   |
 |--------------------|------------------------------|
 | Main Framework     | 	Next.js (App Router)        |
-| Langage            | 	TypeScript                  |
+| Language           | 	TypeScript                  |
 | Package manager    | 	pnpm                        |
 | Linter / formatter | 	Biome                       |
 | Build              | 	Turbopack                   |
-| Design System      | 	Storybook                   |
+| Design System      | 	Storybook + Vite            |
 | Style              | 	Native CSS                  |
 | Content            | 	MarkdownX with Contentlayer |
 | Architecture       | 	Hexagonal / DDD             |
+| Pre-commit         | 	Lefthook                    |
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design system
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+First, run the development server:
 
-## Learn More
+```bash
+pnpm storybook
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
