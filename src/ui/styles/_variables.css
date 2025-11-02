@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   /* COLORS */
   --barberry: #dbeb19;
   --catskill-white: #f2f7f9;
@@ -7,15 +9,16 @@
   --gunmetal: #2f2e41;
   --lightening-yellow: #f8c920;
   --magnolia: #f7f1fc;
+  --mirage: #191e25;
+  --oxford-blue: #3d495a;
   --shakespeare: #59b7d3;
   --shark: #202428;
-  --shuttle-gray: #5a6671;
   --water: #daf2fb;
   --white: #fff;
 
   /* MAIN THEME COLORS */
-  --color-dark: var(--shark);
-  --color-dark-muted: var(--shuttle-gray);
+  --color-dark: var(--mirage);
+  --color-dark-muted: var(--oxford-blue);
   --color-light: var(--white);
   --color-light-muted: var(--catskill-white);
   --color-blue: var(--shakespeare);
@@ -28,7 +31,7 @@
 
   /* FONTS */
   --font-primary: "Poppins", sans-serif;
-  --font-secondary: "Krona One", "Poppins", sans-serif;
+  --font-secondary: "Playfair Display", "Poppins", sans-serif;
   --font-code: "Fira Code", monospace;
 
   /* BORDER RADIUS */
@@ -45,4 +48,6 @@
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1400px;
+
+  --container-max-width: 1400px;
 }

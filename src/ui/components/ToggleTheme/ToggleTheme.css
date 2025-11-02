@@ -19,7 +19,7 @@
 }
 
 .slider {
-  background-color: #ccc;
+  background-color: var(--color-lightgreen);
   bottom: 0;
   cursor: pointer;
   left: 0;
@@ -41,7 +41,7 @@
 }
 
 input:checked + .slider {
-  background-color: #66bb6a;
+  background-color: var(--color-lightpurple);
 }
 
 input:checked + .slider:before {

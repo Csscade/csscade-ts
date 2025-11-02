@@ -3,9 +3,11 @@
   --font-color: var(--color-light);
   --font-color-muted: var(--color-light-muted);
 
+  /* BORDER COLORS */
+  --border-color: var(--color-light-muted);
+
   /* BACKGROUND COLORS */
-  --background-primary: var(--shark);
-  --background-secondary: var(--catskill-white);
-  --background-lilac: var(--fog);
-  --background-reverse: var(--white);
+  --background-primary: var(--color-dark);
+  --background-secondary: var(--color-dark-muted);
+  --background-reverse: var(--color-light-muted);
 }

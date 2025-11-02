@@ -1,19 +1,19 @@
 import { clsx } from "clsx";
 import type { Metadata } from "next";
-import { Fira_Code, Krona_One, Poppins } from "next/font/google";
+import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
 import "../ui/styles/theme.css";
 
-const poppins = Poppins({
+const primaryFont = Poppins({
   weight: "400",
   subsets: ["latin"],
 });
 
-const kronaOne = Krona_One({
-  weight: "400",
+const secondaryFont = Playfair_Display({
+  weight: "700",
   subsets: ["latin"],
 });
 
-const firaCode = Fira_Code({
+const monospaceFont = Fira_Code({
   subsets: ["latin"],
 });
 
@@ -31,9 +31,9 @@ export default function RootLayout({
     <html
       lang="fr"
       className={clsx(
-        poppins.className,
-        kronaOne.className,
-        firaCode.className,
+        primaryFont.className,
+        secondaryFont.className,
+        monospaceFont.className,
       )}
       suppressHydrationWarning
     >

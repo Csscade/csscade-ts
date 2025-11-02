@@ -1,0 +1,79 @@
+.header {
+  position: relative;
+  border: 1px solid var(--border-color);
+  margin: 2rem 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 2rem;
+  background-color: var(--background-primary);
+  background-image: url("https://www.transparenttextures.com/patterns/inflicted.png");
+
+  &::before,
+  &::after,
+  & span::before,
+  & span::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--background-primary);
+  }
+
+  &::before {
+    bottom: -5px;
+    left: -5px;
+  }
+
+  &::after {
+    top: -5px;
+    right: -5px;
+  }
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+
+  .header__content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+  }
+
+  .header__title {
+    font-size: 4rem;
+    margin: 0;
+  }
+
+  .header__aside {
+    display: none;
+    padding-top: 4rem;
+    overflow: hidden;
+  }
+
+  .header__image {
+    color: var(--color-dark-muted);
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    grid-template-columns: repeat(2, 1fr);
+
+    .header__aside {
+      display: block;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    .header__image {
+      color: var(--color-light-muted);
+    }
+  }
+}
