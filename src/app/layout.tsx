@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import type { Metadata } from "next";
 import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
-import "../ui/styles/theme.css";
+import "@/ui/styles/theme.css";
 
 const primaryFont = Poppins({
   weight: "400",

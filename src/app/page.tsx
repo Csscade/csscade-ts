@@ -16,7 +16,12 @@ export default function Home() {
       <main className="main">
         <section>
           {Articles.map((article) => (
-            <ArticleCard key={article._id} {...article} />
+            <ArticleCard
+              key={article._id}
+              title={article.title}
+              publishedAt={article.publishedAt}
+              url={article.url}
+            />
           ))}
         </section>
       </main>

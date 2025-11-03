@@ -1,32 +1,28 @@
-"use client";
-
-import type { Article } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
-import { useMDXComponent } from "next-contentlayer/hooks";
 
-export function ArticleCard(article: Article) {
-  const MDXContent = useMDXComponent(article.body.code);
+type ArticleCardProps = {
+  title: string;
+  publishedAt: string;
+  url: string;
+  description?: string;
+};
 
+export function ArticleCard({
+  title,
+  publishedAt,
+  url,
+  description,
+}: ArticleCardProps) {
   return (
-    <article className="mb-8">
-      <h2 className="mb-1 text-xl">
-        <Link
-          href={article.url}
-          className="text-blue-700 hover:text-blue-900 dark:text-blue-400"
-        >
-          {article.title}
-        </Link>
+    <article>
+      <h2>
+        <Link href={url}>{title}</Link>
       </h2>
-      <time
-        dateTime={article.publishedAt}
-        className="mb-2 block text-xs text-gray-600"
-      >
-        {format(parseISO(article.publishedAt), "LLLL d, yyyy")}
+      <time dateTime={publishedAt}>
+        {format(parseISO(publishedAt), "LLLL d, yyyy")}
       </time>
-      <section className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0">
-        <MDXContent />
-      </section>
+      {description && <p>{description}</p>}
     </article>
   );
 }
