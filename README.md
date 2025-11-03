@@ -32,7 +32,6 @@
 | Design System      | 	Storybook + Vite            |
 | Style              | 	Native CSS                  |
 | Content            | 	MarkdownX with Contentlayer |
-| Architecture       | 	Hexagonal / DDD             |
 | Pre-commit         | 	Lefthook                    |
 
 ![next badge](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs)

@@ -1,9 +1,21 @@
+import { Logo } from "@/ui/components/Images/Logo";
 import { ToggleTheme } from "@/ui/components/ToggleTheme/ToggleTheme";
+import "./Navigation.css";
 
 export const Navigation = () => {
   return (
-    <nav>
-      <ToggleTheme />
-    </nav>
+    <section className="navigation">
+      <div className="container">
+        <Logo />
+        <nav className="nav">
+          <ul>
+            <li>Articles</li>
+            <li>Astuces</li>
+            <li>À propos</li>
+          </ul>
+          <ToggleTheme />
+        </nav>
+      </div>
+    </section>
   );
 };

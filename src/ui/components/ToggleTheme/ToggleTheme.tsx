@@ -34,7 +34,6 @@ export const ToggleTheme = () => {
         />
         <div className="slider round"></div>
       </label>
-      <em>{theme === "dark" ? "Dark mode" : "Light mode"}</em>
     </div>
   );
 };

@@ -1,15 +1,14 @@
-import { Wave } from "@/ui/components/Header/Wave";
+import { Wave } from "@/ui/components/Images/Wave";
 import "./Header.css";
 
 export const Header = () => {
   return (
-    <header className="header">
+    <header className="header container">
       <section className="header__content">
         <h1 className="header__title">Passionné·es d'intégration web</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac
-          viverra mi. Donec laoreet, lacus ac mollis placerat, magna nisi
-          iaculis felis, in tempus nibh libero sed velit.
+          Nous partageons techniques, astuces et bonnes pratiques en HTML, CSS,
+          accessibilité, eco-conception, software craft ou encore dessin.
         </p>
       </section>
       <section className="header__aside">

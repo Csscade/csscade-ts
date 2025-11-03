@@ -10,14 +10,16 @@ export default function Home() {
   );
 
   return (
-    <main className="main">
+    <>
       <Navigation />
       <Header />
-      <section>
-        {Articles.map((article) => (
-          <ArticleCard key={article._id} {...article} />
-        ))}
-      </section>
-    </main>
+      <main className="main">
+        <section>
+          {Articles.map((article) => (
+            <ArticleCard key={article._id} {...article} />
+          ))}
+        </section>
+      </main>
+    </>
   );
 }

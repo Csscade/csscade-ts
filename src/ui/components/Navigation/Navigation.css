@@ -1,0 +1,36 @@
+.navigation {
+  position: fixed;
+  background: var(--background-primary);
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 1rem 0;
+  z-index: 1;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+  }
+
+  .logo {
+    max-width: 42px;
+    height: inherit;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+
+    ul {
+      display: flex;
+      width: fit-content;
+      list-style: none;
+      gap: 1rem;
+    }
+  }
+}
