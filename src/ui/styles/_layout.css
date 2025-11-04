@@ -30,6 +30,38 @@ html {
   max-width: var(--container-max-width);
 }
 
+.framed {
+  position: relative;
+  border: 1px solid var(--border-color);
+
+  &::before,
+  &::after,
+  & span::before,
+  & span::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--background-primary);
+  }
+
+  &::before {
+    bottom: -5px;
+    left: -5px;
+  }
+
+  &::after {
+    top: -5px;
+    right: -5px;
+  }
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
 .body {
   padding-top: 1rem;
 }
