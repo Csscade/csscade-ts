@@ -17,9 +17,22 @@ const monospaceFont = Fira_Code({
   subsets: ["latin"],
 });
 
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+const siteUrl = process.env.PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: "Csscade",
   description: "Csscade website",
+  metadataBase: new URL(siteUrl),
+  icons: {
+    icon: [
+      { url: `${basePath}/favicons/favicon.ico`, sizes: "any" },
+      { url: `${basePath}/favicons/favicon.svg`, type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: `${basePath}/favicons/apple-touch-icon.png`, sizes: "180x180" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -37,22 +50,6 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/favicons/favicon.svg"
-          type="image/svg"
-          sizes="svg"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/favicons/apple-touch-icon.png"
-          type="image/png"
-          sizes="png"
-        />
-        <title>Csscade</title>
-      </head>
       <body>{children}</body>
     </html>
   );

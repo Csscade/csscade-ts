@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
 
+const basePath = process.env.PAGES_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
-  assetPrefix: process.env.PAGES_BASE_PATH,
-  basePath: process.env.PAGES_BASE_PATH,
+  assetPrefix: basePath,
+  basePath: basePath,
   experimental: {
     mdxRs: true,
   },
