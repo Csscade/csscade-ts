@@ -1,5 +1,5 @@
-import { Logo } from "@/ui/components/Images/Logo";
-import { ToggleTheme } from "@/ui/components/ToggleTheme/ToggleTheme";
+import { Logo } from "@/ui/components/atoms/Images/Logo";
+import { ToggleTheme } from "@/ui/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
 
 export const Navigation = () => {

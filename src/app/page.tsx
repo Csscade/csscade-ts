@@ -1,8 +1,8 @@
 import { allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { ArticleCard } from "@/ui/articles/ArticleCard";
-import { Header } from "@/ui/components/Header/Header";
-import { Navigation } from "@/ui/components/Navigation/Navigation";
+import { Header } from "@/ui/components/templates/Header/Header";
+import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 
 export default function Home() {
   const Articles = allArticles.sort((a, b) =>

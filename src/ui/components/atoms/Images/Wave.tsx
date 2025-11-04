@@ -3,15 +3,14 @@ import type React from "react";
 export const Wave: React.FC<React.SVGProps<SVGSVGElement>> = () => {
   return (
     <svg
-      width="677"
-      height="452"
+      height="100%"
       viewBox="0 0 677 452"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="wave"
     >
       <title>
-        Minimalist version of The Great Wave Off Kanagawa by Hokusai
+        Version minimaliste de La Grande Vague de Kanagawa d'Hokusai
       </title>
       <path
         d="M30.5646 282.653L20.6265 289.83L26.1477 314.676L51.5452 324.614L101.236 319.645L133.811 324.614L144.854 314.676L179.637 289.83L198.409 294.247L242.027 245.108L249.756 234.618H264.112L272.945 245.108H293.926L332.022 289.83L340.856 294.247H359.076L387.786 324.614L408.767 329.583L427.539 336.76L454.593 344.49L514.222 348.907L578.268 336.76L636.241 324.614L694.213 300.32L744.456 273.819"

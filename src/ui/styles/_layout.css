@@ -26,6 +26,60 @@ html {
   color: var(--font-color);
 }
 
+.body {
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: var(--breakpoint-md)) {
+  .body {
+    padding-top: 0;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(350px);
+  padding: 1rem;
+  margin: 3rem auto;
+  max-width: var(--container-max-width);
+}
+
+/* ---------- Titles ---------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+
+  &::selection {
+    background: transparent;
+    color: var(--color-primary);
+    text-shadow: none;
+  }
+}
+
+h1 {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 2rem;
+}
+
+h3 {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 1.75rem;
+}
+
+/* ---------- Containers ---------- */
+
 .container {
   max-width: var(--container-max-width);
 }
@@ -62,57 +116,14 @@ html {
   }
 }
 
-.body {
-  padding-top: 1rem;
+.framed-four-corners {
+  border: 1px solid transparent;
+  border-image: var(--border-image) 12 fill / 12px / 7px space;
 }
 
-@media screen and (min-width: var(--breakpoint-md)) {
-  .body {
-    padding-top: 0;
-  }
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: calc(350px);
-  margin: 3rem auto;
-  max-width: var(--container-max-width);
-}
-
-.container {
-  max-width: var(--container-max-width);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-
-  &::selection {
-    background: transparent;
-    color: var(--color-primary);
-    text-shadow: none;
-  }
-}
-
-h1 {
-  font-family: var(--font-secondary), sans-serif;
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-family: var(--font-secondary), sans-serif;
-  font-size: 2rem;
-}
-
-h3 {
-  font-family: var(--font-secondary), sans-serif;
-  font-size: 1.75rem;
+.textured-background {
+  background-color: var(--background-primary);
+  background-image: url("assets/background-grid.png");
 }
 
 .section {
@@ -147,6 +158,8 @@ h3 {
   }
 }
 
+/* ---------- Lists ---------- */
+
 .list--empty {
   padding: 2rem 0;
   border-radius: var(--br-normal);
@@ -158,6 +171,8 @@ h3 {
 .list--empty i {
   font-size: 1.5rem;
 }
+
+/* ---------- Skip links ---------- */
 
 .skip-links {
   --i: 0;

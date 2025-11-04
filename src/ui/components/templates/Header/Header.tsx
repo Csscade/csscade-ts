@@ -1,11 +1,14 @@
-import { Wave } from "@/ui/components/Images/Wave";
+import { Wave } from "@/ui/components/atoms/Images/Wave";
 import "./Header.css";
 
 export const Header = () => {
   return (
-    <header className="header container">
-      <section className="header__content">
-        <h1 className="header__title">Passionné·es d'intégration web</h1>
+    <header className="header container framed-four-corners textured-background">
+      <section className="header__main">
+        <div className="header__content">
+          <h1 className="header__title">CSScade</h1>
+          <small>/kskad/</small>
+        </div>
         <p>
           Nous partageons techniques, astuces et bonnes pratiques en HTML, CSS,
           accessibilité, eco-conception, software craft ou encore dessin.

@@ -5,6 +5,7 @@
 
   /* BORDER COLORS */
   --border-color: var(--color-dark-muted);
+  --border-image: url("./assets/frame_light-mode.png");
 
   /* BACKGROUND COLORS */
   --background-primary: var(--color-light-muted);
