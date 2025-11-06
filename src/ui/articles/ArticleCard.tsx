@@ -20,7 +20,7 @@ export function ArticleCard({
         <Link href={url}>{title}</Link>
       </h2>
       <time dateTime={publishedAt}>
-        {format(parseISO(publishedAt), "LLLL d, yyyy")}
+        {format(parseISO(publishedAt), "dd/MM/yy")}
       </time>
       {description && <p>{description}</p>}
     </article>
