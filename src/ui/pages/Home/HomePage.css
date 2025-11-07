@@ -1,0 +1,7 @@
+.last-articles {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  width: 100%;
+}

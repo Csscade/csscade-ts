@@ -5,32 +5,125 @@
   top: 0;
   left: 0;
   padding: 1rem;
-  z-index: 1;
+  z-index: 1000;
 
   .container {
     display: flex;
     flex-direction: row;
-    margin: 0 2rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
   }
 
   .logo {
     max-width: 42px;
     height: inherit;
+    z-index: 1001;
   }
 
-  .nav {
+  /* Burger button - visible on mobile */
+  .burger-button {
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    width: 100%;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .burger-line {
+    width: 25px;
+    height: 3px;
+    background: var(--color-primary);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+
+    &.open:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+    }
+
+    &.open:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+  }
+
+  /* Mobile first navigation */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--background-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+
+    &.open {
+      right: 0;
+    }
 
     ul {
       display: flex;
-      width: fit-content;
+      flex-direction: column;
+      width: 100%;
       list-style: none;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 768px) {
+    .container {
+      margin: 0 2rem;
+    }
+
+    .burger-button {
+      display: none;
+    }
+
+    .nav {
+      position: static;
+      width: auto;
+      height: auto;
+      flex-direction: row;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
+      justify-content: flex-end;
+      align-items: center;
       gap: 1rem;
+
+      ul {
+        flex-direction: row;
+        width: fit-content;
+        gap: 1rem;
+
+        li {
+          font-size: 1rem;
+        }
+      }
     }
   }
 }

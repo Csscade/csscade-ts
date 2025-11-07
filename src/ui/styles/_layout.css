@@ -26,13 +26,19 @@ html {
   color: var(--font-color);
 }
 
-.body {
-  padding-top: 1rem;
+body {
+  padding: 1rem 1rem 0;
 }
 
-@media screen and (min-width: var(--breakpoint-md)) {
-  .body {
-    padding-top: 0;
+@media screen and (min-width: 768px) {
+  body {
+    padding: 1rem 2rem 0;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    padding: 1rem 2rem 0;
   }
 }
 
@@ -41,7 +47,6 @@ html {
   flex-direction: column;
   align-items: center;
   min-height: calc(350px);
-  padding: 1rem;
   margin: 3rem auto;
   max-width: var(--container-max-width);
 }
@@ -76,6 +81,16 @@ h2 {
 h3 {
   font-family: var(--font-secondary), sans-serif;
   font-size: 1.75rem;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--textColor);
+
+  &:visited {
+    color: var(--color-primary);
+  }
 }
 
 /* ---------- Containers ---------- */
@@ -128,6 +143,10 @@ h3 {
 
 .section {
   width: 100%;
+}
+
+body > .section {
+  max-width: var(--container-max-width);
 }
 
 .section__title {

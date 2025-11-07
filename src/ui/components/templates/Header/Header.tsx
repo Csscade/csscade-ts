@@ -3,7 +3,7 @@ import "./Header.css";
 
 export const Header = () => {
   return (
-    <header className="header container framed-four-corners textured-background">
+    <header className="header framed-four-corners textured-background">
       <section className="header__main">
         <div className="header__content">
           <h1 className="header__title">CSScade</h1>
