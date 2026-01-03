@@ -1,7 +1,7 @@
 import { allArticles } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
 import { notFound } from "next/navigation";
-import { ArticleContent } from "@/ui/articles/ArticleContent";
+import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
 
 export const generateStaticParams = async () =>
   allArticles.map((article) => ({

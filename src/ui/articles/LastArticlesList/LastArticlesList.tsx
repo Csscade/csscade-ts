@@ -1,6 +1,7 @@
 import { allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
-import { ArticleCard } from "@/ui/articles/ArticleCard";
+import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
+import "./LastArticlesList.css";
 
 interface LastArticlesProps {
   limit?: number;

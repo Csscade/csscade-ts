@@ -1,6 +1,6 @@
 import { allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
-import { ArticleCard } from "@/ui/articles/ArticleCard";
+import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 
 export default function ArticlesPage() {

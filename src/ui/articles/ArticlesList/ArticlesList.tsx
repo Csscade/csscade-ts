@@ -1,5 +1,5 @@
 import type { Article } from "contentlayer/generated";
-import { ArticleCard } from "@/ui/articles/ArticleCard";
+import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 
 interface ArticlesListProps {
   articles: Article[];
