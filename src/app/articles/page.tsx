@@ -1,5 +1,5 @@
-import ArticlesPage from "@/ui/pages/Articles/ArticlesPage";
+import { redirect } from "next/navigation";
 
-export default function Articles() {
-  return <ArticlesPage />;
+export default function ArticlesIndexPage() {
+  redirect("/articles/page/1");
 }
