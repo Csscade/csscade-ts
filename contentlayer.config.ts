@@ -9,6 +9,7 @@ export const Article = defineDocumentType(() => ({
     slug: { type: "string", required: true },
     author: { type: "string", required: true },
     publishedAt: { type: "date", required: true },
+    categories: { type: "list", of: { type: "string" }, required: true },
   },
   computedFields: {
     url: { type: "string", resolve: (doc) => `/articles/${doc.slug}` },
@@ -22,6 +23,7 @@ export const Tip = defineDocumentType(() => ({
   fields: {
     title: { type: "string", required: true },
     slug: { type: "string", required: true },
+    categories: { type: "list", of: { type: "string" }, required: true },
   },
   computedFields: {
     url: { type: "string", resolve: (doc) => `/tips/${doc.slug}` },

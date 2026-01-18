@@ -1,5 +1,6 @@
 import { allArticles } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
 
@@ -27,6 +28,20 @@ export default async function ArticlePage({
       </p>
 
       <ArticleContent code={article.body.code} />
+
+      {article.categories && (
+        <div className="article-card__footer">
+          {article.categories.map((category) => (
+            <Link
+              key={category}
+              href={`/articles/category/${category.toLowerCase()}`}
+              className="article-card__category"
+            >
+              {category}
+            </Link>
+          ))}
+        </div>
+      )}
     </article>
   );
 }

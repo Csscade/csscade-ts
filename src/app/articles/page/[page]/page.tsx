@@ -38,6 +38,7 @@ export default async function ArticlesPage({ params }: PageProps) {
             title={article.title}
             publishedAt={article.publishedAt}
             url={article.url}
+            categories={article.categories}
           />
         ))}
       </section>

@@ -14,6 +14,7 @@ export const ArticlesList = ({ articles }: ArticlesListProps) => {
           title={article.title}
           publishedAt={article.publishedAt}
           url={article.url}
+          categories={article.categories}
         />
       ))}
     </div>

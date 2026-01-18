@@ -22,6 +22,7 @@ export const LastArticlesList = ({ limit = 4 }: LastArticlesProps) => {
           title={article.title}
           publishedAt={article.publishedAt}
           url={article.url}
+          categories={article.categories}
         />
       ))}
     </div>
