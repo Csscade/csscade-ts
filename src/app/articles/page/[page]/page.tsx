@@ -4,10 +4,11 @@ import {
   getPaginatedArticles,
   getTotalArticlePages,
 } from "@/domain/articles/pagination";
-import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
+import { ArticlesList } from "@/ui/articles/ArticlesList/ArticlesList";
 import { Pagination } from "@/ui/articles/Pagination/Pagination";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
+import "./ArticlesPage.css";
 
 type PageProps = {
   params: {
@@ -32,20 +33,10 @@ export default async function ArticlesPage({ params }: PageProps) {
   return (
     <>
       <Navigation />
-      <main className={"page main"}>
+      <main className={"articles_page main"}>
         <h1>Articles</h1>
 
-        <section>
-          {articles.map((article) => (
-            <ArticleCard
-              key={article._id}
-              title={article.title}
-              publishedAt={article.publishedAt}
-              url={article.url}
-              categories={article.categories}
-            />
-          ))}
-        </section>
+        <ArticlesList articles={articles} />
 
         <Pagination
           currentPage={currentPage}

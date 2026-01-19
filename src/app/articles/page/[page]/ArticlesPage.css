@@ -1,0 +1,9 @@
+.articles_page {
+  margin: 5rem auto 0;
+  padding: 1rem 1rem 0;
+  max-width: var(--container-max-width);
+
+  .articles__list {
+    margin: 2rem auto;
+  }
+}
