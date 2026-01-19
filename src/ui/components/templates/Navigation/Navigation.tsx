@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Logo } from "@/ui/components/atoms/Images/Logo";
 import { ToggleTheme } from "@/ui/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
+import Link from "next/link";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,14 +31,22 @@ export const Navigation = () => {
         <nav className={`nav ${isMenuOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <a href="/" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/"
+                aria-label="Voir la page d'accueil"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Accueil
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/articles" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/articles/page/1"
+                aria-label="Voir tous les articles"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Articles
-              </a>
+              </Link>
             </li>
             <li>Astuces</li>
             <li>À propos</li>

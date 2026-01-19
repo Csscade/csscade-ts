@@ -6,7 +6,8 @@
   --font-reverse-muted: var(--color-light-muted);
 
   /* BORDER COLORS */
-  --border-color: var(--color-dark-muted);
+  --border-color: var(--color-dark);
+  --border-color-reverse: var(--color-light);
   --border-image: url("./assets/frame_light-mode.png");
   --border-image-reverse: url("./assets/frame_dark-mode.png");
 

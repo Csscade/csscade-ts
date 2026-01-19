@@ -105,16 +105,6 @@ h3 {
   font-size: 1.75rem;
 }
 
-/* ---------- Links ---------- */
-
-a {
-  color: var(--font-color);
-
-  &:visited {
-    color: var(--color-primary);
-  }
-}
-
 /* ---------- Containers ---------- */
 
 .container {
