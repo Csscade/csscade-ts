@@ -2,6 +2,8 @@
   /* FONTS */
   --font-color: var(--color-dark);
   --font-color-muted: var(--color-dark-muted);
+  --font-reverse: var(--color-light);
+  --font-reverse-muted: var(--color-light-muted);
 
   /* BORDER COLORS */
   --border-color: var(--color-dark-muted);

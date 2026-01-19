@@ -27,19 +27,7 @@ html {
 }
 
 body {
-  padding: 1rem 1rem 0;
-}
-
-@media screen and (min-width: 768px) {
-  body {
-    padding: 1rem 2rem 0;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  body {
-    padding: 1rem 2rem 0;
-  }
+  margin: 0;
 }
 
 .main {
@@ -48,7 +36,26 @@ body {
   align-items: center;
   min-height: calc(350px);
   margin: 3rem auto;
-  max-width: var(--container-max-width);
+}
+
+main > section {
+  padding: 1rem 1rem 0;
+
+  > section {
+    max-width: var(--container-max-width);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main > section {
+    padding: 1rem 2rem 0;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  main > section {
+    padding: 1rem 4rem 1rem;
+  }
 }
 
 /* ---------- Titles ---------- */
@@ -141,12 +148,17 @@ a {
   background-image: url("assets/background-grid.png");
 }
 
-.section {
+section {
   width: 100%;
-}
 
-body > .section {
-  max-width: var(--container-max-width);
+  footer {
+    display: flex;
+    justify-content: space-between;
+
+    &:has(> :only-child) {
+      justify-content: flex-end;
+    }
+  }
 }
 
 .section__title {

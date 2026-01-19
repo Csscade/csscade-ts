@@ -7,7 +7,7 @@ interface LastArticlesProps {
   limit?: number;
 }
 
-export const LastArticlesList = ({ limit = 4 }: LastArticlesProps) => {
+export const LastArticlesList = ({ limit = 3 }: LastArticlesProps) => {
   const articles = allArticles
     .sort((a, b) =>
       compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
