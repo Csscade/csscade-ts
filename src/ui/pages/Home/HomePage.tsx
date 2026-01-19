@@ -3,6 +3,7 @@ import { Header } from "@/ui/components/templates/Header/Header";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 import "./HomePage.css";
 import Link from "next/link";
+import { Footer } from "@/ui/components/templates/Footer/Footer";
 
 export const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ export const HomePage = () => {
           </footer>
         </section>
       </main>
+      <Footer />
     </>
   );
 };

@@ -1,0 +1,25 @@
+.footer {
+  position: relative;
+  padding: 2rem 1rem;
+  text-align: center;
+
+  .footer__links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+
+    a {
+      width: 2rem;
+
+      &:visited {
+        color: var(--font-color);
+      }
+
+      svg {
+        width: 100%;
+      }
+    }
+  }
+}

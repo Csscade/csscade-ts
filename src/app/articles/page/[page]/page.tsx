@@ -6,6 +6,8 @@ import {
 } from "@/domain/articles/pagination";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { Pagination } from "@/ui/articles/Pagination/Pagination";
+import { Footer } from "@/ui/components/templates/Footer/Footer";
+import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 
 type PageProps = {
   params: {
@@ -28,27 +30,31 @@ export default async function ArticlesPage({ params }: PageProps) {
   }
 
   return (
-    <main className="main">
-      <h1>Articles</h1>
+    <>
+      <Navigation />
+      <main className={"page main"}>
+        <h1>Articles</h1>
 
-      <section>
-        {articles.map((article) => (
-          <ArticleCard
-            key={article._id}
-            title={article.title}
-            publishedAt={article.publishedAt}
-            url={article.url}
-            categories={article.categories}
-          />
-        ))}
-      </section>
+        <section>
+          {articles.map((article) => (
+            <ArticleCard
+              key={article._id}
+              title={article.title}
+              publishedAt={article.publishedAt}
+              url={article.url}
+              categories={article.categories}
+            />
+          ))}
+        </section>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        basePath="/articles/page"
-      />
-    </main>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath="/articles/page"
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
 

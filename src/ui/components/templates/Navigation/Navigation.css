@@ -21,6 +21,14 @@
     z-index: 1001;
   }
 
+  a {
+    text-decoration: none;
+
+    &:visited {
+      color: var(--font-color);
+    }
+  }
+
   .burger-button {
     display: flex;
     flex-direction: column;
@@ -115,12 +123,18 @@
       ul {
         flex-direction: row;
         width: fit-content;
-        gap: 1rem;
+        gap: 2rem;
 
         li {
           font-size: 1rem;
         }
       }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .nav ul {
+      gap: 2.5rem;
     }
   }
 }

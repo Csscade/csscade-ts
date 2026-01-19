@@ -1,7 +1,7 @@
 import { allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 
-const ARTICLES_PER_PAGE = 1;
+const ARTICLES_PER_PAGE = 4;
 
 export function getPaginatedArticles(page: number) {
   const sortedArticles = [...allArticles].sort((a, b) =>

@@ -8,9 +8,10 @@
   /* BORDER COLORS */
   --border-color: var(--color-light-muted);
   --border-image: url("./assets/frame_dark-mode.png");
+  --border-image-reverse: url("./assets/frame_light-mode.png");
 
   /* BACKGROUND COLORS */
   --background-primary: var(--color-dark);
   --background-secondary: var(--color-dark-muted);
-  --background-reverse: var(--color-light-muted);
+  --background-reverse: var(--color-light);
 }

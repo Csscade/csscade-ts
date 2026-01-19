@@ -1,6 +1,8 @@
 import { allArticles } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
+import { Footer } from "@/ui/components/templates/Footer/Footer";
+import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 
 type PageProps = {
   params: Promise<{ category: string }>;
@@ -23,21 +25,25 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   return (
-    <main className="main">
-      <h1>Articles – {category}</h1>
+    <>
+      <Navigation />
+      <main className="main">
+        <h1>Articles – {category}</h1>
 
-      <section>
-        {articles.map((article) => (
-          <ArticleCard
-            key={article._id}
-            title={article.title}
-            publishedAt={article.publishedAt}
-            url={article.url}
-            categories={article.categories}
-          />
-        ))}
-      </section>
-    </main>
+        <section>
+          {articles.map((article) => (
+            <ArticleCard
+              key={article._id}
+              title={article.title}
+              publishedAt={article.publishedAt}
+              url={article.url}
+              categories={article.categories}
+            />
+          ))}
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
 

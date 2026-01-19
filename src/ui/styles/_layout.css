@@ -31,11 +31,26 @@ body {
 }
 
 .main {
+  background: var(--background-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: calc(350px);
-  margin: 3rem auto;
+  margin: 3rem auto 0;
+}
+
+section {
+  width: 100%;
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+
+    &:has(> :only-child) {
+      justify-content: flex-end;
+    }
+  }
 }
 
 main > section {
@@ -54,7 +69,7 @@ main > section {
 
 @media screen and (min-width: 992px) {
   main > section {
-    padding: 1rem 4rem 1rem;
+    padding: 3rem 5rem;
   }
 }
 
@@ -93,7 +108,7 @@ h3 {
 /* ---------- Links ---------- */
 
 a {
-  color: var(--textColor);
+  color: var(--font-color);
 
   &:visited {
     color: var(--color-primary);
@@ -146,19 +161,6 @@ a {
 .textured-background {
   background-color: var(--background-primary);
   background-image: url("assets/background-grid.png");
-}
-
-section {
-  width: 100%;
-
-  footer {
-    display: flex;
-    justify-content: space-between;
-
-    &:has(> :only-child) {
-      justify-content: flex-end;
-    }
-  }
 }
 
 .section__title {

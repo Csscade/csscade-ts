@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./ArticleCard.css";
 
 type ArticleCardProps = {
   title: string;
@@ -16,7 +17,7 @@ export function ArticleCard({
 }: ArticleCardProps) {
   return (
     <article className="article-card framed-four-corners">
-      <h3>
+      <h3 className={"article-card__title"}>
         <Link href={url}>{title}</Link>
       </h3>
       {description && (

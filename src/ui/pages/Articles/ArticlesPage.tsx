@@ -1,6 +1,7 @@
 import { allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
+import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 
 export default function ArticlesPage() {
@@ -26,6 +27,7 @@ export default function ArticlesPage() {
           ))}
         </section>
       </main>
+      <Footer />
     </>
   );
 }
