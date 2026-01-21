@@ -1,5 +1,5 @@
-@import "_light.css";
-@import "_dark.css";
-@import "_variables.css";
-@import "_animations.css";
-@import "_layout.css";
+@import "@/ui/styles/_variables.css";
+@import "@/ui/styles/_light.css";
+@import "@/ui/styles/_dark.css";
+@import "@/ui/styles/_animations.css";
+@import "@/ui/styles/_layout.css";

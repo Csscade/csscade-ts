@@ -2,7 +2,7 @@ import { LastArticlesList } from "@/ui/articles/LastArticlesList/LastArticlesLis
 import { Header } from "@/ui/components/templates/Header/Header";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 import "./HomePage.css";
-import { A } from "@/ui/components/atoms/A/A";
+import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 
 export const HomePage = () => {
@@ -15,7 +15,13 @@ export const HomePage = () => {
           <h2 className="section__title">Les derniers articles</h2>
           <LastArticlesList />
           <footer>
-            <A href={"/articles/page/1"}>Tous les articles</A>
+            <StyledLink
+              href={"/articles/page/1"}
+              bordered={true}
+              reversed={true}
+            >
+              Tous les articles
+            </StyledLink>
           </footer>
         </section>
       </main>

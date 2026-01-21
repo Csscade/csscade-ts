@@ -1,4 +1,4 @@
-[data-theme="dark"] {
+html[data-theme="dark"] {
   /* FONTS */
   --font-color: var(--color-light);
   --font-color-muted: var(--color-light-muted);
