@@ -1,4 +1,14 @@
 .article-content {
   max-width: var(--article-max-width);
   margin: 3rem auto 0;
+
+  p:has(img) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 100%;
+  }
 }
