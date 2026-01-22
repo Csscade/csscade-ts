@@ -49,5 +49,6 @@
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1400px;
 
+  --article-max-width: var(--breakpoint-md);
   --container-max-width: 1400px;
 }

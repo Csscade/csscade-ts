@@ -11,6 +11,7 @@ export type StyledLinkProps = {
   reversed?: boolean;
   iconOnly?: boolean;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
 export const StyledLink: ({
@@ -20,6 +21,7 @@ export const StyledLink: ({
   reversed,
   iconOnly,
   className,
+  onClick,
 }: StyledLinkProps) => React.JSX.Element = ({
   href,
   children,
@@ -27,6 +29,7 @@ export const StyledLink: ({
   reversed = false,
   iconOnly = false,
   className = "",
+  onClick,
 }: StyledLinkProps) => {
   return (
     <Link
@@ -38,6 +41,7 @@ export const StyledLink: ({
         iconOnly && "styled-link--icon",
         className,
       )}
+      onClick={onClick}
     >
       {children}
     </Link>

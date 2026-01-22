@@ -1,0 +1,19 @@
+.article-page {
+  max-width: var(--article-max-width);
+  margin: 5rem auto 0;
+  padding: 3rem 0;
+
+  .article-page__header {
+    /* max-width: var(--container-max-width); */
+    margin: auto;
+  }
+
+  .article-page__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .article-page__categories {
+    display: flex;
+    gap: 1rem;
+  }
+}

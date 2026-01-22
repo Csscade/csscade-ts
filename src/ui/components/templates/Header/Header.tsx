@@ -14,7 +14,8 @@ export const Header = () => {
           </div>
           <p>
             Nous partageons techniques, astuces et bonnes pratiques en HTML,
-            CSS, accessibilité, eco-conception, software craft ou encore dessin.
+            CSS, accessibilité, eco-conception,{" "}
+            <span lang="en">software craft</span> ou encore dessin.
           </p>
         </section>
         <section className="header__aside">

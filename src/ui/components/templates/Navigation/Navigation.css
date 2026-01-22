@@ -22,11 +22,7 @@
   }
 
   a {
-    text-decoration: none;
-
-    &:visited {
-      color: var(--font-color);
-    }
+    color: var(--font-color);
   }
 
   .burger-button {

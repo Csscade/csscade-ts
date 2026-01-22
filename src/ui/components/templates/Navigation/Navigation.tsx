@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Logo } from "@/ui/components/atoms/Images/Logo";
 import { ToggleTheme } from "@/ui/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
-import Link from "next/link";
+import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,25 +31,36 @@ export const Navigation = () => {
         <nav className={`nav ${isMenuOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <Link
+              <StyledLink
                 href="/"
                 aria-label="Voir la page d'accueil"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Accueil
-              </Link>
+              </StyledLink>
             </li>
             <li>
-              <Link
+              <StyledLink
                 href="/articles/page/1"
                 aria-label="Voir tous les articles"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Articles
-              </Link>
+              </StyledLink>
             </li>
-            <li>Astuces</li>
-            <li>À propos</li>
+            <li>
+              <StyledLink
+                href="/tips/page/1"
+                aria-label="Voir toutes les astuces"
+              >
+                Astuces
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink href="#" aria-label="A propos de Csscade">
+                A Propos
+              </StyledLink>
+            </li>
           </ul>
           <ToggleTheme />
         </nav>
