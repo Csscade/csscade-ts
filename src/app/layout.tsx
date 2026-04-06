@@ -4,12 +4,12 @@ import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
 import "@/ui/styles/theme.css";
 
 const primaryFont = Poppins({
-  weight: "400",
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
 const secondaryFont = Playfair_Display({
-  weight: "700",
+  weight: ["400", "700", "900"],
   subsets: ["latin"],
 });
 

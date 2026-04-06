@@ -12,7 +12,7 @@ type StyledLinkStoryArgs = StyledLinkProps & {
 };
 
 const meta = {
-  title: "Atoms/StyledLink",
+  title: "Molecules/StyledLink",
   component: StyledLink,
   parameters: {
     layout: "centered",

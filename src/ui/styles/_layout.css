@@ -16,6 +16,7 @@
   box-sizing: inherit;
   font-family: var(--font-primary), sans-serif;
   font-size: 16px;
+  font-weight: 400;
 }
 
 html {
@@ -166,19 +167,42 @@ h6 {
   }
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-secondary), sans-serif;
+}
+
+h1 {
   font-size: 2.5rem;
 }
 
 h2 {
-  font-family: var(--font-secondary), sans-serif;
   font-size: 2rem;
 }
 
 h3 {
-  font-family: var(--font-secondary), sans-serif;
   font-size: 1.75rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1.5rem;
+}
+
+/* ---------- Text ---------- */
+
+strong {
+  font-weight: 600;
+}
+
+del,
+s {
+  text-decoration: line-through;
 }
 
 /* ---------- Lists ---------- */
@@ -212,14 +236,26 @@ pre {
 /* ---------- Blockquotes ---------- */
 
 blockquote {
+  border-left: 1px solid var(--mirage);
+  padding-left: 1rem;
+  margin-left: 0;
+
+  blockquote {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+  }
+
   p {
     font-family: var(--font-secondary), serif;
     font-style: italic;
+    font-weight: 700;
   }
 
   p:last-child {
     font-family: var(--font-primary), sans-serif;
     font-style: normal;
+    font-weight: 600;
   }
 }
 
