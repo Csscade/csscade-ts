@@ -18,6 +18,7 @@
 
 - [Getting Started](#getting-started)
 - [Design system](#design-system)
+- [Troubleshooting](#troubleshooting)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -64,3 +65,24 @@ pnpm storybook
 ```
 
 Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
+
+## Troubleshooting
+
+Contentlayer build works but returns a well-known error that should not be a problem.
+
+```shell
+pnpm run build:content
+
+> contentlayer build
+
+Generated 6 documents in .contentlayer
+TypeError: The "code" argument must be of type number. Received an instance of Object
+    at process.set [as exitCode] (node:internal/bootstrap/node:119:9)
+    at Cli.runExit (/Users/csscade/workspace/csscade/csscade-ts/node_modules/.pnpm/clipanion@3.2.1_typanion@3.14.0/node_modules/clipanion/lib/advanced/Cli.js:232:26)
+    at run (file:///Users/csscade/workspace/csscade-ts/node_modules/.pnpm/@contentlayer+cli@0.3.4_esbuild@0.27.2/node_modules/@contentlayer/cli/src/index.ts:39:3)
+    at main (/Users/csscade/workspace/csscade/csscade-ts/node_modules/.pnpm/contentlayer@0.3.4_esbuild@0.27.2/node_modules/contentlayer/bin/cli.cjs:5:3) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+
+Process finished with exit code 0
+```
