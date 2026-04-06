@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import "@/ui/articles/ArticleContent/ArticleContent.css";
-import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 
 const meta = {
   title: "Atoms/Typography",
@@ -91,17 +90,6 @@ export const NestedBlockquote: StoryObj = {
         </blockquote>
         <p>— Author Name</p>
       </blockquote>
-    </div>
-  ),
-};
-
-export const Link: StoryObj = {
-  render: () => (
-    <div className="article-content">
-      <p>
-        Link: <StyledLink href="#">This is a link</StyledLink> (written as{" "}
-        <code>[text](url)</code> in Markdown)
-      </p>
     </div>
   ),
 };
