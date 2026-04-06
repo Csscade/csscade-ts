@@ -23,8 +23,12 @@ export const Bold: StoryObj = {
   render: () => (
     <div className="article-content">
       <p>
-        <strong>This is bold text</strong> (written as <code>**text**</code> or{" "}
-        <code>__text__</code> in Markdown)
+        <strong>This is bold text</strong>
+        <br />
+        <p>
+          (written as <code>**text**</code> or <code>__text__</code> in
+          Markdown)
+        </p>
       </p>
     </div>
   ),
@@ -34,8 +38,11 @@ export const Italic: StoryObj = {
   render: () => (
     <div className="article-content">
       <p>
-        <em>This is italic text</em> (written as <code>*text*</code> or{" "}
-        <code>_text_</code> in Markdown)
+        <em>This is italic text</em>
+        <br />
+        <p>
+          (written as <code>*text*</code> or <code>_text_</code> in Markdown)
+        </p>
       </p>
     </div>
   ),
@@ -45,8 +52,11 @@ export const Strikethrough: StoryObj = {
   render: () => (
     <div className="article-content">
       <p>
-        <del>This text is struck through</del> (written as <code>~~text~~</code>{" "}
-        in Markdown)
+        <del>This text is struck through</del>
+        <br />
+        <p>
+          (written as <code>~~text~~</code> in Markdown)
+        </p>
       </p>
     </div>
   ),
@@ -56,8 +66,11 @@ export const InlineCode: StoryObj = {
   render: () => (
     <div className="article-content">
       <p>
-        Inline Code: <code>const hello = "world";</code> (written as{" "}
-        <code>`code`</code> in Markdown)
+        Inline Code: <code>const hello = "world";</code>
+        <br />
+        <p>
+          (written as <code>`code`</code> in Markdown)
+        </p>
       </p>
     </div>
   ),

@@ -32,7 +32,7 @@
   /* FONTS */
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Playfair Display", "Poppins", sans-serif;
-  --font-code: "Fira Code", monospace;
+  --font-mono: "Fira Code", monospace;
 
   /* BORDER RADIUS */
   --br-normal: 0.625rem;

@@ -224,7 +224,7 @@ s {
 code,
 pre {
   background-color: var(--background-secondary);
-  font-family: var(--font-code), monospace;
+  font-family: var(--font-mono), monospace;
   color: var(--font-color-muted);
   font-weight: normal;
   border-radius: 4px;

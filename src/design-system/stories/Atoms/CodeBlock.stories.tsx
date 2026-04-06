@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import "@/ui/articles/ArticleContent/ArticleContent.css";
 
 const meta = {
-  title: "Atoms/Code",
+  title: "Atoms/Code Block",
   parameters: {
     layout: "centered",
   },
@@ -10,17 +10,6 @@ const meta = {
 } satisfies Meta;
 
 export default meta;
-
-export const InlineCode: StoryObj = {
-  render: () => (
-    <div className="article-content">
-      <p>
-        Inline Code: <code>const hello = "world";</code> (written as{" "}
-        <code>`code`</code> in Markdown)
-      </p>
-    </div>
-  ),
-};
 
 export const CodeBlock: StoryObj = {
   render: () => (

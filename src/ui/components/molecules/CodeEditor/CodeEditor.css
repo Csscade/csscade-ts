@@ -1,0 +1,9 @@
+.code-editor-container {
+  border-radius: var(--br-normal, 4px);
+  overflow: hidden;
+
+  .monaco-editor,
+  .monaco-editor * {
+    font-family: var(--font-mono), monospace;
+  }
+}

@@ -15,6 +15,7 @@ const secondaryFont = Playfair_Display({
 
 const monospaceFont = Fira_Code({
   subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 const basePath = process.env.PAGES_BASE_PATH ?? "";
@@ -46,7 +47,7 @@ export default function RootLayout({
       className={clsx(
         primaryFont.className,
         secondaryFont.className,
-        monospaceFont.className,
+        monospaceFont.variable,
       )}
       suppressHydrationWarning
     >

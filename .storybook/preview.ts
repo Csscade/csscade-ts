@@ -15,6 +15,7 @@ const secondaryFont = Playfair_Display({
 
 const monospaceFont = Fira_Code({
   subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 const preview: Preview = {
@@ -43,7 +44,7 @@ const preview: Preview = {
         html.classList.add(
           primaryFont.className,
           secondaryFont.className,
-          monospaceFont.className,
+          monospaceFont.variable,
         );
       }
 
