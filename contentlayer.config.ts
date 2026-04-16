@@ -34,6 +34,7 @@ export const Tip = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: "src/content",
   documentTypes: [Article, Tip],
+  disableImportAliasWarning: true,
   mdx: {
     remarkPlugins: [remarkGfm],
   },
