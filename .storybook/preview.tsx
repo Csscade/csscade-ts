@@ -48,7 +48,15 @@ const preview: Preview = {
         );
       }
 
-      return Story();
+      return (
+        <div
+          data-theme={theme}
+          className={`${primaryFont.className} ${secondaryFont.className} ${monospaceFont.variable}`}
+          style={{ minHeight: "100%", padding: "1rem" }}
+        >
+          <Story />
+        </div>
+      );
     },
   ],
 

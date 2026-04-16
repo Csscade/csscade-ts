@@ -19,7 +19,8 @@
   font-weight: 400;
 }
 
-html {
+html,
+[data-theme] {
   background: var(--background-primary);
   box-sizing: border-box;
   font-family: var(--font-primary), sans-serif;
