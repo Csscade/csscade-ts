@@ -1,0 +1,38 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { CodePlayground } from "@/ui/components/organisms/CodePlayground/CodePlayground";
+
+const meta: Meta<typeof CodePlayground> = {
+  title: "Organisms/CodePlayground",
+  component: CodePlayground,
+  parameters: {
+    layout: "padded",
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    theme: {
+      control: "select",
+      options: ["vs-dark", "light"],
+    },
+    defaultLanguage: {
+      control: "select",
+      options: ["typescript", "javascript", "css", "html", "markdown", "json"],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof CodePlayground>;
+
+export const Default: Story = {
+  args: {
+    height: "300px",
+    defaultLanguage: "typescript",
+    defaultValue: `const greeting = "Hello, CSSCade!";
+console.log(greeting);
+
+const sum = (a, b) => a + b;
+console.log("Sum of 2 and 3 is:", sum(2, 3));
+
+throw Error("error");`,
+  },
+};

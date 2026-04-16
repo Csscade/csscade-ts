@@ -26,7 +26,7 @@ type Story = StoryObj<typeof CodeEditor>;
 export const Default: Story = {
   args: {
     height: "300px",
-    defaultLanguage: "javascript",
+    defaultLanguage: "typescript",
     defaultValue: `// This editor will follow your system theme preference
 const theme = "auto";
 console.log(\`Current theme is \${theme}\`);`,
@@ -37,7 +37,7 @@ export const DarkTheme: Story = {
   args: {
     height: "300px",
     theme: "vs-dark",
-    defaultLanguage: "javascript",
+    defaultLanguage: "typescript",
     defaultValue: `const theme = "dark";
 console.log(\`Current theme is \${theme}\`);`,
   },
@@ -47,7 +47,7 @@ export const LightTheme: Story = {
   args: {
     height: "300px",
     theme: "light",
-    defaultLanguage: "javascript",
+    defaultLanguage: "typescript",
     defaultValue: `const theme = "light";
 console.log(\`Current theme is \${theme}\`);`,
   },
