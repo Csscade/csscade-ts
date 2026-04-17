@@ -1,4 +1,6 @@
 [data-theme="dark"] {
+  color-scheme: dark;
+
   /* FONTS */
   --font-color: var(--color-light);
   --font-color-muted: var(--color-light-muted);

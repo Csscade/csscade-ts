@@ -27,8 +27,8 @@ const preview: Preview = {
       toolbar: {
         icon: "circlehollow",
         items: [
-          { value: "light", title: "Light" },
-          { value: "dark", title: "Dark" },
+          { value: "light", title: "Clair" },
+          { value: "dark", title: "Sombre" },
         ],
       },
     },
@@ -59,15 +59,6 @@ const preview: Preview = {
       );
     },
   ],
-
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-  },
 };
 
 export default preview;
