@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { CodePlayground } from "@/ui/components/organisms/CodePlayground/CodePlayground";
 
 const meta: Meta<typeof CodePlayground> = {
-  title: "Organisms/CodePlayground",
+  title: "Organisms/Code Playground",
   component: CodePlayground,
   parameters: {
     layout: "padded",
