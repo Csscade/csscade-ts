@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   CodeEditor,
   type CodeEditorProps,
-} from "@/ui/components/molecules/CodeEditor/CodeEditor";
+} from "@/ui/components/organisms/CodeEditor/CodeEditor";
 
 import "./CodePlayground.css";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";

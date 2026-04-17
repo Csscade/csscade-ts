@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CodeEditor } from "@/ui/components/molecules/CodeEditor/CodeEditor";
+import { CodeEditor } from "@/ui/components/organisms/CodeEditor/CodeEditor";
 
 const meta: Meta<typeof CodeEditor> = {
-  title: "Molecules/Code Editor",
+  title: "Organisms/Code Editor",
   component: CodeEditor,
   parameters: {
     layout: "padded",
