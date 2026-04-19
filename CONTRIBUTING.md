@@ -1,28 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Contributing to Csscade](#contributing-to-csscade)
-  - [Table of Contents](#table-of-contents)
-  - [Getting started](#getting-started)
-  - [Project layout](#project-layout)
-  - [Contributing to the Website itself](#contributing-to-the-website-itself)
-    - [Development workflow](#development-workflow)
-    - [Storybook](#storybook)
-    - [Linting and formatting](#linting-and-formatting)
-  - [Contributing Content (Articles or Tips)](#contributing-content-articles-or-tips)
-    - [MDX Guidelines](#mdx-guidelines)
-      - [Article Frontmatter](#article-frontmatter)
-      - [Tip Frontmatter](#tip-frontmatter)
-    - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
-    - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
-    - [Common Guidelines](#common-guidelines)
-    - [Commit messages](#commit-messages)
-    - [Pull requests](#pull-requests)
-    - [Reporting issues](#reporting-issues)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Contributing to Csscade
 
 Thanks for your interest in improving Csscade! This document explains how to set up your environment, follow the project conventions, and open a great pull request.
@@ -33,7 +8,9 @@ There are two ways to contribute:
 
 ---
 
-## Table of Contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
 - [Getting started](#getting-started)
 - [Project layout](#project-layout)
@@ -43,12 +20,16 @@ There are two ways to contribute:
   - [Linting and formatting](#linting-and-formatting)
 - [Contributing Content (Articles or Tips)](#contributing-content-articles-or-tips)
   - [MDX Guidelines](#mdx-guidelines)
+    - [Article Frontmatter](#article-frontmatter)
+    - [Tip Frontmatter](#tip-frontmatter)
   - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
   - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
-- [Common Guidelines](#common-guidelines)
+  - [Common Guidelines](#common-guidelines)
   - [Commit messages](#commit-messages)
   - [Pull requests](#pull-requests)
   - [Reporting issues](#reporting-issues)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
@@ -85,6 +66,7 @@ csscade-ts/
 │  ├─ design-system/       # UI kit as Storybook stories
 │  ├─ domain/              # Business logic, utilities
 │  └─ ui/                  # Web components and global styles
+├─ tests/                  # Tests
 ├─ package.json            # Root scripts
 ├─ contentlayer.config.ts  # Contentlayer configuration
 └─ biome.json              # Biome config (lint/format)
