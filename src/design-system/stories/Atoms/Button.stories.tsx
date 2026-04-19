@@ -1,0 +1,141 @@
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import * as Brands from "@fortawesome/free-brands-svg-icons";
+import * as Solid from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { clsx } from "clsx";
+
+const allIcons = { ...Brands, ...Solid };
+const iconNames = Object.keys(allIcons).filter(
+  (key) => key.startsWith("fa") && key !== "fas" && key !== "fab",
+) as (keyof typeof allIcons)[];
+
+type ButtonStoryArgs = {
+  label: string;
+  reversed: boolean;
+  iconOnly: boolean;
+  disabled: boolean;
+  faIcon?: (typeof iconNames)[number];
+};
+
+const meta = {
+  title: "Molecules/Button",
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    faIcon: {
+      options: iconNames,
+      control: {
+        type: "select",
+      },
+    },
+  },
+  args: {
+    label: "Button",
+    reversed: false,
+    iconOnly: false,
+    disabled: false,
+  },
+  render: ({ label, reversed, iconOnly, disabled, faIcon }) => {
+    const icon = faIcon ? (
+      <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+    ) : null;
+
+    return (
+      <button
+        type="button"
+        disabled={disabled}
+        className={clsx(
+          "button",
+          reversed && "button--reversed",
+          iconOnly && "button--icon",
+        )}
+      >
+        {!iconOnly && label}
+        {icon && (
+          <span
+            className={clsx(!iconOnly && "button--icon")}
+            style={{ display: "inline-flex" }}
+          >
+            {icon}
+          </span>
+        )}
+      </button>
+    );
+  },
+} satisfies Meta<ButtonStoryArgs>;
+
+export default meta;
+type Story = StoryObj<ButtonStoryArgs>;
+
+export const Basic: Story = {
+  args: {
+    label: "Basic Button",
+  },
+};
+
+export const Reversed: Story = {
+  args: {
+    label: "Reversed Button",
+    reversed: true,
+  },
+  render: (args) => {
+    const icon = args.faIcon ? (
+      <FontAwesomeIcon icon={allIcons[args.faIcon] as unknown as IconProp} />
+    ) : null;
+
+    return (
+      <div
+        style={{
+          backgroundColor: "var(--background-reverse)",
+          padding: "2rem",
+          borderRadius: "var(--br-normal)",
+        }}
+      >
+        <button
+          type="button"
+          disabled={args.disabled}
+          className={clsx(
+            "button",
+            args.reversed && "button--reversed",
+            args.iconOnly && "button--icon",
+          )}
+        >
+          {!args.iconOnly && args.label}
+          {icon && (
+            <span
+              className={clsx(!args.iconOnly && "button--icon")}
+              style={{ display: "inline-flex" }}
+            >
+              {icon}
+            </span>
+          )}
+        </button>
+      </div>
+    );
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    label: "Icon Button",
+    iconOnly: true,
+    faIcon: "faPlay",
+  },
+};
+
+export const WithIconAfter: Story = {
+  args: {
+    label: "Button with Icon",
+    faIcon: "faArrowRightLong",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: "Disabled Button",
+    disabled: true,
+  },
+};

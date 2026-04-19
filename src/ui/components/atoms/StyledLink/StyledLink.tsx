@@ -12,6 +12,7 @@ export type StyledLinkProps = {
   iconOnly?: boolean;
   className?: string;
   ariaLabel?: string;
+  icon?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
@@ -23,6 +24,7 @@ export const StyledLink: ({
   iconOnly,
   className,
   ariaLabel,
+  icon,
   onClick,
 }: StyledLinkProps) => React.JSX.Element = ({
   href,
@@ -32,6 +34,7 @@ export const StyledLink: ({
   iconOnly = false,
   className = "",
   ariaLabel,
+  icon,
   onClick,
 }: StyledLinkProps) => {
   return (
@@ -48,6 +51,7 @@ export const StyledLink: ({
       aria-label={ariaLabel}
     >
       {children}
+      {icon && <span className="styled-link--icon">{icon}</span>}
     </Link>
   );
 };

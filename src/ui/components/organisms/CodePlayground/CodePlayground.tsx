@@ -82,7 +82,11 @@ export const CodePlayground = (props: CodeEditorProps) => {
         onChange={(value) => setCode(value || "")}
       />
 
-      <button type="button" className="run" onClick={runCode}>
+      <button
+        type="button"
+        className="button button--icon run"
+        onClick={runCode}
+      >
         <span className="sr-only">Run code</span>
         <FontAwesomeIcon icon={faPlay} />
       </button>

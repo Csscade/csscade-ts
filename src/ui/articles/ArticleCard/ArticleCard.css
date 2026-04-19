@@ -9,11 +9,6 @@
     margin-top: 10px;
   }
 
-  a {
-    color: var(--color-dark);
-    text-decoration: none;
-  }
-
   .article-card__footer {
     display: flex;
     align-items: end;

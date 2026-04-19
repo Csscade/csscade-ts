@@ -4,10 +4,10 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
   transition:
     color 0.2s ease,
     border-color 0.2s ease;
+  color: var(--font-color);
 }
 
 a:visited {
@@ -18,55 +18,72 @@ a:hover {
   color: var(--color-primary);
 }
 
-/* ---------- Skip links ---------- */
-
-.skip-links {
-  --i: 0;
-  --position-offset: 0.5rem;
-  --shadow-offset: 0.25rem;
-  position: fixed;
-  top: var(--position-offset);
-  left: var(--position-offset);
-  z-index: 9999;
-  padding: 1rem;
-  border: 0.125rem solid;
-  background-color: var(--white);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0;
-  translate: 0
-    calc(
-      (100% + var(--position-offset) + var(--shadow-offset)) *
-      (var(--i) - 1)
-    );
-  transition: translate 0.2s;
-}
-
-.skip-links:focus-within {
-  --i: 1;
-}
-
 /* ---------- Buttons ---------- */
 
-button,
-.button {
+.button,
+button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.75rem;
   font-family: var(--font-primary), sans-serif;
-  font-weight: 600;
-  border-radius: 4px;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+  background-color: transparent;
   border: 1px solid var(--border-color);
-  background-color: var(--background-secondary);
+  border-radius: var(--br-rounded);
   color: var(--font-color);
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: var(--border-color);
-  }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:not(:disabled):hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+/* Reversed */
+
+button.button--reversed,
+.button--reversed {
+  color: var(--font-reverse);
+  border-color: var(--border-color-reverse);
+
+  &:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+/* Icon */
+
+button.button--icon,
+.button--icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: var(--br-circle);
+  border: 1px solid var(--border-color);
+  color: var(--font-color);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+  svg {
+    width: 1.2rem;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }

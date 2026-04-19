@@ -1,5 +1,6 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { faDiscord, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import * as Brands from "@fortawesome/free-brands-svg-icons";
+import * as Solid from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
@@ -7,8 +8,13 @@ import {
   type StyledLinkProps,
 } from "@/ui/components/atoms/StyledLink/StyledLink";
 
+const allIcons = { ...Brands, ...Solid };
+const iconNames = Object.keys(allIcons).filter(
+  (key) => key.startsWith("fa") && key !== "fas" && key !== "fab",
+) as (keyof typeof allIcons)[];
+
 type StyledLinkStoryArgs = StyledLinkProps & {
-  faIcon?: IconProp;
+  faIcon?: (typeof iconNames)[number];
 };
 
 const meta = {
@@ -20,11 +26,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     faIcon: {
-      options: ["discord", "linkedin"],
-      mapping: {
-        discord: faDiscord,
-        linkedin: faLinkedin,
-      },
+      options: iconNames,
       control: {
         type: "select",
       },
@@ -54,11 +56,32 @@ export const Icon: Story = {
   args: {
     href: "#",
     iconOnly: true,
-    faIcon: "discord",
+    faIcon: "faDiscord",
   },
   render: ({ faIcon, ...args }) => (
     <StyledLink {...args}>
-      {faIcon && <FontAwesomeIcon icon={faIcon} />}
+      {faIcon && (
+        <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+      )}
     </StyledLink>
+  ),
+};
+
+export const WithIconAfter: Story = {
+  args: {
+    href: "#",
+    children: "Learn more",
+    faIcon: "faArrowRightLong",
+    bordered: true,
+  },
+  render: ({ faIcon, ...args }) => (
+    <StyledLink
+      {...args}
+      icon={
+        faIcon && (
+          <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+        )
+      }
+    />
   ),
 };

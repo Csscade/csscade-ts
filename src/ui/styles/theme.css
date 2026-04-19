@@ -6,5 +6,5 @@
 @import "@/ui/styles/accessibility/accessibility.css";
 @import "@/ui/styles/components/_atoms.css";
 @import "@/ui/styles/components/_molecules.css";
-@import "components/_organisms.css";
+@import "@/ui/styles/components/_organisms.css";
 @import "@/ui/styles/storybook/_storybook.css";
