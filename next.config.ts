@@ -1,6 +1,6 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
-import path from "path";
 
 const basePath = process.env.PAGES_BASE_PATH || "";
 

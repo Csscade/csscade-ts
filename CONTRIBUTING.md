@@ -1,23 +1,56 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Contributing to Csscade](#contributing-to-csscade)
+  - [Table of Contents](#table-of-contents)
+  - [Getting started](#getting-started)
+  - [Project layout](#project-layout)
+  - [Contributing to the Website itself](#contributing-to-the-website-itself)
+    - [Development workflow](#development-workflow)
+    - [Storybook](#storybook)
+    - [Linting and formatting](#linting-and-formatting)
+  - [Contributing Content (Articles or Tips)](#contributing-content-articles-or-tips)
+    - [MDX Guidelines](#mdx-guidelines)
+      - [Article Frontmatter](#article-frontmatter)
+      - [Tip Frontmatter](#tip-frontmatter)
+    - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
+    - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
+    - [Common Guidelines](#common-guidelines)
+    - [Commit messages](#commit-messages)
+    - [Pull requests](#pull-requests)
+    - [Reporting issues](#reporting-issues)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Contributing to Csscade
 
 Thanks for your interest in improving Csscade! This document explains how to set up your environment, follow the project conventions, and open a great pull request.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+There are two ways to contribute:
+1. [Contributing to the Website itself](#contributing-to-the-website-itself): improving the code, UI, or design system.
+2. [Contributing Content](#contributing-content-articles-or-tips): writing articles or code tips using MDX and respecting accessibility guidelines.
+
+---
+
+## Table of Contents
 
 - [Getting started](#getting-started)
 - [Project layout](#project-layout)
-- [Development workflow](#development-workflow)
-- [Linting and formatting](#linting-and-formatting)
-  - [Git hooks (lefthook)](#git-hooks-lefthook)
-- [Storybook](#storybook)
-- [Contentlayer (content build)](#contentlayer-content-build)
-- [Commit messages](#commit-messages)
-- [Pull requests](#pull-requests)
-- [Reporting issues](#reporting-issues)
+- [Contributing to the Website itself](#contributing-to-the-website-itself)
+  - [Development workflow](#development-workflow)
+  - [Storybook](#storybook)
+  - [Linting and formatting](#linting-and-formatting)
+- [Contributing Content (Articles or Tips)](#contributing-content-articles-or-tips)
+  - [MDX Guidelines](#mdx-guidelines)
+  - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
+  - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
+- [Common Guidelines](#common-guidelines)
+  - [Commit messages](#commit-messages)
+  - [Pull requests](#pull-requests)
+  - [Reporting issues](#reporting-issues)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+---
 
 ## Getting started
 
@@ -37,21 +70,11 @@ Start the Next.js dev server:
 pnpm dev
 ```
 
-Build the app for production:
-
-```bash
-pnpm build
-```
-
-Start the production build locally:
-
-```bash
-pnpm start
-```
+---
 
 ## Project layout
 
-This repository is a pnpm workspace. Workspace packages live under `src/*`. The high‑level layout is:
+This repository is a pnpm workspace. Workspace packages live under `src/*`.
 
 ```
 csscade-ts/
@@ -62,109 +85,118 @@ csscade-ts/
 │  ├─ design-system/       # UI kit as Storybook stories
 │  ├─ domain/              # Business logic, utilities
 │  └─ ui/                  # Web components and global styles
-├─ package.json            # Root scripts (Next.js, lint, Storybook)
-├─ pnpm-workspace.yaml     # Workspace configuration (`src/*`)
-├─ biome.json              # Biome config (lint/format)
-├─ lefthook.yml            # Optional Git hooks config
-├─ next.config.ts          # Next.js configuration
+├─ package.json            # Root scripts
 ├─ contentlayer.config.ts  # Contentlayer configuration
-├─ tsconfig.json           # TypeScript configuration
-└─ README.md               # Project overview
+└─ biome.json              # Biome config (lint/format)
 ```
 
-## Development workflow
+---
 
-Common scripts (run from repo root):
+## Contributing to the Website itself
 
-- Run the app in dev mode (Turbopack):
-  ```bash
-  pnpm dev
-  ```
+If you want to contribute to the engine, the UI, or the design system of Csscade.
 
-- Type-check (TS is enforced during build and IDE). If you need a one-off check:
-  ```bash
-  pnpm exec tsc --noEmit
-  ```
+### Development workflow
 
-## Linting and formatting
+- Run the app in dev mode (Turbopack): `pnpm dev`
+- Type-check: `pnpm exec tsc --noEmit`
+- Build for production: `pnpm build`
 
-We use Biome for both lint and format.
+### Storybook
 
-- Lint all files:
-  ```bash
-  pnpm lint
-  ```
+We use Storybook to develop and document our UI components.
 
-- Auto-format files:
-  ```bash
-  pnpm format
-  ```
+- Run Storybook: `pnpm storybook`
+- Build Storybook: `pnpm storybook:build`
 
-### Git hooks (lefthook)
+### Linting and formatting
 
-The repository includes a `lefthook.yml`. If you want pre-commit hooks to run Biome automatically:
+We use Biome for both linting and formatting.
 
-```bash
-pnpm dlx lefthook install
+- Lint all files: `pnpm lint`
+- Auto-format: `pnpm format`
+
+---
+
+## Contributing Content (Articles or Tips)
+
+You can share your knowledge by contributing articles or CSS tips. All content is written in MDX (Markdown + React components).
+
+### MDX Guidelines
+
+Content is located in `src/content/articles/` or `src/content/tips/`. Each file must start with a frontmatter.
+
+#### Article Frontmatter
+```mdx
+---
+title: "Your Article Title"
+slug: "your-article-slug"
+author: "Your Name"
+publishedAt: "YYYY-MM-DD"
+categories:
+  - CSS
+  - Accessibility
+---
 ```
 
-You can then commit as usual and hooks will enforce checks locally.
-
-## Storybook
-
-Run Storybook locally:
-
-```bash
-pnpm storybook
+#### Tip Frontmatter
+```mdx
+---
+title: "Your Tip Title"
+slug: "your-tip-slug"
+categories:
+  - CSS
+---
 ```
 
-Build a static Storybook:
+After modifying content, you need to rebuild Contentlayer: `pnpm build:content`.
 
-```bash
-pnpm storybook:build
-```
+### Accessibility (WCAG & RGAA)
 
-The build output is written to `storybook-static/`.
+Csscade is committed to accessibility. Your contributions must respect WCAG 2.2 and RGAA 4.1 guidelines.
 
-## Contentlayer (content build)
+- **Semantic HTML**: Use correct headings hierarchy (`h1` to `h6`), don't skip levels.
+- **Alternative Text**: All images must have an `alt` attribute. If the image is decorative, use `alt=""`.
+- **Contrast**: Ensure text has sufficient contrast against its background.
+- **Language**: Use clear and simple language. Mark internationalized text with the attribute `lang=""`
+- **Interactive elements**: Ensure links and buttons have clear labels.
+- **Multimedia**: Ensure playable media has captions and a `title` attribute, with no autoplay.
+- **Keyboard navigation**: Ensure all interactive elements are keyboard-accessible.
+- **Screen reader support**: Ensure all interactive elements are accessible to screen readers.
 
-If you modify content models or MDX content, rebuild Contentlayer:
+### Validation with Playwright & Axe-core
 
-```bash
-pnpm build:content
-```
+To ensure your content meets accessibility standards, we use **Playwright** and **Axe-core**.
 
-## Commit messages
+1. Ensure the app is running: `pnpm dev`
+2. Run accessibility checks using our automated tests `pnpm test`
 
-Please write clear, descriptive commit messages. [Conventional Commits](https://www.conventionalcommits.org/) style is encouraged (not required):
+### Common Guidelines
+
+### Commit messages
+
+We encourage [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
 feat(ui): add dark mode toggle
 fix(docs): correct Storybook link
-chore: update dependencies
+content(article): new post about css grid
 ```
 
-Scope examples: `ui`, `styles`, `docs`, `build`, `storybook`.
-
-## Pull requests
+### Pull requests
 
 Before opening a PR:
-- Ensure the code compiles: `pnpm build`.
-- Run linters and formatters: `pnpm lint` and `pnpm format`.
-- Keep changes focused and small when possible.
+- Ensure the code compiles: `pnpm build`
+- Run linters: `pnpm lint`
+- Verify accessibility in Storybook or via tests.
 
-PR checklist:
-- [ ] Clear title and description (what/why/how)
-- [ ] Screenshots or videos for UI changes (before/after)
-- [ ] Updated docs/MDX/Storybook where relevant
-- [ ] No unrelated file changes
-
-## Reporting issues
+### Reporting issues
 
 When filing an issue, please include:
-- What happened and what you expected
-- Steps to reproduce (screens, URLs, inputs)
-- Environment (OS, browser, Node version)
-- Any logs or stack traces
+- Description of the issue and expected behavior.
+- Steps to reproduce.
+- Environment details (OS, Browser, Node version).
+
+---
 
 Thank you for contributing and making Csscade better!

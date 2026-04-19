@@ -11,6 +11,7 @@ export type StyledLinkProps = {
   reversed?: boolean;
   iconOnly?: boolean;
   className?: string;
+  ariaLabel?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
@@ -21,6 +22,7 @@ export const StyledLink: ({
   reversed,
   iconOnly,
   className,
+  ariaLabel,
   onClick,
 }: StyledLinkProps) => React.JSX.Element = ({
   href,
@@ -29,6 +31,7 @@ export const StyledLink: ({
   reversed = false,
   iconOnly = false,
   className = "",
+  ariaLabel,
   onClick,
 }: StyledLinkProps) => {
   return (
@@ -42,6 +45,7 @@ export const StyledLink: ({
         className,
       )}
       onClick={onClick}
+      aria-label={ariaLabel}
     >
       {children}
     </Link>

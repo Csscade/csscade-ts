@@ -11,10 +11,10 @@ export const Footer = () => {
   return (
     <footer className={"footer"}>
       <div className={"footer__links"}>
-        <StyledLink href={discordUrl} iconOnly={true}>
+        <StyledLink href={discordUrl} iconOnly={true} ariaLabel="Discord">
           <FontAwesomeIcon icon={faDiscord} />
         </StyledLink>
-        <StyledLink href={linkedinUrl} iconOnly={true}>
+        <StyledLink href={linkedinUrl} iconOnly={true} ariaLabel="LinkedIn">
           <FontAwesomeIcon icon={faLinkedin} />
         </StyledLink>
       </div>
