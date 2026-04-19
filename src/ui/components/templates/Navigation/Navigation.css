@@ -21,8 +21,12 @@
     z-index: 1001;
   }
 
-  a {
-    color: var(--font-color);
+  li {
+    margin-bottom: 0;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .burger-button {

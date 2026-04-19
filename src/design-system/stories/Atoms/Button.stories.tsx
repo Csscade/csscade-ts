@@ -56,7 +56,7 @@ const meta = {
         {!iconOnly && label}
         {icon && (
           <span
-            className={clsx(!iconOnly && "button--icon")}
+            className={clsx(!iconOnly && "button__icon")}
             style={{ display: "inline-flex" }}
           >
             {icon}
@@ -90,7 +90,7 @@ export const Reversed: Story = {
       <div
         style={{
           backgroundColor: "var(--background-reverse)",
-          padding: "2rem",
+          padding: "5rem",
           borderRadius: "var(--br-normal)",
         }}
       >

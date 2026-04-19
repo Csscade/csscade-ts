@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 import "./ArticleCard.css";
 
 type ArticleCardProps = {
@@ -18,7 +18,9 @@ export function ArticleCard({
   return (
     <article className="article-card framed-four-corners">
       <h3 className={"article-card__title"}>
-        <Link href={url}>{title}</Link>
+        <StyledLink reversed href={url}>
+          {title}
+        </StyledLink>
       </h3>
       {description && (
         <p className="article-card__first-paragraph">{description}</p>
@@ -28,13 +30,15 @@ export function ArticleCard({
           {categories && (
             <div className="article-card__footer">
               {categories.map((category) => (
-                <Link
+                <StyledLink
                   key={category}
                   href={`/articles/category/${category.toLowerCase()}`}
+                  bordered
+                  reversed
                   className="article-card__category"
                 >
                   {category}
-                </Link>
+                </StyledLink>
               ))}
             </div>
           )}
