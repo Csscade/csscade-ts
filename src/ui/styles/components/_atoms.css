@@ -96,7 +96,14 @@ blockquote {
   }
 }
 
-/* ---------- Lists ---------- */
+/* ---------- Icons ---------- */
+
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  vertical-align: -0.125em;
+  color: inherit;
+}
 
 ul,
 ol {
