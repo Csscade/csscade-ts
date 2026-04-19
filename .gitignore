@@ -1,3 +1,4 @@
+# IDE
 .idea
 
 # dependencies
@@ -44,5 +45,6 @@ next-env.d.ts
 # contentlayer
 .contentlayer
 
+# storybook
 *storybook.log
 storybook-static
