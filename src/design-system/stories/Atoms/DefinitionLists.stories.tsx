@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import "@/ui/articles/ArticleContent/ArticleContent.css";
 
 const meta = {
-  title: "Atoms/DefinitionLists",
+  title: "Atoms/Definition Lists",
   parameters: {
     layout: "centered",
   },

@@ -38,10 +38,36 @@ export const Headings: StoryObj = {
   ),
 };
 
+export const HeadingWithId: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <h3 id="custom-id">My Great Heading</h3>
+      <p>
+        Written in Markdown as:{" "}
+        <code>### My Great Heading &#123;#custom-id&#125;</code>
+      </p>
+    </div>
+  ),
+};
+
 export const SimpleText: StoryObj = {
   render: () => (
     <div className="article-content">
       <p>This is a simple text paragraph.</p>
+    </div>
+  ),
+};
+
+export const Small: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <p>
+        <small>This is small text</small>
+        <br />
+        <p>
+          Written in Markdown as: <code>&lt;small&gt;text&lt;/small&gt;</code>
+        </p>
+      </p>
     </div>
   ),
 };
@@ -53,8 +79,7 @@ export const Bold: StoryObj = {
         <strong>This is bold text</strong>
         <br />
         <p>
-          (written as <code>**text**</code> or <code>__text__</code> in
-          Markdown)
+          Written in Markdown as:<code>**text**</code> or <code>__text__</code>
         </p>
       </p>
     </div>
@@ -68,7 +93,7 @@ export const Italic: StoryObj = {
         <em>This is italic text</em>
         <br />
         <p>
-          (written as <code>*text*</code> or <code>_text_</code> in Markdown)
+          Written in Markdown as:<code>*text*</code> or <code>_text_</code>
         </p>
       </p>
     </div>
@@ -82,7 +107,7 @@ export const Strikethrough: StoryObj = {
         <del>This text is struck through</del>
         <br />
         <p>
-          (written as <code>~~text~~</code> in Markdown)
+          Written in Markdown as:<code>~~text~~</code>
         </p>
       </p>
     </div>
@@ -96,7 +121,7 @@ export const InlineCode: StoryObj = {
         Inline Code: <code>const hello = "world";</code>
         <br />
         <p>
-          (written as <code>`code`</code> in Markdown)
+          Written in Markdown as:<code>`code`</code>
         </p>
       </p>
     </div>
@@ -111,7 +136,7 @@ export const Blockquote: StoryObj = {
         <p>— Author Name</p>
       </blockquote>
       <p>
-        (Written with <code>&gt;</code> prefix in Markdown)
+        Written in Markdown with: <code>&gt;</code> prefix
       </p>
     </div>
   ),
@@ -130,17 +155,86 @@ export const NestedBlockquote: StoryObj = {
         </blockquote>
         <p>— Author Name</p>
       </blockquote>
+      <p>
+        Written in Markdown with: <code>&gt;&gt;</code> prefix
+      </p>
     </div>
   ),
 };
 
-export const HeadingWithId: StoryObj = {
+export const HorizontalRule: StoryObj = {
   render: () => (
     <div className="article-content">
-      <h3 id="custom-id">My Great Heading</h3>
+      <p>Above the rule</p>
+      <hr />
+      <p>Below the rule</p>
       <p>
-        (Written in Markdown as:{" "}
-        <code>### My Great Heading &#123;#custom-id&#125;</code>)
+        Written in Markdown as: <code>---</code> or <code>***</code> or{" "}
+        <code>___</code>
+      </p>
+    </div>
+  ),
+};
+
+export const UnorderedList: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <ul>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>
+          Third item
+          <ul>
+            <li>Nested item 1</li>
+            <li>Nested item 2</li>
+          </ul>
+        </li>
+        <li>Fourth item</li>
+      </ul>
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>
+            {`
+- First item
+- Second item
+  - Nested item 1
+  - Nested item 2
+- Third item`}
+          </code>
+        </pre>
+      </p>
+    </div>
+  ),
+};
+
+export const OrderedList: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <ol>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>
+          Third item
+          <ol>
+            <li>Nested item 1</li>
+            <li>Nested item 2</li>
+          </ol>
+        </li>
+        <li>Fourth item</li>
+      </ol>
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>
+            {`
+1. First item
+2. Second item
+   1. Nested item 1
+   2. Nested item 2
+3. Third item`}
+          </code>
+        </pre>
       </p>
     </div>
   ),
