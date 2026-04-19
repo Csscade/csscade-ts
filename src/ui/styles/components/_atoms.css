@@ -93,6 +93,21 @@ blockquote {
 
 /* ---------- Lists ---------- */
 
+dl {
+  margin: 1.5rem 0;
+}
+
+dt {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--font-color-muted);
+}
+
 .list--empty {
   padding: 2rem 0;
   border-radius: var(--br-normal);
