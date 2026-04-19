@@ -18,7 +18,7 @@ export function ArticleCard({
   return (
     <article className="article-card framed-four-corners">
       <h3 className={"article-card__title"}>
-        <StyledLink reversed href={url}>
+        <StyledLink reversed href={url} ariaLabel={`Lire l'article : ${title}`}>
           {title}
         </StyledLink>
       </h3>
@@ -36,6 +36,7 @@ export function ArticleCard({
                   bordered
                   reversed
                   className="article-card__category"
+                  ariaLabel={`Voir tous les articles de la catégorie ${category}`}
                 >
                   {category}
                 </StyledLink>

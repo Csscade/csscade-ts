@@ -36,9 +36,43 @@
 
     .header__aside {
       overflow: hidden;
+      position: relative;
 
       .header__image {
         color: var(--color-dark-muted);
+      }
+
+      .header__badge {
+        position: absolute;
+
+        .badge__content {
+          background-color: var(--background-primary);
+        }
+      }
+
+      .header__badge--html {
+        top: 25%;
+        left: 0;
+        --badge-color: var(--color-lightgreen);
+
+        [data-theme="light"] & {
+          --badge-color: #70790b;
+        }
+      }
+
+      .header__badge--css {
+        top: 39%;
+        left: 66%;
+        --badge-color: var(--color-lightpurple);
+
+        [data-theme="light"] & {
+          --badge-color: #9147ff;
+        }
+      }
+
+      .header__badge--a11y {
+        top: 75%;
+        left: 25%;
       }
     }
   }

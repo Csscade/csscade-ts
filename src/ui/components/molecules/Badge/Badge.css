@@ -1,0 +1,64 @@
+:root {
+  --badge-color: var(--color-primary);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--badge-color);
+  gap: 0.25rem;
+
+  a {
+    color: var(--badge-color);
+    padding: 0;
+    font-size: 0.9rem;
+
+    &:visited {
+      color: var(--badge-color);
+    }
+
+    &:hover {
+      color: var(--font-color);
+    }
+  }
+}
+
+.badge__content {
+  padding: 0.25rem 0.5rem;
+  font-weight: 300;
+  font-size: 0.9rem;
+  border: 1px solid var(--badge-color);
+}
+
+.badge--icon-right {
+  flex-direction: row;
+}
+
+.badge--icon-left {
+  flex-direction: row-reverse;
+}
+
+.badge--icon-top {
+  flex-direction: column-reverse;
+}
+
+.badge--icon-bottom {
+  flex-direction: column;
+}
+
+.badge__icon {
+  font-size: 0.8em;
+}
+
+.badge--icon-top .badge__icon {
+  transform: rotate(-90deg);
+}
+
+.badge--icon-bottom .badge__icon {
+  transform: rotate(90deg);
+}
+
+.badge--icon-left .badge__icon {
+  transform: rotate(180deg);
+}
