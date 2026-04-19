@@ -17,9 +17,7 @@
   color: var(--color-primary);
 }
 
-/* ───────────── */
-/* Color variant */
-/* ───────────── */
+/* ---------- Variant ---------- */
 
 .styled-link--reversed {
   color: var(--font-reverse);
@@ -33,9 +31,7 @@
   color: var(--color-primary);
 }
 
-/* ───────── */
-/* Bordered  */
-/* ───────── */
+/* ---------- Bordered ---------- */
 
 .styled-link--bordered {
   border: 1px solid var(--border-color);
@@ -50,9 +46,7 @@
   border-color: var(--color-primary);
 }
 
-/* ───────── */
-/* Icon      */
-/* ───────── */
+/* ------------ Icon ------------ */
 
 .styled-link.styled-link--icon {
   width: 2.5rem;

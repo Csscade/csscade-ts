@@ -12,7 +12,7 @@ export const HomePage = () => {
       <Header />
       <main className="main">
         <section className="last-articles">
-          <h2 className="section__title">Les derniers articles</h2>
+          <h2 className="section_title">Les derniers articles</h2>
           <LastArticlesList />
           <footer>
             <StyledLink

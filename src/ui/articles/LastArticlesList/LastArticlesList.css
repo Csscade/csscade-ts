@@ -22,6 +22,14 @@
 
       a {
         color: var(--font-reverse);
+
+        &:hover {
+          color: var(--color-primary);
+        }
+
+        &:visited {
+          color: var(--font-reverse);
+        }
       }
 
       .article-card__first-paragraph {

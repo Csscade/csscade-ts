@@ -1,0 +1,106 @@
+/* ---------- Titles ---------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: var(--font-secondary), sans-serif;
+
+  &::selection {
+    background: transparent;
+    color: var(--color-primary);
+    text-shadow: none;
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1.5rem;
+}
+
+/* ---------- Text ---------- */
+
+strong {
+  font-weight: 600;
+}
+
+del,
+s {
+  text-decoration: line-through;
+}
+
+/* ---------- Code ---------- */
+
+code,
+pre {
+  background-color: var(--background-secondary);
+  font-family: var(--font-mono), monospace;
+  color: var(--font-color-muted);
+  font-weight: normal;
+  border-radius: 4px;
+}
+
+code {
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+}
+
+pre {
+  padding: 1rem;
+}
+
+/* ---------- Blockquotes ---------- */
+
+blockquote {
+  border-left: 1px solid var(--border-color);
+  padding-left: 1rem;
+  margin-left: 0;
+
+  blockquote {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+  }
+
+  p {
+    font-family: var(--font-secondary), serif;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  p:last-child {
+    font-family: var(--font-primary), sans-serif;
+    font-style: normal;
+    font-weight: 600;
+  }
+}
+
+/* ---------- Lists ---------- */
+
+.list--empty {
+  padding: 2rem 0;
+  border-radius: var(--br-normal);
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: var(--background-secondary);
+}
+
+.list--empty i {
+  font-size: 1.5rem;
+}
