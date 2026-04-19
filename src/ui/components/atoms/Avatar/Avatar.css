@@ -1,0 +1,15 @@
+.avatar-link {
+  display: inline-flex;
+  border-radius: var(--br-circle);
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .avatar-image {
+    border-radius: var(--br-circle);
+    object-fit: cover;
+  }
+}
