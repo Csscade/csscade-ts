@@ -1,6 +1,7 @@
 "use client";
 
 import "./ToggleTheme.css";
+import type React from "react";
 import { useEffect, useState } from "react";
 
 export const ToggleTheme = () => {

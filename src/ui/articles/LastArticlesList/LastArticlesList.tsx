@@ -1,4 +1,4 @@
-import { allArticles } from "contentlayer/generated";
+import { type Article, allArticles, allAuthors } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./LastArticlesList.css";
@@ -14,17 +14,25 @@ export const LastArticlesList = ({ limit = 3 }: LastArticlesProps) => {
     )
     .slice(0, limit > 0 ? limit : undefined);
 
+  const getAuthor = (article: Article) => {
+    return allAuthors.find((a) => a.slug === article.author);
+  };
+
   return (
     <div className="last-articles__list">
-      {articles.map((article) => (
-        <ArticleCard
-          key={article._id}
-          title={article.title}
-          publishedAt={article.publishedAt}
-          url={article.url}
-          categories={article.categories}
-        />
-      ))}
+      {articles.map((article) => {
+        const author = getAuthor(article);
+        return (
+          <ArticleCard
+            key={article._id}
+            title={article.title}
+            publishedAt={article.publishedAt}
+            url={article.url}
+            author={author ? author.name : article.author}
+            categories={article.categories}
+          />
+        );
+      })}
     </div>
   );
 };

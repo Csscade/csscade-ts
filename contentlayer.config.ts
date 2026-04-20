@@ -1,6 +1,23 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
 
+export const Author = defineDocumentType(() => ({
+  name: "Author",
+  filePathPattern: "authors/*.mdx",
+  contentType: "mdx",
+  fields: {
+    name: { type: "string", required: true },
+    slug: { type: "string", required: true },
+    avatar: { type: "string", required: true },
+    pronouns: { type: "string", required: false },
+    website: { type: "string", required: false },
+    bluesky: { type: "string", required: false },
+    mastodon: { type: "string", required: false },
+    github: { type: "string", required: false },
+    linkedin: { type: "string", required: false },
+  },
+}));
+
 export const Article = defineDocumentType(() => ({
   name: "Article",
   filePathPattern: "articles/*.mdx",
@@ -33,7 +50,7 @@ export const Tip = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "src/content",
-  documentTypes: [Article, Tip],
+  documentTypes: [Article, Tip, Author],
   disableImportAliasWarning: true,
   mdx: {
     remarkPlugins: [remarkGfm],

@@ -1,8 +1,8 @@
 import {
-  faDiscord,
+  faBluesky,
   faGithub,
   faLinkedin,
-  faTwitter,
+  faMastodon,
 } from "@fortawesome/free-brands-svg-icons";
 import {
   faEnvelope,
@@ -36,11 +36,11 @@ export const SolidIcons: StoryObj = {
       className="article-content"
       style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}
     >
-      <FontAwesomeIcon icon={faHouse} title="House" />
-      <FontAwesomeIcon icon={faCheck} title="Check" />
-      <FontAwesomeIcon icon={faTriangleExclamation} title="Warning" />
-      <FontAwesomeIcon icon={faCircleInfo} title="Info" />
-      <FontAwesomeIcon icon={faMagnifyingGlass} title="Search" />
+      <FontAwesomeIcon icon={faHouse} />
+      <FontAwesomeIcon icon={faCheck} />
+      <FontAwesomeIcon icon={faTriangleExclamation} />
+      <FontAwesomeIcon icon={faCircleInfo} />
+      <FontAwesomeIcon icon={faMagnifyingGlass} />
     </div>
   ),
 };
@@ -51,9 +51,9 @@ export const RegularIcons: StoryObj = {
       className="article-content"
       style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}
     >
-      <FontAwesomeIcon icon={faEnvelope} title="Envelope" />
-      <FontAwesomeIcon icon={faUser} title="User" />
-      <FontAwesomeIcon icon={faStar} title="Star" />
+      <FontAwesomeIcon icon={faEnvelope} />
+      <FontAwesomeIcon icon={faUser} />
+      <FontAwesomeIcon icon={faStar} />
     </div>
   ),
 };
@@ -64,10 +64,10 @@ export const BrandIcons: StoryObj = {
       className="article-content"
       style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}
     >
-      <FontAwesomeIcon icon={faDiscord} title="Discord" />
-      <FontAwesomeIcon icon={faLinkedin} title="LinkedIn" />
-      <FontAwesomeIcon icon={faGithub} title="GitHub" />
-      <FontAwesomeIcon icon={faTwitter} title="Twitter" />
+      <FontAwesomeIcon icon={faBluesky} />
+      <FontAwesomeIcon icon={faMastodon} />
+      <FontAwesomeIcon icon={faLinkedin} />
+      <FontAwesomeIcon icon={faGithub} />
     </div>
   ),
 };

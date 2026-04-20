@@ -4,14 +4,33 @@
   padding: 1.5rem;
   gap: 1.5rem;
 
-  .article-card__title > a {
-    font-size: 1.5rem;
+  .article-card__header {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+
+    h2 {
+      font-size: 2.3rem;
+      margin: 0;
+    }
+
+    small {
+      font-weight: 300;
+    }
+  }
+
+  .article-card__author {
+    font-size: 0.875rem;
+    font-weight: 500;
   }
 
   .article-card__footer {
     display: flex;
     align-items: end;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1rem;
+    flex-wrap: wrap;
   }
 }

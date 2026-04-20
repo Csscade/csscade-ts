@@ -5,6 +5,7 @@ type ArticleCardProps = {
   title: string;
   publishedAt: string;
   url: string;
+  author?: string;
   description?: string;
   categories?: string[];
 };
@@ -12,37 +13,38 @@ type ArticleCardProps = {
 export function ArticleCard({
   title,
   url,
+  author,
   description,
   categories,
 }: ArticleCardProps) {
   return (
     <article className="article-card framed-four-corners">
-      <h3 className={"article-card__title"}>
-        <StyledLink reversed href={url} ariaLabel={`Lire l'article : ${title}`}>
-          {title}
-        </StyledLink>
-      </h3>
+      <StyledLink
+        className="article-card__header"
+        href={url}
+        ariaLabel={`Lire l'article : ${title}`}
+      >
+        <h2>{title}</h2>
+        {author && <small className="article-card__author">Par {author}</small>}
+      </StyledLink>
+
       {description && (
         <p className="article-card__first-paragraph">{description}</p>
       )}
+
       {categories && (
         <div className="article-card__footer">
-          {categories && (
-            <div className="article-card__footer">
-              {categories.map((category) => (
-                <StyledLink
-                  key={category}
-                  href={`/articles/category/${category.toLowerCase()}`}
-                  bordered
-                  reversed
-                  className="article-card__category"
-                  ariaLabel={`Voir tous les articles de la catégorie ${category}`}
-                >
-                  {category}
-                </StyledLink>
-              ))}
-            </div>
-          )}
+          {categories.map((category) => (
+            <StyledLink
+              key={category}
+              href={`/articles/category/${category.toLowerCase()}`}
+              bordered
+              className="article-card__category"
+              ariaLabel={`Voir tous les articles de la catégorie ${category}`}
+            >
+              {category}
+            </StyledLink>
+          ))}
         </div>
       )}
     </article>

@@ -85,3 +85,12 @@ export const WithIconAfter: Story = {
     />
   ),
 };
+
+export const External: Story = {
+  args: {
+    href: "https://css-tricks.com",
+    children: "CSS Tricks",
+    target: "_blank",
+    rel: "noopener noreferrer",
+  },
+};

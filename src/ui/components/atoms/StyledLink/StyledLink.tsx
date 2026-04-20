@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import Link from "next/link";
 import type React from "react";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./StyledLink.css";
 
 export type StyledLinkProps = {
@@ -13,20 +13,9 @@ export type StyledLinkProps = {
   className?: string;
   ariaLabel?: string;
   icon?: ReactNode;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-};
+} & ComponentPropsWithoutRef<typeof Link>;
 
-export const StyledLink: ({
-  href,
-  children,
-  bordered,
-  reversed,
-  iconOnly,
-  className,
-  ariaLabel,
-  icon,
-  onClick,
-}: StyledLinkProps) => React.JSX.Element = ({
+export const StyledLink = ({
   href,
   children,
   bordered = false,
@@ -35,7 +24,7 @@ export const StyledLink: ({
   className = "",
   ariaLabel,
   icon,
-  onClick,
+  ...props
 }: StyledLinkProps) => {
   return (
     <Link
@@ -47,8 +36,8 @@ export const StyledLink: ({
         iconOnly && "styled-link--icon",
         className,
       )}
-      onClick={onClick}
       aria-label={ariaLabel}
+      {...props}
     >
       {children}
       {icon && <span className="styled-link--icon">{icon}</span>}

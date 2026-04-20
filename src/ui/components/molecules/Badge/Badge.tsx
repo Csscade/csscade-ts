@@ -1,6 +1,7 @@
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { clsx } from "clsx";
+import type React from "react";
 import type { ReactNode } from "react";
 import "./Badge.css";
 

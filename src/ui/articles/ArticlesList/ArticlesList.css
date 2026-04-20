@@ -4,10 +4,6 @@
   grid-auto-rows: min-content;
   grid-gap: 2rem;
   width: 100%;
-
-  a {
-    color: var(--font-color);
-  }
 }
 
 @media screen and (min-width: 576px) {

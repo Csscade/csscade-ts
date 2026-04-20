@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath,
   basePath: basePath,
   experimental: {
-    mdxRs: true,
+    mdxRs: false,
   },
   images: {
     unoptimized: true,

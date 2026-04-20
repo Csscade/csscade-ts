@@ -46,7 +46,7 @@ strong {
 
 small {
   font-size: 0.8rem;
-  color: var(--font-color-muted);
+  font-weight: 400;
 }
 
 del,
@@ -100,14 +100,7 @@ blockquote {
   }
 }
 
-/* ---------- Icons ---------- */
-
-.svg-inline--fa {
-  display: inline-block;
-  height: 1em;
-  vertical-align: -0.125em;
-  color: inherit;
-}
+/* ---------- Lists ---------- */
 
 ul,
 ol {
@@ -125,18 +118,6 @@ ul {
 
 ol {
   list-style-type: decimal;
-}
-
-.list--empty {
-  padding: 2rem 0;
-  border-radius: var(--br-normal);
-  font-size: 1.5rem;
-  text-align: center;
-  background-color: var(--background-secondary);
-}
-
-.list--empty i {
-  font-size: 1.5rem;
 }
 
 /* ---------- Definitions ---------- */
