@@ -1,19 +1,55 @@
 .article-page {
-  max-width: var(--article-max-width);
-  margin: 5rem auto 0;
   padding: 3rem 0;
 
   .article-page__header {
-    /* max-width: var(--container-max-width); */
     margin: auto;
+    background-color: var(--background-reverse);
+    color: var(--font-reverse);
+    padding: 2rem 0;
+
+    .article-page__header-wrapper {
+      max-width: var(--article-max-width);
+      margin: auto;
+    }
   }
 
   .article-page__title {
     font-size: clamp(2.5rem, 6vw, 4rem);
   }
 
+  .article-page__meta {
+    display: flex;
+    gap: 0.5rem;
+  }
+
   .article-page__categories {
     display: flex;
     gap: 1rem;
+  }
+
+  .article-page__content {
+    margin: 5rem auto;
+  }
+
+  .article-page__footer {
+    margin: auto;
+    background-color: var(--background-reverse);
+    padding: 2rem 0;
+
+    .author-card {
+      background-color: var(--background-reverse);
+      border-image: var(--border-image-reverse) 12 fill / 12px / 7px space;
+      color: var(--font-reverse);
+
+      .styled-link {
+        color: var(--font-reverse);
+        border: 1px solid var(--border-color-reverse);
+
+        &:hover {
+          color: var(--color-primary);
+          border-color: var(--color-primary);
+        }
+      }
+    }
   }
 }

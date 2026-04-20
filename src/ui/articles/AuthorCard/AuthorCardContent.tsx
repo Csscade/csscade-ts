@@ -16,6 +16,7 @@ export const AuthorCardContent = ({ author }: Props) => {
 
   const mappedAuthor: AuthorCardData = {
     name: author.name,
+    slug: author.slug,
     avatar: author.avatar,
     pronouns: author.pronouns,
     website: author.website,

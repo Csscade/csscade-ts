@@ -13,10 +13,11 @@ const meta: Meta<typeof AuthorCard> = {
 export default meta;
 type Story = StoryObj<typeof AuthorCard>;
 
-export const Csscade: Story = {
+export const Default: Story = {
   args: {
     author: {
       name: "Csscade",
+      slug: "csscade",
       avatar: "https://github.com/csscade.png",
       pronouns: "iels/elleux",
       website: "https://csscade.com",

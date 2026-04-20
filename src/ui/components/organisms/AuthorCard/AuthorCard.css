@@ -1,9 +1,9 @@
 .author-card {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.5rem;
   padding: 2rem;
-  color: var(--font-primary);
+  color: var(--font-color);
   width: 100%;
   max-width: var(--article-max-width);
   margin: 3rem auto;
@@ -45,4 +45,9 @@
 .author-card__bio {
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.author-card__footer {
+  display: flex;
+  justify-content: flex-end;
 }

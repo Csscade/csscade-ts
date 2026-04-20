@@ -7,7 +7,7 @@ export function ArticleContent({ code }: { code: string }) {
   const MDXContent = useMDXComponent(code);
 
   return (
-    <div className="article-content">
+    <div className="article-page__content">
       <MDXContent />
     </div>
   );

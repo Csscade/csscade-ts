@@ -30,30 +30,35 @@ export default async function ArticlePage({
       <Navigation />
       <article className="article-page">
         <header className="article-page__header">
-          <h1 className="article-page__title">{article.title}</h1>
-          <p>
-            Publié le {format(parseISO(article.publishedAt), "dd/MM/yy")}
-            <span className="font-semibold">
-              par {author ? author.name : article.author}
-            </span>
-          </p>
-          {article.categories && (
-            <div className="article-page__categories">
-              {article.categories.map((category) => (
-                <StyledLink
-                  key={category}
-                  href={`/articles/category/${category.toLowerCase()}`}
-                  className="article-card__category"
-                  bordered={true}
-                >
-                  {category}
-                </StyledLink>
-              ))}
-            </div>
-          )}
+          <div className="article-page__header-wrapper">
+            <h1 className="article-page__title">{article.title}</h1>
+            <p className="article-page__meta">
+              Publié le {format(parseISO(article.publishedAt), "dd/MM/yy")}
+              <span className="font-semibold">
+                par {author ? author.name : article.author}
+              </span>
+            </p>
+            {article.categories && (
+              <div className="article-page__categories">
+                {article.categories.map((category) => (
+                  <StyledLink
+                    key={category}
+                    href={`/articles/category/${category.toLowerCase()}`}
+                    className="article-card__category"
+                    bordered
+                    reversed
+                  >
+                    {category}
+                  </StyledLink>
+                ))}
+              </div>
+            )}
+          </div>
         </header>
         <ArticleContent code={article.body.code} />
-        {author && <AuthorCardContent author={author} />}
+        <div className="article-page__footer">
+          {author && <AuthorCardContent author={author} />}
+        </div>
       </article>
       <Footer />
     </>

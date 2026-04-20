@@ -6,7 +6,7 @@ import {
   faLinkedin,
   faMastodon,
 } from "@fortawesome/free-brands-svg-icons";
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightLong, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar } from "@/ui/components/atoms/Avatar/Avatar";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
@@ -15,6 +15,7 @@ import type React from "react";
 
 export interface AuthorCardData {
   name: string;
+  slug: string;
   avatar: string;
   pronouns?: string;
   website?: string;
@@ -104,6 +105,12 @@ export const AuthorCard = ({ author }: AuthorCardProps) => {
       </div>
 
       {author.bio && <div className="author-card__bio">{author.bio}</div>}
+
+      <div className="author-card__footer">
+        <StyledLink href={`/authors/${author.slug}`} bordered>
+          Voir ses articles <FontAwesomeIcon icon={faArrowRightLong} />
+        </StyledLink>
+      </div>
     </aside>
   );
 };

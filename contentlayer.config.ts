@@ -41,6 +41,7 @@ export const Tip = defineDocumentType(() => ({
   fields: {
     title: { type: "string", required: true },
     slug: { type: "string", required: true },
+    author: { type: "string", required: true },
     categories: { type: "list", of: { type: "string" }, required: true },
   },
   computedFields: {
