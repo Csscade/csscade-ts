@@ -27,16 +27,13 @@
     gap: 1rem;
   }
 
-  .article-page__content {
-    margin: 5rem auto;
-  }
-
   .article-page__footer {
     margin: auto;
     background-color: var(--background-reverse);
     padding: 2rem 0;
 
     .author-card {
+      max-width: calc(var(--article-max-width) + 6rem);
       background-color: var(--background-reverse);
       border-image: var(--border-image-reverse) 12 fill / 12px / 7px space;
       color: var(--font-reverse);

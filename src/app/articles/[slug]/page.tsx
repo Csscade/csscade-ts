@@ -28,7 +28,7 @@ export default async function ArticlePage({
   return (
     <>
       <Navigation />
-      <article className="article-page">
+      <article className="article-page textured-background">
         <header className="article-page__header">
           <div className="article-page__header-wrapper">
             <h1 className="article-page__title">{article.title}</h1>

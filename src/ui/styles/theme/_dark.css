@@ -17,4 +17,5 @@
   --background-primary: var(--color-dark);
   --background-secondary: var(--color-dark-muted);
   --background-reverse: var(--color-light);
+  --background-content: rgba(25, 30, 37, 0.7);
 }

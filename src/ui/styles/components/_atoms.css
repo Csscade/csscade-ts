@@ -9,12 +9,6 @@ h6 {
   font-weight: 700;
   font-family: var(--font-secondary), sans-serif;
 
-  &::selection {
-    background: transparent;
-    color: var(--color-primary);
-    text-shadow: none;
-  }
-
   a {
     text-decoration: none;
   }
@@ -135,26 +129,6 @@ dd {
   margin-left: 1.5rem;
   margin-bottom: 0.5rem;
   color: var(--font-color-muted);
-}
-
-/* ---------- Tables ---------- */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-}
-
-th,
-td {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  text-align: left;
-}
-
-th {
-  background-color: var(--background-secondary);
-  font-weight: 600;
 }
 
 /* ---------- Horizontal Rule ---------- */
