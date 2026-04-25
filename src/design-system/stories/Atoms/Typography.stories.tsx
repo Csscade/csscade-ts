@@ -41,10 +41,21 @@ export const Headings: StoryObj = {
 export const HeadingWithId: StoryObj = {
   render: () => (
     <div className="article-content">
-      <h3 id="custom-id">My Great Heading</h3>
+      <h3 id="custom-id">
+        My Great Heading{" "}
+        <a href="#custom-id" className="anchor">
+          #
+        </a>
+      </h3>
       <p>
         Written in Markdown as:{" "}
-        <code>### My Great Heading &#123;#custom-id&#125;</code>
+        <code>## My Great Heading &#92;&#123;#custom-id&#92;&#125;</code>
+      </p>
+      <p>
+        <em>
+          Note: <code>remark-heading-id</code> handles the custom ID, and the
+          backslashes are required for MDX to not treat it as a JSX expression.
+        </em>
       </p>
     </div>
   ),
@@ -235,6 +246,53 @@ export const OrderedList: StoryObj = {
 3. Third item`}
           </code>
         </pre>
+      </p>
+    </div>
+  ),
+};
+
+export const Subscript: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <p>
+        19<sup>th</sup>
+        <br />H<sub>2</sub>O
+      </p>
+      <br />
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>{`19^th^
+H~2~O`}</code>
+        </pre>
+      </p>
+    </div>
+  ),
+};
+
+export const InsertedText: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <p>
+        <ins>Inserted text</ins>
+      </p>
+      <br />
+      <p>
+        Written in Markdown as: <code>++Inserted text++</code>
+      </p>
+    </div>
+  ),
+};
+
+export const MarkedText: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <p>
+        <mark>Marked text</mark>
+      </p>
+      <br />
+      <p>
+        Written in Markdown as: <code>==Marked text==</code>
       </p>
     </div>
   ),

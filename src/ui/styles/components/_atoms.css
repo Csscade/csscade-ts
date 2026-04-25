@@ -12,6 +12,17 @@ h6 {
   a {
     text-decoration: none;
   }
+
+  .anchor {
+    opacity: 0;
+    margin-left: 0.5rem;
+    color: var(--font-color-muted);
+    transition: opacity 0.2s;
+  }
+
+  &:hover .anchor {
+    opacity: 1;
+  }
 }
 
 h1 {
@@ -46,6 +57,33 @@ small {
 del,
 s {
   text-decoration: line-through;
+}
+
+ins {
+  text-decoration: underline;
+  background-color: #28a745;
+  padding: 0 0.2rem;
+}
+
+mark {
+  background-color: #dbeb1a;
+  padding: 0 0.2rem;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
 }
 
 /* ---------- Code ---------- */
@@ -121,7 +159,7 @@ dl {
 }
 
 dt {
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 1rem;
 }
 
@@ -129,6 +167,13 @@ dd {
   margin-left: 1.5rem;
   margin-bottom: 0.5rem;
   color: var(--font-color-muted);
+}
+
+/* ---------- Abbreviations ---------- */
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
 }
 
 /* ---------- Horizontal Rule ---------- */

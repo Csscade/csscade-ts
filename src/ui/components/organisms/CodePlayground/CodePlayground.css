@@ -3,15 +3,15 @@
   --output-bg: #1e1e1e;
   --output-color: #eaeaea;
   --border: #2a2a2a;
-  --error-font-color: #ff5c5c;
+  --error-font-color: var(--crimson);
 }
 
 [data-theme="light"] {
   --run-bg: rgb(156 163 175 / 0.1);
-  --output-bg: #ffffff;
+  --output-bg: #fff;
   --output-color: #111;
   --border: #ddd;
-  --error-font-color: #ef4444;
+  --error-font-color: var(--crimson);
 }
 
 .code-playground {

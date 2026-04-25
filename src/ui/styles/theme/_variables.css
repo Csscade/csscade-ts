@@ -4,8 +4,10 @@
   /* COLORS */
   --barberry: #dbeb19;
   --catskill-white: #f2f7f9;
+  --crimson: #e7134b;
   --foam: #daf1fb;
   --fog: #dbc3ff;
+  --froly: #f2668b;
   --gunmetal: #2f2e41;
   --lightening-yellow: #f8c920;
   --magnolia: #f7f1fc;
@@ -26,6 +28,7 @@
   --color-lightgreen: var(--barberry);
   --color-lightorange: var(--lightening-yellow);
   --color-lightpurple: var(--fog);
+  --color-lightred: var(--froly);
   --color-primary: var(--color-blue);
   --color-secondary: var(--color-lightblue);
 

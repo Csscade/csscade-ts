@@ -13,19 +13,20 @@ Bienvenue dans le premier article de CSSCADE ✨
 
 ---
 
-# h1 Heading
+# h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
 ##### h5 Heading
 ###### h6 Heading
 
+###### My Great Heading \{#custom-id\}
+
+This heading has a custom ID and should have an autolink.
 
 ## Horizontal Rules
 
 ___
-
----
 
 ***
 
@@ -42,8 +43,7 @@ test.. test... test..... test?..... test!....
 
 "Smartypants, double quotes" and 'single quotes'
 
-
-## Emphasis
+### Emphasis
 
 **This is bold text**
 
@@ -184,87 +184,62 @@ The killer feature of `markdown-it` is very effective support of
 [syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
 
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+### Emojis
 
-> Classic markup: :wink: :cry: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
+Classic markup: :wink: :cry: :laughing: :yum:
 
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
+Shortcuts (emoticons): :-) :-( 8-) ;)
 
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
+### Subscript
 
 - 19^th^
 - H~2~O
 
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
+### \<ins>
 
 ++Inserted text++
 
 
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
+### \<mark>
 
 ==Marked text==
 
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
+### Definition lists
 
 Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-```
-
-        { some code, part of Definition 2 }
-```
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-~ Definition 1
+: Definition 1
 
 Term 2
-~ Definition 2a
-~ Definition 2b
+: Definition 2
 
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
+### Abbreviations
 
 It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
-*[HTML]: Hyper Text Markup Language
+The HTML specification is maintained by the W3C.
 
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+*[HTML]: HyperText Markup Language
+*[W3C]: World Wide Web Consortium
 
-::: warning
+### Alerts
+
+:::default
+some emphasis
+:::
+
+:::error
+**oh no**
+:::
+
+:::warning
 *here be dragons*
+:::
+
+:::success
+You can also use tips!
+:::
+
+:::info
+This is an info box.
 :::
 

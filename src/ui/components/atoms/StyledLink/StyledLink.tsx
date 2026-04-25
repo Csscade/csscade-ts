@@ -1,6 +1,5 @@
 import { clsx } from "clsx";
 import Link from "next/link";
-import type React from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./StyledLink.css";
 
