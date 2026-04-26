@@ -26,7 +26,9 @@ export const Badge = ({
       style={color ? ({ "--badge-color": color } as React.CSSProperties) : {}}
     >
       <span className="badge__content">{children}</span>
-      <FontAwesomeIcon icon={faPlay} className="badge__icon" />
+      <div className="badge__icon">
+        <FontAwesomeIcon icon={faPlay} />
+      </div>
     </div>
   );
 };

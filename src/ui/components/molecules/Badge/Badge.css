@@ -21,14 +21,34 @@
     &:hover {
       color: var(--font-color);
     }
+
+    [data-theme="light"] & {
+      color: var(--font-reverse);
+
+      &:visited {
+        color: var(--font-reverse);
+      }
+
+      &:hover {
+        color: var(--font-reverse);
+        text-decoration: underline;
+      }
+    }
   }
 }
 
 .badge__content {
+  background-color: var(--background-primary);
   padding: 0.25rem 0.5rem;
   font-weight: 300;
   font-size: 0.9rem;
   border: 1px solid var(--badge-color);
+
+  [data-theme="light"] & {
+    background-color: var(--badge-color);
+    color: var(--font-reverse);
+    border-color: var(--badge-color);
+  }
 }
 
 .badge--icon-right {
@@ -49,6 +69,18 @@
 
 .badge__icon {
   font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  [data-theme="light"] & {
+    color: var(--badge-color) !important;
+  }
 }
 
 .badge--icon-top .badge__icon {
