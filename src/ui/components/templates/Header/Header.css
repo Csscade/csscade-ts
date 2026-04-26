@@ -50,12 +50,14 @@
         top: 25%;
         left: 0;
         --badge-color: var(--color-lightgreen);
+        --badge-font-color: var(--color-dark);
       }
 
       .header__badge--css {
         top: 39%;
         left: 66%;
         --badge-color: var(--color-lightpurple);
+        --badge-font-color: var(--color-dark);
       }
 
       .header__badge--a11y {
