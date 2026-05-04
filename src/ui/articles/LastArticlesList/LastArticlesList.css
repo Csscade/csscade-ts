@@ -16,6 +16,10 @@
     width: 100%;
 
     .article-card {
+      a {
+        color: var(--font-reverse);
+      }
+
       &.framed-four-corners {
         border-image: var(--border-image-reverse) 12 fill / 12px / 7px space;
       }
