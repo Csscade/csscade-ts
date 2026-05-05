@@ -29,7 +29,7 @@ type DirectiveNode = {
 };
 
 const myRemarkDirectivePlugin: Plugin<[], Root> = () => {
-  return (tree) => {
+  return (tree: Root) => {
     visit(tree, (node) => {
       const n = node as DirectiveNode;
 
