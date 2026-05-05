@@ -25,7 +25,6 @@ type Story = StoryObj<typeof CodePlayground>;
 
 export const Default: Story = {
   args: {
-    height: "300px",
     defaultLanguage: "typescript",
     defaultValue: `const greeting = "Hello, CSSCade!";
 console.log(greeting);

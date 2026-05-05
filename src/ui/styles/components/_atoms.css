@@ -95,15 +95,24 @@ pre {
   color: var(--font-color-muted);
   font-weight: normal;
   border-radius: 4px;
+
+  * {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+  }
 }
 
 code {
-  font-size: 85%;
   padding: 0.2em 0.4em;
+  margin: 0 0.4rem;
 }
 
 pre {
   padding: 1rem;
+
+  code {
+    padding: 0;
+  }
 }
 
 /* ---------- Blockquotes ---------- */

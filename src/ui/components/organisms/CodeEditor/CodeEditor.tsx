@@ -1,85 +1,84 @@
-import Editor, { type EditorProps } from "@monaco-editor/react";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import "./CodeEditor.css";
+import { faCheck, faCopy } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { type EditorTheme, useEditorTheme } from "./useEditorTheme";
+import { useHighlighter } from "./useHighlighter";
 
-export interface CodeEditorProps extends EditorProps {
+export interface CodeEditorProps {
+  height?: string;
+  defaultLanguage?: string;
+  defaultValue?: string;
+  value?: string;
+  onChange?: (value: string | undefined) => void;
+  theme?: EditorTheme;
   containerClassName?: string;
 }
 
 export const CodeEditor = ({
-  height = "300px",
+  height,
   defaultLanguage = "typescript",
   defaultValue = "",
+  value,
+  onChange,
   theme,
   containerClassName = "",
-  options = {},
-  ...props
 }: CodeEditorProps) => {
-  const [currentTheme, setCurrentTheme] = useState<string>("vs-dark");
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const [isCopied, setIsCopied] = useState(false);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    if (theme) {
-      setCurrentTheme(theme);
-      return;
+  const code = value !== undefined ? value : internalValue;
+  const currentTheme = useEditorTheme(theme);
+  const highlightedCode = useHighlighter(code, defaultLanguage, currentTheme);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target.value;
+    if (value === undefined) {
+      setInternalValue(newValue);
     }
+    onChange?.(newValue);
+  };
 
-    const updateFromElement = (el: HTMLElement) => {
-      const dataTheme = el.getAttribute("data-theme");
-      if (dataTheme === "dark") {
-        setCurrentTheme("vs-dark");
-      } else if (dataTheme === "light") {
-        setCurrentTheme("light");
-      } else {
-        // Fallback to media query if data-theme is not set
-        const mql = window.matchMedia("(prefers-color-scheme: dark)");
-        setCurrentTheme(mql.matches ? "vs-dark" : "light");
-      }
-    };
-
-    const targetNode = document.documentElement;
-    updateFromElement(targetNode);
-
-    const observer = new MutationObserver(() => {
-      updateFromElement(targetNode);
-    });
-
-    observer.observe(targetNode, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-
-    const mql = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleMediaChange = (e: MediaQueryListEvent) => {
-      if (!targetNode.getAttribute("data-theme")) {
-        setCurrentTheme(e.matches ? "vs-dark" : "light");
-      }
-    };
-    mql.addEventListener("change", handleMediaChange);
-
-    return () => {
-      observer.disconnect();
-      mql.removeEventListener("change", handleMediaChange);
-    };
-  }, [theme]);
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy code: ", err);
+    }
+  };
 
   return (
-    <div className={`code-editor-container ${containerClassName}`}>
-      <Editor
-        height={height}
-        defaultLanguage={defaultLanguage}
-        defaultValue={defaultValue}
-        theme={currentTheme}
-        options={{
-          minimap: { enabled: false },
-          fontSize: 14,
-          fontFamily: "var(--font-mono)",
-          fontLigatures: true,
-          scrollBeyondLastLine: false,
-          automaticLayout: true,
-          ...options,
-        }}
-        {...props}
-      />
+    <div
+      className={`code-editor-container ${containerClassName}`}
+      data-shiki-theme={currentTheme}
+      style={{ height, minHeight: "60px" }}
+    >
+      <button
+        type="button"
+        className="button button--icon copy"
+        onClick={copyToClipboard}
+        title="Copy to clipboard"
+      >
+        <span className="sr-only">Copy code</span>
+        <FontAwesomeIcon icon={isCopied ? faCheck : faCopy} />
+      </button>
+      <div className="shiki-editor">
+        <textarea
+          ref={textAreaRef}
+          value={code}
+          onChange={handleChange}
+          spellCheck={false}
+          className="shiki-editor__textarea"
+        />
+        <div
+          className="shiki-editor__highlight"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki output is safe
+          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+        />
+      </div>
     </div>
   );
 };

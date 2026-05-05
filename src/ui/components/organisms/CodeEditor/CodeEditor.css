@@ -1,9 +1,113 @@
 .code-editor-container {
-  border-radius: var(--br-normal, 4px);
+  position: relative;
+}
+
+.code-editor-container .copy {
+  z-index: 2;
+  background-color: transparent;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  height: 2rem;
+  border-radius: 0.25rem;
+  opacity: 0;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  transition:
+    opacity 0.2s,
+    background-color 0.2s;
+  pointer-events: none;
+}
+
+.code-editor-container:hover .copy {
+  opacity: 0.75;
+  pointer-events: auto;
+}
+
+.code-editor-container[data-shiki-theme="github-dark"] .copy {
+  color: #fff;
+}
+
+.code-editor-container[data-shiki-theme="github-light"] .copy {
+  color: #24292e;
+}
+
+.code-editor-container:hover .copy:hover {
+  background-color: rgb(156 163 175 / 0.1);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.code-editor-container[data-shiki-theme="github-dark"] {
+  background-color: #24292e;
+}
+
+.code-editor-container[data-shiki-theme="github-light"] {
+  background-color: #ffffff;
+}
+
+.shiki-editor {
+  position: relative;
+  width: 100%;
+  min-height: 60px;
+  display: grid;
+}
+
+.shiki-editor__textarea,
+.shiki-editor__highlight {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  margin: 0;
+  border: none;
+  font-family: var(--font-mono), monospace;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  tab-size: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+
+.shiki-editor__textarea {
+  z-index: 1;
+  color: transparent;
+  background: transparent;
+  caret-color: #24292e; /* Fallback */
+  resize: none;
+  outline: none;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.code-editor-container[data-shiki-theme="github-dark"] .shiki-editor__textarea {
+  caret-color: #ffffff;
+}
+
+.code-editor-container[data-shiki-theme="github-light"] {
+  .shiki-editor__textarea {
+    caret-color: #24292e;
+  }
+}
+
+.shiki-editor__highlight {
+  z-index: 0;
+  pointer-events: none;
+  padding: 1rem;
   overflow: hidden;
 
-  .monaco-editor,
-  .monaco-editor * {
-    font-family: var(--font-mono), monospace;
+  pre,
+  code {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 }

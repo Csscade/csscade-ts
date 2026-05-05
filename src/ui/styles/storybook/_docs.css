@@ -71,16 +71,4 @@
       border-top: 1px solid var(--border-color);
     }
   }
-
-  /* Toolbar */
-
-  [data-theme="dark"] & {
-    .sbdocs-preview {
-      > div {
-        button {
-          color: var(--font-reverse);
-        }
-      }
-    }
-  }
 }

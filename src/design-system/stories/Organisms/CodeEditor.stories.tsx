@@ -11,7 +11,7 @@ const meta: Meta<typeof CodeEditor> = {
   argTypes: {
     theme: {
       control: "select",
-      options: ["vs-dark", "light"],
+      options: ["github-dark", "github-light"],
     },
     defaultLanguage: {
       control: "select",
@@ -25,18 +25,27 @@ type Story = StoryObj<typeof CodeEditor>;
 
 export const Default: Story = {
   args: {
-    height: "300px",
     defaultLanguage: "typescript",
     defaultValue: `// This editor will follow your system theme preference
+// and adapt its height to the content (min 100px)
 const theme = "auto";
-console.log(\`Current theme is \${theme}\`);`,
+console.log(\`Current theme is \${theme}\`);
+console.log("Add more lines to see it grow!");`,
+  },
+};
+
+export const FixedHeight: Story = {
+  args: {
+    height: "200px",
+    defaultLanguage: "typescript",
+    defaultValue: `const theme = "fixed";
+console.log("This editor has a fixed height of 200px");`,
   },
 };
 
 export const DarkTheme: Story = {
   args: {
-    height: "300px",
-    theme: "vs-dark",
+    theme: "github-dark",
     defaultLanguage: "typescript",
     defaultValue: `const theme = "dark";
 console.log(\`Current theme is \${theme}\`);`,
@@ -45,8 +54,7 @@ console.log(\`Current theme is \${theme}\`);`,
 
 export const LightTheme: Story = {
   args: {
-    height: "300px",
-    theme: "light",
+    theme: "github-light",
     defaultLanguage: "typescript",
     defaultValue: `const theme = "light";
 console.log(\`Current theme is \${theme}\`);`,

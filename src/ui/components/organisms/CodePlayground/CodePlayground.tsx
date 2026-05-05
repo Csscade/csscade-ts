@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CodeEditor,
   type CodeEditorProps,
@@ -17,8 +17,10 @@ type LogLine = {
 export const CodePlayground = (props: CodeEditorProps) => {
   const [code, setCode] = useState(props.defaultValue || "");
   const [output, setOutput] = useState<LogLine[]>([]);
+  const [hasRun, setHasRun] = useState(false);
 
   const runCode = () => {
+    setHasRun(true);
     setOutput([]);
 
     const iframe = document.createElement("iframe");
@@ -74,12 +76,21 @@ export const CodePlayground = (props: CodeEditorProps) => {
     }, 100);
   };
 
+  // Run code once on mount
+  // biome-ignore lint/correctness/useExhaustiveDependencies: runCode is stable and we only want to run it once on mount
+  useEffect(() => {
+    runCode();
+  }, []);
+
   return (
-    <div className="code-playground">
+    <div
+      className={`code-playground ${hasRun ? "code-playground--has-run" : ""}`}
+    >
       <CodeEditor
         {...props}
         value={code}
         onChange={(value) => setCode(value || "")}
+        containerClassName="code-playground__editor"
       />
 
       <button
@@ -91,15 +102,17 @@ export const CodePlayground = (props: CodeEditorProps) => {
         <FontAwesomeIcon icon={faPlay} />
       </button>
 
-      <div className="output">
-        <div className="output__body">
-          {output.map((line) => (
-            <div key={line.id} className={`line line--${line.type}`}>
-              {line.text}
-            </div>
-          ))}
+      {hasRun && (
+        <div className="output">
+          <div className="output__body">
+            {output.map((line) => (
+              <div key={line.id} className={`line line--${line.type}`}>
+                {line.text}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
