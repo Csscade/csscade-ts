@@ -18,4 +18,9 @@
   --background-secondary: var(--color-light);
   --background-reverse: var(--color-dark);
   --background-content: rgba(255, 255, 255, 0.5);
+  --code-background: #ffffff;
+
+  /* SHIKI DARK MODE FALLBACKS */
+  --shiki-dark: initial;
+  --shiki-dark-bg: initial;
 }

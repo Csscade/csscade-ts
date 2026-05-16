@@ -18,4 +18,9 @@
   --background-secondary: var(--color-dark-muted);
   --background-reverse: var(--color-light);
   --background-content: rgba(25, 30, 37, 0.7);
+  --code-background: #24292e;
+
+  /* SHIKI DARK MODE */
+  --shiki-dark: #e6edf3;
+  --shiki-dark-bg: #24292e;
 }

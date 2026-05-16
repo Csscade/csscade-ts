@@ -1,3 +1,4 @@
+import rehypeShiki from "@shikijs/rehype";
 import remarkAbbr from "@syenchuk/remark-abbr";
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import type { Properties } from "hast";
@@ -125,6 +126,37 @@ const rehypePlugins = [
       properties: {
         className: ["anchor"],
       },
+    },
+  ],
+  [
+    rehypeShiki,
+    {
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+      transformers: [
+        {
+          name: "copy-code",
+          pre(node) {
+            const codeNode = node.children.find(
+              (n) => n.type === "element" && n.tagName === "code",
+            );
+            if (codeNode && codeNode.type === "element") {
+              /* biome-ignore lint/suspicious/noExplicitAny: recursive extraction from HAST */
+              const extractText = (n: any): string => {
+                if (n.type === "text") return n.value;
+                if (n.children) {
+                  return n.children.map(extractText).join("");
+                }
+                return "";
+              };
+              const codeText = codeNode.children.map(extractText).join("");
+              node.properties["data-code"] = codeText;
+            }
+          },
+        },
+      ],
     },
   ],
   // biome-ignore lint/suspicious/noExplicitAny: bypassed due to unified version mismatch
