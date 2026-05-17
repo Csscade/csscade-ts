@@ -1,7 +1,7 @@
 import rehypeShiki from "@shikijs/rehype";
 import remarkAbbr from "@syenchuk/remark-abbr";
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
-import type { Properties } from "hast";
+import type { Element, ElementContent, Properties, RootContent } from "hast";
 import type { Root } from "mdast";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -138,15 +138,15 @@ const rehypePlugins = [
       transformers: [
         {
           name: "copy-code",
-          pre(node) {
+          pre(node: Element) {
             const codeNode = node.children.find(
-              (n) => n.type === "element" && n.tagName === "code",
+              (n: ElementContent): n is Element =>
+                n.type === "element" && n.tagName === "code",
             );
-            if (codeNode && codeNode.type === "element") {
-              /* biome-ignore lint/suspicious/noExplicitAny: recursive extraction from HAST */
-              const extractText = (n: any): string => {
+            if (codeNode) {
+              const extractText = (n: ElementContent | RootContent): string => {
                 if (n.type === "text") return n.value;
-                if (n.children) {
+                if ("children" in n) {
                   return n.children.map(extractText).join("");
                 }
                 return "";
