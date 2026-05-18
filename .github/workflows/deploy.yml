@@ -51,9 +51,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
-      - name: Build with ContentLayer & Next.js
+      - name: Build with Next.js
         run: |
-          pnpm build:content
           pnpm build
         env:
           NODE_ENV: production
