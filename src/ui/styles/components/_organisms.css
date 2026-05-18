@@ -82,13 +82,17 @@ pre:not(.shiki) {
 }
 
 [data-theme="dark"] .shiki,
-[data-theme="dark"] .shiki span,
-.dark .shiki,
-.dark .shiki span {
-  /* biome-ignore lint/complexity/noImportantStyles: forced override for Shiki dark mode */
-  color: var(--shiki-dark) !important;
-  /* biome-ignore lint/complexity/noImportantStyles: forced override for Shiki dark mode */
-  background-color: var(--shiki-dark-bg) !important;
+.dark .shiki {
+  /* Only apply dark mode overrides if not explicitly in light mode */
+  &:not([data-shiki-theme*="light"]):not([data-shiki-theme*="light"] *) {
+    /* biome-ignore lint/complexity/noImportantStyles: forced override for Shiki dark mode background */
+    background-color: var(--shiki-dark-bg) !important;
+
+    span {
+      /* biome-ignore lint/complexity/noImportantStyles: forced override for Shiki dark mode span background */
+      background-color: var(--shiki-dark-bg) !important;
+    }
+  }
 }
 
 /* ---------- Tables ---------- */
