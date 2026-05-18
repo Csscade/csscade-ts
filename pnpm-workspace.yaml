@@ -2,7 +2,6 @@ packages:
   - .
 
 onlyBuiltDependencies:
-  - contentlayer
   - core-js-pure
   - esbuild
   - lefthook
