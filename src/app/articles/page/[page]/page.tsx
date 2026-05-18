@@ -16,8 +16,8 @@ type PageProps = {
   };
 };
 
-export default function ArticlesPage({ params }: PageProps) {
-  const { page } = params;
+export default async function ArticlesPage({ params }: PageProps) {
+  const { page } = await params;
   const currentPage = Number(page);
 
   if (Number.isNaN(currentPage) || currentPage < 1) {

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAllArticles } from "@/lib/content";
+import { getAllArticles } from "@/domain/content/articles";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";

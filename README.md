@@ -18,22 +18,21 @@
 
 - [Getting Started](#getting-started)
 - [Design system](#design-system)
-- [Troubleshooting](#troubleshooting)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-| Topic              | Technology                   |
-|--------------------|------------------------------|
-| Main Framework     | 	Next.js (App Router)        |
-| Language           | 	TypeScript                  |
-| Package manager    | 	pnpm                        |
-| Linter / formatter | 	Biome                       |
-| Build              | 	Turbopack                   |
-| Design System      | 	Storybook + Vite            |
-| Style              | 	Native CSS                  |
-| Content            | 	MarkdownX with Contentlayer |
-| Pre-commit         | 	Lefthook                    |
+| Topic              | Technology                        |
+|--------------------|-----------------------------------|
+| Main Framework     | 	Next.js (App Router)             |
+| Language           | 	TypeScript                       |
+| Package manager    | 	pnpm                             |
+| Linter / formatter | 	Biome                            |
+| Build              | 	Turbopack                        |
+| Design System      | 	Storybook + Vite                 |
+| Style              | 	Native CSS                       |
+| Content            | 	MarkdownX with Zod & gray-matter |
+| Pre-commit         | 	Lefthook                         |
 
 ![next badge](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs)
 ![pnpm badge](https://img.shields.io/badge/Typescript-000000?style=flat&logo=typescript)
@@ -43,7 +42,7 @@
 ![pnpm badge](https://img.shields.io/badge/Storybook-000000?style=flat&logo=storybook)
 ![pnpm badge](https://img.shields.io/badge/Native%20CSS-000000?style=flat&logo=css)
 ![pnpm badge](https://img.shields.io/badge/MarkdownX-000000?style=flat&logo=markdown)
-![pnpm badge](https://img.shields.io/badge/Contentlayer-000000?style=flat&logo=contentlayer)
+![pnpm badge](https://img.shields.io/badge/Zod-000000?style=flat&logo=zod)
 ![pnpm badge](https://img.shields.io/badge/Lefthook-000000?style=flat&logo=lefthook)
 
 ## Getting Started
@@ -65,24 +64,3 @@ pnpm storybook
 ```
 
 Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
-
-## Troubleshooting
-
-Contentlayer build works but returns a well-known error that should not be a problem.
-
-```shell
-pnpm run build:content
-
-> contentlayer build
-
-Generated 6 documents in .contentlayer
-TypeError: The "code" argument must be of type number. Received an instance of Object
-    at process.set [as exitCode] (node:internal/bootstrap/node:119:9)
-    at Cli.runExit (/Users/csscade/workspace/csscade/csscade-ts/node_modules/.pnpm/clipanion@3.2.1_typanion@3.14.0/node_modules/clipanion/lib/advanced/Cli.js:232:26)
-    at run (file:///Users/csscade/workspace/csscade-ts/node_modules/.pnpm/@contentlayer+cli@0.3.4_esbuild@0.27.2/node_modules/@contentlayer/cli/src/index.ts:39:3)
-    at main (/Users/csscade/workspace/csscade/csscade-ts/node_modules/.pnpm/contentlayer@0.3.4_esbuild@0.27.2/node_modules/contentlayer/bin/cli.cjs:5:3) {
-  code: 'ERR_INVALID_ARG_TYPE'
-}
-
-Process finished with exit code 0
-```

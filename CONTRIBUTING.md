@@ -22,6 +22,7 @@ There are two ways to contribute:
   - [MDX Guidelines](#mdx-guidelines)
     - [Article Frontmatter](#article-frontmatter)
     - [Tip Frontmatter](#tip-frontmatter)
+    - [Author Frontmatter](#author-frontmatter)
   - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
   - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
   - [Common Guidelines](#common-guidelines)
@@ -60,15 +61,13 @@ This repository is a pnpm workspace. Workspace packages live under `src/*`.
 ```
 csscade-ts/
 ├─ public/                 # Static assets served by Next.js
-├─ src/                    # Application source and workspace packages
+├─ src/                    # Application source
 │  ├─ app/                 # Next.js app router (routes, layouts, pages)
-│  ├─ content/             # Articles, tips, and MDX content
-│  ├─ design-system/       # UI kit as Storybook stories
-│  ├─ domain/              # Business logic, utilities
+│  ├─ content/             # Articles, tips, authors and MDX content
+│  ├─ domain/              # Business logic, content schemas, utilities
 │  └─ ui/                  # Web components and global styles
 ├─ tests/                  # Tests
 ├─ package.json            # Root scripts
-├─ contentlayer.config.ts  # Contentlayer configuration
 └─ biome.json              # Biome config (lint/format)
 ```
 
@@ -113,7 +112,7 @@ Content is located in `src/content/articles/` or `src/content/tips/`. Each file 
 ---
 title: "Your Article Title"
 slug: "your-article-slug"
-author: "Your Name"
+author: "author-slug"
 publishedAt: "YYYY-MM-DD"
 categories:
   - CSS
@@ -126,12 +125,26 @@ categories:
 ---
 title: "Your Tip Title"
 slug: "your-tip-slug"
+author: "author-slug"
 categories:
   - CSS
 ---
 ```
 
-After modifying content, you need to rebuild Contentlayer: `pnpm build:content`.
+#### Author Frontmatter
+```mdx
+---
+name: "Your Name"
+slug: "your-name-slug"
+avatar: "https://example.com/avatar.jpg"
+pronouns: "they/them"
+website: "https://example.com"
+bluesky: "https://bsky.app/profile/yourname.bsky.social"
+mastodon: "https://mastodon.social/@yourname"
+github: "https://github.com/yourname"
+linkedin: "https://linkedin.com/in/yourname"
+---
+```
 
 ### Accessibility (WCAG & RGAA)
 

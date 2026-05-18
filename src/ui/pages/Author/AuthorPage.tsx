@@ -1,4 +1,6 @@
-import type { Article, Author, Tip } from "@/lib/content";
+import type { Article } from "@/domain/content/articles";
+import type { Author } from "@/domain/content/authors";
+import type { Tip } from "@/domain/content/tips";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { ArticlesList } from "@/ui/articles/ArticlesList/ArticlesList";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";

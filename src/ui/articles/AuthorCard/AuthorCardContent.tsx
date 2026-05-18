@@ -1,5 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import type { Author } from "@/lib/content";
+import type { Author } from "@/domain/content/authors";
 import {
   AuthorCard,
   type AuthorCardData,

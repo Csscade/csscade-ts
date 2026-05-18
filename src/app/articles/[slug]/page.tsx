@@ -4,7 +4,8 @@ import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 import "./ArticlePage.css";
-import { getAllArticles, getAllAuthors } from "@/lib/content";
+import { getAllArticles } from "@/domain/content/articles";
+import { getAllAuthors } from "@/domain/content/authors";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 

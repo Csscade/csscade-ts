@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
-import { getAllArticles, getAllAuthors, getAllTips } from "@/lib/content";
+import { getAllArticles } from "@/domain/content/articles";
+import { getAllAuthors } from "@/domain/content/authors";
+import { getAllTips } from "@/domain/content/tips";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 import { AuthorPage } from "@/ui/pages/Author/AuthorPage";
