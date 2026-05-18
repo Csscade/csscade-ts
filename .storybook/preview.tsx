@@ -34,6 +34,14 @@ const preview: Preview = {
     },
   },
 
+  parameters: {
+    options: {
+      storySort: {
+        method: "alphabetical",
+      },
+    },
+  },
+
   decorators: [
     (Story, context) => {
       const theme = context.globals.theme;
