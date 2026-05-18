@@ -25,6 +25,8 @@ export const StyledLink = ({
   icon,
   ...props
 }: StyledLinkProps) => {
+  const isExternal = href.startsWith("http");
+
   return (
     <Link
       href={href}
@@ -36,6 +38,8 @@ export const StyledLink = ({
         className,
       )}
       aria-label={ariaLabel}
+      target={isExternal ? "_blank" : props.target}
+      rel={isExternal ? "noopener noreferrer" : props.rel}
       {...props}
     >
       {children}

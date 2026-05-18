@@ -18,7 +18,7 @@ type StyledLinkStoryArgs = StyledLinkProps & {
 };
 
 const meta = {
-  title: "Molecules/Styled Link",
+  title: "Molecules/Link",
   component: StyledLink,
   parameters: {
     layout: "centered",
@@ -42,6 +42,18 @@ export const Basic: Story = {
     href: "#",
     children: "CSS Tricks",
   },
+  render: (args) => (
+    <>
+      <StyledLink {...args} />
+      <br />
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>[CSS Tricks](#)</code>
+        </pre>
+      </p>
+    </>
+  ),
 };
 
 export const Bordered: Story = {
@@ -50,6 +62,18 @@ export const Bordered: Story = {
     children: "CSS Tricks",
     bordered: true,
   },
+  render: (args) => (
+    <>
+      <StyledLink {...args} />
+      <br />
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>[CSS Tricks](#?bordered)</code>
+        </pre>
+      </p>
+    </>
+  ),
 };
 
 export const Icon: Story = {
@@ -59,11 +83,20 @@ export const Icon: Story = {
     faIcon: "faDiscord",
   },
   render: ({ faIcon, ...args }) => (
-    <StyledLink {...args}>
-      {faIcon && (
-        <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
-      )}
-    </StyledLink>
+    <>
+      <StyledLink {...args}>
+        {faIcon && (
+          <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+        )}
+      </StyledLink>
+      <br />
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>[](#?iconOnly&icon=discord)</code>
+        </pre>
+      </p>
+    </>
   ),
 };
 
@@ -75,14 +108,23 @@ export const WithIconAfter: Story = {
     bordered: true,
   },
   render: ({ faIcon, ...args }) => (
-    <StyledLink
-      {...args}
-      icon={
-        faIcon && (
-          <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
-        )
-      }
-    />
+    <>
+      <StyledLink
+        {...args}
+        icon={
+          faIcon && (
+            <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+          )
+        }
+      />
+      <br />
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>[Learn more](#?bordered&icon=arrowRightLong)</code>
+        </pre>
+      </p>
+    </>
   ),
 };
 
@@ -93,4 +135,16 @@ export const External: Story = {
     target: "_blank",
     rel: "noopener noreferrer",
   },
+  render: (args) => (
+    <>
+      <StyledLink {...args} />
+      <br />
+      <p>
+        Written in Markdown as:
+        <pre>
+          <code>[CSS Tricks](https://css-tricks.com)</code>
+        </pre>
+      </p>
+    </>
+  ),
 };

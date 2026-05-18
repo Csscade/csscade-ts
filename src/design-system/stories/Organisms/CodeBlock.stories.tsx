@@ -64,7 +64,6 @@ greet(me);`;
         }}
       >
         <div>
-          <p>Rendered:</p>
           <SyntaxHighlightedCode
             language="typescript"
             theme={theme}
