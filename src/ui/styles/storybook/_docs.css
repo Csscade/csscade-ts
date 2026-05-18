@@ -28,9 +28,17 @@
     font-family: var(--font-primary), serif;
   }
 
+  /* --------- Links --------- */
+
+  a:hover {
+    color: var(--color-primary);
+  }
+
   /* --------- Buttons --------- */
 
-  button:not(.docs-story button):not(.sbdocs-preview button) {
+  button:not(.docs-story button):not(.sbdocs-preview button):not(
+    .sbdocs-content button[aria-label="Reset controls"]
+  ) {
     color: var(--font-color);
     display: inline-flex;
     align-items: center;
@@ -69,6 +77,55 @@
 
     > div:nth-child(3) {
       border-top: 1px solid var(--border-color);
+    }
+  }
+
+  /* ---------- ArgsTable ---------- */
+
+  .docblock-argstable thead {
+    border: 0.5px solid rgba(38, 74, 115, 0.15);
+  }
+
+  .docblock-argstable tbody tr td:first-of-type {
+    span {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+
+  [data-theme="dark"] & {
+    .docblock-argstable thead {
+      border: 0.5px solid var(--border-color);
+    }
+
+    .docblock-argstable thead,
+    .docblock-argstable thead * {
+      background-color: var(--background-reverse);
+      color: var(--font-reverse);
+    }
+
+    .docblock-argstable tbody tr:last-of-type td {
+      border-bottom: 0.5px solid var(--border-color);
+    }
+
+    .docblock-argstable tbody,
+    .docblock-argstable tbody td {
+      background-color: var(--background-contrast);
+      color: var(--font-color);
+      border-top: 0.5px solid var(--border-color);
+
+      * {
+        background-color: var(--background-contrast);
+        color: var(--font-color);
+      }
+    }
+
+    .docblock-argstable tbody tr td:first-of-type {
+      border-left: 0.5px solid var(--border-color);
+    }
+
+    .docblock-argstable tbody tr td:last-of-type {
+      border-right: 0.5px solid var(--border-color);
     }
   }
 }
