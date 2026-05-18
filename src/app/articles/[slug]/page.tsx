@@ -4,14 +4,16 @@ import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 import "./ArticlePage.css";
-import { allArticles, allAuthors } from "contentlayer/generated";
+import { getAllArticles, getAllAuthors } from "@/lib/content";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 
-export const generateStaticParams = async () =>
-  allArticles.map((article) => ({
+export const generateStaticParams = async () => {
+  const articles = getAllArticles();
+  return articles.map((article) => ({
     slug: article.slug,
   }));
+};
 
 export default async function ArticlePage({
   params,
@@ -20,10 +22,12 @@ export default async function ArticlePage({
 }) {
   const { slug } = await params;
 
-  const article = allArticles.find((a) => a.slug === slug);
+  const articles = getAllArticles();
+  const article = articles.find((a) => a.slug === slug);
   if (!article) return notFound();
 
-  const author = allAuthors.find((a) => a.slug === article.author);
+  const authors = getAllAuthors();
+  const author = authors.find((a) => a.slug === article.author);
 
   return (
     <>
@@ -55,7 +59,7 @@ export default async function ArticlePage({
             )}
           </div>
         </header>
-        <ArticleContent code={article.body.code} />
+        <ArticleContent content={article.content} />
         <div className="article-page__footer">
           {author && <AuthorCardContent author={author} />}
         </div>

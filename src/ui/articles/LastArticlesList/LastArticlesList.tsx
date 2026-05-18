@@ -1,5 +1,5 @@
-import { type Article, allArticles, allAuthors } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
+import { type Article, getAllArticles, getAllAuthors } from "@/lib/content";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./LastArticlesList.css";
 
@@ -8,12 +8,14 @@ interface LastArticlesProps {
 }
 
 export const LastArticlesList = ({ limit = 3 }: LastArticlesProps) => {
-  const articles = allArticles
+  const allArticles = getAllArticles();
+  const articles = [...allArticles]
     .sort((a, b) =>
       compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
     )
     .slice(0, limit > 0 ? limit : undefined);
 
+  const allAuthors = getAllAuthors();
   const getAuthor = (article: Article) => {
     return allAuthors.find((a) => a.slug === article.author);
   };
@@ -24,10 +26,10 @@ export const LastArticlesList = ({ limit = 3 }: LastArticlesProps) => {
         const author = getAuthor(article);
         return (
           <ArticleCard
-            key={article._id}
+            key={article.slug}
             title={article.title}
             publishedAt={article.publishedAt}
-            url={article.url}
+            url={`/articles/${article.slug}`}
             author={author ? author.name : article.author}
             categories={article.categories}
           />

@@ -1,5 +1,5 @@
-import type { Article } from "contentlayer/generated";
-import { allAuthors } from "contentlayer/generated";
+import type { Article } from "@/lib/content";
+import { getAllAuthors } from "@/lib/content";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./ArticlesList.css";
 
@@ -8,6 +8,7 @@ interface ArticlesListProps {
 }
 
 export const ArticlesList = ({ articles }: ArticlesListProps) => {
+  const allAuthors = getAllAuthors();
   const getAuthor = (article: Article) => {
     return allAuthors.find((a) => a.slug === article.author);
   };
@@ -18,10 +19,10 @@ export const ArticlesList = ({ articles }: ArticlesListProps) => {
         const author = getAuthor(article);
         return (
           <ArticleCard
-            key={article._id}
+            key={article.slug}
             title={article.title}
             publishedAt={article.publishedAt}
-            url={article.url}
+            url={`/articles/${article.slug}`}
             author={author ? author.name : article.author}
             categories={article.categories}
           />

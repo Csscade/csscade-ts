@@ -1,14 +1,15 @@
 import path from "node:path";
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
-import { withContentlayer } from "next-contentlayer";
 
 const basePath = process.env.PAGES_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
   assetPrefix: basePath,
   basePath: basePath,
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   experimental: {
-    mdxRs: false,
+    mdxRs: true,
   },
   images: {
     unoptimized: true,
@@ -21,4 +22,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withContentlayer(nextConfig);
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);

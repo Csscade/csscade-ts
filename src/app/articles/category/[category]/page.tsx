@@ -1,5 +1,5 @@
-import { allArticles } from "contentlayer/generated";
 import { notFound } from "next/navigation";
+import { getAllArticles } from "@/lib/content";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { Footer } from "@/ui/components/templates/Footer/Footer";
 import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
@@ -16,6 +16,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const { category } = await params;
   const normalizedCategory = normalizeCategory(category);
 
+  const allArticles = getAllArticles();
   const articles = allArticles.filter((article) =>
     article.categories.some((c) => normalizeCategory(c) === normalizedCategory),
   );
@@ -33,10 +34,10 @@ export default async function CategoryPage({ params }: PageProps) {
         <section>
           {articles.map((article) => (
             <ArticleCard
-              key={article._id}
+              key={article.slug}
               title={article.title}
               publishedAt={article.publishedAt}
-              url={article.url}
+              url={`/articles/${article.slug}`}
               categories={article.categories}
             />
           ))}
@@ -48,6 +49,7 @@ export default async function CategoryPage({ params }: PageProps) {
 }
 
 export function generateStaticParams() {
+  const allArticles = getAllArticles();
   const categories = new Set<string>();
 
   for (const article of allArticles) {

@@ -1,7 +1,5 @@
-"use client";
-
-import type { Author } from "contentlayer/generated";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import type { Author } from "@/lib/content";
 import {
   AuthorCard,
   type AuthorCardData,
@@ -12,8 +10,6 @@ interface Props {
 }
 
 export const AuthorCardContent = ({ author }: Props) => {
-  const MDXContent = useMDXComponent(author.body.code);
-
   const mappedAuthor: AuthorCardData = {
     name: author.name,
     slug: author.slug,
@@ -24,7 +20,7 @@ export const AuthorCardContent = ({ author }: Props) => {
     mastodon: author.mastodon,
     github: author.github,
     linkedin: author.linkedin,
-    bio: <MDXContent />,
+    bio: <MDXRemote source={author.content} />,
   };
 
   return <AuthorCard author={mappedAuthor} />;

@@ -1,6 +1,4 @@
-"use client";
-
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import type React from "react";
 import { CopyButton } from "@/ui/components/atoms/CopyButton/CopyButton";
 import "./ArticleContent.css";
@@ -47,12 +45,10 @@ const components = {
   },
 };
 
-export function ArticleContent({ code }: { code: string }) {
-  const MDXContent = useMDXComponent(code);
-
+export function ArticleContent({ content }: { content: string }) {
   return (
     <div className="article-page__content framed-four-corners">
-      <MDXContent components={components} />
+      <MDXRemote source={content} components={components} />
     </div>
   );
 }

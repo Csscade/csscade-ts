@@ -1,9 +1,10 @@
-import { allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
+import { getAllArticles } from "@/lib/content";
 
 const ARTICLES_PER_PAGE = 4;
 
 export function getPaginatedArticles(page: number) {
+  const allArticles = getAllArticles();
   const sortedArticles = [...allArticles].sort((a, b) =>
     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
   );
@@ -22,5 +23,6 @@ export function getPaginatedArticles(page: number) {
 }
 
 export function getTotalArticlePages() {
+  const allArticles = getAllArticles();
   return Math.ceil(allArticles.length / ARTICLES_PER_PAGE);
 }

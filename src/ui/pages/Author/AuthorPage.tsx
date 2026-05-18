@@ -1,4 +1,4 @@
-import type { Article, Author, Tip } from "contentlayer/generated";
+import type { Article, Author, Tip } from "@/lib/content";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { ArticlesList } from "@/ui/articles/ArticlesList/ArticlesList";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
@@ -34,9 +34,9 @@ export const AuthorPage = ({ author, articles, tips }: AuthorPageProps) => {
           <div className="author-page__articles-list">
             {tips.map((tip) => (
               <ArticleCard
-                key={tip._id}
+                key={tip.slug}
                 title={tip.title}
-                url={tip.url}
+                url={`/tips/${tip.slug}`}
                 categories={tip.categories}
                 publishedAt=""
               />
