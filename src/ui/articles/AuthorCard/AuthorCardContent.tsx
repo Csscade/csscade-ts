@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Author } from "@/domain/content/authors";
+import { rehypePlugins, remarkPlugins } from "@/domain/utils/mdx-utils";
 import {
   AuthorCard,
   type AuthorCardData,
@@ -20,7 +21,17 @@ export const AuthorCardContent = ({ author }: Props) => {
     mastodon: author.mastodon,
     github: author.github,
     linkedin: author.linkedin,
-    bio: <MDXRemote source={author.content} />,
+    bio: (
+      <MDXRemote
+        source={author.content}
+        options={{
+          mdxOptions: {
+            remarkPlugins,
+            rehypePlugins,
+          },
+        }}
+      />
+    ),
   };
 
   return <AuthorCard author={mappedAuthor} />;
