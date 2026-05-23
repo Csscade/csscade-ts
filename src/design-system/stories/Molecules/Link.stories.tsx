@@ -132,8 +132,14 @@ export const External: Story = {
   args: {
     href: "https://css-tricks.com",
     children: "CSS Tricks",
-    target: "_blank",
-    rel: "noopener noreferrer",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pour les liens externes (commençant par `http`), l\'attribut `target="_blank"` est ajouté automatiquement, ainsi que `rel="noopener noreferrer"` pour la sécurité. Un élément `<span class="sr-only">(ouvre un nouvel onglet)</span>` est également inséré pour l\'accessibilité.',
+      },
+    },
   },
   render: (args) => (
     <>

@@ -26,6 +26,9 @@ export const StyledLink = ({
   ...props
 }: StyledLinkProps) => {
   const isExternal = href.startsWith("http");
+  const target = props.target || (isExternal ? "_blank" : undefined);
+  const rel =
+    props.rel || (target === "_blank" ? "noopener noreferrer" : undefined);
 
   return (
     <Link
@@ -38,11 +41,14 @@ export const StyledLink = ({
         className,
       )}
       aria-label={ariaLabel}
-      target={isExternal ? "_blank" : props.target}
-      rel={isExternal ? "noopener noreferrer" : props.rel}
+      target={target}
+      rel={rel}
       {...props}
     >
       {children}
+      {target === "_blank" && (
+        <span className="sr-only">(ouvre un nouvel onglet)</span>
+      )}
       {icon && <span className="styled-link--icon">{icon}</span>}
     </Link>
   );

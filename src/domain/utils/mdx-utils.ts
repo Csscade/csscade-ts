@@ -31,6 +31,19 @@ export const myRemarkDirectivePlugin = () => {
   };
 };
 
+export const remarkTypographyPlugin = () => {
+  return (tree: MdastRoot) => {
+    visit(tree, "text", (node) => {
+      let value = node.value;
+      value = value.replace(/\(c\)/gi, "©");
+      value = value.replace(/\(r\)/gi, "®");
+      value = value.replace(/\(tm\)/gi, "™");
+      value = value.replace(/\+-/g, "±");
+      node.value = value;
+    });
+  };
+};
+
 /* biome-ignore lint/suspicious/noExplicitAny: unified plugin types are complex to unify across different remark/rehype versions */
 export const remarkPlugins: any[] = [
   remarkGfm,
@@ -40,6 +53,7 @@ export const remarkPlugins: any[] = [
   remarkSmartypants,
   remarkDirective,
   myRemarkDirectivePlugin,
+  remarkTypographyPlugin,
   remarkSupersub,
   remarkIns,
   remarkFlexibleMarkers,
