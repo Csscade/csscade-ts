@@ -1,18 +1,26 @@
 import type { Article } from "@/domain/content/articles";
 import type { Author } from "@/domain/content/authors";
+import type { Talk } from "@/domain/content/talks";
 import type { Tip } from "@/domain/content/tips";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { ArticlesList } from "@/ui/articles/ArticlesList/ArticlesList";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
+import { TalksList } from "@/ui/talks/TalksList/TalksList";
 import "./AuthorPage.css";
 
 interface AuthorPageProps {
   author: Author;
   articles: Article[];
   tips: Tip[];
+  talks: Talk[];
 }
 
-export const AuthorPage = ({ author, articles, tips }: AuthorPageProps) => {
+export const AuthorPage = ({
+  author,
+  articles,
+  tips,
+  talks,
+}: AuthorPageProps) => {
   return (
     <div className="textured-background">
       <header className="author-page__header">
@@ -25,7 +33,7 @@ export const AuthorPage = ({ author, articles, tips }: AuthorPageProps) => {
         {articles.length > 0 && (
           <section className="author-page__articles">
             <h2 className="author-page__title">Ses articles</h2>
-            <ArticlesList articles={articles} />
+            <ArticlesList articles={articles} showAuthor={false} />
           </section>
         )}
 
@@ -40,9 +48,18 @@ export const AuthorPage = ({ author, articles, tips }: AuthorPageProps) => {
                   url={`/tips/${tip.slug}`}
                   categories={tip.categories}
                   publishedAt=""
+                  author={author.name}
+                  showAuthor={false}
                 />
               ))}
             </div>
+          </section>
+        )}
+
+        {talks.length > 0 && (
+          <section className="author-page__talks">
+            <h2 className="author-page__title">Ses conférences</h2>
+            <TalksList talks={talks} showAuthor={false} />
           </section>
         )}
       </main>

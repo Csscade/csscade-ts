@@ -5,9 +5,13 @@ import "./ArticlesList.css";
 
 interface ArticlesListProps {
   articles: Article[];
+  showAuthor?: boolean;
 }
 
-export const ArticlesList = ({ articles }: ArticlesListProps) => {
+export const ArticlesList = ({
+  articles,
+  showAuthor = true,
+}: ArticlesListProps) => {
   const allAuthors = getAllAuthors();
   const getAuthor = (article: Article) => {
     return allAuthors.find((a) => a.slug === article.author);
@@ -24,7 +28,9 @@ export const ArticlesList = ({ articles }: ArticlesListProps) => {
             publishedAt={article.publishedAt}
             url={`/articles/${article.slug}`}
             author={author ? author.name : article.author}
+            authorUrl={author ? `/authors/${author.slug}` : undefined}
             categories={article.categories}
+            showAuthor={showAuthor}
           />
         );
       })}

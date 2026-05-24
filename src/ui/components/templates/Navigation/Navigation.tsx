@@ -59,6 +59,15 @@ export const Navigation = () => {
             </li>
             <li>
               <StyledLink
+                href="/talks"
+                aria-label="Voir toutes les conférences"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Conférences
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink
                 href="/authors"
                 aria-label="Voir les auteurs et autrices"
                 onClick={() => setIsMenuOpen(false)}

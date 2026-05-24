@@ -1,0 +1,6 @@
+.talks-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+  width: 100%;
+}

@@ -10,6 +10,7 @@
     flex-direction: column;
     gap: 0.5rem;
     text-decoration: none;
+    padding-right: 5rem;
 
     h2 {
       font-size: 2.3rem;
@@ -26,11 +27,38 @@
     font-weight: 500;
   }
 
+  .article-card__author-container {
+    margin-top: -0.5rem;
+
+    a.article-card__author {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
   .article-card__footer {
     display: flex;
-    align-items: end;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
-    flex-wrap: wrap;
+    width: 100%;
+
+    .article-card__categories {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .article-card__metadata {
+      display: flex;
+      gap: 0.75rem;
+      color: var(--color-primary);
+      font-size: 1.25rem;
+    }
   }
 }
