@@ -12,6 +12,7 @@
   --border-color-reverse: var(--color-light);
   --border-image: url("../assets/frame_light-mode.png");
   --border-image-reverse: url("../assets/frame_dark-mode.png");
+  --avatar-border-color: var(--foam);
 
   /* BACKGROUND COLORS */
   --background-primary: var(--color-light-muted);

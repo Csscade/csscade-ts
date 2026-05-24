@@ -10,6 +10,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     size: { control: { type: "number" } },
+    border: { control: { type: "boolean" } },
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -39,5 +40,14 @@ export const Large: Story = {
     src: url,
     alt: "Large Avatar",
     size: 200,
+  },
+};
+
+export const WithBorder: Story = {
+  args: {
+    src: url,
+    alt: "Avatar with border",
+    size: 100,
+    border: true,
   },
 };

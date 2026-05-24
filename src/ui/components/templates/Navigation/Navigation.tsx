@@ -52,8 +52,18 @@ export const Navigation = () => {
               <StyledLink
                 href="/tips/page/1"
                 aria-label="Voir toutes les astuces"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Astuces
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink
+                href="/authors"
+                aria-label="Voir les auteurs et autrices"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Auteur·ices
               </StyledLink>
             </li>
             <li>

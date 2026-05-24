@@ -12,6 +12,7 @@
   --border-color-reverse: var(--color-dark);
   --border-image: url("../assets/frame_dark-mode.png");
   --border-image-reverse: url("../assets/frame_light-mode.png");
+  --avatar-border-color: var(--oxford-blue);
 
   /* BACKGROUND COLORS */
   --background-primary: var(--color-dark);

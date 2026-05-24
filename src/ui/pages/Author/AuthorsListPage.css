@@ -1,0 +1,68 @@
+.authors-list-page {
+  padding-bottom: 3rem;
+  min-height: calc(100vh - 200px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.authors-list-page__header {
+  background-color: var(--background-reverse);
+  padding: 6rem 5rem;
+  margin: 3rem 0;
+
+  .authors-list-page__container {
+    max-width: calc(var(--container-max-width) - 200px);
+  }
+}
+
+.authors-list-page__title {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 3.5rem;
+  margin: 0;
+  text-align: left;
+  color: var(--font-reverse);
+}
+
+.authors-list {
+  max-width: calc(var(--container-max-width) - 200px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: auto;
+}
+
+.authors-list__item {
+  display: flex;
+  justify-content: center;
+}
+
+.authors-list__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+  border-radius: var(--br-normal);
+}
+
+.authors-list__avatar {
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.authors-list__link:hover {
+  .authors-list__avatar {
+    transform: translateY(-4px);
+  }
+}
+
+.authors-list__name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-align: center;
+  color: var(--font-color);
+}
