@@ -14,38 +14,38 @@ interface AuthorPageProps {
 
 export const AuthorPage = ({ author, articles, tips }: AuthorPageProps) => {
   return (
-    <main className="author-page-container">
-      <section className="author-page__header">
-        <AuthorCardContent author={author} />
-      </section>
+    <div className="textured-background">
+      <header className="author-page__header">
+        <div className="author-page__header-wrapper">
+          <AuthorCardContent author={author} />
+        </div>
+      </header>
 
-      {articles.length > 0 && (
-        <section className="author-page__articles">
-          <h2 className="author-page__title">
-            Articles écrits par {author.name}
-          </h2>
-          <ArticlesList articles={articles} />
-        </section>
-      )}
+      <main className="author-page-container">
+        {articles.length > 0 && (
+          <section className="author-page__articles">
+            <h2 className="author-page__title">Ses articles</h2>
+            <ArticlesList articles={articles} />
+          </section>
+        )}
 
-      {tips.length > 0 && (
-        <section className="author-page__tips">
-          <h2 className="author-page__title">
-            Tips proposés par {author.name}
-          </h2>
-          <div className="author-page__articles-list">
-            {tips.map((tip) => (
-              <ArticleCard
-                key={tip.slug}
-                title={tip.title}
-                url={`/tips/${tip.slug}`}
-                categories={tip.categories}
-                publishedAt=""
-              />
-            ))}
-          </div>
-        </section>
-      )}
-    </main>
+        {tips.length > 0 && (
+          <section className="author-page__tips">
+            <h2 className="author-page__title">Ses tips</h2>
+            <div className="author-page__articles-list">
+              {tips.map((tip) => (
+                <ArticleCard
+                  key={tip.slug}
+                  title={tip.title}
+                  url={`/tips/${tip.slug}`}
+                  categories={tip.categories}
+                  publishedAt=""
+                />
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
+    </div>
   );
 };
