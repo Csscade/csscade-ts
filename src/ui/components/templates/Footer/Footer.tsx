@@ -34,6 +34,9 @@ export const Footer = () => {
 
         <div className={"footer__section"}>
           <h4 className={"footer__title"}>Légal</h4>
+          <StyledLink href="/a-propos" className="footer__legal-link">
+            À Propos
+          </StyledLink>
           <StyledLink href="/mentions-legales" className="footer__legal-link">
             Mentions Légales
           </StyledLink>

@@ -34,8 +34,8 @@ export default function MentionsLegalesPage() {
               réalisation et de son suivi :
             </p>
             <p>
-              <strong>Propriétaire du site :</strong> Csscade - Contact :
-              hello@csscade.fr
+              <strong>Propriétaire du site :</strong> Association Csscade (Loi
+              1901) - Contact : hello@csscade.fr
             </p>
             <p>
               <strong>Directeur de la publication :</strong> L'équipe Csscade

@@ -76,7 +76,11 @@ export const Navigation = () => {
               </StyledLink>
             </li>
             <li>
-              <StyledLink href="#" aria-label="A propos de Csscade">
+              <StyledLink
+                href="/a-propos"
+                aria-label="A propos de Csscade"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 A Propos
               </StyledLink>
             </li>
