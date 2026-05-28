@@ -5,6 +5,12 @@ const meta = {
   title: "Organisms/Tables",
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Les tableaux générés à partir du Markdown incluent automatiquement les attributs `scope=\"col\"` pour les cellules d'en-tête du `thead` et `scope=\"row\"` pour les cellules d'en-tête du `tbody` afin d'améliorer l'accessibilité.",
+      },
+    },
   },
   tags: ["autodocs"],
 } satisfies Meta;
@@ -17,8 +23,8 @@ export const SimpleTable: StoryObj = {
       <table>
         <thead>
           <tr>
-            <th>Syntax</th>
-            <th>Description</th>
+            <th scope="col">Syntax</th>
+            <th scope="col">Description</th>
           </tr>
         </thead>
         <tbody>
@@ -55,9 +61,15 @@ export const AlignedTable: StoryObj = {
       <table>
         <thead>
           <tr>
-            <th align="left">Syntax</th>
-            <th align="center">Description</th>
-            <th align="right">Test Text</th>
+            <th scope="col" align="left">
+              Syntax
+            </th>
+            <th scope="col" align="center">
+              Description
+            </th>
+            <th scope="col" align="right">
+              Test Text
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -97,13 +109,13 @@ export const ResponsiveTable: StoryObj = {
         <table>
           <thead>
             <tr>
-              <th>Feature</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Priority</th>
-              <th>Assignee</th>
-              <th>Due Date</th>
-              <th>Notes</th>
+              <th scope="col">Feature</th>
+              <th scope="col">Description</th>
+              <th scope="col">Status</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Assignee</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -140,6 +152,55 @@ export const ResponsiveTable: StoryObj = {
 {`<div className="table-wrapper">
   // Any table
 </div>`}
+          </code>
+        </pre>
+      </p>
+    </div>
+  ),
+};
+
+export const RowHeaderTable: StoryObj = {
+  render: () => (
+    <div className="article-content">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Âge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Alice</th>
+            <td>25</td>
+          </tr>
+          <tr>
+            <th scope="row">Bob</th>
+            <td>30</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <p>
+        Pour des tableaux accessibles avec des en-têtes de ligne, utilisez des
+        balises <code>&lt;th scope="row"&gt;</code> dans le corps du tableau
+        (via MDX) :{/* biome-ignore format: prevent table formatting */}
+        <pre>
+          <code>
+{`<table>
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Âge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Alice</th>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>`}
           </code>
         </pre>
       </p>
