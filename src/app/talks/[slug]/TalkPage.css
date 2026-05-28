@@ -5,11 +5,12 @@
     margin: 0;
     background-color: var(--background-reverse);
     color: var(--font-reverse);
-    padding: 3rem 0;
+    padding: clamp(1.5rem, 5vw, 3rem) 0;
 
     .talk-page__header-wrapper {
       max-width: var(--article-max-width);
       margin: auto;
+      padding-inline: 1rem;
     }
   }
 

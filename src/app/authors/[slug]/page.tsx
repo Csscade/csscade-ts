@@ -3,8 +3,6 @@ import { getAllArticles } from "@/domain/content/articles";
 import { getAllAuthors } from "@/domain/content/authors";
 import { getAllTalks } from "@/domain/content/talks";
 import { getAllTips } from "@/domain/content/tips";
-import { Footer } from "@/ui/components/templates/Footer/Footer";
-import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 import { AuthorPage } from "@/ui/pages/Author/AuthorPage";
 
 export const generateStaticParams = async () => {
@@ -38,15 +36,6 @@ export default async function Page({
   const talks = allTalks.filter((talk) => talk.author === slug);
 
   return (
-    <>
-      <Navigation />
-      <AuthorPage
-        author={author}
-        articles={articles}
-        tips={tips}
-        talks={talks}
-      />
-      <Footer />
-    </>
+    <AuthorPage author={author} articles={articles} tips={tips} talks={talks} />
   );
 }

@@ -1,5 +1,5 @@
 .navigation {
-  position: fixed;
+  position: sticky;
   background: var(--background-primary);
   width: 100%;
   top: 0;

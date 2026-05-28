@@ -1,18 +1,18 @@
 .header {
   position: relative;
-  margin: 5rem auto 0;
+  margin: 2rem auto 0;
   padding: 1rem 1rem 0;
 
   .header__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: clamp(1rem, 3vw, 2rem);
     max-width: var(--container-max-width);
 
     .header__main {
       display: flex;
       flex-direction: column;
-      padding: 2rem;
+      padding: clamp(1rem, 5vw, 2rem);
       justify-content: center;
 
       &::selection {
@@ -78,7 +78,6 @@
 
 @media (min-width: 768px) {
   .header {
-    margin: 7rem auto 0;
     padding: 1rem 2rem 0;
 
     .header__wrapper {
@@ -96,7 +95,7 @@
 
 @media screen and (min-width: 992px) {
   .header {
-    padding: 3rem 5rem;
+    padding: 1rem 5rem 0;
   }
 }
 

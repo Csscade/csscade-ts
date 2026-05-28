@@ -33,7 +33,7 @@
   }
 
   .footer__brand {
-    font-size: 1.5rem;
+    font-size: var(--fs-h4);
     font-weight: 700;
     font-family: var(--font-secondary), serif;
     line-height: 1;
@@ -63,18 +63,18 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
+  }
 
-    .styled-link--icon {
+  .styled-link--icon {
+    border: none;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &:hover {
       border: none;
-
-      svg {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-
-      &:hover {
-        border: none;
-      }
     }
   }
 

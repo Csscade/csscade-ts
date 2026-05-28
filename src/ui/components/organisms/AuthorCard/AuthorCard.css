@@ -30,7 +30,7 @@
 
 .author-card__name {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: var(--fs-h4);
 }
 
 .author-card__pronouns {
@@ -78,7 +78,7 @@
 
   .author-card__name {
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: clamp(1.1rem, 3vw, 1.25rem);
     text-align: center;
     color: var(--font-color);
     font-family: var(--font-secondary), sans-serif;

@@ -5,11 +5,12 @@
     margin: auto;
     background-color: var(--background-reverse);
     color: var(--font-reverse);
-    padding: 2rem 0;
+    padding: clamp(1.5rem, 5vw, 2rem) 0;
 
     .article-page__header-wrapper {
       max-width: var(--article-max-width);
       margin: auto;
+      padding-inline: 1rem;
     }
   }
 

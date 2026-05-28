@@ -9,7 +9,7 @@
 
 .author-page__header {
   background-color: var(--background-reverse);
-  padding: 5rem 0 0;
+  padding: 2rem 0 0;
 
   .author-page__header-wrapper {
     max-width: calc(var(--container-max-width) - 200px);
@@ -18,15 +18,15 @@
 
     .author-card {
       max-width: calc(var(--container-max-width) - 200px);
-      padding: 3rem 5rem;
+      padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 5vw, 5rem);
       background-color: var(--background-reverse);
       border: none;
       color: var(--font-reverse);
       margin: auto;
 
       .author-card__name {
-        font-size: 3rem;
-        line-height: 5rem;
+        font-size: var(--fs-h1);
+        line-height: 1.2;
       }
 
       .styled-link {
@@ -47,7 +47,7 @@
 }
 
 .author-page__title {
-  font-size: 2rem;
+  font-size: var(--fs-h2);
   margin-bottom: 2rem;
 }
 

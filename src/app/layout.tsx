@@ -5,6 +5,8 @@ import "@/ui/styles/theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
+import { Footer } from "@/ui/components/templates/Footer/Footer";
+import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
 
 config.autoAddCss = false;
 
@@ -56,7 +58,11 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body className="textured-background">
+        <Navigation />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
