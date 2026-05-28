@@ -42,6 +42,22 @@
     }
   }
 
+  .article-card__metadata {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .article-card__badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--br-rounded);
+    color: var(--color-primary);
+    text-transform: uppercase;
+  }
+
   .article-card__footer {
     display: flex;
     align-items: center;
@@ -52,13 +68,6 @@
     .article-card__categories {
       display: flex;
       gap: 1rem;
-    }
-
-    .article-card__metadata {
-      display: flex;
-      gap: 0.75rem;
-      color: var(--color-primary);
-      font-size: 1.25rem;
     }
   }
 }

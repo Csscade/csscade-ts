@@ -1,9 +1,3 @@
-import {
-  faChalkboard,
-  faFileLines,
-  faPlayCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 import "./ArticleCard.css";
 
@@ -33,30 +27,27 @@ export function ArticleCard({
   hasTranscript,
   hasSlides,
 }: ArticleCardProps) {
-  const icons = (
+  const badges = (
     <>
       {hasVideo && (
-        <div title="Vidéo disponible">
-          <FontAwesomeIcon icon={faPlayCircle} aria-hidden="true" />
-          <span className="sr-only">Replay à visionner</span>
-        </div>
+        <span className="article-card__badge" title="Vidéo disponible">
+          Vidéo
+        </span>
       )}
       {hasTranscript && (
-        <div title="Transcript disponible">
-          <FontAwesomeIcon icon={faFileLines} aria-hidden="true" />
-          <span className="sr-only">Transcript disponible</span>
-        </div>
+        <span className="article-card__badge" title="Transcript disponible">
+          Transcript
+        </span>
       )}
       {hasSlides && (
-        <div title="Slides disponibles">
-          <FontAwesomeIcon icon={faChalkboard} aria-hidden="true" />
-          <span className="sr-only">Slides disponibles</span>
-        </div>
+        <span className="article-card__badge" title="Slides disponibles">
+          Slides
+        </span>
       )}
     </>
   );
 
-  const hasAnyIcon = hasVideo || hasTranscript || hasSlides;
+  const hasAnyBadge = hasVideo || hasTranscript || hasSlides;
 
   return (
     <article className="article-card framed-four-corners">
@@ -68,8 +59,8 @@ export function ArticleCard({
         <h2>{title}</h2>
       </StyledLink>
 
-      {hasAnyIcon && !categories && (
-        <div className="article-card__metadata">{icons}</div>
+      {hasAnyBadge && !categories && (
+        <div className="article-card__metadata">{badges}</div>
       )}
 
       {showAuthor && author && (
@@ -104,7 +95,9 @@ export function ArticleCard({
             ))}
           </div>
 
-          {hasAnyIcon && <div className="article-card__metadata">{icons}</div>}
+          {hasAnyBadge && (
+            <div className="article-card__metadata">{badges}</div>
+          )}
         </div>
       )}
     </article>
