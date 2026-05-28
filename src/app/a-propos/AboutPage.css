@@ -1,5 +1,5 @@
 .about-page {
-  padding: 8rem 2rem 4rem;
+  padding: 6rem 1rem 3rem;
   min-height: 80vh;
 }
 
@@ -7,14 +7,14 @@
   max-width: 800px;
   margin: 0 auto;
   background-color: var(--background-secondary, rgba(255, 255, 255, 0.9));
-  padding: 3rem;
+  padding: 1.5rem;
   border-radius: var(--br-normal);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .about-page__title {
   font-family: var(--font-secondary), serif;
-  font-size: 3rem;
+  font-size: 2.2rem;
   margin-bottom: 2rem;
   color: var(--color-primary);
   text-align: center;
@@ -68,16 +68,16 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
   .about-page {
-    padding: 6rem 1rem 3rem;
+    padding: 8rem 2rem 4rem;
   }
 
   .about-page__container {
-    padding: 1.5rem;
+    padding: 3rem;
   }
 
   .about-page__title {
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
 }

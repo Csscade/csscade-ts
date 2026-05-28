@@ -17,15 +17,24 @@ export default function AboutPage() {
 
           <section className="about-page__section">
             <p>
-              <strong>Csscade</strong> est une association loi 1901, créée en
-              octobre 2021 par Manon Carbonnel. C'est un espace dédié aux
-              développeurs et développeuses passionné·es par l'intégration web,
-              le design et les technologies front-end modernes.
+              <strong>Csscade</strong> est une association loi 1901 dédiée à
+              l’intégration web, au front-end et au partage de connaissances
+              autour du web moderne.
+            </p>
+            <p>
+              Créée en 2021 par Manon Carbonnel, Csscade est née d’un constat
+              simple : l’intégration web est souvent réduite à “faire du CSS”,
+              alors qu’elle demande en réalité des compétences techniques,
+              créatives et humaines essentielles à la qualité du web.
+            </p>
+            <p>
+              Nous pensons qu’un bon front-end ne se limite pas à une interface
+              esthétique. Il doit être accessible, performant, maintenable,
+              éco-conçu et agréable à utiliser comme à développer.
             </p>
             <p>
               Notre mission est de partager des connaissances, des astuces et
-              des retours d'expérience pour élever l'art de l'intégration web au
-              niveau qu'il mérite. Que vous soyez débutant·e ou expert·e,
+              des retours d'expérience. Que vous soyez débutant·e ou expert·e,
               Csscade se veut être une source d'inspiration et d'apprentissage
               continu.
             </p>
@@ -63,8 +72,7 @@ export default function AboutPage() {
             <ul className="about-page__list">
               <li>
                 <strong>Le code et le design :</strong> Améliorez le moteur du
-                site, l'interface utilisateur ou notre design system
-                (Storybook).
+                site, l'UX ou notre design system.
               </li>
               <li>
                 <strong>Le contenu :</strong> Partagez votre savoir en rédigeant
