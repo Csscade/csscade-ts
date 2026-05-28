@@ -1,6 +1,5 @@
-import Link from "next/link";
 import type { Author } from "@/domain/content/authors";
-import { Avatar } from "@/ui/components/atoms/Avatar/Avatar";
+import { AuthorCard } from "@/ui/components/organisms/AuthorCard/AuthorCard";
 import "./AuthorsListPage.css";
 
 interface AuthorsListPageProps {
@@ -20,19 +19,7 @@ export const AuthorsListPage = ({ authors }: AuthorsListPageProps) => {
           <ul className="authors-list">
             {authors.map((author) => (
               <li key={author.slug} className="authors-list__item">
-                <Link
-                  href={`/authors/${author.slug}`}
-                  className="authors-list__link"
-                >
-                  <Avatar
-                    src={author.avatar}
-                    alt={author.name}
-                    size={120}
-                    className="authors-list__avatar"
-                    border
-                  />
-                  <span className="authors-list__name">{author.name}</span>
-                </Link>
+                <AuthorCard author={author} variant="mini" />
               </li>
             ))}
           </ul>

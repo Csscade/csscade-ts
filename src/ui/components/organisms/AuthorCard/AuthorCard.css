@@ -51,3 +51,36 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.author-card--mini {
+  padding: 1rem;
+  margin: 0;
+  max-width: none;
+
+  .author-card__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--br-normal);
+  }
+
+  .author-card__avatar {
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .author-card__link:hover .author-card__avatar {
+    transform: translateY(-4px);
+  }
+
+  .author-card__name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    color: var(--font-color);
+    font-family: var(--font-secondary), sans-serif;
+  }
+}

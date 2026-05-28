@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRightLong, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { Avatar } from "@/ui/components/atoms/Avatar/Avatar";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 import "./AuthorCard.css";
@@ -28,9 +29,30 @@ export interface AuthorCardData {
 
 interface AuthorCardProps {
   author: AuthorCardData;
+  variant?: "default" | "mini";
 }
 
-export const AuthorCard = ({ author }: AuthorCardProps) => {
+export const AuthorCard = ({
+  author,
+  variant = "default",
+}: AuthorCardProps) => {
+  if (variant === "mini") {
+    return (
+      <aside className="author-card author-card--mini">
+        <Link href={`/authors/${author.slug}`} className="author-card__link">
+          <Avatar
+            src={author.avatar}
+            alt={author.name}
+            size={120}
+            className="author-card__avatar"
+            border
+          />
+          <span className="author-card__name">{author.name}</span>
+        </Link>
+      </aside>
+    );
+  }
+
   return (
     <aside className="author-card framed-four-corners">
       <div className="author-card__header">

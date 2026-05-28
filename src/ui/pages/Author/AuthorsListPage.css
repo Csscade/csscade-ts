@@ -37,32 +37,3 @@
   display: flex;
   justify-content: center;
 }
-
-.authors-list__link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  padding: 1rem;
-  border-radius: var(--br-normal);
-}
-
-.authors-list__avatar {
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out;
-}
-
-.authors-list__link:hover {
-  .authors-list__avatar {
-    transform: translateY(-4px);
-  }
-}
-
-.authors-list__name {
-  font-weight: 700;
-  font-size: 1.25rem;
-  text-align: center;
-  color: var(--font-color);
-}

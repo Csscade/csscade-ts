@@ -33,3 +33,14 @@ export const Default: Story = {
     },
   },
 };
+
+export const Mini: Story = {
+  args: {
+    variant: "mini",
+    author: {
+      name: "Csscade",
+      slug: "csscade",
+      avatar: "https://github.com/csscade.png",
+    },
+  },
+};
