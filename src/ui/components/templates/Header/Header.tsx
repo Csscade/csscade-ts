@@ -6,13 +6,11 @@ import "./Header.css";
 export const Header = () => {
   return (
     <header className="header">
-      <div
-        className={"header__wrapper framed-four-corners textured-background"}
-      >
+      <div className={"header__wrapper framed-four-corners"}>
         <section className="header__main">
           <div className="header__content">
             <h1 className="header__title">CSScade</h1>
-            <small>/kskad/</small>
+            <small className="header__pronounciation">/kskad/</small>
           </div>
           <p>
             Nous partageons techniques, astuces et bonnes pratiques en HTML,

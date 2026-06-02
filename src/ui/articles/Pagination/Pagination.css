@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0;
+
+  & .pagination__item {
+    list-style: none;
+    margin: 0 .25rem;
+    border-radius: .25rem;
+    text-decoration: none;
+    transition: background-color .3s, color .3s;
+  }
+
+  & .pagination__item-link,
+  & [aria-current="page"] {
+    display: inline-block;
+    padding: .5rem .75rem;
+    color: var(--font-color);
+  }
+
+  & .pagination__item-link {
+    text-underline-offset: .5rem;
+    text-decoration-inset: -.5rem;
+  }
+
+  & [aria-current="page"] {
+    color: var(--color-primary);
+  }
+}

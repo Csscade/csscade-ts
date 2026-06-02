@@ -67,6 +67,7 @@
 
     .article-card__categories {
       display: flex;
+      flex-flow: row wrap;
       gap: 1rem;
     }
   }

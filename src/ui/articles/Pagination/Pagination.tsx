@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./Pagination.css";
 
 type PaginationProps = {
   currentPage: number;
@@ -35,8 +36,12 @@ export function Pagination({
       <ul className="pagination">
         {/* Lien précédent */}
         {currentPage > 1 && (
-          <li>
-            <Link href={`${basePath}/${currentPage - 1}`} rel="prev">
+          <li className="pagination__item">
+            <Link
+              className="pagination__item-link"
+              href={`${basePath}/${currentPage - 1}`}
+              rel="prev"
+            >
               ← Précédent
             </Link>
           </li>
@@ -46,7 +51,7 @@ export function Pagination({
           const prevPage = orderedPages[index - 1];
 
           return (
-            <li key={page}>
+            <li key={page} className="pagination__item">
               {/* Ellipse si trou */}
               {prevPage && page - prevPage > 1 && (
                 <span className="pagination-ellipsis">…</span>
@@ -55,7 +60,12 @@ export function Pagination({
               {page === currentPage ? (
                 <span aria-current="page">{page}</span>
               ) : (
-                <Link href={`${basePath}/${page}`}>{page}</Link>
+                <Link
+                  className="pagination__item-link"
+                  href={`${basePath}/${page}`}
+                >
+                  {page}
+                </Link>
               )}
             </li>
           );
@@ -63,8 +73,12 @@ export function Pagination({
 
         {/* Lien suivant */}
         {currentPage < totalPages && (
-          <li>
-            <Link href={`${basePath}/${currentPage + 1}`} rel="next">
+          <li className="pagination__item">
+            <Link
+              className="pagination__item-link"
+              href={`${basePath}/${currentPage + 1}`}
+              rel="next"
+            >
               Suivant →
             </Link>
           </li>

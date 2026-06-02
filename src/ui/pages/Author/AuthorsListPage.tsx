@@ -14,7 +14,7 @@ export const AuthorsListPage = ({ authors }: AuthorsListPageProps) => {
           <h1 className="authors-list-page__title">Les auteur·ices</h1>
         </div>
       </header>
-      <main className="authors-list-page">
+      <main id="maincontent" className="authors-list-page">
         <div className="container">
           <ul className="authors-list">
             {authors.map((author) => (

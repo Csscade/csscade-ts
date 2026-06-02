@@ -1,6 +1,9 @@
 export default function MentionsLegalesPage() {
   return (
-    <main style={{ padding: "2rem 1rem 3rem", minHeight: "80vh" }}>
+    <main
+      id="maincontent"
+      style={{ padding: "2rem 1rem 3rem", minHeight: "80vh" }}
+    >
       <div
         style={{
           maxWidth: "800px",
