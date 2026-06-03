@@ -1,0 +1,27 @@
+.tips__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+  grid-gap: 2rem;
+  width: 100%;
+}
+
+@media screen and (min-width: 576px) {
+  .tips__list {
+    grid-template-columns: repeat(2, 1fr);
+
+    .article-card:first-child {
+      grid-area: 1 / 1 / 2 / 3;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .tips__list {
+    grid-template-columns: repeat(3, 1fr);
+
+    .article-card:first-child {
+      grid-area: 1 / 1 / 2 / 4;
+    }
+  }
+}

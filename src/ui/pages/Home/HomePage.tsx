@@ -1,5 +1,6 @@
 import { LastArticlesList } from "@/ui/articles/LastArticlesList/LastArticlesList";
 import { Header } from "@/ui/components/templates/Header/Header";
+import { LastTipsList } from "@/ui/tips/LastTipsList/LastTipsList";
 import "./HomePage.css";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +21,16 @@ export const HomePage = () => {
               reversed={true}
             >
               Tous les articles
+              <FontAwesomeIcon icon={faArrowRightLong} />
+            </StyledLink>
+          </footer>
+        </section>
+        <section className="last-tips">
+          <h2 className="section_title">Les dernières astuces</h2>
+          <LastTipsList />
+          <footer>
+            <StyledLink href={"/tips/page/1"} bordered={true}>
+              Toutes les astuces
               <FontAwesomeIcon icon={faArrowRightLong} />
             </StyledLink>
           </footer>
