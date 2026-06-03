@@ -1,8 +1,7 @@
 .article-page__content {
   max-width: calc(var(--article-max-width) + 6rem);
-  margin: 3rem auto;
+  margin: 3rem 1rem;
   padding: 1.5rem 3rem;
-  background: var(--background-content);
 
   p:has(img) {
     display: flex;
@@ -12,5 +11,9 @@
 
   img {
     max-width: 100%;
+  }
+
+  @media screen and (min-width: 992px) {
+    margin: 3rem auto;
   }
 }

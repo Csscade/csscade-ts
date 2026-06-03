@@ -5,22 +5,24 @@
 
   & .pagination__item {
     list-style: none;
-    margin: 0 .25rem;
-    border-radius: .25rem;
+    margin: 0 0.25rem;
+    border-radius: 0.25rem;
     text-decoration: none;
-    transition: background-color .3s, color .3s;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
   }
 
   & .pagination__item-link,
   & [aria-current="page"] {
     display: inline-block;
-    padding: .5rem .75rem;
+    padding: 0.5rem 0.75rem;
     color: var(--font-color);
   }
 
   & .pagination__item-link {
-    text-underline-offset: .5rem;
-    text-decoration-inset: -.5rem;
+    text-underline-offset: 0.5rem;
+    text-decoration-inset: -0.5rem;
   }
 
   & [aria-current="page"] {

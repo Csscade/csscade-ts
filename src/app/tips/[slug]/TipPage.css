@@ -1,36 +1,36 @@
-.article-page {
-  .article-page__header {
+.tip-page {
+  .tip-page__header {
     margin: auto;
     background-color: var(--background-reverse);
     color: var(--font-reverse);
     padding: clamp(3rem, 5vw, 6rem) 0;
 
-    .article-page__header-wrapper {
+    .tip-page__header-wrapper {
       max-width: var(--article-max-width);
       margin: auto;
-      padding-inline: 2rem;
+      padding-inline: 1rem;
     }
   }
 
-  .article-page__title {
+  .tip-page__title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     margin: 0 0 1rem;
   }
 
-  .article-page__meta {
+  .tip-page__meta {
     display: flex;
     gap: 0.5rem;
   }
 
-  .article-page__categories {
+  .tip-page__categories {
     display: flex;
     gap: 1rem;
   }
 
-  .article-page__footer {
+  .tip-page__footer {
     margin: auto;
     background-color: var(--background-reverse);
-    padding: 2rem;
+    padding: 2rem 1rem;
 
     .author-card {
       max-width: calc(var(--article-max-width) + 6rem);
@@ -51,7 +51,7 @@
   }
 
   @media screen and (min-width: 992px) {
-    .article-page__footer {
+    .tip-page__footer {
       padding: 2rem 0;
     }
   }
