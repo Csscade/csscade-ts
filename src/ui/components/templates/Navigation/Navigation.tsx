@@ -15,6 +15,9 @@ export const Navigation = () => {
 
   return (
     <section className="navigation">
+      <a className="skip-link" href="#maincontent">
+        Skip to main content
+      </a>
       <div className="container">
         <Logo />
         <button

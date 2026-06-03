@@ -7,6 +7,26 @@
   padding: 1rem;
   z-index: 1000;
 
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+
+    &:focus {
+      left: 0;
+      top: 0;
+      width: auto;
+      height: auto;
+      padding: 1rem;
+      background: var(--color-primary);
+      color: var(--background-primary);
+      z-index: 1002;
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: row;

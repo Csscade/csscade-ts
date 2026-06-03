@@ -14,7 +14,7 @@ export const TalksListPage = ({ talks }: TalksListPageProps) => {
           <h1 className="talks-list-page__title">Conférences</h1>
         </div>
       </header>
-      <main className="talks-list-page">
+      <main id="maincontent" className="talks-list-page">
         <div className="container">
           {talks.length > 0 ? (
             <TalksList talks={talks} />

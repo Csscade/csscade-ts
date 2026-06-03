@@ -24,7 +24,7 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   return (
-    <main className="main">
+    <main id="maincontent" className="main">
       <h1>Articles – {category}</h1>
 
       <section>
