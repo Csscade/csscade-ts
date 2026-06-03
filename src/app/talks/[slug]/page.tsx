@@ -78,7 +78,7 @@ export default async function TalkPage({
         </div>
       )}
 
-      <main className="talk-page__container">
+      <main id="maincontent" className="talk-page__container">
         {talk.slidesUrl && (
           <section className="talk-page__slides">
             <StyledLink href={talk.slidesUrl} bordered>

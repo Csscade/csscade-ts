@@ -90,7 +90,7 @@ main > section {
 
 .framed-four-corners {
   border: 1px solid transparent;
-  border-image: var(--border-image) 12 fill / 12px / 7px space;
+  border-image: var(--border-image) 12 fill / 12px / 7px;
 }
 
 .textured-background {

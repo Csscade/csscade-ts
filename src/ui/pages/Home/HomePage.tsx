@@ -9,7 +9,7 @@ export const HomePage = () => {
   return (
     <>
       <Header />
-      <main className="main">
+      <main id="maincontent" className="main">
         <section className="last-articles">
           <h2 className="section_title">Les derniers articles</h2>
           <LastArticlesList />

@@ -7,7 +7,7 @@ export default function AboutPage() {
   const githubUrl = "https://github.com/Csscade/csscade-ts";
 
   return (
-    <main className="about-page">
+    <main id="maincontent" className="about-page">
       <div className="about-page__container">
         <h1 className="about-page__title">À Propos de Csscade</h1>
 

@@ -29,7 +29,7 @@ export const AuthorPage = ({
         </div>
       </header>
 
-      <main className="author-page-container">
+      <main id="maincontent" className="author-page-container">
         {articles.length > 0 && (
           <section className="author-page__articles">
             <h2 className="author-page__title">Ses articles</h2>

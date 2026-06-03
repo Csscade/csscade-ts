@@ -29,7 +29,7 @@ export default async function ArticlesPage({ params }: PageProps) {
   }
 
   return (
-    <main className={"articles_page main"}>
+    <main id="maincontent" className={"articles_page main"}>
       <h1>Articles</h1>
 
       <ArticlesList articles={articles} />
