@@ -44,10 +44,25 @@
 
       .header__image {
         color: var(--color-dark-muted);
+        animation: slide-up 0.8s ease-out forwards;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
       }
 
       .header__badge {
         position: absolute;
+        opacity: 0;
+        animation: slide-up 0.8s ease-out forwards;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
       }
 
       .header__badge--html {
@@ -55,6 +70,7 @@
         left: 0;
         --badge-color: var(--color-lightgreen);
         --badge-font-color: var(--color-dark);
+        animation-delay: 0.15s;
       }
 
       .header__badge--css {
@@ -62,12 +78,14 @@
         left: 66%;
         --badge-color: var(--color-lightpurple);
         --badge-font-color: var(--color-dark);
+        animation-delay: 0.3s;
       }
 
       .header__badge--a11y {
         top: 75%;
         left: 25%;
         --badge-color: var(--color-blue);
+        animation-delay: 0.45s;
       }
     }
   }
