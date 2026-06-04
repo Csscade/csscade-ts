@@ -18,6 +18,7 @@
 
 - [Getting Started](#getting-started)
 - [Design system](#design-system)
+- [Agent Skills](#agent-skills)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -64,3 +65,11 @@ pnpm storybook
 ```
 
 Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
+
+## Agent Skills
+
+This project uses Agent Skills to provide specialized instructions to AI assistants. These skills help ensure consistency and quality across the codebase.
+
+Available skills:
+
+- [Accessibility](./.agent/skills/accessibility/SKILL.md): Rules and project conventions for RGAA-aligned accessibility.
