@@ -13,6 +13,8 @@
     grid-gap: 2rem;
     margin: 30px auto;
     width: 100%;
+    list-style: none;
+    padding: 0;
 
     .article-card {
       a {

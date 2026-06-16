@@ -26,10 +26,14 @@
 
 .badge__content {
   background-color: var(--background-primary);
-  padding: 0.25rem 0.5rem;
   font-weight: 300;
   font-size: 0.9rem;
   border: 1px solid var(--badge-color);
+
+  .styled-link {
+    padding: 0.25rem 0.5rem;
+    outline-offset: 0.25rem;
+  }
 }
 
 .badge__icon {

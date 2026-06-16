@@ -17,20 +17,21 @@ export const LastTipsList = ({ limit = 3 }: LastTipsProps) => {
   };
 
   return (
-    <div className="last-tips__list">
+    <ul className="last-tips__list">
       {tips.map((tip) => {
         const author = getAuthor(tip);
         return (
-          <ArticleCard
-            key={tip.slug}
-            title={tip.title}
-            publishedAt=""
-            url={`/tips/${tip.slug}`}
-            author={author ? author.name : tip.author}
-            categories={tip.categories}
-          />
+          <li key={tip.slug}>
+            <ArticleCard
+              title={tip.title}
+              publishedAt=""
+              url={`/tips/${tip.slug}`}
+              author={author ? author.name : tip.author}
+              categories={tip.categories}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

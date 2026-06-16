@@ -81,19 +81,20 @@ export function ArticleCard({
 
       {categories && (
         <div className="article-card__footer">
-          <div className="article-card__categories">
+          <ul className="article-card__categories">
             {categories.map((category) => (
-              <StyledLink
-                key={category}
-                href={`/articles/category/${category.toLowerCase()}`}
-                bordered
-                className="article-card__category"
-                ariaLabel={`Voir tous les articles de la catégorie ${category}`}
-              >
-                {category}
-              </StyledLink>
+              <li key={category}>
+                <StyledLink
+                  href={`/articles/category/${category.toLowerCase()}`}
+                  bordered
+                  className="article-card__category"
+                  ariaLabel={`Voir tous les articles de la catégorie ${category}`}
+                >
+                  {category}
+                </StyledLink>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {hasAnyBadge && (
             <div className="article-card__metadata">{badges}</div>
