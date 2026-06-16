@@ -8,6 +8,7 @@
     flex-direction: column;
     gap: clamp(1rem, 3vw, 2rem);
     max-width: var(--container-max-width);
+    overflow: hidden;
 
     .header__main {
       display: flex;
@@ -39,7 +40,6 @@
     }
 
     .header__aside {
-      overflow: hidden;
       position: relative;
 
       .header__image {

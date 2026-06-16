@@ -23,10 +23,18 @@ export const Footer = () => {
         <div className={"footer__section"}>
           <h4 className={"footer__title"}>Réseaux Sociaux</h4>
           <div className={"footer__links"}>
-            <StyledLink href={discordUrl} iconOnly={true} ariaLabel="Discord">
+            <StyledLink
+              href={discordUrl}
+              iconOnly={true}
+              ariaLabel="Rejoindre le serveur Discord"
+            >
               <FontAwesomeIcon icon={faDiscord} />
             </StyledLink>
-            <StyledLink href={linkedinUrl} iconOnly={true} ariaLabel="LinkedIn">
+            <StyledLink
+              href={linkedinUrl}
+              iconOnly={true}
+              ariaLabel="Voir la page LinkedIn de CSScade"
+            >
               <FontAwesomeIcon icon={faLinkedin} />
             </StyledLink>
           </div>
