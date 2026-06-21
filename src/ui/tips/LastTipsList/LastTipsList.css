@@ -4,6 +4,9 @@
   grid-auto-rows: min-content;
   grid-gap: 2rem;
   width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   @media screen and (min-width: 576px) {
     grid-template-columns: repeat(2, 1fr);

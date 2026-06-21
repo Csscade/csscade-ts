@@ -13,10 +13,6 @@
   height: 34px;
   position: relative;
   width: 60px;
-
-  input {
-    display: none;
-  }
 }
 
 .slider {
@@ -24,10 +20,6 @@
   border: 1px solid var(--border-color);
   bottom: 0;
   cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
   transition: 0.4s;
 
   &:before {
@@ -43,12 +35,12 @@
   }
 }
 
-input:checked + .slider {
+.slider.dark {
   background-color: var(--color-dark-muted);
-}
 
-input:checked + .slider:before {
-  transform: translateX(24px);
+  &:before {
+    transform: translateX(24px);
+  }
 }
 
 .slider.round {
@@ -57,4 +49,24 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.slider input[type="checkbox"] {
+  appearance: none;
+  position: absolute;
+  inset: -1px;
+  background: none;
+  border: none;
+  width: inherit;
+  height: inherit;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border-radius: 34px;
+
+  &:before {
+    background: none;
+    box-shadow: none;
+    clip-path: none;
+  }
 }
