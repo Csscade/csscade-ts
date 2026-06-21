@@ -22,7 +22,6 @@
 
   & .pagination__item-link {
     text-underline-offset: 0.5rem;
-    text-decoration-inset: -0.5rem;
   }
 
   & [aria-current="page"] {

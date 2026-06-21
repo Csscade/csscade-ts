@@ -26,14 +26,19 @@ export const ToggleTheme = () => {
 
   return (
     <div className="theme-switch-wrapper">
-      <label className="theme-switch" htmlFor="checkbox">
+      <label
+        className={`theme-switch slider round ${theme === "dark" ? "dark" : "light"}`}
+      >
         <input
           checked={theme === "dark"}
           onChange={handleChange}
           type="checkbox"
-          id="checkbox"
+          aria-label={
+            theme === "dark"
+              ? "Activer le thème clair"
+              : "Activer le thème sombre"
+          }
         />
-        <div className="slider round"></div>
       </label>
     </div>
   );

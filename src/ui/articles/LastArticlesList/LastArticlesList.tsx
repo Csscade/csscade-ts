@@ -22,20 +22,21 @@ export const LastArticlesList = ({ limit = 3 }: LastArticlesProps) => {
   };
 
   return (
-    <div className="last-articles__list">
+    <ul className="last-articles__list">
       {articles.map((article) => {
         const author = getAuthor(article);
         return (
-          <ArticleCard
-            key={article.slug}
-            title={article.title}
-            publishedAt={article.publishedAt}
-            url={`/articles/${article.slug}`}
-            author={author ? author.name : article.author}
-            categories={article.categories}
-          />
+          <li key={article.slug}>
+            <ArticleCard
+              title={article.title}
+              publishedAt={article.publishedAt}
+              url={`/articles/${article.slug}`}
+              author={author ? author.name : article.author}
+              categories={article.categories}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
