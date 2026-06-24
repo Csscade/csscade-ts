@@ -1,5 +1,5 @@
-import type { Article } from "@/domain/content/articles";
-import { getAllAuthors } from "@/domain/content/authors";
+import type { Article } from "@/domain/articles/articles";
+import { getAllAuthors } from "@/domain/authors/authors";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./ArticlesList.css";
 

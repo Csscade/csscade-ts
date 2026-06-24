@@ -1,4 +1,4 @@
-import { getAllTips } from "@/domain/content/tips";
+import { getAllTips } from "@/domain/tips/tips";
 
 const TIPS_PER_PAGE = 12;
 

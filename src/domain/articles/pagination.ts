@@ -1,5 +1,5 @@
 import { compareDesc } from "date-fns";
-import { getAllArticles } from "@/domain/content/articles";
+import { getAllArticles } from "@/domain/articles/articles";
 
 const ARTICLES_PER_PAGE = 4;
 

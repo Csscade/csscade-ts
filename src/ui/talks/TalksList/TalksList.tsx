@@ -1,5 +1,5 @@
-import { getAllAuthors } from "@/domain/content/authors";
-import type { Talk } from "@/domain/content/talks";
+import { getAllAuthors } from "@/domain/authors/authors";
+import type { Talk } from "@/domain/talks/talks";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./TalksList.css";
 

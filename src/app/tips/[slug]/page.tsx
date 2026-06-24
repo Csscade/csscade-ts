@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
 import "./TipPage.css";
-import { getAllAuthors } from "@/domain/content/authors";
-import { getAllTips } from "@/domain/content/tips";
+import { getAllAuthors } from "@/domain/authors/authors";
+import { getAllTips } from "@/domain/tips/tips";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 

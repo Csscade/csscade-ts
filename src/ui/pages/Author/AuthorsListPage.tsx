@@ -1,4 +1,4 @@
-import type { Author } from "@/domain/content/authors";
+import type { Author } from "@/domain/authors/authors";
 import { AuthorCard } from "@/ui/components/organisms/AuthorCard/AuthorCard";
 import "./AuthorsListPage.css";
 

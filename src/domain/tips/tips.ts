@@ -2,34 +2,33 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
-import { AuthorSchema } from "./authors";
+import { AuthorSchema } from "../authors/authors";
 
 const CONTENT_PATH = path.join(process.cwd(), "src/content");
 
-export const ArticleSchema = z.object({
+export const TipSchema = z.object({
   title: z.string(),
   slug: z.string(),
   author: AuthorSchema.shape.slug,
-  publishedAt: z.string(),
   categories: z.array(z.string()),
   content: z.string(),
 });
 
-export type Article = z.infer<typeof ArticleSchema>;
+export type Tip = z.infer<typeof TipSchema>;
 
-export function getAllArticles(): Article[] {
-  const articlesPath = path.join(CONTENT_PATH, "articles");
-  if (!fs.existsSync(articlesPath)) return [];
-  const files = fs.readdirSync(articlesPath);
+export function getAllTips(): Tip[] {
+  const tipsPath = path.join(CONTENT_PATH, "tips");
+  if (!fs.existsSync(tipsPath)) return [];
+  const files = fs.readdirSync(tipsPath);
 
   return files
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => {
-      const filePath = path.join(articlesPath, file);
+      const filePath = path.join(tipsPath, file);
       const source = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(source);
 
-      return ArticleSchema.parse({
+      return TipSchema.parse({
         ...data,
         content,
       });

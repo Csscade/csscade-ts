@@ -1,5 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import type { Author } from "@/domain/content/authors";
+import type { Author } from "@/domain/authors/authors";
 import { rehypePlugins, remarkPlugins } from "@/domain/utils/mdx-utils";
 import {
   AuthorCard,

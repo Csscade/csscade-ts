@@ -1,4 +1,4 @@
-import type { Talk } from "@/domain/content/talks";
+import type { Talk } from "@/domain/talks/talks";
 import { TalksList } from "@/ui/talks/TalksList/TalksList";
 import "./TalksListPage.css";
 

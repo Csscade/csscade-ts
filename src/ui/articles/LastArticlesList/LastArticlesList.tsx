@@ -1,6 +1,6 @@
 import { compareDesc } from "date-fns";
-import { type Article, getAllArticles } from "@/domain/content/articles";
-import { getAllAuthors } from "@/domain/content/authors";
+import { type Article, getAllArticles } from "@/domain/articles/articles";
+import { getAllAuthors } from "@/domain/authors/authors";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./LastArticlesList.css";
 

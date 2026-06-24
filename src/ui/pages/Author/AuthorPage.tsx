@@ -1,7 +1,7 @@
-import type { Article } from "@/domain/content/articles";
-import type { Author } from "@/domain/content/authors";
-import type { Talk } from "@/domain/content/talks";
-import type { Tip } from "@/domain/content/tips";
+import type { Article } from "@/domain/articles/articles";
+import type { Author } from "@/domain/authors/authors";
+import type { Talk } from "@/domain/talks/talks";
+import type { Tip } from "@/domain/tips/tips";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import { ArticlesList } from "@/ui/articles/ArticlesList/ArticlesList";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";

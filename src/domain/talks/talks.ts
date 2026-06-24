@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
-import { AuthorSchema } from "./authors";
+import { AuthorSchema } from "../authors/authors";
 
 const CONTENT_PATH = path.join(process.cwd(), "src/content");
 
