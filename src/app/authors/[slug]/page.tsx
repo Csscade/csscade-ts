@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { getAllArticles } from "@/domain/content/articles";
-import { getAllAuthors } from "@/domain/content/authors";
-import { getAllTalks } from "@/domain/content/talks";
-import { getAllTips } from "@/domain/content/tips";
+import { getAllArticles } from "@/domain/articles/articles";
+import { getAllAuthors } from "@/domain/authors/authors";
+import { getAllTalks } from "@/domain/talks/talks";
+import { getAllTips } from "@/domain/tips/tips";
 import { AuthorPage } from "@/ui/pages/Author/AuthorPage";
 
 export const generateStaticParams = async () => {

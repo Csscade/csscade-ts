@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAllArticles } from "@/domain/content/articles";
+import { getAllArticles } from "@/domain/articles/articles";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 
 type PageProps = {

@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { MdxAnchor } from "@/domain/components/MdxAnchor";
-import { MdxPre } from "@/domain/components/MdxPre";
+import { MdxAnchor } from "@/domain/utils/mdx-plugins/components/MdxAnchor";
+import { MdxPre } from "@/domain/utils/mdx-plugins/components/MdxPre";
 import { rehypePlugins, remarkPlugins } from "@/domain/utils/mdx-utils";
 import "./ArticleContent.css";
 

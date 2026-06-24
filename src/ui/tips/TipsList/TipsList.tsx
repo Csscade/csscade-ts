@@ -1,5 +1,5 @@
-import { getAllAuthors } from "@/domain/content/authors";
-import type { Tip } from "@/domain/content/tips";
+import { getAllAuthors } from "@/domain/authors/authors";
+import type { Tip } from "@/domain/tips/tips";
 import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
 import "./TipsList.css";
 

@@ -1,4 +1,4 @@
-import { getAllAuthors } from "@/domain/content/authors";
+import { getAllAuthors } from "@/domain/authors/authors";
 import { AuthorsListPage } from "@/ui/pages/Author/AuthorsListPage";
 
 export default function AuthorsPage() {

@@ -2,8 +2,8 @@ import { format, parseISO } from "date-fns";
 import { notFound } from "next/navigation";
 import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
 import "./ArticlePage.css";
-import { getAllArticles } from "@/domain/content/articles";
-import { getAllAuthors } from "@/domain/content/authors";
+import { getAllArticles } from "@/domain/articles/articles";
+import { getAllAuthors } from "@/domain/authors/authors";
 import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
 import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
 
