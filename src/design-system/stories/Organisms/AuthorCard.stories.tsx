@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AuthorCard } from "@/ui/components/organisms/AuthorCard/AuthorCard";
+import { AuthorCard } from "@/ui-kit/components/organisms/AuthorCard/AuthorCard";
 
 const meta: Meta<typeof AuthorCard> = {
   title: "Organisms/Author Card",

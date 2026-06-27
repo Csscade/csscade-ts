@@ -1,7 +1,7 @@
-import { getAllAuthors } from "@/domain/authors/authors";
-import { AuthorsListPage } from "@/ui/pages/Author/AuthorsListPage";
+import { AuthorsListPage } from "@/ui-kit/pages/Author/AuthorsListPage";
+import { getAllAuthors } from "@/usecases/authors";
 
-export default function AuthorsPage() {
+export default function Page() {
   const authors = getAllAuthors();
 
   return <AuthorsListPage authors={authors} />;

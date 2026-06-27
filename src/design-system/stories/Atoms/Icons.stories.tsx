@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import "@/ui/articles/ArticleContent/ArticleContent.css";
+import "@/ui-kit/articles/ArticleContent/ArticleContent.css";
 
 const meta = {
   title: "Atoms/Icons",

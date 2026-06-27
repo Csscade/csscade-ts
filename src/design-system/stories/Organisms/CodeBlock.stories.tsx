@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useGlobals } from "storybook/internal/preview-api";
-import { CopyButton } from "@/ui/components/atoms/CopyButton/CopyButton";
-import { useHighlighter } from "@/ui/components/organisms/CodeEditor/useHighlighter";
+import { CopyButton } from "@/ui-kit/components/atoms/CopyButton/CopyButton";
+import { useHighlighter } from "@/ui-kit/components/organisms/CodeEditor/useHighlighter";
 
 const meta = {
   title: "Organisms/Code Block",

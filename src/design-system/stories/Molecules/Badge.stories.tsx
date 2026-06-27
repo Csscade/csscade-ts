@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
-import { Badge } from "@/ui/components/molecules/Badge/Badge";
+import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { Badge } from "@/ui-kit/components/molecules/Badge/Badge";
 
 const meta: Meta<typeof Badge> = {
   title: "Molecules/Badge",

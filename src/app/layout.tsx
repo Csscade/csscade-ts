@@ -1,12 +1,12 @@
 import { clsx } from "clsx";
 import type { Metadata } from "next";
 import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
-import "@/ui/styles/theme.css";
+import "@/ui-kit/styles/theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
-import { Footer } from "@/ui/components/templates/Footer/Footer";
-import { Navigation } from "@/ui/components/templates/Navigation/Navigation";
+import { Footer } from "@/ui-kit/components/templates/Footer/Footer";
+import { Navigation } from "@/ui-kit/components/templates/Navigation/Navigation";
 
 config.autoAddCss = false;
 

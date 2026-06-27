@@ -8,37 +8,36 @@ There are two ways to contribute:
 
 ---
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+## Table of Contents
 
 - [Getting started](#getting-started)
 - [Project layout](#project-layout)
+- [Architecture](#architecture)
 - [Contributing to the Website itself](#contributing-to-the-website-itself)
   - [Development workflow](#development-workflow)
   - [Storybook](#storybook)
   - [Linting and formatting](#linting-and-formatting)
+  - [Tests](#tests)
 - [Contributing Content (Articles or Tips)](#contributing-content-articles-or-tips)
   - [MDX Guidelines](#mdx-guidelines)
     - [Article Frontmatter](#article-frontmatter)
     - [Tip Frontmatter](#tip-frontmatter)
+    - [Talk Frontmatter](#talk-frontmatter)
     - [Author Frontmatter](#author-frontmatter)
   - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
   - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
-  - [Common Guidelines](#common-guidelines)
+- [Common Guidelines](#common-guidelines)
   - [Commit messages](#commit-messages)
   - [Pull requests](#pull-requests)
   - [Reporting issues](#reporting-issues)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
 ## Getting started
 
 Prerequisites:
-- Node.js LTS (18+ recommended)
-- pnpm (package manager)
+- Node.js LTS (20+ recommended)
+- pnpm
 
 Install dependencies:
 
@@ -56,26 +55,54 @@ pnpm dev
 
 ## Project layout
 
-This repository is a pnpm workspace. Workspace packages live under `src/*`.
-
 ```
 csscade-ts/
 ├─ public/                 # Static assets served by Next.js
-├─ src/                    # Application source
-│  ├─ app/                 # Next.js app router (routes, layouts, pages)
-│  ├─ content/             # Articles, tips, authors and MDX content
-│  ├─ domain/              # Business logic, content schemas, utilities
-│  └─ ui/                  # Web components and global styles
-├─ tests/                  # Tests
-├─ package.json            # Root scripts
-└─ biome.json              # Biome config (lint/format)
+├─ src/
+│  ├─ app/                 # Next.js App Router — routes and layouts only
+│  ├─ usecases/         # Use cases: data access, pagination, sorting
+│  ├─ content/             # MDX source files (articles, tips, talks, authors)
+│  ├─ entities/              # Pure types and Zod schemas — no external lib imports
+│  ├─ infrastructure/      # External adapters: file-system repositories, MDX pipeline
+│  └─ ui-kit/              # React components, design system, page-level components
+├─ tests/                  # Playwright accessibility tests
+├─ biome.json              # Biome config (lint/format)
+├─ lefthook.yml            # Git hooks
+└─ vitest.config.ts        # Vitest config (Storybook component tests)
 ```
 
 ---
 
-## Contributing to the Website itself
+## Architecture
 
-If you want to contribute to the engine, the UI, or the design system of Csscade.
+The codebase follows hexagonal architecture (ports & adapters). Each layer may only depend on layers listed below it — never on layers above.
+
+```
+app/            ← Next.js pages: routing, Next.js exports only (generateStaticParams, generateMetadata)
+ui-kit/         ← React components and page components; no Next.js framework code, no infrastructure imports
+usecases/    ← Use cases and services; the only layer allowed to import from infrastructure
+infrastructure/ ← External adapters: file-system repositories (`read*`), MDX pipeline
+entities/         ← Pure types and Zod schemas; no external lib imports
+```
+
+Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` layer wraps them into named use cases (`getAllArticles`, `getPaginatedArticles`, …) that are the only entry point for the rest of the app.
+
+**Where to add things:**
+
+| What | Where |
+|---|---|
+| New type or schema | `src/entities/{topic}/` |
+| New repository (reads from `src/content/`) | `src/infrastructure/{topic}/` — expose a `read*` function |
+| New use case or business logic | `src/usecases/{topic}.ts` — calls `read*`, exports named functions |
+| New remark/rehype plugin | `src/infrastructure/mdx/plugins/` |
+| New UI component | `src/ui-kit/components/` |
+| New full-page component | `src/ui-kit/pages/` |
+| New route | `src/app/` (thin `page.tsx` only — JSX goes in `ui-kit/pages/`) |
+| New MDX content | `src/content/{articles,tips,talks,authors}/` |
+
+---
+
+## Contributing to the Website itself
 
 ### Development workflow
 
@@ -85,29 +112,46 @@ If you want to contribute to the engine, the UI, or the design system of Csscade
 
 ### Storybook
 
-We use Storybook to develop and document our UI components.
+We use Storybook to develop and document UI components.
 
 - Run Storybook: `pnpm storybook`
 - Build Storybook: `pnpm storybook:build`
 
 ### Linting and formatting
 
-We use Biome for both linting and formatting.
+We use [Biome](https://biomejs.dev/) for linting and formatting. A pre-commit hook (via Lefthook) runs it automatically on staged files.
 
-- Lint all files: `pnpm lint`
+- Check all files: `pnpm lint`
 - Auto-format: `pnpm format`
+
+Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.log`, imports ordered alphabetically by group.
+
+### Tests
+
+**Accessibility tests (Playwright + Axe-core):**
+
+```bash
+pnpm dev        # must be running
+pnpm test
+```
+
+**Component tests (Vitest + Storybook):**
+
+```bash
+pnpm storybook  # must be running
+pnpm vitest
+```
 
 ---
 
 ## Contributing Content (Articles or Tips)
 
-You can share your knowledge by contributing articles or CSS tips. All content is written in MDX (Markdown + React components).
+You can share your knowledge by contributing articles, CSS tips, or talk transcripts. All content is written in MDX (Markdown + React components) and lives in `src/content/`.
 
 ### MDX Guidelines
 
-Content is located in `src/content/articles/` or `src/content/tips/`. Each file must start with a frontmatter.
-
 #### Article Frontmatter
+
 ```mdx
 ---
 title: "Your Article Title"
@@ -121,6 +165,7 @@ categories:
 ```
 
 #### Tip Frontmatter
+
 ```mdx
 ---
 title: "Your Tip Title"
@@ -131,66 +176,86 @@ categories:
 ---
 ```
 
+#### Talk Frontmatter
+
+```mdx
+---
+title: "Your Talk Title"
+slug: "your-talk-slug"
+author: "author-slug"
+publishedAt: "YYYY-MM-DD"
+categories:
+  - CSS
+abstract: "A short summary of the talk."
+level: "débutant"       # débutant | intermédiaire | expert
+youtubeId: "dQw4w9WgXcQ"  # optional
+slidesUrl: "https://slides.com/yourslides"  # optional
+---
+```
+
 #### Author Frontmatter
+
 ```mdx
 ---
 name: "Your Name"
 slug: "your-name-slug"
 avatar: "https://example.com/avatar.jpg"
-pronouns: "they/them"
-website: "https://example.com"
-bluesky: "https://bsky.app/profile/yourname.bsky.social"
-mastodon: "https://mastodon.social/@yourname"
-github: "https://github.com/yourname"
-linkedin: "https://linkedin.com/in/yourname"
+pronouns: "they/them"           # optional
+website: "https://example.com"  # optional
+bluesky: "https://bsky.app/profile/yourname.bsky.social"  # optional
+mastodon: "https://mastodon.social/@yourname"              # optional
+github: "https://github.com/yourname"                     # optional
+linkedin: "https://linkedin.com/in/yourname"              # optional
 ---
 ```
 
 ### Accessibility (WCAG & RGAA)
 
-Csscade is committed to accessibility. Your contributions must respect WCAG 2.2 and RGAA 4.1 guidelines.
+Csscade is committed to accessibility. Contributions must respect WCAG 2.2 and RGAA 4.1 guidelines.
 
-- **Semantic HTML**: Use correct headings hierarchy (`h1` to `h6`), don't skip levels.
-- **Alternative Text**: All images must have an `alt` attribute. If the image is decorative, use `alt=""`.
+- **Semantic HTML**: Use correct heading hierarchy (`h1` to `h6`), don't skip levels.
+- **Alternative text**: All images must have an `alt` attribute. Use `alt=""` for decorative images.
 - **Contrast**: Ensure text has sufficient contrast against its background.
-- **Language**: Use clear and simple language. Mark internationalized text with the attribute `lang=""`
-- **Interactive elements**: Ensure links and buttons have clear labels.
-- **Multimedia**: Ensure playable media has captions and a `title` attribute, with no autoplay.
-- **Keyboard navigation**: Ensure all interactive elements are keyboard-accessible.
-- **Screen reader support**: Ensure all interactive elements are accessible to screen readers.
+- **Language**: Use clear language. Mark internationalized text with `lang=""`.
+- **Interactive elements**: Ensure links and buttons have clear, descriptive labels.
+- **Multimedia**: Captions required; no autoplay; `title` attribute on iframes.
+- **Keyboard navigation**: All interactive elements must be keyboard-accessible.
+- **Screen reader support**: All interactive elements must work with screen readers.
 
 ### Validation with Playwright & Axe-core
 
-To ensure your content meets accessibility standards, we use **Playwright** and **Axe-core**.
-
 1. Ensure the app is running: `pnpm dev`
-2. Run accessibility checks using our automated tests `pnpm test`
+2. Run accessibility checks: `pnpm test`
 
-### Common Guidelines
+---
+
+## Common Guidelines
 
 ### Commit messages
 
-We encourage [Conventional Commits](https://www.conventionalcommits.org/):
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
 feat(ui): add dark mode toggle
-fix(docs): correct Storybook link
+fix(a11y): correct heading hierarchy on article page
 content(article): new post about css grid
+refactor(infra): move mdx plugins to infrastructure layer
 ```
 
 ### Pull requests
 
 Before opening a PR:
-- Ensure the code compiles: `pnpm build`
+- Ensure the build passes: `pnpm build`
 - Run linters: `pnpm lint`
-- Verify accessibility in Storybook or via tests.
+- Verify accessibility via tests or Storybook.
+- Keep PRs focused — one concern per PR.
 
 ### Reporting issues
 
 When filing an issue, please include:
 - Description of the issue and expected behavior.
 - Steps to reproduce.
-- Environment details (OS, Browser, Node version).
+- Environment details (OS, browser, Node version).
 
 ---
 
