@@ -1,4 +1,5 @@
 .article-card {
+  background: var(--background-secondary);
   position: relative;
   display: grid;
   padding: 1.5rem;
