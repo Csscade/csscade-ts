@@ -16,17 +16,14 @@ export function Pagination({
 
   const pages = new Set<number>();
 
-  // toujours la première page
   pages.add(1);
 
-  // pages autour de la page courante
   for (let i = currentPage - 1; i <= currentPage + 1; i++) {
     if (i > 1 && i < totalPages) {
       pages.add(i);
     }
   }
 
-  // toujours la dernière page
   pages.add(totalPages);
 
   const orderedPages = Array.from(pages).sort((a, b) => a - b);
@@ -34,15 +31,16 @@ export function Pagination({
   return (
     <nav aria-label="Pagination">
       <ul className="pagination">
-        {/* Lien précédent */}
         {currentPage > 1 && (
           <li className="pagination__item">
             <Link
               className="pagination__item-link"
               href={`${basePath}/${currentPage - 1}`}
               rel="prev"
+              aria-label="Page précédente"
             >
-              ← Précédent
+              <span aria-hidden="true">←</span>
+              <span className="sr-only">Précédent</span>
             </Link>
           </li>
         )}
@@ -52,9 +50,10 @@ export function Pagination({
 
           return (
             <li key={page} className="pagination__item">
-              {/* Ellipse si trou */}
               {prevPage && page - prevPage > 1 && (
-                <span className="pagination-ellipsis">…</span>
+                <span className="pagination-ellipsis" aria-hidden="true">
+                  …
+                </span>
               )}
 
               {page === currentPage ? (
@@ -63,6 +62,7 @@ export function Pagination({
                 <Link
                   className="pagination__item-link"
                   href={`${basePath}/${page}`}
+                  aria-label={`Aller à la page ${page}`}
                 >
                   {page}
                 </Link>
@@ -71,15 +71,16 @@ export function Pagination({
           );
         })}
 
-        {/* Lien suivant */}
         {currentPage < totalPages && (
           <li className="pagination__item">
             <Link
               className="pagination__item-link"
               href={`${basePath}/${currentPage + 1}`}
               rel="next"
+              aria-label="Page suivante"
             >
-              Suivant →
+              <span className="sr-only">Suivant</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </li>
         )}
