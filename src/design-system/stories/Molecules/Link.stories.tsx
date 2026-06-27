@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
   StyledLink,
   type StyledLinkProps,
-} from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+} from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 
 const allIcons = { ...Brands, ...Solid };
 const iconNames = Object.keys(allIcons).filter(

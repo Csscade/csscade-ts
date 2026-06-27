@@ -10,6 +10,7 @@
     flex-direction: column;
     gap: 0.5rem;
     padding-right: 5rem;
+    text-decoration: none;
 
     h2 {
       font-size: var(--fs-h2);

@@ -2,7 +2,7 @@ import type { Author } from "@/entities/authors/authors";
 import type { Tip } from "@/entities/tips/tips";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./TipDetailPage.css";
 
 interface TipDetailPageProps {

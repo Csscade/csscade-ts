@@ -1,6 +1,6 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./AboutPage.css";
 
 export const AboutPage = () => {

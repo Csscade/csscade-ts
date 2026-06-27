@@ -1,6 +1,6 @@
 import { Wave } from "@/ui-kit/components/atoms/Images/Wave";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
 import { Badge } from "@/ui-kit/components/molecules/Badge/Badge";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./Header.css";
 
 export const Header = () => {

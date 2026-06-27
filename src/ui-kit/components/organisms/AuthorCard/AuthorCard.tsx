@@ -10,7 +10,7 @@ import { faArrowRightLong, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { Avatar } from "@/ui-kit/components/atoms/Avatar/Avatar";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./AuthorCard.css";
 import type React from "react";
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Logo } from "@/ui-kit/components/atoms/Images/Logo";
 import { ToggleTheme } from "@/ui-kit/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
