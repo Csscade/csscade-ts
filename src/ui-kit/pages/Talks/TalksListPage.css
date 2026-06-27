@@ -5,26 +5,6 @@
   margin-right: auto;
 }
 
-.talks-list-page__header {
-  background-color: var(--background-reverse);
-  padding: clamp(3rem, 10vw, 6rem) clamp(1rem, 5vw, 5rem);
-  margin: 0;
-
-  .talks-list-page__container {
-    max-width: calc(var(--container-max-width) - 200px);
-    margin: auto;
-    padding: 0 2rem;
-  }
-}
-
-.talks-list-page__title {
-  font-family: var(--font-secondary), sans-serif;
-  font-size: var(--fs-h1);
-  margin: 0;
-  text-align: left;
-  color: var(--font-reverse);
-}
-
 .talks-list-page .container {
   max-width: calc(var(--container-max-width) - 200px);
   margin: auto;

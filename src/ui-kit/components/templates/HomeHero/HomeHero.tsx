@@ -1,26 +1,28 @@
 import { Wave } from "@/ui-kit/components/atoms/Images/Wave";
 import { Badge } from "@/ui-kit/components/molecules/Badge/Badge";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
-import "./Header.css";
+import "./HomeHero.css";
 
-export const Header = () => {
+export const HomeHero = () => {
   return (
-    <header className="header">
-      <div className={"header__wrapper framed-four-corners"}>
-        <section className="header__main">
-          <div className="header__content">
-            <h1 className="header__title">CSScade</h1>
-            <small className="header__pronounciation">/kskad/</small>
+    <section className="home-hero" aria-labelledby="csscade-title">
+      <div className="home-hero__wrapper framed-four-corners textured-background">
+        <div className="home-hero__main">
+          <div className="home-hero__content">
+            <h1 id="csscade-title" className="home-hero__title">
+              CSScade
+            </h1>
+            <small className="home-hero__pronounciation">/kskad/</small>
           </div>
           <p>
             Nous partageons techniques, astuces et bonnes pratiques en HTML,
             CSS, accessibilité, eco-conception,{" "}
             <span lang="en">software craft</span> ou encore dessin.
           </p>
-        </section>
-        <section className="header__aside">
-          <Wave className="header__image" />
-          <Badge className="header__badge header__badge--html">
+        </div>
+        <div className="home-hero__aside">
+          <Wave className="home-hero__image" />
+          <Badge className="home-hero__badge home-hero__badge--html">
             <StyledLink
               href="/articles/category/html"
               ariaLabel="Voir tous les articles de la catégorie HTML"
@@ -29,7 +31,7 @@ export const Header = () => {
             </StyledLink>
           </Badge>
           <Badge
-            className="header__badge header__badge--css"
+            className="home-hero__badge home-hero__badge--css"
             iconPosition="left"
           >
             <StyledLink
@@ -39,7 +41,7 @@ export const Header = () => {
               CSS
             </StyledLink>
           </Badge>
-          <Badge className="header__badge header__badge--a11y">
+          <Badge className="home-hero__badge home-hero__badge--a11y">
             <StyledLink
               href="/articles/category/a11y"
               ariaLabel="Voir tous les articles de la catégorie accessibilité"
@@ -47,8 +49,8 @@ export const Header = () => {
               accessibilité
             </StyledLink>
           </Badge>
-        </section>
+        </div>
       </div>
-    </header>
+    </section>
   );
 };

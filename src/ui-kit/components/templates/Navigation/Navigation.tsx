@@ -14,7 +14,7 @@ export const Navigation = () => {
   };
 
   return (
-    <section className="navigation">
+    <header className="navigation">
       <a className="skip-link" href="#maincontent">
         Aller au contenu principal
       </a>
@@ -24,14 +24,17 @@ export const Navigation = () => {
           type="button"
           className="burger-button"
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label="Ouvrir le menu"
           aria-expanded={isMenuOpen}
         >
           <span className={`burger-line ${isMenuOpen ? "open" : ""}`}></span>
           <span className={`burger-line ${isMenuOpen ? "open" : ""}`}></span>
           <span className={`burger-line ${isMenuOpen ? "open" : ""}`}></span>
         </button>
-        <nav className={`nav ${isMenuOpen ? "open" : ""}`}>
+        <nav
+          aria-label="Navigation principale"
+          className={`nav ${isMenuOpen ? "open" : ""}`}
+        >
           <ul>
             <li>
               <StyledLink
@@ -91,6 +94,6 @@ export const Navigation = () => {
           <ToggleTheme />
         </nav>
       </div>
-    </section>
+    </header>
   );
 };

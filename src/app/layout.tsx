@@ -58,7 +58,7 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body className="textured-background">
+      <body>
         <Navigation />
         {children}
         <Footer />

@@ -1,27 +1,57 @@
 import type { Article } from "@/entities/articles/articles";
-import { ArticleCard } from "@/ui-kit/articles/ArticleCard/ArticleCard";
+import type { Author } from "@/entities/authors/authors";
+import type { Talk } from "@/entities/talks/talks";
+import type { Tip } from "@/entities/tips/tips";
+import { ArticlesList } from "@/ui-kit/articles/ArticlesList/ArticlesList";
+import { PageHeader } from "@/ui-kit/components/templates/PageHeader/PageHeader";
+import { TalksList } from "@/ui-kit/talks/TalksList/TalksList";
+import { TipsList } from "@/ui-kit/tips/TipsList/TipsList";
+import "./CategoryPage.css";
 
 interface CategoryPageProps {
   category: string;
   articles: Article[];
+  tips: Tip[];
+  talks: Talk[];
+  authors: Author[];
 }
 
-export const CategoryPage = ({ category, articles }: CategoryPageProps) => {
+export const CategoryPage = ({
+  category,
+  articles,
+  tips,
+  talks,
+  authors,
+}: CategoryPageProps) => {
   return (
-    <main id="maincontent" className="main">
-      <h1>Articles – {category}</h1>
+    <>
+      <PageHeader title={`Catégorie ${category}`} />
+      <main id="maincontent" className="category_page main">
+        {articles.length > 0 && (
+          <section>
+            <h2 className="category_page__section-title">Articles</h2>
+            <ArticlesList
+              articles={articles}
+              authors={authors}
+              headingLevel={3}
+            />
+          </section>
+        )}
 
-      <section>
-        {articles.map((article) => (
-          <ArticleCard
-            key={article.slug}
-            title={article.title}
-            publishedAt={article.publishedAt}
-            url={`/articles/${article.slug}`}
-            categories={article.categories}
-          />
-        ))}
-      </section>
-    </main>
+        {talks.length > 0 && (
+          <section>
+            <h2 className="category_page__section-title">Conférences</h2>
+            <TalksList talks={talks} authors={authors} headingLevel={3} />
+          </section>
+        )}
+
+        {tips.length > 0 && (
+          <section>
+            <h2 className="category_page__section-title">Tips</h2>
+            <TipsList tips={tips} authors={authors} headingLevel={3} />
+          </section>
+        )}
+      </main>
+    </>
   );
 };

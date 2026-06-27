@@ -7,12 +7,14 @@ interface TalksListProps {
   talks: Talk[];
   authors: Author[];
   showAuthor?: boolean;
+  headingLevel?: 2 | 3;
 }
 
 export const TalksList = ({
   talks,
   authors,
   showAuthor = true,
+  headingLevel = 2,
 }: TalksListProps) => {
   const getAuthor = (talk: Talk) => authors.find((a) => a.slug === talk.author);
 
@@ -33,6 +35,7 @@ export const TalksList = ({
             hasVideo={!!talk.youtubeId}
             hasTranscript={!!talk.content}
             hasSlides={!!talk.slidesUrl}
+            headingLevel={headingLevel}
           />
         );
       })}

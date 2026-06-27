@@ -7,12 +7,14 @@ interface TipsListProps {
   tips: Tip[];
   authors: Author[];
   showAuthor?: boolean;
+  headingLevel?: 2 | 3;
 }
 
 export const TipsList = ({
   tips,
   authors,
   showAuthor = true,
+  headingLevel = 2,
 }: TipsListProps) => {
   const getAuthor = (tip: Tip) => authors.find((a) => a.slug === tip.author);
 
@@ -30,6 +32,7 @@ export const TipsList = ({
             authorUrl={author ? `/authors/${author.slug}` : undefined}
             categories={tip.categories}
             showAuthor={showAuthor}
+            headingLevel={headingLevel}
           />
         );
       })}

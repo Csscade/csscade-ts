@@ -1,16 +1,16 @@
-.header {
+.home-hero {
   position: relative;
   margin: 2rem auto;
   padding: 1rem 1rem;
 
-  .header__wrapper {
+  .home-hero__wrapper {
     display: flex;
     flex-direction: column;
     gap: clamp(1rem, 3vw, 2rem);
     max-width: var(--container-max-width);
     overflow: hidden;
 
-    .header__main {
+    .home-hero__main {
       display: flex;
       flex-direction: column;
       padding: clamp(1rem, 5vw, 2rem);
@@ -22,27 +22,27 @@
         text-shadow: none;
       }
 
-      .header__content {
+      .home-hero__content {
         display: flex;
         flex-flow: row wrap;
         align-items: baseline;
         gap: 1rem;
 
-        .header__title {
+        .home-hero__title {
           font-size: clamp(2.5rem, 8vw, 6rem);
           margin: 0;
         }
 
-        .header__pronounciation {
+        .home-hero__pronounciation {
           white-space: nowrap;
         }
       }
     }
 
-    .header__aside {
+    .home-hero__aside {
       position: relative;
 
-      .header__image {
+      .home-hero__image {
         color: var(--color-dark-muted);
         animation: slide-up 0.8s ease-out forwards;
 
@@ -53,7 +53,7 @@
         }
       }
 
-      .header__badge {
+      .home-hero__badge {
         position: absolute;
         opacity: 0;
         animation: slide-up 0.8s ease-out forwards;
@@ -65,7 +65,7 @@
         }
       }
 
-      .header__badge--html {
+      .home-hero__badge--html {
         top: 25%;
         left: 0;
         --badge-color: var(--color-lightgreen);
@@ -73,7 +73,7 @@
         animation-delay: 0.15s;
       }
 
-      .header__badge--css {
+      .home-hero__badge--css {
         top: 39%;
         left: 66%;
         --badge-color: var(--color-lightpurple);
@@ -81,7 +81,7 @@
         animation-delay: 0.3s;
       }
 
-      .header__badge--a11y {
+      .home-hero__badge--a11y {
         top: 75%;
         left: 25%;
         --badge-color: var(--color-blue);
@@ -92,22 +92,22 @@
 }
 
 @media (min-width: 576px) {
-  .header .header__wrapper .header__main .header__content {
+  .home-hero .home-hero__wrapper .home-hero__main .home-hero__content {
     display: flex;
     flex-direction: row;
   }
 }
 
 @media (min-width: 768px) {
-  .header {
+  .home-hero {
     padding: 1rem 2rem;
 
-    .header__wrapper {
+    .home-hero__wrapper {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: 1fr;
 
-      .header__aside {
+      .home-hero__aside {
         padding-top: 4rem;
         justify-content: flex-end;
       }
@@ -116,13 +116,13 @@
 }
 
 @media screen and (min-width: 992px) {
-  .header {
+  .home-hero {
     padding: 1rem 5rem;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .header .header__wrapper .header__aside .header__image {
+  .home-hero .home-hero__wrapper .home-hero__aside .home-hero__image {
     color: var(--color-light-muted);
   }
 }
