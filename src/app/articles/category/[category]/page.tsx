@@ -1,45 +1,25 @@
 import { notFound } from "next/navigation";
-import { getAllArticles } from "@/domain/articles/articles";
-import { ArticleCard } from "@/ui/articles/ArticleCard/ArticleCard";
+import { CategoryPage } from "@/ui-kit/pages/Articles/CategoryPage";
+import { getAllArticles } from "@/usecases/articles";
 
 type PageProps = {
   params: Promise<{ category: string }>;
 };
 
-function normalizeCategory(category: string) {
-  return category.toLowerCase();
-}
-
-export default async function CategoryPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const { category } = await params;
-  const normalizedCategory = normalizeCategory(category);
+  const normalizedCategory = category.toLowerCase();
 
   const allArticles = getAllArticles();
   const articles = allArticles.filter((article) =>
-    article.categories.some((c) => normalizeCategory(c) === normalizedCategory),
+    article.categories.some((c) => c.toLowerCase() === normalizedCategory),
   );
 
   if (articles.length === 0) {
     notFound();
   }
 
-  return (
-    <main id="maincontent" className="main">
-      <h1>Articles – {category}</h1>
-
-      <section>
-        {articles.map((article) => (
-          <ArticleCard
-            key={article.slug}
-            title={article.title}
-            publishedAt={article.publishedAt}
-            url={`/articles/${article.slug}`}
-            categories={article.categories}
-          />
-        ))}
-      </section>
-    </main>
-  );
+  return <CategoryPage category={category} articles={articles} />;
 }
 
 export function generateStaticParams() {

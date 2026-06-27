@@ -1,11 +1,7 @@
-import { format, parseISO } from "date-fns";
 import { notFound } from "next/navigation";
-import { ArticleContent } from "@/ui/articles/ArticleContent/ArticleContent";
-import "./ArticlePage.css";
-import { getAllArticles } from "@/domain/articles/articles";
-import { getAllAuthors } from "@/domain/authors/authors";
-import { AuthorCardContent } from "@/ui/articles/AuthorCard/AuthorCardContent";
-import { StyledLink } from "@/ui/components/atoms/StyledLink/StyledLink";
+import { ArticleDetailPage } from "@/ui-kit/pages/Articles/ArticleDetailPage";
+import { getAllArticles } from "@/usecases/articles";
+import { getAllAuthors } from "@/usecases/authors";
 
 export const generateStaticParams = async () => {
   const articles = getAllArticles();
@@ -14,7 +10,7 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export default async function ArticlePage({
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -28,38 +24,5 @@ export default async function ArticlePage({
   const authors = getAllAuthors();
   const author = authors.find((a) => a.slug === article.author);
 
-  return (
-    <article className="article-page">
-      <header className="article-page__header">
-        <div className="article-page__header-wrapper">
-          <h1 className="article-page__title">{article.title}</h1>
-          <p className="article-page__meta">
-            Publié le {format(parseISO(article.publishedAt), "dd/MM/yy")}
-            <span className="font-semibold">
-              par {author ? author.name : article.author}
-            </span>
-          </p>
-          {article.categories && (
-            <div className="article-page__categories">
-              {article.categories.map((category) => (
-                <StyledLink
-                  key={category}
-                  href={`/articles/category/${category.toLowerCase()}`}
-                  className="article-card__category"
-                  bordered
-                  reversed
-                >
-                  {category}
-                </StyledLink>
-              ))}
-            </div>
-          )}
-        </div>
-      </header>
-      <ArticleContent content={article.content} />
-      <div className="article-page__footer">
-        {author && <AuthorCardContent author={author} />}
-      </div>
-    </article>
-  );
+  return <ArticleDetailPage article={article} author={author} />;
 }

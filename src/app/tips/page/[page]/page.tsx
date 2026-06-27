@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPaginatedTips, getTotalTipPages } from "@/domain/tips/pagination";
-import { Pagination } from "@/ui/articles/Pagination/Pagination";
-import { TipsList } from "@/ui/tips/TipsList/TipsList";
-import "./TipsPage.css";
+import { TipsListPage } from "@/ui-kit/pages/Tips/TipsListPage";
+import { getAllAuthors } from "@/usecases/authors";
+import { getPaginatedTips, getTotalTipPages } from "@/usecases/tips";
 
 type PageProps = {
   params: {
@@ -11,7 +10,7 @@ type PageProps = {
   };
 };
 
-export default async function TipsPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const { page } = await params;
   const currentPage = Number(page);
 
@@ -25,20 +24,15 @@ export default async function TipsPage({ params }: PageProps) {
     notFound();
   }
 
+  const authors = getAllAuthors();
+
   return (
-    <main id="maincontent" className={"tips_page main"}>
-      <h1>Astuces</h1>
-
-      <TipsList tips={tips} />
-
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          basePath="/tips/page"
-        />
-      )}
-    </main>
+    <TipsListPage
+      tips={tips}
+      authors={authors}
+      currentPage={currentPage}
+      totalPages={totalPages}
+    />
   );
 }
 

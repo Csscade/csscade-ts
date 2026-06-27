@@ -1,6 +1,6 @@
 ---
 name: accessibility
-description: Apply RGAA-aligned (WCAG 2.1 AA) accessibility rules when writing or reviewing code in src/content (MDX) and src/ui (React/TSX, CSS). Use when adding or editing components, writing MDX articles/tips/talks, or asked to audit a11y, fix accessibility issues, check WCAG/RGAA compliance, add ARIA, fix keyboard navigation, or improve screen reader support.
+description: Apply RGAA-aligned (WCAG 2.1 AA) accessibility rules when writing or reviewing code in src/content (MDX) and src/ui-kit (React/TSX, CSS). Use when adding or editing components, writing MDX articles/tips/talks, or asked to audit a11y, fix accessibility issues, check WCAG/RGAA compliance, add ARIA, fix keyboard navigation, or improve screen reader support.
 ---
 
 # Accessibility (RGAA / WCAG 2.1 AA)

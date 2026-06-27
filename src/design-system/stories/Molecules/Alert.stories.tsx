@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import "@/ui/articles/ArticleContent/ArticleContent.css";
+import "@/ui-kit/articles/ArticleContent/ArticleContent.css";
 
 const meta = {
   title: "Molecules/Alert",

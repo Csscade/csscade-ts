@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CodePlayground } from "@/ui/components/organisms/CodePlayground/CodePlayground";
+import { CodePlayground } from "@/ui-kit/components/organisms/CodePlayground/CodePlayground";
 
 const meta: Meta<typeof CodePlayground> = {
   title: "Organisms/Code Playground",
