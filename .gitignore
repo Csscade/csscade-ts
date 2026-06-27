@@ -1,6 +1,7 @@
 # IDE
 .idea
 .junie
+.claude
 
 # dependencies
 /node_modules
