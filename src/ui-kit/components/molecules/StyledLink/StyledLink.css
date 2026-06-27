@@ -36,6 +36,7 @@
   border: 1px solid var(--border-color);
   border-radius: var(--br-rounded);
   padding: 0.4rem 0.75rem;
+  text-decoration: none;
 }
 
 .styled-link--bordered.styled-link--reversed {

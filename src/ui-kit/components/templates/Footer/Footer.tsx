@@ -1,7 +1,7 @@
 import { faDiscord, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Footer.css";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 
 const discordUrl = process.env.DISCORD_URL ?? "https://discord.gg/nEEzhGVphQ";
 const linkedinUrl =

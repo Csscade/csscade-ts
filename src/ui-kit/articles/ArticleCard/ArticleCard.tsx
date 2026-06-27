@@ -1,4 +1,4 @@
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./ArticleCard.css";
 
 type ArticleCardProps = {

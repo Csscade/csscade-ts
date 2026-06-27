@@ -3,7 +3,7 @@ import type { Author } from "@/entities/authors/authors";
 import type { Talk } from "@/entities/talks/talks";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./TalkDetailPage.css";
 
 interface TalkDetailPageProps {
@@ -36,7 +36,6 @@ export const TalkDetailPage = ({ talk, author }: TalkDetailPageProps) => {
                   href={`/articles/category/${category.toLowerCase()}`}
                   className="article-card__category"
                   bordered
-                  reversed
                   ariaLabel={`Voir tous les articles de la catégorie ${category}`}
                 >
                   {category}
@@ -52,13 +51,15 @@ export const TalkDetailPage = ({ talk, author }: TalkDetailPageProps) => {
 
       {talk.youtubeId && (
         <div className="talk-page__video-wrapper">
-          <iframe
-            className="talk-page__video"
-            src={`https://www.youtube.com/embed/${talk.youtubeId}`}
-            title={`Vidéo de la conférence : ${talk.title}`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          <div className="talk-page__video-inner">
+            <iframe
+              className="talk-page__video"
+              src={`https://www.youtube.com/embed/${talk.youtubeId}`}
+              title={`Vidéo de la conférence : ${talk.title}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
       )}
 

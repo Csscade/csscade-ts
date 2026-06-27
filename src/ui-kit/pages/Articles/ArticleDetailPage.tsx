@@ -3,7 +3,7 @@ import type { Article } from "@/entities/articles/articles";
 import type { Author } from "@/entities/authors/authors";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./ArticleDetailPage.css";
 
 interface ArticleDetailPageProps {

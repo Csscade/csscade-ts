@@ -3,7 +3,7 @@ import * as Brands from "@fortawesome/free-brands-svg-icons";
 import * as Solid from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type React from "react";
-import { StyledLink } from "@/ui-kit/components/atoms/StyledLink/StyledLink";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 
 const allIcons = { ...Solid, ...Brands };
 
