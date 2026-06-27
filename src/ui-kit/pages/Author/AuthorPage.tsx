@@ -25,11 +25,11 @@ export const AuthorPage = ({
 
   return (
     <div className="textured-background">
-      <header className="author-page__header">
+      <div className="author-page__header">
         <div className="author-page__header-wrapper">
           <AuthorCardContent author={author} />
         </div>
-      </header>
+      </div>
 
       <main id="maincontent" className="author-page-container">
         {articles.length > 0 && (
@@ -39,6 +39,7 @@ export const AuthorPage = ({
               articles={articles}
               authors={authorAsArray}
               showAuthor={false}
+              headingLevel={3}
             />
           </section>
         )}
@@ -56,6 +57,7 @@ export const AuthorPage = ({
                   publishedAt=""
                   author={author.name}
                   showAuthor={false}
+                  headingLevel={3}
                 />
               ))}
             </div>
@@ -69,6 +71,7 @@ export const AuthorPage = ({
               talks={talks}
               authors={authorAsArray}
               showAuthor={false}
+              headingLevel={3}
             />
           </section>
         )}

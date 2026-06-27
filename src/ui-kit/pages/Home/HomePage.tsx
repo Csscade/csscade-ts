@@ -5,7 +5,7 @@ import type { Author } from "@/entities/authors/authors";
 import type { Tip } from "@/entities/tips/tips";
 import { LastArticlesList } from "@/ui-kit/articles/LastArticlesList/LastArticlesList";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
-import { Header } from "@/ui-kit/components/templates/Header/Header";
+import { HomeHero } from "@/ui-kit/components/templates/HomeHero/HomeHero";
 import { LastTipsList } from "@/ui-kit/tips/LastTipsList/LastTipsList";
 import "./HomePage.css";
 
@@ -18,7 +18,7 @@ interface HomePageProps {
 export const HomePage = ({ articles, authors, tips }: HomePageProps) => {
   return (
     <>
-      <Header />
+      <HomeHero />
       <main id="maincontent" className="main">
         <section className="last-articles">
           <h2 className="section_title">Les derniers articles</h2>

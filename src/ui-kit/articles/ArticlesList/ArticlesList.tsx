@@ -7,12 +7,14 @@ interface ArticlesListProps {
   articles: Article[];
   authors: Author[];
   showAuthor?: boolean;
+  headingLevel?: 2 | 3;
 }
 
 export const ArticlesList = ({
   articles,
   authors,
   showAuthor = true,
+  headingLevel = 2,
 }: ArticlesListProps) => {
   const getAuthor = (article: Article) =>
     authors.find((a) => a.slug === article.author);
@@ -31,6 +33,7 @@ export const ArticlesList = ({
             authorUrl={author ? `/authors/${author.slug}` : undefined}
             categories={article.categories}
             showAuthor={showAuthor}
+            headingLevel={headingLevel}
           />
         );
       })}

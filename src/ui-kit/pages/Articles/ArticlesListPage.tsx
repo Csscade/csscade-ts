@@ -2,6 +2,7 @@ import type { Article } from "@/entities/articles/articles";
 import type { Author } from "@/entities/authors/authors";
 import { ArticlesList } from "@/ui-kit/articles/ArticlesList/ArticlesList";
 import { Pagination } from "@/ui-kit/articles/Pagination/Pagination";
+import { PageHeader } from "@/ui-kit/components/templates/PageHeader/PageHeader";
 import "./ArticlesListPage.css";
 
 interface ArticlesListPageProps {
@@ -18,16 +19,17 @@ export const ArticlesListPage = ({
   totalPages,
 }: ArticlesListPageProps) => {
   return (
-    <main id="maincontent" className={"articles_page main"}>
-      <h1>Articles</h1>
+    <>
+      <PageHeader title="Articles" />
+      <main id="maincontent" className="articles_page main">
+        <ArticlesList articles={articles} authors={authors} />
 
-      <ArticlesList articles={articles} authors={authors} />
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        basePath="/articles/page"
-      />
-    </main>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath="/articles/page"
+        />
+      </main>
+    </>
   );
 };

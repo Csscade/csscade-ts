@@ -17,7 +17,10 @@
     padding: 0;
 
     .article-card {
-      a {
+      background-color: var(--background-reverse);
+      color: var(--font-reverse);
+
+      .styled-link:visited {
         color: var(--font-reverse);
       }
 

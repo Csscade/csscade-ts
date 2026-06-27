@@ -13,6 +13,7 @@ type ArticleCardProps = {
   hasVideo?: boolean;
   hasTranscript?: boolean;
   hasSlides?: boolean;
+  headingLevel?: 2 | 3;
 };
 
 export function ArticleCard({
@@ -26,7 +27,9 @@ export function ArticleCard({
   hasVideo,
   hasTranscript,
   hasSlides,
+  headingLevel = 2,
 }: ArticleCardProps) {
+  const Heading = `h${headingLevel}` as "h2" | "h3";
   const badges = (
     <>
       {hasVideo && (
@@ -56,7 +59,7 @@ export function ArticleCard({
         href={url}
         ariaLabel={`Lire l'article : ${title}`}
       >
-        <h2>{title}</h2>
+        <Heading>{title}</Heading>
       </StyledLink>
 
       {hasAnyBadge && !categories && (

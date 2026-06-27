@@ -12,36 +12,38 @@ interface TipDetailPageProps {
 
 export const TipDetailPage = ({ tip, author }: TipDetailPageProps) => {
   return (
-    <article className="tip-page">
-      <header className="tip-page__header">
-        <div className="tip-page__header-wrapper">
-          <h1 className="tip-page__title">{tip.title}</h1>
-          <p className="tip-page__meta">
-            <span className="font-semibold">
-              par {author ? author.name : tip.author}
-            </span>
-          </p>
-          {tip.categories && (
-            <div className="tip-page__categories">
-              {tip.categories.map((category) => (
-                <StyledLink
-                  key={category}
-                  href={`/articles/category/${category.toLowerCase()}`}
-                  className="article-card__category"
-                  bordered
-                  reversed
-                >
-                  {category}
-                </StyledLink>
-              ))}
-            </div>
-          )}
+    <main id="maincontent">
+      <article className="tip-page">
+        <header className="tip-page__header">
+          <div className="tip-page__header-wrapper">
+            <h1 className="tip-page__title">{tip.title}</h1>
+            <p className="tip-page__meta">
+              <span className="font-semibold">
+                par {author ? author.name : tip.author}
+              </span>
+            </p>
+            {tip.categories && (
+              <div className="tip-page__categories">
+                {tip.categories.map((category) => (
+                  <StyledLink
+                    key={category}
+                    href={`/articles/category/${category.toLowerCase()}`}
+                    className="article-card__category"
+                    bordered
+                    reversed
+                  >
+                    {category}
+                  </StyledLink>
+                ))}
+              </div>
+            )}
+          </div>
+        </header>
+        <ArticleContent content={tip.content} />
+        <div className="tip-page__footer">
+          {author && <AuthorCardContent author={author} />}
         </div>
-      </header>
-      <ArticleContent content={tip.content} />
-      <div className="tip-page__footer">
-        {author && <AuthorCardContent author={author} />}
-      </div>
-    </article>
+      </article>
+    </main>
   );
 };

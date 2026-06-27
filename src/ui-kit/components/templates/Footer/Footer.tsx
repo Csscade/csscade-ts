@@ -21,7 +21,7 @@ export const Footer = () => {
         </div>
 
         <div className={"footer__section"}>
-          <h4 className={"footer__title"}>Réseaux Sociaux</h4>
+          <h2 className={"footer__title"}>Réseaux Sociaux</h2>
           <div className={"footer__links"}>
             <StyledLink
               href={discordUrl}
@@ -41,7 +41,7 @@ export const Footer = () => {
         </div>
 
         <div className={"footer__section"}>
-          <h4 className={"footer__title"}>Légal</h4>
+          <h2 className={"footer__title"}>Légal</h2>
           <StyledLink href="/a-propos" className="footer__legal-link">
             À Propos
           </StyledLink>

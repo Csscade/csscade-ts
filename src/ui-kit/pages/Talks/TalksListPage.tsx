@@ -1,5 +1,6 @@
 import type { Author } from "@/entities/authors/authors";
 import type { Talk } from "@/entities/talks/talks";
+import { PageHeader } from "@/ui-kit/components/templates/PageHeader/PageHeader";
 import { TalksList } from "@/ui-kit/talks/TalksList/TalksList";
 import "./TalksListPage.css";
 
@@ -10,12 +11,8 @@ interface TalksListPageProps {
 
 export const TalksListPage = ({ talks, authors }: TalksListPageProps) => {
   return (
-    <div className="textured-background">
-      <header className="talks-list-page__header">
-        <div className="talks-list-page__container">
-          <h1 className="talks-list-page__title">Conférences</h1>
-        </div>
-      </header>
+    <>
+      <PageHeader title="Conférences" />
       <main id="maincontent" className="talks-list-page">
         <div className="container">
           {talks.length > 0 ? (
@@ -25,6 +22,6 @@ export const TalksListPage = ({ talks, authors }: TalksListPageProps) => {
           )}
         </div>
       </main>
-    </div>
+    </>
   );
 };
