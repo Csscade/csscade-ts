@@ -1,4 +1,5 @@
 .articles_page {
+  background: transparent;
   margin: 0 auto;
   padding: 1rem 1rem 0;
   max-width: var(--container-max-width);
