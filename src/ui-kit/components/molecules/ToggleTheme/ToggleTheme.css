@@ -1,72 +1,67 @@
-.theme-switch-wrapper {
+.theme-toggle {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  color: var(--font-color);
 
-  em {
-    margin-left: 10px;
-    font-size: 1rem;
+  &:hover {
+    background-color: color-mix(in srgb, var(--font-color) 8%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }
 
-.theme-switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
-}
-
-.slider {
-  background-color: var(--color-light-muted);
-  border: 1px solid var(--border-color);
-  bottom: 0;
-  cursor: pointer;
-  transition: 0.4s;
-
-  &:before {
-    border: 1px solid var(--border-color);
-    background-color: #fff;
-    bottom: 3px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: 0.4s;
-    width: 26px;
-  }
-}
-
-.slider.dark {
-  background-color: var(--color-dark-muted);
-
-  &:before {
-    transform: translateX(24px);
-  }
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-.slider input[type="checkbox"] {
-  appearance: none;
+.theme-toggle__sun,
+.theme-toggle__moon {
   position: absolute;
-  inset: -1px;
-  background: none;
-  border: none;
-  width: inherit;
-  height: inherit;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  border-radius: 34px;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-  &:before {
-    background: none;
-    box-shadow: none;
-    clip-path: none;
-  }
+.theme-toggle__sun {
+  stroke: var(--font-color);
+  stroke-width: 2;
+  fill: none;
+}
+
+.theme-toggle__moon {
+  fill: var(--font-color);
+  stroke: none;
+}
+
+/* Light mode: sun visible, moon hidden */
+.theme-toggle--light .theme-toggle__sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle--light .theme-toggle__moon {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.5);
+}
+
+/* Dark mode: moon visible, sun hidden */
+.theme-toggle--dark .theme-toggle__sun {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.5);
+}
+
+.theme-toggle--dark .theme-toggle__moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
