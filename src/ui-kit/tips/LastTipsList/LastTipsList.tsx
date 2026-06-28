@@ -29,6 +29,7 @@ export const LastTipsList = ({
               publishedAt=""
               url={`/tips/${tip.slug}`}
               author={author ? author.name : tip.author}
+              authorUrl={author ? `/authors/${author.slug}` : undefined}
               categories={tip.categories}
             />
           </li>
