@@ -31,6 +31,16 @@ const config: StorybookConfig = {
       ...(config.resolve.alias || {}),
       "@": resolve(process.cwd(), "src"),
     };
+    config.build = config.build || {};
+    config.build.chunkSizeWarningLimit = 10000;
+    config.build.rolldownOptions = {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("shiki") || id.includes("@shikijs")) return "shiki";
+          if (id.includes("@fortawesome")) return "fontawesome";
+        },
+      },
+    };
     return config;
   },
 };

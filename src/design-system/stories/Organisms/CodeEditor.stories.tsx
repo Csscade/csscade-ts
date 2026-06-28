@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { CodeEditor } from "@/ui-kit/components/organisms/CodeEditor/CodeEditor";
 
 const meta: Meta<typeof CodeEditor> = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { useGlobals } from "storybook/internal/preview-api";
+import { useGlobals } from "storybook/preview-api";
 import { CopyButton } from "@/ui-kit/components/atoms/CopyButton/CopyButton";
 import { useHighlighter } from "@/ui-kit/components/organisms/CodeEditor/useHighlighter";
 

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { CodePlayground } from "@/ui-kit/components/organisms/CodePlayground/CodePlayground";
 
 const meta: Meta<typeof CodePlayground> = {
