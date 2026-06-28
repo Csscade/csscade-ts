@@ -57,3 +57,34 @@ Biome enforces: double quotes, semicolons, no `any`, no `console.log` (only `con
 ## Testing
 
 - **One `expect` per test.** Each `it()` block must contain exactly one `expect()` call. Split multi-assertion tests into separate, focused tests.
+
+### Accessibility tests
+
+Playwright + axe-core end-to-end accessibility tests live in `tests/`:
+
+| File | Theme | Command |
+|---|---|---|
+| `tests/a11y-light.spec.ts` | Light (`data-theme="light"`) | `pnpm test:ui` |
+| `tests/a11y-dark.spec.ts` | Dark (`data-theme="dark"`) | `pnpm test:ui` |
+
+Each file covers the same 8 pages: homepage, `/a-propos`, `/mentions-legales`, `/recherche`, `/articles`, `/authors`, `/talks`, `/tips`.
+
+**Standards enforced** (via `.withTags()`):
+
+| Tag | Standard |
+|---|---|
+| `wcag2a` / `wcag2aa` / `wcag2aaa` | WCAG 2.0 A, AA, AAA |
+| `wcag21a` / `wcag21aa` | WCAG 2.1 A, AA |
+| `wcag22aa` | WCAG 2.2 AA |
+| `best-practice` | axe best-practice rules |
+| `RGAAv4` | RGAA 4 |
+
+**Theme seeding:** each test calls `page.addInitScript(() => localStorage.setItem("theme", "light/dark"))` before navigation so the `ToggleTheme` component picks up the correct theme on mount.
+
+**Accessibility design rules** — violations to avoid when writing components:
+
+- Use `var(--font-color)` or `var(--font-color-muted)` for text; never rely on `opacity` to reduce contrast — opacity blends the text toward the background and makes the effective contrast unpredictable across themes.
+- Images adjacent to their text label must use `alt=""` to avoid `image-redundant-alt`.
+- Content outside `<main>` must be in a semantic landmark. Use `<section aria-labelledby="...">` (not `<div role="region">`) for page-level title banners — Biome enforces native elements over ARIA roles.
+- Do not add a second top-level `<header>` (banner landmark); the navigation already owns that role.
+- Inline `backgroundColor` styles must use CSS variables (`var(--background-secondary)`) rather than hardcoded rgba values so they adapt to dark mode.

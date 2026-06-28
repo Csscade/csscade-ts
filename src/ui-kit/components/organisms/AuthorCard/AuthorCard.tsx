@@ -42,7 +42,7 @@ export const AuthorCard = ({
         <Link href={`/authors/${author.slug}`} className="author-card__link">
           <Avatar
             src={author.avatar}
-            alt={author.name}
+            alt=""
             size={120}
             className="author-card__avatar"
             border

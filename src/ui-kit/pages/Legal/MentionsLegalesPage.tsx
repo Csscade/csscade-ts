@@ -8,7 +8,7 @@ export const MentionsLegalesPage = () => {
         style={{
           maxWidth: "800px",
           margin: "0 auto",
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          backgroundColor: "var(--background-secondary)",
           padding: "clamp(1.2rem, 5vw, 2rem)",
           borderRadius: "8px",
         }}

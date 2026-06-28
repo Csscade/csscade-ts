@@ -1,13 +1,34 @@
 ---
 name: accessibility
-description: Apply RGAA-aligned (WCAG 2.1 AA) accessibility rules when writing or reviewing code in src/content (MDX) and src/ui-kit (React/TSX, CSS). Use when adding or editing components, writing MDX articles/tips/talks, or asked to audit a11y, fix accessibility issues, check WCAG/RGAA compliance, add ARIA, fix keyboard navigation, or improve screen reader support.
+description: Apply accessibility rules (WCAG 2.0 AAA, WCAG 2.1/2.2 AA, RGAA 4) when writing or reviewing code in src/content (MDX) and src/ui-kit (React/TSX, CSS). Use when adding or editing components, writing MDX articles/tips/talks, adding new pages, or asked to audit a11y, fix accessibility issues, check WCAG/RGAA compliance, add ARIA, fix keyboard navigation, or improve screen reader support.
 ---
 
-# Accessibility (RGAA / WCAG 2.1 AA)
+# Accessibility (RGAA 4 / WCAG 2.0 AAA / WCAG 2.2 AA)
 
-Scope: this skill applies **only** to files under `src/content/**/*.mdx` and `src/ui/**/*.{tsx,css}`. Skip everything else (config, scripts, tests, generated code).
+Scope: this skill applies **only** to files under `src/content/**/*.mdx` and `src/ui-kit/**/*.{tsx,css}`. Skip everything else (config, scripts, tests, generated code).
 
-Goal: produce changes that pass RGAA conformance at level AA. When a rule is ambiguous, prefer **native HTML semantics** over ARIA, and prefer **deleting markup** over adding attributes.
+Goal: produce changes that pass automated axe checks and RGAA conformance. When a rule is ambiguous, prefer **native HTML semantics** over ARIA, and prefer **deleting markup** over adding attributes.
+
+## Automated accessibility tests
+
+Playwright + axe-core tests live in `tests/` and run with `pnpm test:ui`. They cover 8 pages in both light and dark themes:
+
+| File | Theme |
+|---|---|
+| `tests/a11y-light.spec.ts` | Light (`data-theme="light"`) |
+| `tests/a11y-dark.spec.ts` | Dark (`data-theme="dark"`) |
+
+**Standards enforced** via `.withTags()`:
+
+| Tag | Standard |
+|---|---|
+| `wcag2a` / `wcag2aa` / `wcag2aaa` | WCAG 2.0 A, AA, AAA |
+| `wcag21a` / `wcag21aa` | WCAG 2.1 A, AA |
+| `wcag22aa` | WCAG 2.2 AA |
+| `best-practice` | axe best-practice rules |
+| `RGAAv4` | RGAA 4 |
+
+Whenever you add a new page or component, run both test files and fix any violations before declaring the task done.
 
 ## How to use this skill
 
@@ -20,12 +41,12 @@ Goal: produce changes that pass RGAA conformance at level AA. When a rule is amb
 
 These already exist in the repo. Use them — do not duplicate them.
 
-- **Screen-reader-only text**: utility class `.sr-only`. Apply it to a `<span>` next to an icon or inside an icon-only button. See `src/ui/components/atoms/CopyButton/CopyButton.tsx`.
-- **Skip link**: `<a className="skip-link" href="#maincontent">` lives in `src/ui/components/templates/Navigation/Navigation.tsx`. The target `id="maincontent"` must exist on the page's `<main>`. Do not add a second skip link elsewhere.
-- **External link wording**: append `<span className="sr-only">(ouvre un nouvel onglet)</span>` whenever `target="_blank"` is used. The `StyledLink` atom (`src/ui/components/atoms/StyledLink/StyledLink.tsx`) already does this — prefer that component over a raw `<a>` or Next `<Link>`.
+- **Screen-reader-only text**: utility class `.sr-only`. Apply it to a `<span>` next to an icon or inside an icon-only button. See `src/ui-kit/components/atoms/CopyButton/CopyButton.tsx`.
+- **Skip link**: `<a className="skip-link" href="#maincontent">` lives in `src/ui-kit/components/templates/Navigation/Navigation.tsx`. The target `id="maincontent"` must exist on the page's `<main>`. Do not add a second skip link elsewhere.
+- **External link wording**: append `<span className="sr-only">(ouvre un nouvel onglet)</span>` whenever `target="_blank"` is used. The `StyledLink` molecule (`src/ui-kit/components/molecules/StyledLink/StyledLink.tsx`) already does this — prefer that component over a raw `<a>` or Next `<Link>`.
 - **French UI strings**: all visible labels, `aria-label`, `alt`, and `title` content are written in French (e.g. `aria-label="Voir tous les articles"`). Keep this consistent.
 - **Disclosure pattern**: pair `aria-expanded={state}` with the trigger (see the burger button in `Navigation.tsx`). Add `aria-controls="<id-of-revealed-region>"` when the revealed region is not an adjacent sibling.
-- **Required `alt` prop**: image-rendering components (e.g. `Avatar`) take `alt` as a required prop. Mirror this contract when creating new image components — never make `alt` optional with a default of `""` unless the image is provably decorative.
+- **Required `alt` prop**: image-rendering components (e.g. `Avatar`) take `alt` as a required prop. Mirror this contract when creating new image components. Pass `alt=""` when the image is adjacent to a text label that already conveys the same information — this prevents screen readers from announcing the name twice (`image-redundant-alt` axe rule).
 - **SVG titles**: inline SVGs include a `<title>` element (see `Logo`). Decorative SVGs add `aria-hidden="true"` instead.
 
 ## The 10 rules that matter most
@@ -155,8 +176,15 @@ Group related fields with `<fieldset><legend>`. Mark required fields with the `r
 
 ### 6. Color & contrast (RGAA 3, 10)
 
-- Text contrast ≥ **4.5:1** for normal text, ≥ **3:1** for large text (≥ 18.66px bold or 24px regular) and for icons / UI components.
-- Never convey meaning by color alone — pair it with text, an icon, or a pattern.
+The automated tests enforce **WCAG 2.0 AAA** thresholds (the highest level):
+
+| Text size | Minimum contrast |
+|---|---|
+| Normal text (< 18.66px bold or < 24px) | **7:1** (AAA) |
+| Large text (≥ 18.66px bold or ≥ 24px) | **4.5:1** (AAA) |
+| UI components and icons | **3:1** |
+
+Never convey meaning by color alone — pair it with text, an icon, or a pattern.
 
 ```tsx
 // ❌ status conveyed only by color
@@ -168,7 +196,27 @@ Group related fields with `<fieldset><legend>`. Mark required fields with the `r
 </span>
 ```
 
-When adding new colors in CSS, verify the contrast with https://webaim.org/resources/contrastchecker/ before committing. Both light and dark themes must pass.
+**Never use `opacity` to visually mute text.** Opacity blends text toward the background and makes the effective contrast unpredictable across themes. Use `--font-color-muted` instead:
+
+```css
+/* ❌ opacity reduces effective contrast in ways that are hard to predict */
+.footer__description { opacity: 0.8; }
+
+/* ✅ semantic muted color — passes 7:1 in both light and dark */
+.footer__description { color: var(--font-color-muted); }
+```
+
+**Never hardcode background colors as rgba values.** Hardcoded values do not adapt to the dark theme and will cause contrast failures:
+
+```tsx
+// ❌ rgba(255,255,255,0.9) blends with the dark page background → near-white
+<div style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
+
+// ✅ theme-aware variable
+<div style={{ backgroundColor: "var(--background-secondary)" }}>
+```
+
+When adding new colors in CSS, verify the contrast with https://webaim.org/resources/contrastchecker/ before committing. **Both light and dark themes must pass** — run `pnpm test:ui` to confirm.
 
 ### 7. Keyboard accessibility & visible focus (RGAA 7, 10, 12)
 
@@ -213,6 +261,19 @@ A page should use the landmark elements:
 ```
 
 - Exactly one `<main>` per page, with `id="maincontent"` so the skip link works.
+- The site navigation owns the only top-level `<header>` (banner landmark). Do not add a second `<header>` at page level — it creates a `landmark-no-duplicate-banner` violation.
+- For page-level title banners that need a landmark region, use `<section aria-labelledby="...">` — not `<div role="region">` (Biome's `lint/a11y/useSemanticElements` rejects ARIA roles when a native semantic element exists). A named `<section>` implicitly becomes a `region` landmark:
+
+```tsx
+// ❌ Biome rejects — use native element instead
+<div role="region" aria-labelledby="title-id">…</div>
+
+// ✅ native element + accessible name → implicit region landmark
+<section aria-labelledby="title-id">
+  <h1 id="title-id">{title}</h1>
+</section>
+```
+
 - Wrap site navigation in `<nav>` and give it an `aria-label` if multiple `<nav>` regions exist (e.g. `aria-label="Navigation principale"` vs `aria-label="Pagination"`).
 - Use `<ul>` / `<ol>` for lists, including lists of cards. Do not flatten a list into a sequence of `<div>`s.
 
@@ -243,7 +304,7 @@ A page should use the landmark elements:
 - **Custom directives** (`:::warning`, `:::info`, etc.): use them instead of styling colored `<div>`s by hand — the directives carry the right semantics.
 - **Abbreviations**: use the `*[ABBR]: expansion` syntax so the expansion is exposed to assistive tech.
 
-## TSX-specific rules (`src/ui/**/*.tsx`)
+## TSX-specific rules (`src/ui-kit/**/*.tsx`)
 
 - **Prefer native elements** over ARIA. `<button>` over `<div role="button">`. `<a href>` over `<span role="link">`. `<details>/<summary>` over a custom collapsible.
 - **Icon-only buttons** need either visible text or a `<span className="sr-only">` child describing the action. Mirror `CopyButton`.
@@ -290,13 +351,12 @@ Flag these in this order:
 
 ## Verification before declaring done
 
-For any UI change in `src/ui`:
+For any UI change in `src/ui-kit`:
 
 1. **Keyboard**: `Tab` through the change. Every interactive element receives focus, in the visual order, with a visible focus indicator. `Enter` / `Space` activates. `Escape` closes menus/dialogs.
-2. **Automated**: run the Playwright a11y tests (`@axe-core/playwright` is already wired): `npx playwright test`. Resolve any new violations before merging.
-3. **Storybook**: open the component's story and check the **Accessibility** panel (`@storybook/addon-a11y`). Address violations, not just incomplete checks.
-4. **Zoom**: verify the change still works at 200% browser zoom — no clipped text, no horizontal scroll on body text.
-5. **Reduced motion**: toggle `prefers-reduced-motion` in DevTools (Rendering panel) and confirm large animations stop.
+2. **Automated**: run `pnpm test:ui` (runs both `a11y-light.spec.ts` and `a11y-dark.spec.ts`). Resolve all violations before merging. These enforce WCAG 2.0 AAA, WCAG 2.2 AA, and RGAA 4.
+3. **Zoom**: verify the change still works at 200% browser zoom — no clipped text, no horizontal scroll on body text.
+4. **Reduced motion**: toggle `prefers-reduced-motion` in DevTools (Rendering panel) and confirm large animations stop.
 
 For MDX changes in `src/content`:
 
@@ -307,6 +367,7 @@ For MDX changes in `src/content`:
 ## References
 
 - RGAA criteria (French, authoritative for this project): https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/
-- WCAG 2.1 quick reference: https://www.w3.org/WAI/WCAG21/quickref/
+- WCAG 2.0 AAA quick reference: https://www.w3.org/WAI/WCAG20/quickref/
+- WCAG 2.2 quick reference: https://www.w3.org/WAI/WCAG22/quickref/
 - WAI-ARIA Authoring Practices (patterns for widgets): https://www.w3.org/WAI/ARIA/apg/patterns/
-- Contrast checker: https://webaim.org/resources/contrastchecker/
+- Contrast checker (verify both light and dark themes): https://webaim.org/resources/contrastchecker/

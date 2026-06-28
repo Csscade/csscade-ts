@@ -128,18 +128,23 @@ Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.
 
 ### Tests
 
+**Unit tests (architecture layer rules):**
+
+```bash
+pnpm test:unit
+```
+
+**Component tests (Vitest + Storybook, browser mode):**
+
+```bash
+pnpm test
+```
+
 **Accessibility tests (Playwright + Axe-core):**
 
 ```bash
 pnpm dev        # must be running
-pnpm test
-```
-
-**Component tests (Vitest + Storybook):**
-
-```bash
-pnpm storybook  # must be running
-pnpm vitest
+pnpm test:ui
 ```
 
 ---
@@ -225,7 +230,7 @@ Csscade is committed to accessibility. Contributions must respect WCAG 2.2 and R
 ### Validation with Playwright & Axe-core
 
 1. Ensure the app is running: `pnpm dev`
-2. Run accessibility checks: `pnpm test`
+2. Run accessibility checks: `pnpm test:ui`
 
 ---
 
