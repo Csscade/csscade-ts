@@ -15,6 +15,13 @@
     max-width: calc(var(--container-max-width) - 200px);
     padding-inline: 1rem;
     margin: auto;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
 
     .author-card {
       max-width: calc(var(--container-max-width) - 200px);

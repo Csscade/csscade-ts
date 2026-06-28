@@ -47,6 +47,15 @@
     a {
       text-decoration: none;
     }
+
+    a[aria-current="page"] {
+      color: var(--font-color);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--color-primary);
+      text-underline-offset: 0.3rem;
+      text-decoration-thickness: 2px;
+    }
   }
 
   .burger-button {
