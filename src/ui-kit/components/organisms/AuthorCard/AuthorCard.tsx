@@ -130,7 +130,7 @@ export const AuthorCard = ({
 
       <div className="author-card__footer">
         <StyledLink href={`/authors/${author.slug}`} bordered>
-          Voir ses articles <FontAwesomeIcon icon={faArrowRightLong} />
+          Voir ses publications <FontAwesomeIcon icon={faArrowRightLong} />
         </StyledLink>
       </div>
     </aside>

@@ -20,11 +20,25 @@
   .article-page__meta {
     display: flex;
     gap: 0.5rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.15s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .article-page__categories {
     display: flex;
     gap: 1rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.3s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .article-page__footer {

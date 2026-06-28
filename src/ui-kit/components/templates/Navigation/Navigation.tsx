@@ -1,16 +1,23 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "@/ui-kit/components/atoms/Images/Logo";
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import { ToggleTheme } from "@/ui-kit/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
-import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const currentPage = (prefix: string, exact = false): "page" | undefined => {
+    const match = exact ? pathname === prefix : pathname.startsWith(prefix);
+    return match ? "page" : undefined;
   };
 
   return (
@@ -40,6 +47,7 @@ export const Navigation = () => {
               <StyledLink
                 href="/"
                 aria-label="Voir la page d'accueil"
+                aria-current={currentPage("/", true)}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Accueil
@@ -49,6 +57,7 @@ export const Navigation = () => {
               <StyledLink
                 href="/articles/page/1"
                 aria-label="Voir tous les articles"
+                aria-current={currentPage("/articles")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Articles
@@ -58,6 +67,7 @@ export const Navigation = () => {
               <StyledLink
                 href="/tips/page/1"
                 aria-label="Voir toutes les astuces"
+                aria-current={currentPage("/tips")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Astuces
@@ -67,6 +77,7 @@ export const Navigation = () => {
               <StyledLink
                 href="/talks"
                 aria-label="Voir toutes les conférences"
+                aria-current={currentPage("/talks")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Conférences
@@ -76,6 +87,7 @@ export const Navigation = () => {
               <StyledLink
                 href="/authors"
                 aria-label="Voir les auteurs et autrices"
+                aria-current={currentPage("/authors")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Auteur·ices
@@ -85,6 +97,7 @@ export const Navigation = () => {
               <StyledLink
                 href="/a-propos"
                 aria-label="A propos de Csscade"
+                aria-current={currentPage("/a-propos")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 A Propos

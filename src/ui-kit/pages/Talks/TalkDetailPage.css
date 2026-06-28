@@ -19,17 +19,38 @@
   .talk-page__meta {
     display: flex;
     gap: 0.5rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.15s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .talk-page__level {
     font-style: italic;
     margin-top: 0.5rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.25s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .talk-page__categories {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.3s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .talk-page__abstract-intro {
@@ -37,7 +58,13 @@
     line-height: 1.6;
     margin-top: 2rem;
     font-style: italic;
-    opacity: 0.9;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.45s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .talk-page__container {
