@@ -26,6 +26,12 @@ export const ArticleDetailPage = ({
               <span className="font-semibold">
                 par {author ? author.name : article.author}
               </span>
+              {article.coAuthor && (
+                <>
+                  <span>&amp;</span>
+                  <span className="font-semibold">{article.coAuthor}</span>
+                </>
+              )}
             </p>
             {article.categories && (
               <div className="article-page__categories">
@@ -41,6 +47,17 @@ export const ArticleDetailPage = ({
                   </StyledLink>
                 ))}
               </div>
+            )}
+            {article.originalUrl && (
+              <p className="article-page__original">
+                <StyledLink
+                  href={article.originalUrl}
+                  reversed
+                  ariaLabel="Lire l'article original (lien externe, ouvre un nouvel onglet)"
+                >
+                  Lire l&apos;article original
+                </StyledLink>
+              </p>
             )}
           </div>
         </header>
