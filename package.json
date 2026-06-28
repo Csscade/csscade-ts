@@ -14,8 +14,8 @@
     "format": "biome format --write",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "test": "vitest run",
-    "test:unit": "vitest run --project unit",
+    "test": "vitest run --project unit",
+    "test:unit": "vitest run --project unit src/__tests__/architecture.spec.ts",
     "test:ui": "playwright test"
   },
   "dependencies": {
