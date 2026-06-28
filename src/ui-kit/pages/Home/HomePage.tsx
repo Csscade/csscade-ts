@@ -2,11 +2,13 @@ import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Article } from "@/entities/articles/articles";
 import type { Author } from "@/entities/authors/authors";
+import type { Talk } from "@/entities/talks/talks";
 import type { Tip } from "@/entities/tips/tips";
 import { LastArticlesList } from "@/ui-kit/articles/LastArticlesList/LastArticlesList";
 import { SearchBar } from "@/ui-kit/components/molecules/SearchBar/SearchBar";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import { HomeHero } from "@/ui-kit/components/templates/HomeHero/HomeHero";
+import { LastTalksList } from "@/ui-kit/talks/LastTalksList/LastTalksList";
 import { LastTipsList } from "@/ui-kit/tips/LastTipsList/LastTipsList";
 import "./HomePage.css";
 
@@ -14,9 +16,10 @@ interface HomePageProps {
   articles: Article[];
   authors: Author[];
   tips: Tip[];
+  talks: Talk[];
 }
 
-export const HomePage = ({ articles, authors, tips }: HomePageProps) => {
+export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
   return (
     <>
       <HomeHero />
@@ -44,6 +47,16 @@ export const HomePage = ({ articles, authors, tips }: HomePageProps) => {
           <footer>
             <StyledLink href={"/tips/page/1"} bordered={true}>
               Toutes les astuces
+              <FontAwesomeIcon icon={faArrowRightLong} />
+            </StyledLink>
+          </footer>
+        </section>
+        <section className="last-talks">
+          <h2 className="section_title">Les dernières conférences</h2>
+          <LastTalksList talks={talks} authors={authors} />
+          <footer>
+            <StyledLink href={"/talks"} bordered={true} reversed={true}>
+              Toutes les conférences
               <FontAwesomeIcon icon={faArrowRightLong} />
             </StyledLink>
           </footer>
