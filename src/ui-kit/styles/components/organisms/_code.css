@@ -81,15 +81,18 @@ pre:not(.shiki) {
   color: var(--font-color-muted);
 }
 
+.shiki span {
+  color: var(--shiki-light);
+}
+
 [data-theme="dark"] .shiki,
 .dark .shiki {
-  &:not([data-shiki-theme*="light"]):not([data-shiki-theme*="light"] *) {
-    /* biome-ignore lint/complexity/noImportantStyles: forced override for Shiki dark mode background */
-    background-color: transparent !important;
+  /* biome-ignore lint/complexity/noImportantStyles: override Shiki's inline background in dark mode */
+  background-color: transparent !important;
 
-    span {
-      /* biome-ignore lint/complexity/noImportantStyles: forced override for Shiki dark mode span background */
-      background-color: transparent !important;
-    }
+  span {
+    color: var(--shiki-dark);
+    /* biome-ignore lint/complexity/noImportantStyles: override Shiki's inline background in dark mode */
+    background-color: transparent !important;
   }
 }

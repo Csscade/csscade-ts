@@ -9,6 +9,7 @@ export const rehypeShikiPlugin: any = [
       light: "github-light",
       dark: "github-dark",
     },
+    defaultColor: false,
     transformers: [
       {
         name: "copy-code",
