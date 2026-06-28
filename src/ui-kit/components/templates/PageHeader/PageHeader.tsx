@@ -6,10 +6,15 @@ interface PageHeaderProps {
 
 export const PageHeader = ({ title }: PageHeaderProps) => {
   return (
-    <div className="page-header textured-background">
+    <section
+      aria-labelledby="page-header-title"
+      className="page-header textured-background"
+    >
       <div className="page-header__container">
-        <h1 className="page-header__title">{title}</h1>
+        <h1 id="page-header-title" className="page-header__title">
+          {title}
+        </h1>
       </div>
-    </div>
+    </section>
   );
 };

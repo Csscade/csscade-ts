@@ -34,6 +34,8 @@
 | Style              | 	Native CSS                       |
 | Content            | 	MarkdownX with Zod & gray-matter |
 | Pre-commit         | 	Lefthook                         |
+| Unit / component tests | Vitest                       |
+| Accessibility tests | Playwright + Axe-core            |
 
 ![next badge](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs)
 ![pnpm badge](https://img.shields.io/badge/Typescript-000000?style=flat&logo=typescript)
@@ -65,6 +67,21 @@ pnpm storybook
 ```
 
 Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
+
+## Tests
+
+Unit and component tests (Vitest):
+
+```bash
+pnpm test:unit   # architecture layer rules only
+pnpm test        # unit + Storybook component tests
+```
+
+Accessibility tests (Playwright + Axe-core) — requires `pnpm dev` to be running:
+
+```bash
+pnpm test:ui
+```
 
 ## Agent Skills
 
