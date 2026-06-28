@@ -4,8 +4,8 @@ import "./SearchBar.css";
 
 export const SearchBar = () => {
   return (
-    <search>
-      <form action="/recherche" className="search-bar">
+    <search className="search-bar">
+      <form action="/recherche">
         <label htmlFor="search-input" className="sr-only">
           Rechercher
         </label>

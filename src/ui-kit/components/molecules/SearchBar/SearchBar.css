@@ -4,7 +4,6 @@
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -31,6 +30,7 @@
   background: var(--background-secondary);
   color: var(--font-color);
   font-size: 1rem;
+  width: 280px;
 
   &::placeholder {
     color: var(--font-color-muted);
@@ -57,5 +57,11 @@
   &:hover {
     color: var(--color-primary);
     background-color: var(--background-primary);
+  }
+}
+
+@media (min-width: 768px) {
+  .search-bar__input {
+    width: 350px;
   }
 }

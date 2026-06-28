@@ -7,6 +7,7 @@ test.describe("Accessibility", () => {
   test("homepage should not have any automatically detectable accessibility violations", async ({
     page,
   }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(baseUrl);
     await page.waitForLoadState("networkidle");
 
