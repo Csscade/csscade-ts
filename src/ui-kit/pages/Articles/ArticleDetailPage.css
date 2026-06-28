@@ -41,6 +41,17 @@
     }
   }
 
+  .article-page__original {
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.45s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
   .article-page__footer {
     margin: auto;
     background-color: var(--background-reverse);
