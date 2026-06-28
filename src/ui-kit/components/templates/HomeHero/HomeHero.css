@@ -85,6 +85,7 @@
         top: 75%;
         left: 25%;
         --badge-color: var(--color-blue);
+        --badge-font-color: var(--color-dark, #191e25);
         animation-delay: 0.45s;
       }
     }
