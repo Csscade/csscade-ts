@@ -26,6 +26,7 @@ export const LastArticlesList = ({
               publishedAt={article.publishedAt}
               url={`/articles/${article.slug}`}
               author={author ? author.name : article.author}
+              authorUrl={author ? `/authors/${author.slug}` : undefined}
               categories={article.categories}
             />
           </li>

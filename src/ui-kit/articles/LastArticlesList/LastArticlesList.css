@@ -20,8 +20,13 @@
       background-color: var(--background-reverse);
       color: var(--font-reverse);
 
+      .styled-link,
       .styled-link:visited {
         color: var(--font-reverse);
+      }
+
+      .styled-link:hover {
+        color: var(--color-primary);
       }
 
       .styled-link--bordered {
