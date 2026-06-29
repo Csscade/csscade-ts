@@ -13,6 +13,7 @@ export interface CodeEditorProps {
   onChange?: (value: string | undefined) => void;
   theme?: EditorTheme;
   containerClassName?: string;
+  label?: string;
 }
 
 export const CodeEditor = ({
@@ -23,6 +24,7 @@ export const CodeEditor = ({
   onChange,
   theme,
   containerClassName = "",
+  label,
 }: CodeEditorProps) => {
   const [internalValue, setInternalValue] = useState(defaultValue);
   const [isCopied, setIsCopied] = useState(false);
@@ -60,10 +62,11 @@ export const CodeEditor = ({
         type="button"
         className="button button--icon copy"
         onClick={copyToClipboard}
-        title="Copy to clipboard"
       >
-        <span className="sr-only">Copy code</span>
-        <FontAwesomeIcon icon={isCopied ? faCheck : faCopy} />
+        <FontAwesomeIcon icon={isCopied ? faCheck : faCopy} aria-hidden />
+        <span className="sr-only">
+          {isCopied ? "icône validation" : "icône copier"}
+        </span>
       </button>
       <div className="shiki-editor">
         <textarea
@@ -72,6 +75,7 @@ export const CodeEditor = ({
           onChange={handleChange}
           spellCheck={false}
           className="shiki-editor__textarea"
+          aria-label={label ?? `Éditeur de code ${defaultLanguage}`}
         />
         <div
           className="shiki-editor__highlight"

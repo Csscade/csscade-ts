@@ -77,8 +77,8 @@ export const AuthorCard = ({
               <StyledLink
                 href={author.website}
                 iconOnly
-                icon={<FontAwesomeIcon icon={faGlobe} />}
-                ariaLabel="Site web - lien externe"
+                icon={<FontAwesomeIcon icon={faGlobe} aria-hidden />}
+                ariaLabel="icône globe"
                 target="_blank"
               />
             )}
@@ -87,8 +87,8 @@ export const AuthorCard = ({
               <StyledLink
                 href={author.bluesky}
                 iconOnly
-                icon={<FontAwesomeIcon icon={faBluesky} />}
-                ariaLabel="Compte Bluesky - lien externe"
+                icon={<FontAwesomeIcon icon={faBluesky} aria-hidden />}
+                ariaLabel="icône Bluesky"
                 target="_blank"
               />
             )}
@@ -97,8 +97,8 @@ export const AuthorCard = ({
               <StyledLink
                 href={author.mastodon}
                 iconOnly
-                icon={<FontAwesomeIcon icon={faMastodon} />}
-                ariaLabel="Compte Mastodon - lien externe"
+                icon={<FontAwesomeIcon icon={faMastodon} aria-hidden />}
+                ariaLabel="icône Mastodon"
                 target="_blank"
               />
             )}
@@ -107,8 +107,8 @@ export const AuthorCard = ({
               <StyledLink
                 href={author.github}
                 iconOnly
-                icon={<FontAwesomeIcon icon={faGithub} />}
-                ariaLabel="Compte GitHub - lien externe"
+                icon={<FontAwesomeIcon icon={faGithub} aria-hidden />}
+                ariaLabel="icône GitHub"
                 target="_blank"
               />
             )}
@@ -117,8 +117,8 @@ export const AuthorCard = ({
               <StyledLink
                 href={author.linkedin}
                 iconOnly
-                icon={<FontAwesomeIcon icon={faLinkedin} />}
-                ariaLabel="Compte LinkedIn - lien externe"
+                icon={<FontAwesomeIcon icon={faLinkedin} aria-hidden />}
+                ariaLabel="icône LinkedIn"
                 target="_blank"
               />
             )}

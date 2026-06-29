@@ -40,11 +40,12 @@ export const StyledLink = ({
         iconOnly && "styled-link--icon",
         className,
       )}
-      aria-label={ariaLabel}
+      aria-label={iconOnly ? undefined : ariaLabel}
       target={target}
       rel={rel}
       {...props}
     >
+      {iconOnly && ariaLabel && <span className="sr-only">{ariaLabel}</span>}
       {children}
       {target === "_blank" && (
         <span className="sr-only">(ouvre un nouvel onglet)</span>

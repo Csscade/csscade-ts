@@ -70,12 +70,9 @@ export const SearchBar = () => {
             autoComplete="off"
             aria-describedby="search-placeholder-hint"
           />
-          <button
-            type="submit"
-            className="search-bar__button"
-            aria-label="Lancer la recherche"
-          >
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <button type="submit" className="search-bar__button">
+            <FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden />
+            <span className="sr-only">Lancer la recherche</span>
           </button>
         </div>
       </form>

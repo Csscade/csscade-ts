@@ -40,7 +40,10 @@ const meta = {
   },
   render: ({ label, reversed, iconOnly, disabled, faIcon }) => {
     const icon = faIcon ? (
-      <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+      <FontAwesomeIcon
+        icon={allIcons[faIcon] as unknown as IconProp}
+        aria-hidden
+      />
     ) : null;
 
     return (
@@ -53,7 +56,7 @@ const meta = {
           iconOnly && "button--icon",
         )}
       >
-        {!iconOnly && label}
+        {iconOnly ? <span className="sr-only">{label}</span> : label}
         {icon && (
           <span
             className={clsx(!iconOnly && "button__icon")}
@@ -83,7 +86,10 @@ export const Reversed: Story = {
   },
   render: (args) => {
     const icon = args.faIcon ? (
-      <FontAwesomeIcon icon={allIcons[args.faIcon] as unknown as IconProp} />
+      <FontAwesomeIcon
+        icon={allIcons[args.faIcon] as unknown as IconProp}
+        aria-hidden
+      />
     ) : null;
 
     return (
@@ -103,7 +109,11 @@ export const Reversed: Story = {
             args.iconOnly && "button--icon",
           )}
         >
-          {!args.iconOnly && args.label}
+          {args.iconOnly ? (
+            <span className="sr-only">{args.label}</span>
+          ) : (
+            args.label
+          )}
           {icon && (
             <span
               className={clsx(!args.iconOnly && "button--icon")}
@@ -120,7 +130,7 @@ export const Reversed: Story = {
 
 export const Icon: Story = {
   args: {
-    label: "Icon Button",
+    label: "icône lecture",
     iconOnly: true,
     faIcon: "faPlay",
   },

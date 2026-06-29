@@ -98,8 +98,8 @@ export const CodePlayground = (props: CodeEditorProps) => {
         className="button button--icon run"
         onClick={runCode}
       >
-        <span className="sr-only">Run code</span>
-        <FontAwesomeIcon icon={faPlay} />
+        <FontAwesomeIcon icon={faPlay} aria-hidden />
+        <span className="sr-only">Exécuter le code</span>
       </button>
 
       {hasRun && (

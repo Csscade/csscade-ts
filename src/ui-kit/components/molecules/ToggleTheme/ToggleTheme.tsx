@@ -27,11 +27,11 @@ export const ToggleTheme = () => {
       type="button"
       className={`theme-toggle theme-toggle--${theme}`}
       onClick={handleToggle}
-      aria-label={
-        theme === "dark" ? "Activer le thème clair" : "Activer le thème sombre"
-      }
       aria-pressed={theme === "dark"}
     >
+      <span className="sr-only">
+        Activer le thème {theme === "dark" ? "sombre" : "clair"}
+      </span>
       <svg
         className="theme-toggle__sun"
         viewBox="0 0 24 24"
