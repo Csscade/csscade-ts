@@ -1,0 +1,124 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form__required-notice {
+  font-size: 0.9rem;
+  color: var(--font-color-muted);
+  margin: 0;
+}
+
+.contact-form__required-star {
+  color: var(--crimson);
+  font-weight: bold;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-form__label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--font-color);
+}
+
+.contact-form__error {
+  font-size: 0.9rem;
+  color: var(--crimson);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.contact-form__error::before {
+  content: "⚠";
+}
+
+.contact-form__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-form__submit {
+  padding: 0.75rem 2rem;
+  background-color: var(--color-dark);
+  color: var(--font-reverse);
+  border: 2px solid var(--color-dark);
+  border-radius: var(--br-rounded);
+  font-family: var(--font-primary), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-duration--general) ease,
+    color var(--transition-duration--general) ease;
+}
+
+.contact-form__submit:hover {
+  background-color: transparent;
+  color: var(--font-color);
+}
+
+.contact-form__submit:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.contact-form__status-error {
+  padding: 1rem;
+  border: 2px solid var(--crimson);
+  border-radius: var(--br-normal);
+  color: var(--crimson);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.contact-form__status-error a {
+  color: var(--crimson);
+  text-decoration: underline;
+}
+
+.contact-form__success {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--br-normal);
+  background-color: var(--background-primary);
+}
+
+.contact-form__success p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--font-color);
+}
+
+.contact-form__reset {
+  align-self: flex-start;
+  background: none;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--br-rounded);
+  padding: 0.5rem 1.2rem;
+  font-family: var(--font-primary), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: background-color var(--transition-duration--general) ease;
+}
+
+.contact-form__reset:hover {
+  background-color: var(--color-secondary);
+}
+
+.contact-form__reset:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}

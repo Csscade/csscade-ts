@@ -1,5 +1,6 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ContactForm } from "@/ui-kit/components/molecules/ContactForm/ContactForm";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./AboutPage.css";
 
@@ -99,6 +100,19 @@ export const AboutPage = () => {
             , sur nos différents réseaux sociaux ou nous contacter directement
             par email.
           </p>
+        </section>
+
+        <section
+          className="about-page__section"
+          aria-labelledby="contact-title"
+        >
+          <h2 id="contact-title">Nous contacter</h2>
+          <p>
+            Une question, une suggestion ou une envie de collaborer ? Remplissez
+            ce formulaire et nous vous répondrons à l'adresse{" "}
+            <strong>hello@csscade.fr</strong>.
+          </p>
+          <ContactForm />
         </section>
       </div>
     </main>
