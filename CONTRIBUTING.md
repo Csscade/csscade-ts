@@ -162,10 +162,12 @@ You can share your knowledge by contributing articles, CSS tips, or talk transcr
 title: "Your Article Title"
 slug: "your-article-slug"
 author: "author-slug"
+coAuthor: "Co-author Name"          # optional — name of a guest co-author
 publishedAt: "YYYY-MM-DD"
 categories:
   - CSS
   - Accessibility
+originalUrl: "https://example.com/original-post"  # optional — link back to the original publication
 ---
 ```
 
@@ -218,10 +220,16 @@ linkedin: "https://linkedin.com/in/yourname"              # optional
 
 Csscade is committed to accessibility. Contributions must respect WCAG 2.2 and RGAA 4.1 guidelines.
 
-- **Semantic HTML**: Use correct heading hierarchy (`h1` to `h6`), don't skip levels.
+- **Semantic HTML**: Use correct heading hierarchy — don't skip levels.
+- **Heading hierarchy in MDX content**: The page layout renders the article or tip title as `<h1>`. Your MDX content must therefore start at `<h2>` (`##`) and go down from there (`###`, `####`, …). Never jump from `##` to `####`, and never use `#` (`h1`) inside content.
 - **Alternative text**: All images must have an `alt` attribute. Use `alt=""` for decorative images.
 - **Contrast**: Ensure text has sufficient contrast against its background.
-- **Language**: Use clear language. Mark internationalized text with `lang=""`.
+- **Language**: The site language is French. When your content includes words or passages in another language (English technical terms, code comments, quotes, etc.), wrap them in an element with the matching `lang` attribute so screen readers switch to the correct pronunciation rules:
+  ```html
+  <span lang="en">display: flex</span>
+  <q lang="en">keep it simple</q>
+  ```
+  Common language codes: `en` (English), `de` (German), `es` (Spanish), `ja` (Japanese).
 - **Interactive elements**: Ensure links and buttons have clear, descriptive labels.
 - **Multimedia**: Captions required; no autoplay; `title` attribute on iframes.
 - **Keyboard navigation**: All interactive elements must be keyboard-accessible.
