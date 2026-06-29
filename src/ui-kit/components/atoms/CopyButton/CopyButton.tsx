@@ -27,10 +27,11 @@ export const CopyButton = ({ code, className = "" }: CopyButtonProps) => {
       type="button"
       className={`copy ${className}`}
       onClick={copyToClipboard}
-      title="Copy to clipboard"
     >
-      <span className="sr-only">Copy code</span>
-      <FontAwesomeIcon icon={isCopied ? faCheck : faCopy} />
+      <FontAwesomeIcon icon={isCopied ? faCheck : faCopy} aria-hidden />
+      <span className="sr-only">
+        {isCopied ? "Code copié dans le presse-papier" : "Copier le code"}
+      </span>
     </button>
   );
 };

@@ -105,7 +105,7 @@ export const AlignedTable: StoryObj = {
 export const ResponsiveTable: StoryObj = {
   render: () => (
     <div className="article-content" style={{ maxWidth: "600px" }}>
-      <div className="table-wrapper">
+      <div className="table-wrapper" tabIndex={0}>
         <table>
           <thead>
             <tr>
@@ -149,7 +149,7 @@ export const ResponsiveTable: StoryObj = {
         {/* biome-ignore format: prevent table formatting */}
         <pre>
           <code>
-{`<div className="table-wrapper">
+{`<div class="table-wrapper">
   // Any table
 </div>`}
           </code>

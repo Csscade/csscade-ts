@@ -80,13 +80,17 @@ export const Icon: Story = {
   args: {
     href: "#",
     iconOnly: true,
+    ariaLabel: "icône Discord",
     faIcon: "faDiscord",
   },
   render: ({ faIcon, ...args }) => (
     <>
       <StyledLink {...args}>
         {faIcon && (
-          <FontAwesomeIcon icon={allIcons[faIcon] as unknown as IconProp} />
+          <FontAwesomeIcon
+            icon={allIcons[faIcon] as unknown as IconProp}
+            aria-hidden
+          />
         )}
       </StyledLink>
       <br />

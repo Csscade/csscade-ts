@@ -28,14 +28,14 @@ export const Footer = () => {
               iconOnly={true}
               ariaLabel="Rejoindre le serveur Discord"
             >
-              <FontAwesomeIcon icon={faDiscord} />
+              <FontAwesomeIcon icon={faDiscord} aria-hidden />
             </StyledLink>
             <StyledLink
               href={linkedinUrl}
               iconOnly={true}
               ariaLabel="Voir la page LinkedIn de CSScade"
             >
-              <FontAwesomeIcon icon={faLinkedin} />
+              <FontAwesomeIcon icon={faLinkedin} aria-hidden />
             </StyledLink>
           </div>
         </div>
