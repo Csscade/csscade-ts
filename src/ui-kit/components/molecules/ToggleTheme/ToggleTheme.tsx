@@ -5,22 +5,23 @@ import { useEffect, useState } from "react";
 
 export const ToggleTheme = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [mounted, setMounted] = useState(false);
 
   function handleToggle() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark" || saved === "light") {
-      setTheme(saved);
-    }
+    const current = document.documentElement.getAttribute("data-theme");
+    setTheme(current === "dark" ? "dark" : "light");
+    setMounted(true);
   }, []);
 
   useEffect(() => {
+    if (!mounted) return;
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [theme, mounted]);
 
   return (
     <button
