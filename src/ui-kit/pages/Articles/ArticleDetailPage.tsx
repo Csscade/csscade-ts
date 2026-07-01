@@ -24,7 +24,14 @@ export const ArticleDetailPage = ({
             <p className="article-page__meta">
               Publié le {format(parseISO(article.publishedAt), "dd/MM/yy")}
               <span className="font-semibold">
-                par {author ? author.name : article.author}
+                par{" "}
+                {author ? (
+                  <StyledLink href={`/authors/${author.slug}`}>
+                    {author.name}
+                  </StyledLink>
+                ) : (
+                  article.author
+                )}
               </span>
               {article.coAuthor && (
                 <>
@@ -41,7 +48,6 @@ export const ArticleDetailPage = ({
                     href={`/articles/category/${category.toLowerCase()}`}
                     className="article-card__category"
                     bordered
-                    reversed
                   >
                     {category}
                   </StyledLink>
@@ -52,7 +58,6 @@ export const ArticleDetailPage = ({
               <p className="article-page__original">
                 <StyledLink
                   href={article.originalUrl}
-                  reversed
                   ariaLabel="Lire l'article original (lien externe, ouvre un nouvel onglet)"
                 >
                   Lire l&apos;article original

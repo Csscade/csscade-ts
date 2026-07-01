@@ -32,9 +32,6 @@ export const TalksList = ({
             authorUrl={author ? `/authors/${author.slug}` : undefined}
             categories={talk.categories}
             showAuthor={showAuthor}
-            hasVideo={!!talk.youtubeId}
-            hasTranscript={!!talk.content}
-            hasSlides={!!talk.slidesUrl}
             headingLevel={headingLevel}
           />
         );

@@ -21,7 +21,14 @@ export const TalkDetailPage = ({ talk, author }: TalkDetailPageProps) => {
             <p className="talk-page__meta">
               Publié le {format(parseISO(talk.publishedAt), "dd/MM/yy")}
               <span className="font-semibold">
-                par {author ? author.name : talk.author}
+                par{" "}
+                {author ? (
+                  <StyledLink href={`/authors/${author.slug}`}>
+                    {author.name}
+                  </StyledLink>
+                ) : (
+                  talk.author
+                )}
               </span>
             </p>
             {talk.level && (

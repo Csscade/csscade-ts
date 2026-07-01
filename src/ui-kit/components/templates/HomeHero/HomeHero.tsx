@@ -7,7 +7,7 @@ import "./HomeHero.css";
 export const HomeHero = () => {
   return (
     <section className="home-hero" aria-labelledby="csscade-title">
-      <div className="home-hero__wrapper framed-four-corners textured-background">
+      <div className="home-hero__wrapper framed-four-corners">
         <div className="home-hero__main">
           <div className="home-hero__content">
             <h1 id="csscade-title" className="home-hero__title">

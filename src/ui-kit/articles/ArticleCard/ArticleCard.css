@@ -1,5 +1,5 @@
 .article-card {
-  background: var(--background-contrast);
+  background: var(--background-primary);
   position: relative;
   display: grid;
   padding: 1.5rem;
@@ -33,9 +33,7 @@
 
     a.article-card__author {
       color: inherit;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
+      text-decoration: none;
 
       &:hover {
         color: var(--color-primary);
