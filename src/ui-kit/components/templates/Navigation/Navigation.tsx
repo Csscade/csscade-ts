@@ -16,6 +16,7 @@ export const Navigation = () => {
   };
 
   const currentPage = (prefix: string, exact = false): "page" | undefined => {
+    if (!pathname) return undefined;
     const match = exact ? pathname === prefix : pathname.startsWith(prefix);
     return match ? "page" : undefined;
   };
