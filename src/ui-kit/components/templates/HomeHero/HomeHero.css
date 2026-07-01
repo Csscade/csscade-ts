@@ -1,6 +1,6 @@
 .home-hero {
   position: relative;
-  margin: 2rem auto;
+  margin: 2rem auto 6rem;
   padding: 1rem 1rem;
 
   .home-hero__search-container {
@@ -10,11 +10,6 @@
     transform: translate(-50%, 50%);
     width: 90%;
     z-index: 1;
-
-    .search-bar__input,
-    .search-bar__button {
-      background: var(--background-primary);
-    }
   }
 
   .home-hero__wrapper {
@@ -129,7 +124,8 @@
     }
 
     .home-hero__search-container {
-      width: 66.666%;
+      width: 50%;
+      max-width: 780px;
     }
   }
 }
