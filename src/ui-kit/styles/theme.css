@@ -5,6 +5,6 @@
 @import "@/ui-kit/styles/_layout.css";
 @import "@/ui-kit/styles/accessibility/accessibility.css";
 @import "@/ui-kit/styles/components/_atoms.css";
+@import "@/ui-kit/styles/components/_icons.css";
 @import "@/ui-kit/styles/components/_molecules.css";
 @import "@/ui-kit/styles/components/_organisms.css";
-@import "@/ui-kit/styles/storybook/_storybook.css";
