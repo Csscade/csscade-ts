@@ -2,7 +2,6 @@ import { clsx } from "clsx";
 import type { Metadata } from "next";
 import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
 import "@/ui-kit/styles/theme.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
 import { Footer } from "@/ui-kit/components/templates/Footer/Footer";

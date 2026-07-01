@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/nextjs-vite";
 import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
 
 import "@/ui-kit/styles/theme.css";
+import "@/ui-kit/styles/storybook/_storybook.css";
 
 const primaryFont = Poppins({
   weight: ["300", "400", "500", "600", "700"],
