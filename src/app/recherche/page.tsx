@@ -1,5 +1,8 @@
 import { Suspense } from "react";
-import { SearchResultsPage } from "@/ui-kit/pages/Search/SearchResultsPage";
+import {
+  SearchResultsFallback,
+  SearchResultsPage,
+} from "@/ui-kit/pages/Search/SearchResultsPage";
 import { getAllArticles } from "@/usecases/articles";
 import { getAllAuthors } from "@/usecases/authors";
 import { getAllTalks } from "@/usecases/talks";
@@ -12,7 +15,7 @@ export default function Page() {
   const authors = getAllAuthors();
 
   return (
-    <Suspense>
+    <Suspense fallback={<SearchResultsFallback />}>
       <SearchResultsPage
         articles={articles}
         tips={tips}

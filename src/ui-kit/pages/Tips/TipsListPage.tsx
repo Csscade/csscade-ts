@@ -29,6 +29,7 @@ export const TipsListPage = ({
             currentPage={currentPage}
             totalPages={totalPages}
             basePath="/tips/page"
+            indexHref="/tips"
           />
         )}
       </main>

@@ -5,14 +5,19 @@ type PaginationProps = {
   currentPage: number;
   totalPages: number;
   basePath: string; // ex: "/articles/page"
+  indexHref: string; // ex: "/articles" - href used for page 1
 };
 
 export function Pagination({
   currentPage,
   totalPages,
   basePath,
+  indexHref,
 }: PaginationProps) {
   if (totalPages <= 1) return null;
+
+  const hrefForPage = (page: number) =>
+    page === 1 ? indexHref : `${basePath}/${page}`;
 
   const pages = new Set<number>();
 
@@ -35,7 +40,7 @@ export function Pagination({
           <li className="pagination__item">
             <Link
               className="pagination__item-link"
-              href={`${basePath}/${currentPage - 1}`}
+              href={hrefForPage(currentPage - 1)}
               rel="prev"
               aria-label="Page précédente"
             >
@@ -61,7 +66,7 @@ export function Pagination({
               ) : (
                 <Link
                   className="pagination__item-link"
-                  href={`${basePath}/${page}`}
+                  href={hrefForPage(page)}
                   aria-label={`Aller à la page ${page}`}
                 >
                   {page}

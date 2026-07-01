@@ -66,12 +66,39 @@ function findExternalImports(
 // ──────────────────────────────────────────────────────────
 // Layer rules (each layer may only depend on layers below it)
 //
+// config       → no internal imports at all; no external libraries
 // entities     → no internal imports except sibling entities; only zod externally
 // infrastructure → entities only; any external lib
 // usecases     → infrastructure + entities; any external lib
-// ui-kit       → entities + use cases; any external lib; no app
-// app          → ui-kit + use cases + entities; no infrastructure
+// ui-kit       → entities + use cases + config; any external lib; no app
+// app          → ui-kit + use cases + entities + config; no infrastructure
 // ──────────────────────────────────────────────────────────
+
+describe("config — must not import any other layer", () => {
+  it("must not import from entities", () => {
+    expect(findViolations("config", "@/entities")).toEqual([]);
+  });
+
+  it("must not import from infrastructure", () => {
+    expect(findViolations("config", "@/infrastructure")).toEqual([]);
+  });
+
+  it("must not import from usecases", () => {
+    expect(findViolations("config", "@/usecases")).toEqual([]);
+  });
+
+  it("must not import from ui-kit", () => {
+    expect(findViolations("config", "@/ui-kit")).toEqual([]);
+  });
+
+  it("must not import from app", () => {
+    expect(findViolations("config", "@/app")).toEqual([]);
+  });
+
+  it("must not use any external library", () => {
+    expect(findExternalImports("config", [])).toEqual([]);
+  });
+});
 
 describe("entities — must not import upper or sibling layers", () => {
   it("must not import from infrastructure", () => {

@@ -51,6 +51,8 @@ Start the Next.js dev server:
 pnpm dev
 ```
 
+Environment variables: `.env.production` (gitignored) sets `PUBLIC_SITE_URL` and, in CI only, `PAGES_BASE_PATH` (GitHub Pages sub-path). It's read by `pnpm build`/`pnpm start` only — `pnpm dev` doesn't load it.
+
 ---
 
 ## Project layout
@@ -64,6 +66,7 @@ csscade-ts/
 │  ├─ content/             # MDX source files (articles, tips, talks, authors)
 │  ├─ entities/              # Pure types and Zod schemas — no external lib imports
 │  ├─ infrastructure/      # External adapters: file-system repositories, MDX pipeline
+│  ├─ config/              # Static constants, no process.env, no external libs
 │  └─ ui-kit/              # React components, design system, page-level components
 ├─ tests/                  # Playwright accessibility tests
 ├─ biome.json              # Biome config (lint/format)
@@ -83,6 +86,7 @@ ui-kit/         ← React components and page components; no Next.js framework c
 usecases/    ← Use cases and services; the only layer allowed to import from infrastructure
 infrastructure/ ← External adapters: file-system repositories (`read*`), MDX pipeline
 entities/         ← Pure types and Zod schemas; no external lib imports
+config/         ← Static constants; no process.env, no external libs, no imports from other layers
 ```
 
 Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` layer wraps them into named use cases (`getAllArticles`, `getPaginatedArticles`, …) that are the only entry point for the rest of the app.
@@ -99,6 +103,7 @@ Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` la
 | New full-page component | `src/ui-kit/pages/` |
 | New route | `src/app/` (thin `page.tsx` only — JSX goes in `ui-kit/pages/`) |
 | New MDX content | `src/content/{articles,tips,talks,authors}/` |
+| New static constant (no runtime/env dependency) | `src/config/{topic}.ts` |
 
 ---
 
@@ -109,6 +114,7 @@ Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` la
 - Run the app in dev mode (Turbopack): `pnpm dev`
 - Type-check: `pnpm exec tsc --noEmit`
 - Build for production: `pnpm build`
+- Preview the production build: `pnpm start` (serves the static `out/` export via `serve` — `next start` doesn't support `output: "export"`)
 
 ### Storybook
 
@@ -146,6 +152,20 @@ pnpm test
 pnpm dev        # must be running
 pnpm test:ui
 ```
+
+**Performance tests (Playwright + Lighthouse):**
+
+Scores are only meaningful against a production build — running against `pnpm dev` (unminified, Turbopack HMR) gives misleadingly low results.
+
+```bash
+pnpm build
+pnpm start       # must be running
+pnpm test:lighthouse
+```
+
+Checks `performance` (80), `accessibility` (90), `best-practices` (90), and `seo` (90) thresholds on 8 representative pages.
+
+Playwright test runs (both `test:ui` and `test:lighthouse`) generate an HTML report — view it with `npx playwright show-report`.
 
 ---
 

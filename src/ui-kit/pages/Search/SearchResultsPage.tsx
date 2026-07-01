@@ -18,6 +18,13 @@ interface SearchResultsPageProps {
   authors: Author[];
 }
 
+export const SearchResultsFallback = () => (
+  <>
+    <PageHeader title="Recherche" />
+    <main id="maincontent" className="search-results main" />
+  </>
+);
+
 export const SearchResultsPage = ({
   articles,
   tips,

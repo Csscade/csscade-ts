@@ -28,6 +28,7 @@ export const ArticlesListPage = ({
           currentPage={currentPage}
           totalPages={totalPages}
           basePath="/articles/page"
+          indexHref="/articles"
         />
       </main>
     </>
