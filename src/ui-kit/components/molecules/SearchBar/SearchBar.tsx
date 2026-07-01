@@ -73,7 +73,11 @@ export const SearchBar = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <button type="submit" className="search-bar__button" disabled={query.trim() === ""}>
+          <button
+            type="submit"
+            className="search-bar__button"
+            disabled={query.trim() === ""}
+          >
             <FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden />
             <span className="sr-only">Lancer la recherche</span>
           </button>

@@ -12,17 +12,19 @@
   --lightening-yellow: #f8c920;
   --magnolia: #f7f1fc;
   --mirage: #191e25;
+  --blackPearl: #081930;
   --oxford-blue: #3d495a;
   --shakespeare: #59b7d3;
   --shark: #202428;
   --water: #daf2fb;
+  --seashell-peach: #fff6f1;
   --white: #fff;
 
   /* MAIN THEME COLORS */
-  --color-dark: var(--mirage);
+  --color-dark: var(--blackPearl);
   --color-dark-muted: var(--oxford-blue);
   --color-light: var(--white);
-  --color-light-muted: var(--catskill-white);
+  --color-light-muted: var(--seashell-peach);
   --color-blue: var(--shakespeare);
   --color-lightblue: var(--foam);
   --color-lightgreen: var(--barberry);

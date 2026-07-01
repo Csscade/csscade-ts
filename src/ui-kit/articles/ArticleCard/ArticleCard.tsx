@@ -10,9 +10,6 @@ type ArticleCardProps = {
   description?: string;
   categories?: string[];
   showAuthor?: boolean;
-  hasVideo?: boolean;
-  hasTranscript?: boolean;
-  hasSlides?: boolean;
   headingLevel?: 2 | 3;
 };
 
@@ -24,33 +21,9 @@ export function ArticleCard({
   description,
   categories,
   showAuthor = true,
-  hasVideo,
-  hasTranscript,
-  hasSlides,
   headingLevel = 2,
 }: ArticleCardProps) {
   const Heading = `h${headingLevel}` as "h2" | "h3";
-  const badges = (
-    <>
-      {hasVideo && (
-        <span className="article-card__badge" title="Vidéo disponible">
-          Vidéo
-        </span>
-      )}
-      {hasTranscript && (
-        <span className="article-card__badge" title="Transcript disponible">
-          Transcript
-        </span>
-      )}
-      {hasSlides && (
-        <span className="article-card__badge" title="Slides disponibles">
-          Slides
-        </span>
-      )}
-    </>
-  );
-
-  const hasAnyBadge = hasVideo || hasTranscript || hasSlides;
 
   return (
     <article className="article-card framed-four-corners">
@@ -61,10 +34,6 @@ export function ArticleCard({
       >
         <Heading>{title}</Heading>
       </StyledLink>
-
-      {hasAnyBadge && !categories && (
-        <div className="article-card__metadata">{badges}</div>
-      )}
 
       {showAuthor && author && (
         <div className="article-card__author-container">
@@ -98,10 +67,6 @@ export function ArticleCard({
               </li>
             ))}
           </ul>
-
-          {hasAnyBadge && (
-            <div className="article-card__metadata">{badges}</div>
-          )}
         </div>
       )}
     </article>

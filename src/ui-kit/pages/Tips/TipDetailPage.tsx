@@ -19,7 +19,14 @@ export const TipDetailPage = ({ tip, author }: TipDetailPageProps) => {
             <h1 className="tip-page__title">{tip.title}</h1>
             <p className="tip-page__meta">
               <span className="font-semibold">
-                par {author ? author.name : tip.author}
+                par{" "}
+                {author ? (
+                  <StyledLink href={`/authors/${author.slug}`}>
+                    {author.name}
+                  </StyledLink>
+                ) : (
+                  tip.author
+                )}
               </span>
             </p>
             {tip.categories && (
@@ -30,7 +37,6 @@ export const TipDetailPage = ({ tip, author }: TipDetailPageProps) => {
                     href={`/articles/category/${category.toLowerCase()}`}
                     className="article-card__category"
                     bordered
-                    reversed
                   >
                     {category}
                   </StyledLink>

@@ -1,12 +1,6 @@
 .talks-list-page {
-  padding: 3rem 0;
-  min-height: calc(100vh - 200px);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.talks-list-page .container {
-  max-width: calc(var(--container-max-width) - 200px);
-  margin: auto;
-  padding: 0 2rem;
+  background: transparent;
+  margin: 0 auto;
+  padding: 5rem 1rem 8rem;
+  max-width: var(--container-max-width);
 }

@@ -16,7 +16,7 @@
 
   /* BACKGROUND COLORS */
   --background-primary: var(--color-light-muted);
-  --background-secondary: var(--color-light);
+  --background-secondary: var(--color-light-muted);
   --background-reverse: var(--color-dark);
   --background-contrast: var(--color-light);
 }

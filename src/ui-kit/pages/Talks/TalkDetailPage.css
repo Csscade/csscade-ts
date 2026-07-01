@@ -6,7 +6,7 @@
     padding: clamp(1.5rem, 5vw, 3rem) 0;
 
     .talk-page__header-wrapper {
-      max-width: var(--article-max-width);
+      max-width: calc(var(--article-max-width) + 6rem);
       margin: auto;
       padding-inline: 1rem;
     }
@@ -68,7 +68,7 @@
   }
 
   .talk-page__container {
-    max-width: var(--article-max-width);
+    max-width: calc(var(--article-max-width) + 6rem);
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
@@ -82,7 +82,7 @@
   }
 
   .talk-page__video-inner {
-    max-width: var(--article-max-width);
+    max-width: calc(var(--article-max-width) + 6rem);
     margin: 0 auto;
     aspect-ratio: 16 / 9;
   }
@@ -103,24 +103,13 @@
 
   .talk-page__footer {
     margin: auto;
-    background-color: var(--background-reverse);
     padding: 2rem 0;
+    background-color: var(--background-primary);
+    background-image: url("../../styles/assets/background-grid.png");
 
     .author-card {
       max-width: calc(var(--article-max-width) + 6rem);
-      background-color: var(--background-reverse);
-      border-image: var(--border-image-reverse) 12 fill / 12px / 7px space;
-      color: var(--font-reverse);
-
-      .styled-link {
-        color: var(--font-reverse);
-        border: 1px solid var(--border-color-reverse);
-
-        &:hover {
-          color: var(--color-primary);
-          border-color: var(--color-primary);
-        }
-      }
+      background-color: var(--background-primary);
     }
   }
 }

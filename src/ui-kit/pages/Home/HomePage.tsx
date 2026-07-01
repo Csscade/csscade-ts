@@ -27,11 +27,7 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
           <h2 className="section_title">Les derniers articles</h2>
           <LastArticlesList articles={articles} authors={authors} />
           <footer>
-            <StyledLink
-              href={"/articles/page/1"}
-              bordered={true}
-              reversed={true}
-            >
+            <StyledLink href={"/articles/page/1"} bordered={true}>
               Tous les articles
               <FontAwesomeIcon icon={faArrowRightLong} />
             </StyledLink>
@@ -51,7 +47,7 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
           <h2 className="section_title">Les dernières conférences</h2>
           <LastTalksList talks={talks} authors={authors} />
           <footer>
-            <StyledLink href={"/talks"} bordered={true} reversed={true}>
+            <StyledLink href={"/talks"} bordered={true}>
               Toutes les conférences
               <FontAwesomeIcon icon={faArrowRightLong} />
             </StyledLink>

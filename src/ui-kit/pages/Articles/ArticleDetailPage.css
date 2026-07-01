@@ -1,8 +1,8 @@
 .article-page {
   .article-page__header {
     margin: auto;
-    background-color: var(--background-reverse);
-    color: var(--font-reverse);
+    background-color: var(--background-primary);
+    background-image: url("../../styles/assets/background-grid.png");
     padding: clamp(3rem, 5vw, 6rem) 0;
 
     .article-page__header-wrapper {
@@ -54,24 +54,13 @@
 
   .article-page__footer {
     margin: auto;
-    background-color: var(--background-reverse);
     padding: 2rem;
+    background-color: var(--background-primary);
+    background-image: url("../../styles/assets/background-grid.png");
 
     .author-card {
       max-width: calc(var(--article-max-width) + 6rem);
-      background-color: var(--background-reverse);
-      border-image: var(--border-image-reverse) 12 fill / 12px / 7px space;
-      color: var(--font-reverse);
-
-      .styled-link {
-        color: var(--font-reverse);
-        border: 1px solid var(--border-color-reverse);
-
-        &:hover {
-          color: var(--color-primary);
-          border-color: var(--color-primary);
-        }
-      }
+      background-color: var(--background-primary);
     }
   }
 

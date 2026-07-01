@@ -1,6 +1,4 @@
 .last-talks {
-  background-color: var(--background-reverse);
-  color: var(--font-reverse);
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -8,36 +6,5 @@
 
   .talks-list {
     margin: 30px auto;
-
-    .article-card {
-      background-color: var(--background-reverse);
-      color: var(--font-reverse);
-
-      .styled-link,
-      .styled-link:visited {
-        color: var(--font-reverse);
-      }
-
-      .styled-link:hover {
-        color: var(--color-primary);
-      }
-
-      .styled-link--bordered {
-        border-color: var(--border-color-reverse);
-
-        &:hover {
-          border-color: var(--color-primary);
-        }
-      }
-
-      &.framed-four-corners {
-        border-image: var(--border-image-reverse) 12 fill / 12px / 7px;
-      }
-
-      .article-card__badge {
-        color: var(--font-reverse);
-        border-color: var(--color-primary);
-      }
-    }
   }
 }

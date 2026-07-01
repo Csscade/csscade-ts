@@ -1,5 +1,6 @@
 .page-header {
   background-color: var(--background-primary);
+  background-image: url("../../../styles/assets/background-grid.png");
   padding: clamp(3rem, 10vw, 6rem) clamp(1rem, 5vw, 5rem);
   margin: 0;
 }

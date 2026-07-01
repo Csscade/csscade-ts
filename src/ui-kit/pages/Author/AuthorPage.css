@@ -1,18 +1,9 @@
-.author-page-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-block: 1rem;
-  width: min(100% - 2rem, 1200px);
-  margin-inline: auto;
-}
-
 .author-page__header {
-  background-color: var(--background-reverse);
-  padding: 2rem 0 0;
+  background-color: var(--background-primary);
+  padding: clamp(2rem, 5vw, 4rem) 0;
 
   .author-page__header-wrapper {
-    max-width: calc(var(--container-max-width) - 200px);
+    max-width: calc(var(--article-max-width) + 6rem);
     padding-inline: 1rem;
     margin: auto;
     opacity: 0;
@@ -24,26 +15,15 @@
     }
 
     .author-card {
-      max-width: calc(var(--container-max-width) - 200px);
+      max-width: calc(var(--article-max-width) + 6rem);
       padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 5vw, 5rem);
-      background-color: var(--background-reverse);
+      background-color: var(--background-primary);
       border: none;
-      color: var(--font-reverse);
       margin: auto;
 
       .author-card__name {
         font-size: var(--fs-h1);
         line-height: 1.2;
-      }
-
-      .styled-link {
-        color: var(--font-reverse);
-        border: 1px solid var(--border-color-reverse);
-
-        &:hover {
-          color: var(--color-primary);
-          border-color: var(--color-primary);
-        }
       }
 
       .author-card__footer {
@@ -53,15 +33,26 @@
   }
 }
 
-.author-page__title {
-  font-size: var(--fs-h2);
-  margin-bottom: 2rem;
+.author-page__section-container {
+  width: min(100% - 2rem, calc(var(--article-max-width) + 6rem));
+  margin-inline: auto;
+  padding-block: 3rem;
 }
 
 .author-page__articles,
+.author-page__talks {
+  background-color: var(--background-primary);
+  background-image: url("../../styles/assets/background-grid.png");
+}
+
 .author-page__tips {
-  display: flex;
-  flex-direction: column;
+  background-color: var(--background-secondary);
+}
+
+.author-page__title {
+  font-size: var(--fs-h2);
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
 .author-page__articles-list {
