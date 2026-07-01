@@ -8,9 +8,9 @@ import {
 import { getAllAuthors } from "@/usecases/authors";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     page: string;
-  };
+  }>;
 };
 
 export default async function Page({ params }: PageProps) {

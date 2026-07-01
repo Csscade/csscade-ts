@@ -5,9 +5,9 @@ import { getAllAuthors } from "@/usecases/authors";
 import { getPaginatedTips, getTotalTipPages } from "@/usecases/tips";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     page: string;
-  };
+  }>;
 };
 
 export default async function Page({ params }: PageProps) {
