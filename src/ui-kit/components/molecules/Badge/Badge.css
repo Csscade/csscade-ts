@@ -15,11 +15,13 @@
   font-weight: 300;
   font-size: 0.9rem;
   border: 1px solid var(--badge-color);
-  padding: 0.25rem 0.5rem;
+
+  > * {
+    padding: 0.25rem 0.5rem;
+  }
 
   a {
     color: var(--badge-color);
-    padding: 0;
     font-size: 0.9rem;
     outline-offset: 0.25rem;
     text-decoration: none;
@@ -73,7 +75,6 @@
 
     &:hover {
       color: var(--badge-font-color, var(--font-reverse));
-      text-decoration: underline;
     }
   }
 
@@ -81,6 +82,15 @@
     background-color: var(--badge-color);
     color: var(--badge-font-color, var(--font-reverse));
     border-color: var(--badge-color);
+
+    &:hover {
+      background-color: var(--background-primary);
+      border: 1px solid var(--badge-color);
+
+      a {
+        color: var(--font-primary);
+      }
+    }
   }
 
   .badge__icon {
