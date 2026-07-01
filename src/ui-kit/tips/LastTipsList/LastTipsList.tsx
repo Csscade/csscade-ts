@@ -31,6 +31,7 @@ export const LastTipsList = ({
               author={author ? author.name : tip.author}
               authorUrl={author ? `/authors/${author.slug}` : undefined}
               categories={tip.categories}
+              headingLevel={3}
             />
           </li>
         );
