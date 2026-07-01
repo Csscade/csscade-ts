@@ -1,6 +1,3 @@
-.home-search {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-m) var(--spacing-s);
-  background: var(--background-primary);
+.main {
+  margin-top: 3rem;
 }

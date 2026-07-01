@@ -3,6 +3,20 @@
   margin: 2rem auto;
   padding: 1rem 1rem;
 
+  .home-hero__search-container {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 90%;
+    z-index: 1;
+
+    .search-bar__input,
+    .search-bar__button {
+      background: var(--background-primary);
+    }
+  }
+
   .home-hero__wrapper {
     display: flex;
     flex-direction: column;
@@ -112,6 +126,10 @@
         padding-top: 4rem;
         justify-content: flex-end;
       }
+    }
+
+    .home-hero__search-container {
+      width: 66.666%;
     }
   }
 }

@@ -5,7 +5,6 @@ import type { Author } from "@/entities/authors/authors";
 import type { Talk } from "@/entities/talks/talks";
 import type { Tip } from "@/entities/tips/tips";
 import { LastArticlesList } from "@/ui-kit/articles/LastArticlesList/LastArticlesList";
-import { SearchBar } from "@/ui-kit/components/molecules/SearchBar/SearchBar";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import { HomeHero } from "@/ui-kit/components/templates/HomeHero/HomeHero";
 import { LastTalksList } from "@/ui-kit/talks/LastTalksList/LastTalksList";
@@ -23,9 +22,6 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
   return (
     <>
       <HomeHero />
-      <div className="home-search">
-        <SearchBar />
-      </div>
       <main id="maincontent" className="main">
         <section className="last-articles">
           <h2 className="section_title">Les derniers articles</h2>
