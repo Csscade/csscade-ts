@@ -58,7 +58,8 @@ export async function generateMetadata({
   return {
     title: currentPage === 1 ? "Articles" : `Articles – page ${currentPage}`,
     alternates: {
-      canonical: `/articles/page/${currentPage}`,
+      canonical:
+        currentPage === 1 ? "/articles" : `/articles/page/${currentPage}`,
     },
   };
 }

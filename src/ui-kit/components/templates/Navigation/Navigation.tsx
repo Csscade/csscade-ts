@@ -56,7 +56,7 @@ export const Navigation = () => {
             </li>
             <li>
               <StyledLink
-                href="/articles/page/1"
+                href="/articles"
                 aria-label="Voir tous les articles"
                 aria-current={currentPage("/articles")}
                 onClick={() => setIsMenuOpen(false)}
@@ -66,7 +66,7 @@ export const Navigation = () => {
             </li>
             <li>
               <StyledLink
-                href="/tips/page/1"
+                href="/tips"
                 aria-label="Voir toutes les astuces"
                 aria-current={currentPage("/tips")}
                 onClick={() => setIsMenuOpen(false)}

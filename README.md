@@ -17,7 +17,10 @@
 **Table of Contents**
 
 - [Getting Started](#getting-started)
+  - [Production preview](#production-preview)
+  - [Environment variables](#environment-variables)
 - [Design system](#design-system)
+- [Tests](#tests)
 - [Agent Skills](#agent-skills)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -36,6 +39,7 @@
 | Pre-commit         | 	Lefthook                         |
 | Unit / component tests | Vitest                       |
 | Accessibility tests | Playwright + Axe-core            |
+| Performance tests  | 	Playwright + Lighthouse          |
 
 ![next badge](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs)
 ![pnpm badge](https://img.shields.io/badge/Typescript-000000?style=flat&logo=typescript)
@@ -57,6 +61,26 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Production preview
+
+This site uses `output: "export"`, so `pnpm start` serves the static `out/` directory instead of running `next start` (which doesn't support static exports):
+
+```bash
+pnpm build
+pnpm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the production build.
+
+### Environment variables
+
+`.env.production` (gitignored) is only read by `pnpm build`/`pnpm start` — Next.js does **not** load it for `pnpm dev`:
+
+| Variable | Purpose |
+|---|---|
+| `PUBLIC_SITE_URL` | Canonical site URL used for metadata (e.g. `og:url`) |
+| `PAGES_BASE_PATH` | GitHub Pages sub-path — only set in CI, leave unset locally |
 
 ## Design system
 
@@ -81,6 +105,20 @@ Accessibility tests (Playwright + Axe-core) — requires `pnpm dev` to be runnin
 
 ```bash
 pnpm test:ui
+```
+
+Lighthouse performance/accessibility/SEO audits — requires a **production build**, scores measured against `pnpm dev` are misleadingly low:
+
+```bash
+pnpm build
+pnpm start       # must be running
+pnpm test:lighthouse
+```
+
+Playwright tests generate an HTML report at `playwright-report/index.html`, viewable with:
+
+```bash
+npx playwright show-report
 ```
 
 ## Agent Skills

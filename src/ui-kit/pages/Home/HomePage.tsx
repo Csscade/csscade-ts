@@ -27,7 +27,7 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
           <h2 className="section_title">Les derniers articles</h2>
           <LastArticlesList articles={articles} authors={authors} />
           <footer>
-            <StyledLink href={"/articles/page/1"} bordered={true}>
+            <StyledLink href={"/articles"} bordered={true}>
               Tous les articles
               <FontAwesomeIcon icon={faArrowRightLong} />
             </StyledLink>
@@ -37,7 +37,7 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
           <h2 className="section_title">Les dernières astuces</h2>
           <LastTipsList tips={tips} authors={authors} />
           <footer>
-            <StyledLink href={"/tips/page/1"} bordered={true}>
+            <StyledLink href={"/tips"} bordered={true}>
               Toutes les astuces
               <FontAwesomeIcon icon={faArrowRightLong} />
             </StyledLink>

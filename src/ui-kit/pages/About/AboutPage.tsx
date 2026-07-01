@@ -5,13 +5,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { DISCORD_URL, LINKEDIN_URL } from "@/config/social-links";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import { PageHeader } from "@/ui-kit/components/templates/PageHeader/PageHeader";
 import "./AboutPage.css";
 
-const discordUrl = process.env.DISCORD_URL ?? "https://discord.gg/nEEzhGVphQ";
-const linkedinUrl =
-  process.env.LINKEDIN_URL ?? "https://www.linkedin.com/company/csscade/";
 const githubUrl = "https://github.com/Csscade/csscade-ts";
 
 export const AboutPage = () => {
@@ -49,7 +47,7 @@ export const AboutPage = () => {
                   Des analyses détaillées sur les nouvelles spécifications CSS,
                   l'accessibilité et les bonnes pratiques.
                 </p>
-                <StyledLink href="/articles/page/1" bordered={true}>
+                <StyledLink href="/articles" bordered={true}>
                   Lire les articles
                 </StyledLink>
               </li>
@@ -59,7 +57,7 @@ export const AboutPage = () => {
                   Des solutions rapides et efficaces pour résoudre vos problèmes
                   quotidiens d'intégration.
                 </p>
-                <StyledLink href="/tips/page/1" bordered={true}>
+                <StyledLink href="/tips" bordered={true}>
                   Voir les astuces
                 </StyledLink>
               </li>
@@ -112,10 +110,10 @@ export const AboutPage = () => {
               échanger, poser vos questions et grandir ensemble.
             </p>
             <div className="about-page__cta">
-              <StyledLink href={discordUrl} bordered={true}>
+              <StyledLink href={DISCORD_URL} bordered={true}>
                 <FontAwesomeIcon icon={faDiscord} /> Rejoindre le Discord
               </StyledLink>
-              <StyledLink href={linkedinUrl} bordered={true}>
+              <StyledLink href={LINKEDIN_URL} bordered={true}>
                 <FontAwesomeIcon icon={faLinkedin} /> Suivre sur LinkedIn
               </StyledLink>
               <StyledLink href="mailto:hello@csscade.fr" bordered={true}>

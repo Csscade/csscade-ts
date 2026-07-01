@@ -12,6 +12,7 @@ ui-kit/         ← React components and page components; no Next.js framework c
 usecases/       ← Use cases and services; the only layer allowed to import from infrastructure
 infrastructure/ ← External adapters: file-system repositories, MDX pipeline (remark/rehype plugins)
 entities/         ← Pure types and schemas (Zod); no external lib imports, no infrastructure imports
+config/         ← Static, environment-independent constants; no imports from any other layer, no external libs
 ```
 
 ### Layer rules
@@ -19,8 +20,9 @@ entities/         ← Pure types and schemas (Zod); no external lib imports, no 
 - **`entities/`** — no imports from any other internal layer or from external libraries. Only Zod schemas and derived TypeScript types.
 - **`infrastructure/`** — implements adapters for the outside world (file system, remark, rehype, shiki). Imports from `entities/` for types only. Never imported by `entities/`, `ui-kit/`, `app/`, or `usecases/` other than through `usecases/`.
 - **`usecases/`** — defines use cases (e.g. `getAllArticles`, `getPaginatedArticles`). Calls `read*` functions from `infrastructure/` and exposes clean, named functions to the rest of the app. Pagination and sorting logic live here.
-- **`ui-kit/`** — React components. Imports from `entities/` (types) and `usecases/` (services). No direct infrastructure imports.
+- **`ui-kit/`** — React components. Imports from `entities/` (types), `usecases/` (services), and `config/` (constants). No direct infrastructure imports.
 - **`app/`** — Next.js App Router pages. Thin wrappers: imports from `usecases/` and `ui-kit/`, never from `infrastructure/` directly.
+- **`config/`** — plain constants with no runtime dependency on request/environment context (e.g. hardcoded social links). Not for values that legitimately vary per environment — those stay as `process.env` reads (e.g. `PUBLIC_SITE_URL` in `app/layout.tsx`). Importable by any layer; imports nothing itself.
 
 ### Ports & adapters
 
@@ -38,6 +40,7 @@ Infrastructure exposes low-level `read*` functions (raw I/O). Application wraps 
 
 | Path | Role |
 |---|---|
+| `src/config/` | Static constants (e.g. `social-links.ts`) — no `process.env`, no external libs |
 | `src/entities/{articles,authors,talks,tips}/` | Zod schemas and TypeScript types |
 | `src/usecases/` | Use cases: data access, pagination, MDX config |
 | `src/infrastructure/{articles,authors,talks,tips}/` | Repository functions reading from `src/content/` |
@@ -88,3 +91,13 @@ Each file covers the same 8 pages: homepage, `/a-propos`, `/mentions-legales`, `
 - Content outside `<main>` must be in a semantic landmark. Use `<section aria-labelledby="...">` (not `<div role="region">`) for page-level title banners — Biome enforces native elements over ARIA roles.
 - Do not add a second top-level `<header>` (banner landmark); the navigation already owns that role.
 - Inline `backgroundColor` styles must use CSS variables (`var(--background-secondary)`) rather than hardcoded rgba values so they adapt to dark mode.
+
+### Lighthouse tests
+
+`tests/lighthouse.spec.ts` runs `playwright-lighthouse` audits against the same 8 pages as the accessibility tests, checking `performance` (80), `accessibility` (90), `best-practices` (90), and `seo` (90) score thresholds. Run with `pnpm test:lighthouse`.
+
+Each test launches its own Chromium instance with `--remote-debugging-port` (required by Lighthouse's CDP connection) rather than reusing the shared Playwright fixture browser.
+
+Performance scores are only meaningful against a production build — run `pnpm build && pnpm start` before `pnpm test:lighthouse`; scores measured against `pnpm dev` (unminified, Turbopack HMR) will be misleadingly low.
+
+This site uses `output: "export"`, so `"start"` serves the static `out/` directory (via `serve`) instead of running `next start`, which does not support static exports. `PAGES_BASE_PATH` (GitHub Pages sub-path) is only set in CI via `actions/configure-pages`, so local builds are root-relative and `pnpm start` serves correctly at `http://localhost:3000`.

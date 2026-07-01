@@ -1,11 +1,8 @@
 import { faDiscord, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Footer.css";
+import { DISCORD_URL, LINKEDIN_URL } from "@/config/social-links";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
-
-const discordUrl = process.env.DISCORD_URL ?? "https://discord.gg/nEEzhGVphQ";
-const linkedinUrl =
-  process.env.LINKEDIN_URL ?? "https://www.linkedin.com/company/csscade/";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,14 +21,14 @@ export const Footer = () => {
           <h2 className={"footer__title"}>Réseaux Sociaux</h2>
           <div className={"footer__links"}>
             <StyledLink
-              href={discordUrl}
+              href={DISCORD_URL}
               iconOnly={true}
               ariaLabel="Rejoindre le serveur Discord"
             >
               <FontAwesomeIcon icon={faDiscord} aria-hidden />
             </StyledLink>
             <StyledLink
-              href={linkedinUrl}
+              href={LINKEDIN_URL}
               iconOnly={true}
               ariaLabel="Voir la page LinkedIn de CSScade"
             >
