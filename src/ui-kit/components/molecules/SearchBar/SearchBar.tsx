@@ -15,6 +15,7 @@ const PLACEHOLDERS = [
 
 export const SearchBar = () => {
   const [placeholder, setPlaceholder] = useState("");
+  const [query, setQuery] = useState("");
   const state = useRef({ phraseIndex: 0, charIndex: 0, isDeleting: false });
 
   useEffect(() => {
@@ -69,8 +70,10 @@ export const SearchBar = () => {
             placeholder={placeholder}
             autoComplete="off"
             aria-describedby="search-placeholder-hint"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <button type="submit" className="search-bar__button">
+          <button type="submit" className="search-bar__button" disabled={query.trim() === ""}>
             <FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden />
             <span className="sr-only">Lancer la recherche</span>
           </button>
