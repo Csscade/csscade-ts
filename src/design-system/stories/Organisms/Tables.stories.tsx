@@ -105,7 +105,7 @@ export const AlignedTable: StoryObj = {
 export const ResponsiveTable: StoryObj = {
   render: () => (
     <div className="article-content" style={{ maxWidth: "600px" }}>
-      <div className="table-wrapper" tabIndex={0}>
+      <section className="table-wrapper" aria-label="Responsive table">
         <table>
           <thead>
             <tr>
@@ -142,7 +142,7 @@ export const ResponsiveTable: StoryObj = {
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
       <br />
       <p>
         Written in Markdown with a wrapper as:
