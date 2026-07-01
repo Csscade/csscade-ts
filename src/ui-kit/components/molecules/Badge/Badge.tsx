@@ -11,6 +11,7 @@ export type BadgeProps = {
   children: ReactNode;
   color?: string;
   iconPosition?: BadgeIconPosition;
+  rounded?: boolean;
   className?: string;
 };
 
@@ -18,11 +19,12 @@ export const Badge = ({
   children,
   color,
   iconPosition = "right",
+  rounded = false,
   className,
 }: BadgeProps) => {
   return (
     <div
-      className={clsx("badge", `badge--icon-${iconPosition}`, className)}
+      className={clsx("badge", `badge--icon-${iconPosition}`, { "badge--rounded": rounded }, className)}
       style={color ? ({ "--badge-color": color } as React.CSSProperties) : {}}
     >
       <span className="badge__content">{children}</span>

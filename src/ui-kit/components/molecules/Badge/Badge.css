@@ -10,29 +10,33 @@
   gap: 0.25rem;
 }
 
-.badge a {
-  color: var(--badge-color);
-  padding: 0;
-  font-size: 0.9rem;
-
-  &:visited {
-    color: var(--badge-color);
-  }
-
-  &:hover {
-    color: var(--font-color);
-  }
-}
-
 .badge__content {
   background-color: var(--background-primary);
   font-weight: 300;
   font-size: 0.9rem;
   border: 1px solid var(--badge-color);
+  padding: 0.25rem 0.5rem;
 
-  .styled-link {
-    padding: 0.25rem 0.5rem;
+  a {
+    color: var(--badge-color);
+    padding: 0;
+    font-size: 0.9rem;
     outline-offset: 0.25rem;
+    text-decoration: none;
+
+    &:visited {
+      color: var(--badge-color);
+    }
+  }
+
+  &:hover {
+    background-color: var(--badge-color);
+    color: var(--font-reverse);
+
+    a {
+      color: var(--font-reverse);
+      text-decoration: none;
+    }
   }
 }
 
@@ -49,6 +53,16 @@
 }
 
 /* Theme overrides */
+[data-theme="dark"] {
+  .badge__icon svg path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 60;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+}
+
 [data-theme="light"] {
   .badge a {
     color: var(--badge-font-color, var(--font-reverse));
@@ -100,4 +114,8 @@
 
 .badge--icon-left .badge__icon {
   transform: rotate(180deg);
+}
+
+.badge--rounded .badge__content {
+  border-radius: 999px;
 }
