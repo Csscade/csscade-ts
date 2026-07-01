@@ -15,6 +15,7 @@ const meta: Meta<typeof Badge> = {
       options: ["top", "bottom", "left", "right"],
       control: { type: "radio" },
     },
+    rounded: { control: "boolean" },
   },
 };
 
@@ -52,6 +53,13 @@ export const IconBottom: Story = {
   args: {
     children: "Icon Bottom",
     iconPosition: "bottom",
+  },
+};
+
+export const Rounded: Story = {
+  args: {
+    children: "Rounded Badge",
+    rounded: true,
   },
 };
 
