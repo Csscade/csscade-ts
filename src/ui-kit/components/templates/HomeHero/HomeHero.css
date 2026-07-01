@@ -5,10 +5,10 @@
 
   .home-hero__search-container {
     position: absolute;
-    bottom: 1rem;
+    bottom: -3rem;
     left: 50%;
     transform: translate(-50%, 50%);
-    width: 90%;
+    width: 80%;
     z-index: 1;
   }
 
@@ -104,9 +104,19 @@
 }
 
 @media (min-width: 576px) {
-  .home-hero .home-hero__wrapper .home-hero__main .home-hero__content {
-    display: flex;
-    flex-direction: row;
+  .home-hero {
+    .home-hero__search-container {
+      bottom: 1rem;
+    }
+
+    .home-hero__wrapper {
+      .home-hero__main {
+        .home-hero__content {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+    }
   }
 }
 
