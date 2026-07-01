@@ -1,8 +1,10 @@
-import { chromium, test } from "@playwright/test";
+import { existsSync } from "node:fs";
+import { test as base, chromium } from "@playwright/test";
 import { playAudit } from "playwright-lighthouse";
 
 // Requires a production build: run `pnpm build && pnpm start` before this suite.
 const baseUrl = "http://localhost:3000";
+const reportDir = "lighthouse-report";
 
 const thresholds = {
   performance: 80,
@@ -26,14 +28,20 @@ const pages = [
   { name: "tips list page", slug: "tips", path: "/tips" },
 ];
 
-test.describe("Lighthouse", () => {
-  for (const { name, slug, path } of pages) {
-    // biome-ignore lint/correctness/noEmptyPattern: Playwright requires the fixtures object destructure here
-    test(`${name} should meet Lighthouse score thresholds`, async ({}, testInfo) => {
-      const port = 9222 + testInfo.parallelIndex;
-      const browser = await chromium.launch({
-        args: [`--remote-debugging-port=${port}`],
-      });
+type LighthouseFixtures = {
+  runLighthouseAudit: (page: { path: string; slug: string }) => Promise<void>;
+};
+
+const test = base.extend<LighthouseFixtures>({
+  // biome-ignore lint/correctness/noEmptyPattern: Playwright requires the fixtures object destructure here
+  runLighthouseAudit: async ({}, use, testInfo) => {
+    const port = 9222 + testInfo.parallelIndex;
+    const browser = await chromium.launch({
+      args: [`--remote-debugging-port=${port}`],
+    });
+
+    await use(async ({ path, slug }) => {
+      const reportPath = `${reportDir}/${slug}.html`;
 
       try {
         const page = await browser.newPage();
@@ -45,13 +53,30 @@ test.describe("Lighthouse", () => {
           thresholds,
           reports: {
             formats: { html: true, json: true },
-            directory: "lighthouse-report",
+            directory: reportDir,
             name: slug,
           },
         });
       } finally {
-        await browser.close();
+        if (existsSync(reportPath)) {
+          await testInfo.attach(`${slug} lighthouse report`, {
+            path: reportPath,
+            contentType: "text/html",
+          });
+        }
       }
+    });
+
+    await browser.close();
+  },
+});
+
+test.describe("Lighthouse", () => {
+  for (const { name, slug, path } of pages) {
+    test(`${name} should meet Lighthouse score thresholds`, async ({
+      runLighthouseAudit,
+    }) => {
+      await runLighthouseAudit({ path, slug });
     });
   }
 });

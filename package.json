@@ -17,7 +17,8 @@
     "test": "vitest run --project unit",
     "test:unit": "vitest run --project unit src/__tests__/architecture.spec.ts",
     "test:ui": "playwright test tests/a11y-*.spec.ts",
-    "test:lighthouse": "playwright test tests/lighthouse.spec.ts"
+    "test:lighthouse": "playwright test tests/lighthouse.spec.ts",
+    "test:report": "playwright show-report"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.0",
