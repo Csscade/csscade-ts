@@ -1,5 +1,6 @@
 import { Wave } from "@/ui-kit/components/atoms/Images/Wave";
 import { Badge } from "@/ui-kit/components/molecules/Badge/Badge";
+import { SearchBar } from "@/ui-kit/components/molecules/SearchBar/SearchBar";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./HomeHero.css";
 
@@ -22,7 +23,10 @@ export const HomeHero = () => {
         </div>
         <div className="home-hero__aside">
           <Wave className="home-hero__image" />
-          <Badge className="home-hero__badge home-hero__badge--html">
+          <Badge
+            className="home-hero__badge home-hero__badge--html"
+            rounded={true}
+          >
             <StyledLink
               href="/articles/category/html"
               ariaLabel="Voir tous les articles de la catégorie HTML"
@@ -33,6 +37,7 @@ export const HomeHero = () => {
           <Badge
             className="home-hero__badge home-hero__badge--css"
             iconPosition="left"
+            rounded={true}
           >
             <StyledLink
               href="/articles/category/css"
@@ -41,7 +46,10 @@ export const HomeHero = () => {
               CSS
             </StyledLink>
           </Badge>
-          <Badge className="home-hero__badge home-hero__badge--a11y">
+          <Badge
+            className="home-hero__badge home-hero__badge--a11y"
+            rounded={true}
+          >
             <StyledLink
               href="/articles/category/a11y"
               ariaLabel="Voir tous les articles de la catégorie accessibilité"
@@ -50,6 +58,9 @@ export const HomeHero = () => {
             </StyledLink>
           </Badge>
         </div>
+      </div>
+      <div className="home-hero__search-container">
+        <SearchBar />
       </div>
     </section>
   );
