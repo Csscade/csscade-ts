@@ -51,7 +51,7 @@ export const HomeHero = () => {
             rounded={true}
           >
             <StyledLink
-              href="/articles/category/a11y"
+              href="/articles/category/accessibilité"
               ariaLabel="Voir tous les articles de la catégorie accessibilité"
             >
               accessibilité
