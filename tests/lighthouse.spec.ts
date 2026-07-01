@@ -59,7 +59,7 @@ const test = base.extend<LighthouseFixtures>({
         });
       } finally {
         if (existsSync(reportPath)) {
-          await testInfo.attach(`${slug} lighthouse report`, {
+          await testInfo.attach(`lighthouse report for ${slug} page`, {
             path: reportPath,
             contentType: "text/html",
           });

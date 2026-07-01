@@ -27,6 +27,20 @@ const monospaceFont = Fira_Code({
 const basePath = process.env.PAGES_BASE_PATH ?? "";
 const siteUrl = process.env.PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+const themeInitScript = `
+(function () {
+  try {
+    var theme = localStorage.getItem("theme");
+    if (theme !== "light" && theme !== "dark") {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (e) {}
+})();
+`;
+
 export const metadata: Metadata = {
   title: "Csscade",
   description: "Csscade website",
@@ -57,6 +71,12 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
+      <head>
+        {/* Applied before hydration to avoid a theme flash and to prevent
+        the global link color transition from firing on every anchor on mount. */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static script constant, no user input involved */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <Navigation />
         {children}
