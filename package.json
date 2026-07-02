@@ -6,6 +6,12 @@
   "author": "Manon Carbonnel",
   "license": "MIT",
   "type": "module",
+  "browserslist": [
+    "defaults",
+    "not op_mini all",
+    "not and_uc > 0",
+    "not kaios > 0"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
