@@ -1,5 +1,6 @@
 import { existsSync } from "node:fs";
 import { test as base, chromium } from "@playwright/test";
+import desktopConfig from "lighthouse/core/config/desktop-config.js";
 import { playAudit } from "playwright-lighthouse";
 
 // Requires a production build: run `pnpm build && pnpm start` before this suite.
@@ -7,7 +8,7 @@ const baseUrl = "http://localhost:3000";
 const reportDir = "lighthouse-report";
 
 const thresholds = {
-  performance: 80,
+  performance: 90,
   accessibility: 90,
   "best-practices": 90,
   seo: 90,
@@ -28,8 +29,22 @@ const pages = [
   { name: "tips list page", slug: "tips", path: "/tips" },
 ];
 
+type DeviceType = "mobile" | "desktop";
+
+const deviceConfigurations: {
+  label: DeviceType;
+  config: typeof desktopConfig | undefined;
+}[] = [
+  { label: "mobile", config: undefined },
+  { label: "desktop", config: desktopConfig },
+];
+
 type LighthouseFixtures = {
-  runLighthouseAudit: (page: { path: string; slug: string }) => Promise<void>;
+  runLighthouseAudit: (page: {
+    path: string;
+    slug: string;
+    config?: typeof desktopConfig;
+  }) => Promise<void>;
 };
 
 const test = base.extend<LighthouseFixtures>({
@@ -40,7 +55,7 @@ const test = base.extend<LighthouseFixtures>({
       args: [`--remote-debugging-port=${port}`],
     });
 
-    await use(async ({ path, slug }) => {
+    await use(async ({ path, slug, config }) => {
       const reportPath = `${reportDir}/${slug}.html`;
 
       try {
@@ -51,6 +66,7 @@ const test = base.extend<LighthouseFixtures>({
           page,
           port,
           thresholds,
+          config,
           reports: {
             formats: { html: true, json: true },
             directory: reportDir,
@@ -72,11 +88,19 @@ const test = base.extend<LighthouseFixtures>({
 });
 
 test.describe("Lighthouse", () => {
-  for (const { name, slug, path } of pages) {
-    test(`${name} should meet Lighthouse score thresholds`, async ({
-      runLighthouseAudit,
-    }) => {
-      await runLighthouseAudit({ path, slug });
+  for (const { label, config } of deviceConfigurations) {
+    test.describe(label, () => {
+      for (const { name, slug, path } of pages) {
+        test(`${name} should meet Lighthouse score thresholds (${label})`, async ({
+          runLighthouseAudit,
+        }) => {
+          await runLighthouseAudit({
+            path,
+            slug: `${slug}-${label}`,
+            config,
+          });
+        });
+      }
     });
   }
 });
