@@ -19,23 +19,24 @@ export const TipsList = ({
   const getAuthor = (tip: Tip) => authors.find((a) => a.slug === tip.author);
 
   return (
-    <div className="tips__list">
+    <ul className="tips__list">
       {tips.map((tip) => {
         const author = getAuthor(tip);
         return (
-          <ArticleCard
-            key={tip.slug}
-            title={tip.title}
-            publishedAt=""
-            url={`/tips/${tip.slug}`}
-            author={author ? author.name : tip.author}
-            authorUrl={author ? `/authors/${author.slug}` : undefined}
-            categories={tip.categories}
-            showAuthor={showAuthor}
-            headingLevel={headingLevel}
-          />
+          <li key={tip.slug}>
+            <ArticleCard
+              title={tip.title}
+              publishedAt=""
+              url={`/tips/${tip.slug}`}
+              author={author ? author.name : tip.author}
+              authorUrl={author ? `/authors/${author.slug}` : undefined}
+              categories={tip.categories}
+              showAuthor={showAuthor}
+              headingLevel={headingLevel}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

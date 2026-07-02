@@ -6,7 +6,7 @@ export const ArticleSchema = z.object({
   slug: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
   author: AuthorSchema.shape.slug,
   coAuthor: z.string().optional(),
-  publishedAt: z.string(),
+  publishedAt: z.iso.date(),
   categories: z.array(z.string()),
   originalUrl: z.url().optional(),
   content: z.string(),

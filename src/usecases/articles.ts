@@ -21,9 +21,10 @@ export function getPaginatedArticles(page: number) {
     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
   );
   const totalPages = Math.ceil(sorted.length / ARTICLES_PER_PAGE);
-  const start = (page - 1) * ARTICLES_PER_PAGE;
+  const currentPage = Math.min(Math.max(page, 1), Math.max(totalPages, 1));
+  const start = (currentPage - 1) * ARTICLES_PER_PAGE;
   const end = start + ARTICLES_PER_PAGE;
-  return { articles: sorted.slice(start, end), totalPages, currentPage: page };
+  return { articles: sorted.slice(start, end), totalPages, currentPage };
 }
 
 export function getTotalArticlePages() {

@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import "./CodeEditor.css";
-import { faCheck, faCopy } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CopyButton } from "@/ui-kit/components/atoms/CopyButton/CopyButton";
 import { type EditorTheme, useEditorTheme } from "./useEditorTheme";
 import { useHighlighter } from "./useHighlighter";
 
@@ -27,7 +26,6 @@ export const CodeEditor = ({
   label,
 }: CodeEditorProps) => {
   const [internalValue, setInternalValue] = useState(defaultValue);
-  const [isCopied, setIsCopied] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const code = value !== undefined ? value : internalValue;
@@ -42,32 +40,13 @@ export const CodeEditor = ({
     onChange?.(newValue);
   };
 
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy code: ", err);
-    }
-  };
-
   return (
     <div
       className={`code-editor-container ${containerClassName}`}
       data-shiki-theme={currentTheme}
       style={{ height, minHeight: "60px" }}
     >
-      <button
-        type="button"
-        className="button button--icon copy"
-        onClick={copyToClipboard}
-      >
-        <FontAwesomeIcon icon={isCopied ? faCheck : faCopy} aria-hidden />
-        <span className="sr-only">
-          {isCopied ? "icône validation" : "icône copier"}
-        </span>
-      </button>
+      <CopyButton code={code} className="button button--icon" />
       <div className="shiki-editor">
         <textarea
           ref={textAreaRef}

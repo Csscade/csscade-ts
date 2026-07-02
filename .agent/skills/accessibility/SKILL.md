@@ -11,12 +11,7 @@ Goal: produce changes that pass automated axe checks and RGAA conformance. When 
 
 ## Automated accessibility tests
 
-Playwright + axe-core tests live in `tests/` and run with `pnpm test:ui`. They cover 8 pages in both light and dark themes:
-
-| File | Theme |
-|---|---|
-| `tests/a11y-light.spec.ts` | Light (`data-theme="light"`) |
-| `tests/a11y-dark.spec.ts` | Dark (`data-theme="dark"`) |
+Playwright + axe-core tests live in `tests/a11y.spec.ts` and run with `pnpm test:ui`. It covers 8 pages in both light (`data-theme="light"`) and dark (`data-theme="dark"`) themes.
 
 **Standards enforced** via `.withTags()`:
 
@@ -354,7 +349,7 @@ Flag these in this order:
 For any UI change in `src/ui-kit`:
 
 1. **Keyboard**: `Tab` through the change. Every interactive element receives focus, in the visual order, with a visible focus indicator. `Enter` / `Space` activates. `Escape` closes menus/dialogs.
-2. **Automated**: run `pnpm test:ui` (runs both `a11y-light.spec.ts` and `a11y-dark.spec.ts`). Resolve all violations before merging. These enforce WCAG 2.0 AAA, WCAG 2.2 AA, and RGAA 4.
+2. **Automated**: run `pnpm test:ui` (runs `a11y.spec.ts` against both light and dark themes). Resolve all violations before merging. These enforce WCAG 2.0 AAA, WCAG 2.2 AA, and RGAA 4.
 3. **Zoom**: verify the change still works at 200% browser zoom — no clipped text, no horizontal scroll on body text.
 4. **Reduced motion**: toggle `prefers-reduced-motion` in DevTools (Rendering panel) and confirm large animations stop.
 

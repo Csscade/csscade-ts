@@ -125,28 +125,24 @@ We use Storybook to develop and document UI components.
 
 ### Linting and formatting
 
-We use [Biome](https://biomejs.dev/) for linting and formatting. A pre-commit hook (via Lefthook) runs it automatically on staged files.
+We use [Biome](https://biomejs.dev/) for linting and formatting. A pre-push hook (via Lefthook) runs `pnpm lint` and `pnpm test` on the whole repo before every push.
 
 - Check all files: `pnpm lint`
 - Auto-format: `pnpm format`
 
-Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.log`, imports ordered alphabetically by group.
+Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.log` (only `console.warn`/`console.error`, via the `noConsole` rule), imports ordered alphabetically by group.
 
 ### Tests
 
 **Unit tests (architecture layer rules):**
 
 ```bash
-pnpm test:unit
-```
-
-**Component tests (Vitest + Storybook, browser mode):**
-
-```bash
 pnpm test
 ```
 
-**Accessibility tests (Playwright + Axe-core):**
+**Component tests (Vitest + Storybook, browser mode) and accessibility tests (Playwright + Axe-core):**
+
+Both run through `test:ui`. The accessibility part needs the dev server running; the Storybook part spins up its own headless browser and doesn't.
 
 ```bash
 pnpm dev        # must be running
@@ -166,6 +162,8 @@ pnpm test:lighthouse
 Checks `performance` (80), `accessibility` (90), `best-practices` (90), and `seo` (90) thresholds on 8 representative pages.
 
 Playwright test runs (both `test:ui` and `test:lighthouse`) generate an HTML report — view it with `npx playwright show-report`.
+
+**In CI:** `pnpm lint` and `pnpm test` (architecture rules) run on every push to `main` via `deploy.yml`. `test:ui` and `test:lighthouse` are heavier and currently run on demand only, via the `QA on demand` workflow (`workflow_dispatch`, triggered manually from the Actions tab).
 
 ---
 

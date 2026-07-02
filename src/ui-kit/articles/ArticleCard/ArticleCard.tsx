@@ -1,3 +1,4 @@
+import { format, parseISO } from "date-fns";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./ArticleCard.css";
 
@@ -15,6 +16,7 @@ type ArticleCardProps = {
 
 export function ArticleCard({
   title,
+  publishedAt,
   url,
   author,
   authorUrl,
@@ -44,6 +46,14 @@ export function ArticleCard({
           ) : (
             <small className="article-card__author">Par {author}</small>
           )}
+        </div>
+      )}
+
+      {publishedAt && (
+        <div className="article-card__metadata">
+          <time dateTime={publishedAt}>
+            Publié le {format(parseISO(publishedAt), "dd/MM/yy")}
+          </time>
         </div>
       )}
 
