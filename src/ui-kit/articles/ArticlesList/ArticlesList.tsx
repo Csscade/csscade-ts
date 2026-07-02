@@ -20,23 +20,24 @@ export const ArticlesList = ({
     authors.find((a) => a.slug === article.author);
 
   return (
-    <div className="articles__list">
+    <ul className="articles__list">
       {articles.map((article) => {
         const author = getAuthor(article);
         return (
-          <ArticleCard
-            key={article.slug}
-            title={article.title}
-            publishedAt={article.publishedAt}
-            url={`/articles/${article.slug}`}
-            author={author ? author.name : article.author}
-            authorUrl={author ? `/authors/${author.slug}` : undefined}
-            categories={article.categories}
-            showAuthor={showAuthor}
-            headingLevel={headingLevel}
-          />
+          <li key={article.slug}>
+            <ArticleCard
+              title={article.title}
+              publishedAt={article.publishedAt}
+              url={`/articles/${article.slug}`}
+              author={author ? author.name : article.author}
+              authorUrl={author ? `/authors/${author.slug}` : undefined}
+              categories={article.categories}
+              showAuthor={showAuthor}
+              headingLevel={headingLevel}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

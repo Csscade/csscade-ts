@@ -36,7 +36,7 @@
 | Design System      | 	Storybook + Vite                 |
 | Style              | 	Native CSS                       |
 | Content            | 	MarkdownX with Zod & gray-matter |
-| Pre-commit         | 	Lefthook                         |
+| Pre-push            | 	Lefthook                         |
 | Unit / component tests | Vitest                       |
 | Accessibility tests | Playwright + Axe-core            |
 | Performance tests  | 	Playwright + Lighthouse          |
@@ -94,14 +94,13 @@ Open [http://localhost:6006](http://localhost:6006) with your browser to see the
 
 ## Tests
 
-Unit and component tests (Vitest):
+Unit tests (Vitest, architecture layer rules):
 
 ```bash
-pnpm test:unit   # architecture layer rules only
-pnpm test        # unit + Storybook component tests
+pnpm test
 ```
 
-Accessibility tests (Playwright + Axe-core) — requires `pnpm dev` to be running:
+Storybook component tests (Vitest, browser mode) + accessibility tests (Playwright + Axe-core) — requires `pnpm dev` to be running for the accessibility part:
 
 ```bash
 pnpm test:ui
@@ -120,6 +119,8 @@ Playwright tests generate an HTML report at `playwright-report/index.html`, view
 ```bash
 npx playwright show-report
 ```
+
+`test:ui` and `test:lighthouse` also run on demand in CI via the `QA on demand` GitHub Actions workflow (`workflow_dispatch` — triggered manually from the Actions tab, not on every push).
 
 ## Agent Skills
 

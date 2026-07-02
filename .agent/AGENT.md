@@ -65,12 +65,7 @@ Biome enforces: double quotes, semicolons, no `any`, no `console.log` (only `con
 
 Playwright + axe-core end-to-end accessibility tests live in `tests/`:
 
-| File | Theme | Command |
-|---|---|---|
-| `tests/a11y-light.spec.ts` | Light (`data-theme="light"`) | `pnpm test:ui` |
-| `tests/a11y-dark.spec.ts` | Dark (`data-theme="dark"`) | `pnpm test:ui` |
-
-Each file covers the same 8 pages: homepage, `/a-propos`, `/mentions-legales`, `/recherche`, `/articles`, `/authors`, `/talks`, `/tips`.
+`tests/a11y.spec.ts` runs the same 8 pages (homepage, `/a-propos`, `/mentions-legales`, `/recherche`, `/articles`, `/authors`, `/talks`, `/tips`) against both themes (`data-theme="light"` and `data-theme="dark"`), via `pnpm test:ui`.
 
 **Standards enforced** (via `.withTags()`):
 

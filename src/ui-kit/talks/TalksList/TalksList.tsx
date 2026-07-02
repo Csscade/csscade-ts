@@ -19,23 +19,24 @@ export const TalksList = ({
   const getAuthor = (talk: Talk) => authors.find((a) => a.slug === talk.author);
 
   return (
-    <div className="talks-list">
+    <ul className="talks-list">
       {talks.map((talk) => {
         const author = getAuthor(talk);
         return (
-          <ArticleCard
-            key={talk.slug}
-            title={talk.title}
-            publishedAt={talk.publishedAt}
-            url={`/talks/${talk.slug}`}
-            author={author ? author.name : talk.author}
-            authorUrl={author ? `/authors/${author.slug}` : undefined}
-            categories={talk.categories}
-            showAuthor={showAuthor}
-            headingLevel={headingLevel}
-          />
+          <li key={talk.slug}>
+            <ArticleCard
+              title={talk.title}
+              publishedAt={talk.publishedAt}
+              url={`/talks/${talk.slug}`}
+              author={author ? author.name : talk.author}
+              authorUrl={author ? `/authors/${author.slug}` : undefined}
+              categories={talk.categories}
+              showAuthor={showAuthor}
+              headingLevel={headingLevel}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

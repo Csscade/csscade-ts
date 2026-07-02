@@ -1,11 +1,12 @@
+import { compareDesc } from "date-fns";
 import { readTalks } from "@/infrastructure/talks/talks.repository";
 
 export function getAllTalks() {
-  return readTalks().sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  return [...readTalks()].sort((a, b) =>
+    compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
+  );
 }
 
 export function getLastTalks(limit: number) {
-  return readTalks()
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-    .slice(0, limit);
+  return getAllTalks().slice(0, limit);
 }

@@ -4,13 +4,16 @@
   grid-auto-rows: min-content;
   grid-gap: 2rem;
   width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (min-width: 576px) {
   .tips__list {
     grid-template-columns: repeat(2, 1fr);
 
-    .article-card:first-child {
+    li:first-child .article-card {
       grid-area: 1 / 1 / 2 / 3;
     }
   }
@@ -20,7 +23,7 @@
   .tips__list {
     grid-template-columns: repeat(3, 1fr);
 
-    .article-card:first-child {
+    li:first-child .article-card {
       grid-area: 1 / 1 / 2 / 4;
     }
   }

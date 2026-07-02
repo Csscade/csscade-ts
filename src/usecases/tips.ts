@@ -10,9 +10,10 @@ export function getPaginatedTips(page: number) {
   const tips = readTips();
   const sorted = [...tips].sort((a, b) => a.title.localeCompare(b.title));
   const totalPages = Math.ceil(sorted.length / TIPS_PER_PAGE);
-  const start = (page - 1) * TIPS_PER_PAGE;
+  const currentPage = Math.min(Math.max(page, 1), Math.max(totalPages, 1));
+  const start = (currentPage - 1) * TIPS_PER_PAGE;
   const end = start + TIPS_PER_PAGE;
-  return { tips: sorted.slice(start, end), totalPages, currentPage: page };
+  return { tips: sorted.slice(start, end), totalPages, currentPage };
 }
 
 export function getTotalTipPages() {

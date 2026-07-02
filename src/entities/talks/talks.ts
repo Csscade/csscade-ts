@@ -6,7 +6,7 @@ export const TalkSchema = z.object({
   slug: z.string(),
   author: AuthorSchema.shape.slug,
   categories: z.array(z.string()),
-  publishedAt: z.string(),
+  publishedAt: z.iso.date(),
   abstract: z.string(),
   level: z.enum(["débutant", "intermédiaire", "expert"]).optional(),
   youtubeId: z.string().optional(),

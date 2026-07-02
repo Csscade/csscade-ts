@@ -27,6 +27,14 @@
       "preset": "recommended",
       "performance": {
         "noImgElement": "off"
+      },
+      "suspicious": {
+        "noConsole": {
+          "level": "error",
+          "options": {
+            "allow": ["warn", "error"]
+          }
+        }
       }
     },
     "domains": {
