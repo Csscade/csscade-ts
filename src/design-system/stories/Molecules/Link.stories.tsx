@@ -46,12 +46,12 @@ export const Basic: Story = {
     <>
       <StyledLink {...args} />
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>[CSS Tricks](#)</code>
         </pre>
-      </p>
+      </div>
     </>
   ),
 };
@@ -66,12 +66,12 @@ export const Bordered: Story = {
     <>
       <StyledLink {...args} />
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>[CSS Tricks](#?bordered)</code>
         </pre>
-      </p>
+      </div>
     </>
   ),
 };
@@ -94,12 +94,12 @@ export const Icon: Story = {
         )}
       </StyledLink>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>[](#?iconOnly&icon=discord)</code>
         </pre>
-      </p>
+      </div>
     </>
   ),
 };
@@ -122,12 +122,12 @@ export const WithIconAfter: Story = {
         }
       />
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>[Learn more](#?bordered&icon=arrowRightLong)</code>
         </pre>
-      </p>
+      </div>
     </>
   ),
 };
@@ -149,12 +149,12 @@ export const External: Story = {
     <>
       <StyledLink {...args} />
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>[CSS Tricks](https://css-tricks.com)</code>
         </pre>
-      </p>
+      </div>
     </>
   ),
 };

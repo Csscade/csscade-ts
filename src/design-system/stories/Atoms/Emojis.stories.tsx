@@ -14,14 +14,10 @@ export default meta;
 export const Default: StoryObj = {
   render: () => (
     <div className="article-content">
+      <p>Classic markup: 😉 😢 😆 😋 🐶</p>
       <p>
-        Classic markup: 😉 😢 😆 😋 🐶
-        <br />
-        <br />
-        <p>
-          Written in Markdown as:
-          <code>:wink: :cry: :laughing: :yum: :dog:</code>
-        </p>
+        Written in Markdown as:
+        <code>:wink: :cry: :laughing: :yum: :dog:</code>
       </p>
     </div>
   ),
@@ -30,14 +26,10 @@ export const Default: StoryObj = {
 export const InText: StoryObj = {
   render: () => (
     <div className="article-content">
+      <p>I love coding 💻 and learning new things 📚!</p>
       <p>
-        I love coding 💻 and learning new things 📚!
-        <br />
-        <br />
-        <p>
-          Written in Markdown as:
-          <code>I love coding :computer: and learning new things :books:!</code>
-        </p>
+        Written in Markdown as:
+        <code>I love coding :computer: and learning new things :books:!</code>
       </p>
     </div>
   ),

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { ArticleDetailPage } from "@/ui-kit/pages/Articles/ArticleDetailPage";
 import { getAllArticles } from "@/usecases/articles";
-import { getAllAuthors } from "@/usecases/authors";
+import { getAllAuthors, resolveAuthorCredit } from "@/usecases/authors";
 
 export const generateStaticParams = async () => {
   const articles = getAllArticles();
@@ -23,6 +23,11 @@ export default async function Page({
 
   const authors = getAllAuthors();
   const author = authors.find((a) => a.slug === article.author);
+  const coAuthor = article.coAuthor
+    ? resolveAuthorCredit(article.coAuthor, authors)
+    : undefined;
 
-  return <ArticleDetailPage article={article} author={author} />;
+  return (
+    <ArticleDetailPage article={article} author={author} coAuthor={coAuthor} />
+  );
 }

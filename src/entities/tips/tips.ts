@@ -5,6 +5,7 @@ export const TipSchema = z.object({
   title: z.string(),
   slug: z.string(),
   author: AuthorSchema.shape.slug,
+  coAuthor: z.string().optional(),
   categories: z.array(z.string()),
   content: z.string(),
 });

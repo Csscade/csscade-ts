@@ -26,13 +26,13 @@ export const DisabledTaskList: StoryObj = {
         </li>
       </ul>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>{`- [x] Finished task
 - [ ] Unfinished task`}</code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };

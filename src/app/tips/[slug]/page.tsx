@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { TipDetailPage } from "@/ui-kit/pages/Tips/TipDetailPage";
-import { getAllAuthors } from "@/usecases/authors";
+import { getAllAuthors, resolveAuthorCredit } from "@/usecases/authors";
 import { getAllTips } from "@/usecases/tips";
 
 export const generateStaticParams = async () => {
@@ -23,6 +23,9 @@ export default async function Page({
 
   const authors = getAllAuthors();
   const author = authors.find((a) => a.slug === tip.author);
+  const coAuthor = tip.coAuthor
+    ? resolveAuthorCredit(tip.coAuthor, authors)
+    : undefined;
 
-  return <TipDetailPage tip={tip} author={author} />;
+  return <TipDetailPage tip={tip} author={author} coAuthor={coAuthor} />;
 }

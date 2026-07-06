@@ -39,8 +39,8 @@ export const SimpleTable: StoryObj = {
         </tbody>
       </table>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         {/* biome-ignore format: prevent table formatting */}
         <pre>
           <code>
@@ -50,7 +50,7 @@ export const SimpleTable: StoryObj = {
  | Paragraph   | Text        |`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -86,8 +86,8 @@ export const AlignedTable: StoryObj = {
         </tbody>
       </table>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         {/* biome-ignore format: prevent table formatting */}
         <pre>
           <code>
@@ -97,7 +97,7 @@ export const AlignedTable: StoryObj = {
  | Paragraph   | Text        | And more      |`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -144,8 +144,8 @@ export const ResponsiveTable: StoryObj = {
         </table>
       </section>
       <br />
-      <p>
-        Written in Markdown with a wrapper as:
+      <p>Written in Markdown with a wrapper as:</p>
+      <div className="pre-wrapper">
         {/* biome-ignore format: prevent table formatting */}
         <pre>
           <code>
@@ -154,7 +154,7 @@ export const ResponsiveTable: StoryObj = {
 </div>`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -184,7 +184,10 @@ export const RowHeaderTable: StoryObj = {
       <p>
         Pour des tableaux accessibles avec des en-têtes de ligne, utilisez des
         balises <code>&lt;th scope="row"&gt;</code> dans le corps du tableau
-        (via MDX) :{/* biome-ignore format: prevent table formatting */}
+        (via MDX) :
+      </p>
+      <div className="pre-wrapper">
+        {/* biome-ignore format: prevent table formatting */}
         <pre>
           <code>
 {`<table>
@@ -203,7 +206,7 @@ export const RowHeaderTable: StoryObj = {
 </table>`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };

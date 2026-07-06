@@ -21,8 +21,8 @@ export const Headings: StoryObj = {
       <h5>Heading 5</h5>
       <h6>Heading 6</h6>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`# Heading 1
@@ -33,7 +33,7 @@ export const Headings: StoryObj = {
 ###### Heading 6`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -74,10 +74,9 @@ export const Small: StoryObj = {
     <div className="article-content">
       <p>
         <small>This is small text</small>
-        <br />
-        <p>
-          Written in Markdown as: <code>&lt;small&gt;text&lt;/small&gt;</code>
-        </p>
+      </p>
+      <p>
+        Written in Markdown as: <code>&lt;small&gt;text&lt;/small&gt;</code>
       </p>
     </div>
   ),
@@ -88,10 +87,9 @@ export const Bold: StoryObj = {
     <div className="article-content">
       <p>
         <strong>This is bold text</strong>
-        <br />
-        <p>
-          Written in Markdown as:<code>**text**</code> or <code>__text__</code>
-        </p>
+      </p>
+      <p>
+        Written in Markdown as:<code>**text**</code> or <code>__text__</code>
       </p>
     </div>
   ),
@@ -102,10 +100,9 @@ export const Italic: StoryObj = {
     <div className="article-content">
       <p>
         <em>This is italic text</em>
-        <br />
-        <p>
-          Written in Markdown as:<code>*text*</code> or <code>_text_</code>
-        </p>
+      </p>
+      <p>
+        Written in Markdown as:<code>*text*</code> or <code>_text_</code>
       </p>
     </div>
   ),
@@ -116,10 +113,9 @@ export const Strikethrough: StoryObj = {
     <div className="article-content">
       <p>
         <del>This text is struck through</del>
-        <br />
-        <p>
-          Written in Markdown as:<code>~~text~~</code>
-        </p>
+      </p>
+      <p>
+        Written in Markdown as:<code>~~text~~</code>
       </p>
     </div>
   ),
@@ -130,10 +126,9 @@ export const InlineCode: StoryObj = {
     <div className="article-content">
       <p>
         Inline Code: <code>const hello = "world";</code>
-        <br />
-        <p>
-          Written in Markdown as:<code>`code`</code>
-        </p>
+      </p>
+      <p>
+        Written in Markdown as:<code>`code`</code>
       </p>
     </div>
   ),
@@ -202,8 +197,8 @@ export const UnorderedList: StoryObj = {
         </li>
         <li>Fourth item</li>
       </ul>
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`
@@ -214,7 +209,7 @@ export const UnorderedList: StoryObj = {
 - Third item`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -234,8 +229,8 @@ export const OrderedList: StoryObj = {
         </li>
         <li>Fourth item</li>
       </ol>
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`
@@ -246,7 +241,7 @@ export const OrderedList: StoryObj = {
 3. Third item`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -259,13 +254,13 @@ export const Subscript: StoryObj = {
         <br />H<sub>2</sub>O
       </p>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>{`19^th^
 H~2~O`}</code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };

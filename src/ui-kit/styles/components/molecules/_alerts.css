@@ -4,7 +4,7 @@
   padding: 1rem;
   border-left: 4px solid;
   margin: 1rem 0;
-  background-color: var(--background-secondary);
+  background-color: var(--background-contrast);
   border-color: var(--color-primary);
 }
 

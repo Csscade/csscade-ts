@@ -20,8 +20,8 @@ export const Default: StoryObj = {
         </p>
       </div>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`:::
@@ -29,7 +29,7 @@ Some text
 :::`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -43,8 +43,8 @@ export const Errors: StoryObj = {
         </p>
       </div>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`:::error
@@ -52,7 +52,7 @@ export const Errors: StoryObj = {
 :::`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -66,8 +66,8 @@ export const Warnings: StoryObj = {
         </p>
       </div>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`:::warning
@@ -75,7 +75,7 @@ export const Warnings: StoryObj = {
 :::`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -87,8 +87,8 @@ export const Successes: StoryObj = {
         <p>You can also use tips!</p>
       </div>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`:::success
@@ -96,7 +96,7 @@ You can also use tips!
 :::`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
@@ -108,8 +108,8 @@ export const Infos: StoryObj = {
         <p>This is an info box.</p>
       </div>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`:::info
@@ -117,7 +117,7 @@ This is an info box.
 :::`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };

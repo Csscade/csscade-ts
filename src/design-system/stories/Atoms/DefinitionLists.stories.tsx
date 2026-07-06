@@ -22,8 +22,8 @@ export const SimpleDefinitionList: StoryObj = {
         <dd>This is another definition of the second term.</dd>
       </dl>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`First Term
@@ -34,7 +34,7 @@ Second Term
 : This is another definition of the second term.`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };
