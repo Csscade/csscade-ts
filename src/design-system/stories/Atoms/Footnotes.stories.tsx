@@ -41,8 +41,8 @@ export const Footnote: StoryObj = {
       </section>
 
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`Here's a sentence with a footnote. [^1]
@@ -50,7 +50,7 @@ export const Footnote: StoryObj = {
 [^1]: This is the footnote.`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };

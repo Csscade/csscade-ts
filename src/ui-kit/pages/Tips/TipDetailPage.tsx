@@ -2,15 +2,22 @@ import type { Author } from "@/entities/authors/authors";
 import type { Tip } from "@/entities/tips/tips";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
+import { AuthorCreditLink } from "@/ui-kit/components/atoms/AuthorCreditLink/AuthorCreditLink";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
+import type { AuthorCredit } from "@/usecases/authors";
 import "./TipDetailPage.css";
 
 interface TipDetailPageProps {
   tip: Tip;
   author: Author | undefined;
+  coAuthor: AuthorCredit | undefined;
 }
 
-export const TipDetailPage = ({ tip, author }: TipDetailPageProps) => {
+export const TipDetailPage = ({
+  tip,
+  author,
+  coAuthor,
+}: TipDetailPageProps) => {
   return (
     <main id="maincontent">
       <article className="tip-page">
@@ -28,6 +35,14 @@ export const TipDetailPage = ({ tip, author }: TipDetailPageProps) => {
                   tip.author
                 )}
               </span>
+              {coAuthor && (
+                <>
+                  <span>&amp;</span>
+                  <span className="font-semibold">
+                    <AuthorCreditLink credit={coAuthor} />
+                  </span>
+                </>
+              )}
             </p>
             {tip.categories && (
               <div className="tip-page__categories">

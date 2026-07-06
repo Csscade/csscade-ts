@@ -14,10 +14,28 @@ export default defineConfig({
   test: {
     projects: [
       {
+        resolve: {
+          alias: {
+            "@": path.resolve(dirname, "src"),
+          },
+        },
         test: {
           name: "unit",
           environment: "node",
           include: ["src/**/__tests__/**/*.spec.ts"],
+        },
+      },
+      {
+        resolve: {
+          alias: {
+            "@": path.resolve(dirname, "src"),
+          },
+        },
+        test: {
+          name: "component",
+          environment: "jsdom",
+          include: ["src/**/__tests__/**/*.test.tsx"],
+          setupFiles: [path.resolve(dirname, "vitest.setup.ts")],
         },
       },
       {
@@ -35,7 +53,6 @@ export default defineConfig({
             provider: playwright({}),
             instances: [{ browser: "chromium" }],
           },
-          setupFiles: [".storybook/vitest.setup.ts"],
         },
       },
     ],

@@ -5,6 +5,7 @@ export const TalkSchema = z.object({
   title: z.string(),
   slug: z.string(),
   author: AuthorSchema.shape.slug,
+  coAuthor: z.string().optional(),
   categories: z.array(z.string()),
   publishedAt: z.iso.date(),
   abstract: z.string(),

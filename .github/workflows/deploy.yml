@@ -54,8 +54,11 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Test
-        run: pnpm test
+      - name: Arch unit tests
+        run: pnpm test:arch-unit
+
+      - name: Component tests
+        run: pnpm test:component
 
       - name: Build with Next.js
         run: |

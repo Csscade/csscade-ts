@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { TalkDetailPage } from "@/ui-kit/pages/Talks/TalkDetailPage";
-import { getAllAuthors } from "@/usecases/authors";
+import { getAllAuthors, resolveAuthorCredit } from "@/usecases/authors";
 import { getAllTalks } from "@/usecases/talks";
 
 export const generateStaticParams = async () => {
@@ -23,6 +23,9 @@ export default async function Page({
 
   const authors = getAllAuthors();
   const author = authors.find((a) => a.slug === talk.author);
+  const coAuthor = talk.coAuthor
+    ? resolveAuthorCredit(talk.coAuthor, authors)
+    : undefined;
 
-  return <TalkDetailPage talk={talk} author={author} />;
+  return <TalkDetailPage talk={talk} author={author} coAuthor={coAuthor} />;
 }

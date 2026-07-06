@@ -34,8 +34,11 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Unit tests
-        run: pnpm test
+      - name: Arch unit tests
+        run: pnpm test:arch-unit
+
+      - name: Component tests
+        run: pnpm test:component
 
       - name: Start dev server
         run: pnpm dev &

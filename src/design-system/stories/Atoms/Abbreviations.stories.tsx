@@ -19,8 +19,8 @@ export const Default: StoryObj = {
         maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.
       </p>
       <br />
-      <p>
-        Written in Markdown as:
+      <p>Written in Markdown as:</p>
+      <div className="pre-wrapper">
         <pre>
           <code>
             {`The HTML specification is maintained by the W3C.
@@ -29,7 +29,7 @@ export const Default: StoryObj = {
 *[W3C]: World Wide Web Consortium`}
           </code>
         </pre>
-      </p>
+      </div>
     </div>
   ),
 };

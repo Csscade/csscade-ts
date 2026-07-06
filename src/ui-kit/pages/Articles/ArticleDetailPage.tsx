@@ -3,17 +3,21 @@ import type { Article } from "@/entities/articles/articles";
 import type { Author } from "@/entities/authors/authors";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
+import { AuthorCreditLink } from "@/ui-kit/components/atoms/AuthorCreditLink/AuthorCreditLink";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
+import type { AuthorCredit } from "@/usecases/authors";
 import "./ArticleDetailPage.css";
 
 interface ArticleDetailPageProps {
   article: Article;
   author: Author | undefined;
+  coAuthor: AuthorCredit | undefined;
 }
 
 export const ArticleDetailPage = ({
   article,
   author,
+  coAuthor,
 }: ArticleDetailPageProps) => {
   return (
     <main id="maincontent">
@@ -33,10 +37,12 @@ export const ArticleDetailPage = ({
                   article.author
                 )}
               </span>
-              {article.coAuthor && (
+              {coAuthor && (
                 <>
                   <span>&amp;</span>
-                  <span className="font-semibold">{article.coAuthor}</span>
+                  <span className="font-semibold">
+                    <AuthorCreditLink credit={coAuthor} />
+                  </span>
                 </>
               )}
             </p>

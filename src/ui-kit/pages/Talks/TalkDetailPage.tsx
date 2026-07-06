@@ -3,15 +3,22 @@ import type { Author } from "@/entities/authors/authors";
 import type { Talk } from "@/entities/talks/talks";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
+import { AuthorCreditLink } from "@/ui-kit/components/atoms/AuthorCreditLink/AuthorCreditLink";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
+import type { AuthorCredit } from "@/usecases/authors";
 import "./TalkDetailPage.css";
 
 interface TalkDetailPageProps {
   talk: Talk;
   author: Author | undefined;
+  coAuthor: AuthorCredit | undefined;
 }
 
-export const TalkDetailPage = ({ talk, author }: TalkDetailPageProps) => {
+export const TalkDetailPage = ({
+  talk,
+  author,
+  coAuthor,
+}: TalkDetailPageProps) => {
   return (
     <main id="maincontent">
       <article className="talk-page">
@@ -30,6 +37,14 @@ export const TalkDetailPage = ({ talk, author }: TalkDetailPageProps) => {
                   talk.author
                 )}
               </span>
+              {coAuthor && (
+                <>
+                  <span>&amp;</span>
+                  <span className="font-semibold">
+                    <AuthorCreditLink credit={coAuthor} />
+                  </span>
+                </>
+              )}
             </p>
             {talk.level && (
               <p className="talk-page__level">
