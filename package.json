@@ -24,10 +24,11 @@
     "test:arch-unit": "vitest run --project unit",
     "test:component": "vitest run --project component",
     "test:storybook": "vitest run --project storybook",
-    "test:ui": "vitest run --project storybook && playwright test tests/a11y.spec.ts",
+    "test:ui": "vitest run --project storybook --reporter=default --reporter=json --outputFile=storybook-report.json && playwright test tests/a11y.spec.ts",
     "test:a11y:content": "playwright test tests/a11y-content.spec.ts",
     "test:lighthouse": "playwright test tests/lighthouse.spec.ts",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "qa:scores": "node scripts/generate-qa-scores.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.0",

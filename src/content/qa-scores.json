@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-07-07T17:56:46.733Z",
+  "lighthouse": {
+    "performance": 98,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "axe": {
+    "score": 100,
+    "rulesPassed": 672,
+    "rulesTotal": 672
+  },
+  "storybook": {
+    "score": 100,
+    "testsPassed": 73,
+    "testsTotal": 73
+  }
+}

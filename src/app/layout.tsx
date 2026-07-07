@@ -6,6 +6,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
 import { Footer } from "@/ui-kit/components/templates/Footer/Footer";
 import { Navigation } from "@/ui-kit/components/templates/Navigation/Navigation";
+import { getQaScores } from "@/usecases/qa-scores";
 
 config.autoAddCss = false;
 
@@ -61,6 +62,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const qaScores = getQaScores();
+
   return (
     <html
       lang="fr"
@@ -80,7 +83,7 @@ export default function RootLayout({
       <body>
         <Navigation />
         {children}
-        <Footer />
+        <Footer qaScores={qaScores} />
       </body>
     </html>
   );
