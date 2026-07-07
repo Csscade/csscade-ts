@@ -88,6 +88,10 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
+
+    .badge {
+      --badge-font-color: var(--color-dark);
+    }
   }
 
   .styled-link--icon {

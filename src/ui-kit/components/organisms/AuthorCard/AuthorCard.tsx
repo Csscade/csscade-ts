@@ -42,7 +42,7 @@ export const AuthorCard = ({
 }: AuthorCardProps) => {
   if (variant === "mini") {
     return (
-      <aside className="author-card author-card--mini">
+      <aside className="author-card author-card--mini" aria-label={author.name}>
         <Link href={`/authors/${author.slug}`} className="author-card__link">
           <Avatar
             src={author.avatar}
@@ -65,6 +65,7 @@ export const AuthorCard = ({
           alt={author.name}
           size={80}
           className="author-card__avatar"
+          border
         />
 
         <div className="author-card__info">
