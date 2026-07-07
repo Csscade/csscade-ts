@@ -10,6 +10,9 @@ export const AuthorSchema = z.object({
   mastodon: z.url().optional(),
   github: z.url().optional(),
   linkedin: z.url().optional(),
+  medium: z.url().optional(),
+  devto: z.url().optional(),
+  codepen: z.url().optional(),
   content: z.string(),
 });
 

@@ -46,6 +46,7 @@
 .author-card__bio {
   font-size: 1rem;
   line-height: 1.6;
+  margin-top: 0.3rem;
 }
 
 .author-card__footer {
