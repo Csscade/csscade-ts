@@ -6,7 +6,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
 import { Footer } from "@/ui-kit/components/templates/Footer/Footer";
 import { Navigation } from "@/ui-kit/components/templates/Navigation/Navigation";
+import { getAllArticles } from "@/usecases/articles";
+import { getAllAuthors } from "@/usecases/authors";
 import { getQaScores } from "@/usecases/qa-scores";
+import { getAllTalks } from "@/usecases/talks";
+import { getAllTips } from "@/usecases/tips";
 
 config.autoAddCss = false;
 
@@ -63,6 +67,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const qaScores = getQaScores();
+  const hasArticles = getAllArticles().length > 0;
+  const hasTips = getAllTips().length > 0;
+  const hasTalks = getAllTalks().length > 0;
+  const hasAuthors = getAllAuthors().length > 0;
 
   return (
     <html
@@ -81,7 +89,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        <Navigation />
+        <Navigation
+          hasArticles={hasArticles}
+          hasTips={hasTips}
+          hasTalks={hasTalks}
+          hasAuthors={hasAuthors}
+        />
         {children}
         <Footer qaScores={qaScores} />
       </body>

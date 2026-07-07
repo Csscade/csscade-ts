@@ -7,7 +7,19 @@ import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink"
 import { ToggleTheme } from "@/ui-kit/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
 
-export const Navigation = () => {
+interface NavigationProps {
+  hasArticles: boolean;
+  hasTips: boolean;
+  hasTalks: boolean;
+  hasAuthors: boolean;
+}
+
+export const Navigation = ({
+  hasArticles,
+  hasTips,
+  hasTalks,
+  hasAuthors,
+}: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -54,46 +66,54 @@ export const Navigation = () => {
                 Accueil
               </StyledLink>
             </li>
-            <li>
-              <StyledLink
-                href="/articles"
-                aria-label="Voir tous les articles"
-                aria-current={currentPage("/articles")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Articles
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink
-                href="/tips"
-                aria-label="Voir toutes les astuces"
-                aria-current={currentPage("/tips")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Astuces
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink
-                href="/talks"
-                aria-label="Voir toutes les conférences"
-                aria-current={currentPage("/talks")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Conférences
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink
-                href="/authors"
-                aria-label="Voir les auteurs et autrices"
-                aria-current={currentPage("/authors")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Auteur·ices
-              </StyledLink>
-            </li>
+            {hasArticles && (
+              <li>
+                <StyledLink
+                  href="/articles"
+                  aria-label="Voir tous les articles"
+                  aria-current={currentPage("/articles")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Articles
+                </StyledLink>
+              </li>
+            )}
+            {hasTips && (
+              <li>
+                <StyledLink
+                  href="/tips"
+                  aria-label="Voir toutes les astuces"
+                  aria-current={currentPage("/tips")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Astuces
+                </StyledLink>
+              </li>
+            )}
+            {hasTalks && (
+              <li>
+                <StyledLink
+                  href="/talks"
+                  aria-label="Voir toutes les conférences"
+                  aria-current={currentPage("/talks")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Conférences
+                </StyledLink>
+              </li>
+            )}
+            {hasAuthors && (
+              <li>
+                <StyledLink
+                  href="/authors"
+                  aria-label="Voir les auteurs et autrices"
+                  aria-current={currentPage("/authors")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Auteur·ices
+                </StyledLink>
+              </li>
+            )}
             <li>
               <StyledLink
                 href="/a-propos"
