@@ -28,6 +28,7 @@ export const LastArticlesList = ({
               author={author ? author.name : article.author}
               authorUrl={author ? `/authors/${author.slug}` : undefined}
               categories={article.categories}
+              coverImage={article.coverImage}
               headingLevel={3}
             />
           </li>

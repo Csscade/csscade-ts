@@ -15,7 +15,6 @@
 ::before {
   box-sizing: inherit;
   font-family: var(--font-primary), sans-serif;
-  font-size: 16px;
   font-weight: 400;
 }
 

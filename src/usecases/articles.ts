@@ -2,6 +2,7 @@ import { compareDesc } from "date-fns";
 import { readArticles } from "@/infrastructure/articles/articles.repository";
 
 const ARTICLES_PER_PAGE = 4;
+const WORDS_PER_MINUTE = 200;
 
 export function getAllArticles() {
   return readArticles();
@@ -29,4 +30,16 @@ export function getPaginatedArticles(page: number) {
 
 export function getTotalArticlePages() {
   return Math.ceil(readArticles().length / ARTICLES_PER_PAGE);
+}
+
+export function getReadingTime(content: string): number {
+  const plainText = content
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/!\[[^\]]*]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]*)]\([^)]*\)/g, "$1")
+    .replace(/[#>*_`~-]/g, " ");
+
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
 }

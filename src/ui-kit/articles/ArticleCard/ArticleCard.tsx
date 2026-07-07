@@ -10,6 +10,7 @@ type ArticleCardProps = {
   authorUrl?: string;
   description?: string;
   categories?: string[];
+  coverImage?: { src: string; alt: string };
   showAuthor?: boolean;
   headingLevel?: 2 | 3;
 };
@@ -22,6 +23,7 @@ export function ArticleCard({
   authorUrl,
   description,
   categories,
+  coverImage,
   showAuthor = true,
   headingLevel = 2,
 }: ArticleCardProps) {
@@ -29,6 +31,15 @@ export function ArticleCard({
 
   return (
     <article className="article-card framed-four-corners">
+      {coverImage && (
+        <img
+          className="article-card__cover"
+          src={coverImage.src}
+          alt={coverImage.alt}
+          loading="lazy"
+        />
+      )}
+
       <StyledLink
         className="article-card__header"
         href={url}

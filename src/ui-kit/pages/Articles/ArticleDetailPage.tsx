@@ -12,12 +12,14 @@ interface ArticleDetailPageProps {
   article: Article;
   author: Author | undefined;
   coAuthor: AuthorCredit | undefined;
+  readingTime: number;
 }
 
 export const ArticleDetailPage = ({
   article,
   author,
   coAuthor,
+  readingTime,
 }: ArticleDetailPageProps) => {
   return (
     <main id="maincontent">
@@ -27,6 +29,13 @@ export const ArticleDetailPage = ({
             <h1 className="article-page__title">{article.title}</h1>
             <p className="article-page__meta">
               Publié le {format(parseISO(article.publishedAt), "dd/MM/yy")}
+              <span className="article-page__meta-separator" aria-hidden="true">
+                &bull;
+              </span>
+              <span>{readingTime} min de lecture</span>
+              <span className="article-page__meta-separator" aria-hidden="true">
+                &bull;
+              </span>
               <span className="font-semibold">
                 par{" "}
                 {author ? (
@@ -69,6 +78,14 @@ export const ArticleDetailPage = ({
                   Lire l&apos;article original
                 </StyledLink>
               </p>
+            )}
+
+            {article.coverImage && (
+              <img
+                className="article-page__cover"
+                src={article.coverImage.src}
+                alt={article.coverImage.alt}
+              />
             )}
           </div>
         </header>
