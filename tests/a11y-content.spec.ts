@@ -36,7 +36,7 @@ const runGit = (args: string): string[] => {
 const findChangedContentFiles = (): string[] => {
   const uncommitted = runGit(
     "status --porcelain --untracked-files=all -- src/content",
-  ).map((line) => line.slice(3).trim());
+  ).map((line) => line.replace(/^\S+\s+/, ""));
 
   const committed = runGit(
     `diff --name-only --diff-filter=ACMR ${baseRef}...HEAD -- src/content`,

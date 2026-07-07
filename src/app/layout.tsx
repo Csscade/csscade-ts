@@ -20,7 +20,7 @@ const primaryFont = Poppins({
 });
 
 const secondaryFont = Playfair_Display({
-  weight: ["400", "700", "900"],
+  weight: ["700"],
   subsets: ["latin"],
 });
 

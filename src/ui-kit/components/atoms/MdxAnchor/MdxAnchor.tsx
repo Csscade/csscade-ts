@@ -1,11 +1,47 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import * as Brands from "@fortawesome/free-brands-svg-icons";
-import * as Solid from "@fortawesome/free-solid-svg-icons";
+import {
+  faBluesky,
+  faCodepen,
+  faDev,
+  faDiscord,
+  faGithub,
+  faLinkedin,
+  faMastodon,
+  faMedium,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faArrowRightLong,
+  faCheck,
+  faCopy,
+  faEnvelope,
+  faGlobe,
+  faMagnifyingGlass,
+  faPlay,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type React from "react";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 
-const allIcons = { ...Solid, ...Brands };
+// Curated subset actually used across the site, keyed by name for the MDX
+// `?icon=` param. Avoid `import * as` from FontAwesome packages here: it
+// pulls the full 1000+/500+ icon set into every page's bundle.
+const allIcons: Record<string, IconProp> = {
+  faArrowRightLong,
+  faBluesky,
+  faCheck,
+  faCodepen,
+  faCopy,
+  faDev,
+  faDiscord,
+  faEnvelope,
+  faGithub,
+  faGlobe,
+  faLinkedin,
+  faMagnifyingGlass,
+  faMastodon,
+  faMedium,
+  faPlay,
+};
 
 export const MdxAnchor = ({
   href,
@@ -38,11 +74,7 @@ export const MdxAnchor = ({
         : `fa${iconName.charAt(0).toUpperCase()}${iconName.slice(1)}`;
 
       if (faName in allIcons) {
-        icon = (
-          <FontAwesomeIcon
-            icon={allIcons[faName as keyof typeof allIcons] as IconProp}
-          />
-        );
+        icon = <FontAwesomeIcon icon={allIcons[faName]} />;
       }
     }
 

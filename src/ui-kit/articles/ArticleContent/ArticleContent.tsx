@@ -1,12 +1,16 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { MdxAnchor } from "@/ui-kit/components/atoms/MdxAnchor/MdxAnchor";
+import { MdxImg } from "@/ui-kit/components/atoms/MdxImg/MdxImg";
 import { MdxPre } from "@/ui-kit/components/atoms/MdxPre/MdxPre";
+import { MdxVideo } from "@/ui-kit/components/atoms/MdxVideo/MdxVideo";
 import { rehypePlugins, remarkPlugins } from "@/usecases/mdx";
 import "./ArticleContent.css";
 
 const components = {
   a: MdxAnchor,
+  img: MdxImg,
   pre: MdxPre,
+  video: MdxVideo,
 };
 
 export function ArticleContent({ content }: { content: string }) {
