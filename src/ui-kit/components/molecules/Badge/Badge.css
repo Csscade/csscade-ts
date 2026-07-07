@@ -4,6 +4,7 @@
 
 .badge {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   color: var(--badge-color);
@@ -14,6 +15,7 @@
   background-color: var(--background-primary);
   font-weight: 300;
   font-size: 0.9rem;
+  white-space: nowrap;
   border: 1px solid var(--badge-color);
 
   > * {

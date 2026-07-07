@@ -6,13 +6,19 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DISCORD_URL, LINKEDIN_URL } from "@/config/social-links";
+import type { QaScores } from "@/entities/qa-scores/qa-scores";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
+import { QaScoresDetails } from "@/ui-kit/components/organisms/QaScores/QaScoresDetails";
 import { PageHeader } from "@/ui-kit/components/templates/PageHeader/PageHeader";
 import "./AboutPage.css";
 
 const githubUrl = "https://github.com/Csscade/csscade-ts";
 
-export const AboutPage = () => {
+type AboutPageProps = {
+  qaScores: QaScores | null;
+};
+
+export const AboutPage = ({ qaScores }: AboutPageProps) => {
   return (
     <>
       <PageHeader title="À Propos" />
@@ -101,6 +107,8 @@ export const AboutPage = () => {
               </StyledLink>
             </div>
           </section>
+
+          <QaScoresDetails qaScores={qaScores} />
 
           <section className="about-page__section">
             <h2>Rejoindre la communauté</h2>

@@ -18,6 +18,7 @@
 /test-results
 /playwright-report
 /lighthouse-report
+/storybook-report.json
 
 # next.js
 /.next/

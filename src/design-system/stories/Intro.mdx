@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { Logo } from "../../ui-kit/components/atoms/Images/Logo";
+import qaScores from "../../content/qa-scores.json";
 
 <Meta title="Introduction" />
 
@@ -40,6 +41,13 @@ import { Logo } from "../../ui-kit/components/atoms/Images/Logo";
           <p className="sb-section-item-paragraph">
             Nous utilisons Playwright et Axe-core pour valider automatiquement l’accessibilité
             des contenus et composants.
+          </p>
+        </div>
+
+        <div className="sb-section-item framed-four-corners">
+          <strong className="sb-section-item-heading">Score des tests</strong>
+          <p className="sb-section-item-paragraph">
+            { qaScores.storybook.score }% des tests de composants passent ({ qaScores.storybook.testsPassed }/{ qaScores.storybook.testsTotal }).
           </p>
         </div>
       </div>
