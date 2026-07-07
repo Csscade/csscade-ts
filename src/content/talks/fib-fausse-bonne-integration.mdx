@@ -1,0 +1,118 @@
+---
+title: "FBI (Fausse Bonne Intégration) : ces astuces et bonnes pratiques qui sabotent vos sites et apps web"
+slug: "fbi-fausse-bonne-integration"
+author: "amy-ndiaye"
+categories: ["CSS", "HTML"]
+publishedAt: "2026-07-07"
+abstract: >-
+  Rien de tel qu’une bonne astuce pour faciliter le quotidien (parfois douloureux) des équipes front-end.
+
+  Fermez les yeux et imaginez vous au bureau. Il vous reste 10 minutes avant le daily. Vous êtes confortablement assis·e sur votre chaise.
+  Muni·e de votre souris, vous parcourez vos notifications Slack ou Teams (quand ça fonctionne).
+  Dans le canal « Veille Front », vous découvrez l’article partagé par un membre de votre équipe :
+  « 10 astuces et bonnes pratiques pour intégrer au pixel près ».
+
+  Clic, vous êtes rédirigé·e vers une page bien écrite, soignée et en thème sombre.
+  Vos yeux brillent !
+  Devant vous, un condensé de bonnes pratiques et astuces illustrées, expliquées et justifiées.
+  Ni une ni deux, vous les adoptez dans votre codebase.
+  Vous répandez la bonne parole à vos collègues, à vos ami·e·s dev et/ou à travers un poste sur votre réseau social de prédilection.
+
+  Puis 3 jours, 3 mois ou 3 ans plus tard, vous découvrez avec stupeur les effets de bords de ces « astuces » !
+  Le mal est déjà fait. Vous y avez cru, vos collègues y ont cru, le monde y a cru et vos utilisateurs en ont pâti.
+
+  Mais de quelles astuces s’agit-il ? Est-ce que je les utilise ? Si oui, comment réparer le mal fait ? Sont-elles si problématiques que ça ?
+  Ai-je une bombe à retardement dans mon code ?
+
+  La réponse à ces questions se trouve dans ce talk…
+level: "débutant·e"
+youtubeId: "RD1bpk1X2Fc"
+---
+
+## Introduction
+
+Moi c'est Amy, j'ai vingt minutes pour vous parler de ça, donc vous ne saurez pas plus que mon prénom : « Fausse Bonne Intégration », ces astuces et bonnes pratiques qui sabotent vos sites et applications <span lang="en">web</span>.
+
+Petit <span lang="en">disclaimer</span> avant de commencer : si jamais vous reconnaissez des astuces que vous avez utilisées par le passé, ou que vous utilisez encore, ce n'est pas grave, ce n'est pas pour vous blâmer. De temps en temps, je vous demanderai de lever la main si vous avez déjà vu passer ce genre de code — je n'ai pas de projectile, donc c'est bon. Et puis moi-même j'ai fait certains des trucs dont je vais vous parler, donc pas de panique, on est en toute décontraction, je tremble un peu mais ça va.
+
+J'ai créé un site fictif de <span lang="en">stickers</span> qui s'appelle <span lang="en">Stickit</span> — vous voyez le jeu de mots, hilarant, <span lang="en">let's go</span>. Donc voilà notre fameux site fictif, notre site de <span lang="en">stickers</span> <span lang="en">Stickit</span>. C'est ce site qui va nous servir d'exemple, parce que je ne voulais pas prendre un vrai site au risque de froisser des gens dans la salle.
+
+Ça, c'est notre magnifique victime — le mobile, on s'en fout, on verra ça plus tard. On a un petit bord en liège avec des <span lang="en">post-it</span>, et cetera : ça existait vraiment chez moi, ça m'aide à visualiser. On va voir différentes catégories : les erreurs en termes de texte, de <span lang="en">layout</span>, de ce qu'on veut cacher, de ce qu'on veut <span lang="en">reset</span>, et cetera.
+
+## Texte : la fausse bonne idée des 62,5 %
+
+On va d'abord commencer par tout ce qui est texte. Petite question : est-ce que « 62,5 % » dit quelque chose à quelqu'un dans la salle ? Une personne, c'est déjà bien.
+
+Pour gérer les tailles de police, on conseille d'utiliser les <span lang="en">rem</span>, sauf que nos maquettes sont souvent en <span lang="en">pixels</span>, et du coup c'est pénible de faire la conversion. Il y a plusieurs manières de faire : on peut passer par de petits utilitaires en ligne, ou faire les calculs nous-mêmes parce qu'on est super intelligents. Mais moi je suis une flemmarde, et un jour je suis tombée sur cette super astuce qui consiste à cibler le <span lang="en">html</span> et à mettre <span lang="en">font-size: 62,5%</span>. Ce que ça fait, c'est qu'un <span lang="en">rem</span> devient égal à 10 <span lang="en">pixels</span>, et du coup la conversion se fait super facilement : par exemple, mon titre est en 48 <span lang="en">pixels</span>, ça fait 4,8 <span lang="en">rem</span>. C'est simple, on aime.
+
+Sauf que — pardon, sauf que — ça s'appuie sur le fait que les navigateurs ont une taille de police par défaut de 16 <span lang="en">pixels</span>. Mais peut-être que vous avez des collègues qui n'ont pas une super bonne vue, ou des grands-parents, ou des parents qui ont leur navigateur super zoomé avec la police à 24. Du coup, cette astuce-là ne fonctionne plus, parce que votre conversion ne sera plus « un <span lang="en">rem</span> égale 10 <span lang="en">pixels</span> », ce sera totalement autre chose, et vous n'aurez plus la maîtrise. Et vu qu'on ne maîtrise pas très bien le <span lang="en">responsive</span> dans ce cas-là, il y a de grandes chances que votre bouton, avec un texte normalement à 16 <span lang="en">pixels</span>, se retrouve à 64, et que tout soit explosé sur votre site — et que vous ayez un charmant ticket de <span lang="en">bug</span> que vous n'arrivez pas à reproduire, parce que vous avez, vous, une vision <span lang="en">standard</span>.
+
+Il y a des solutions. La première, la classique, c'est d'utiliser <span lang="en">calc()</span> en CSS. Après, <span lang="en">calc</span> est une fonction, il y a peut-être des soucis de perf potentiels, mais en tout cas ça existe : il suffit d'écrire une formule du type <span lang="en">calc(48 / 16 * 1rem)</span>, et ça convertit automatiquement, vous ne vous prenez pas la tête.
+
+Autre solution, si vous utilisez un préprocesseur : vous pouvez écrire une fonction ou un <span lang="en">mixin</span> qui prend en paramètre une valeur en <span lang="en">pixels</span> et qui retourne une valeur en <span lang="en">rem</span>, et là non plus vous ne faites pas de maths.
+
+Dernière solution, ma préférée, qui utilise des nouveautés pas si nouvelles que ça de CSS : les variables. J'ai mis un exemple un peu bateau, mais si par exemple vous avez un <span lang="en">design system</span>, vous pouvez reprendre les termes utilisés par votre <span lang="en">designer</span> et nommer vos variables comme ça. Moi j'ai mis, par exemple, 48 <span lang="en">pixels</span> qui font 3 <span lang="en">rem</span>, et du coup j'ai juste à utiliser <span lang="en">var()</span> avec le nom de ma variable pour mettre la bonne taille.
+
+Voilà pour cette première astuce, que j'ai mise en prod — et malheureusement je ne suis plus dans la boîte qui l'utilise, donc je vais leur envoyer un message pour leur dire : enlevez ça, vite, vite.
+
+## <span lang="en">text-wrap: balance</span>
+
+Deuxième astuce : <span lang="en">text-wrap</span>. Celle-là, vous l'avez peut-être vue passer, parce qu'elle a fait le tour sur <span lang="en">Twitter</span>, elle a été beaucoup relayée.
+
+En gros, c'est pour « balancer » votre texte — enfin, ce n'est pas français, pour l'équilibrer, éviter d'avoir un mot qui se balade tout seul, et avoir un titre ou des paragraphes harmonieux. Il y a une propriété qui s'appelle <span lang="en">text-wrap</span>, qui peut prendre comme valeur <span lang="en">balance</span> ou <span lang="en">pretty</span>. Et c'est <span lang="en">cool</span>, parce que ça équilibre le texte automatiquement.
+
+C'est <span lang="en">cool</span>, mais comment ça marche sous le capot ? Ça boucle sur chaque caractère de l'élément ciblé, donc potentiellement, sur une page qui a beaucoup de texte, ce n'est pas super conseillé. En plus, ça ne s'applique qu'à la dernière ligne, donc ça va aller chercher tous vos titres par exemple. Dans mon exemple, j'avais mis une petite étoile à côté de <span lang="en">text-wrap</span> : l'idée, c'est que si vous voulez l'utiliser parce que vous avez un <span lang="en">designer</span> qui veut absolument qu'il n'y ait pas de veuve ni d'orpheline, vous pouvez, mais uniquement sur les titres — donc <span lang="en">h1</span> à <span lang="en">h6</span>, les citations. Pour les paragraphes, je vous propose plutôt de faire une classe utilitaire et de l'utiliser avec parcimonie, là où vous en avez vraiment besoin, pour éviter des soucis de perf liés au CSS. Ce serait dommage — on a déjà JS pour ça, on ne va pas le concurrencer.
+
+## <span lang="en">Reset</span> : <span lang="en">list-style</span>
+
+Ensuite, tout ce qui est <span lang="en">reset</span> : l'idée d'enlever le style par défaut appliqué par notre navigateur. Par exemple les listes à puces : par défaut, un <span lang="en">ul</span> (<span lang="en">unordered list</span>) a des puces, c'est moche, et ce n'est pas ce qu'on veut, parce qu'on veut faire une belle navigation où tous les éléments sont les uns à côté des autres.
+
+Donc souvent, on met un <span lang="en">list-style: none</span>. Est-ce qu'il y a des gens qui ont déjà fait ça ? Je vous rassure, moi aussi. Et la suite va vous surprendre : le souci, c'est <span lang="en">Safari</span>. Si vous avez déjà entendu la phrase « <span lang="en">Safari, the new IE</span> », voilà, parce que je vais vous donner un exemple. En gros, si vous ciblez le <span lang="en">ul</span> et que vous mettez <span lang="en">list-style: none</span>, ça ne marchera pas sur <span lang="en">Safari</span> : votre liste perd son rôle « liste », donc elle n'est plus sémantiquement correcte. Par contre, si vous mettez votre <span lang="en">ul</span> dans une balise <span lang="en">nav</span> et que vous ciblez avec ce sélecteur-là, ça marche sur <span lang="en">Safari</span>. Par contre, si vous utilisez les sélecteurs plus récents avec <span lang="en">\:where()</span>, en spécifiant bien que ce sont les <span lang="en">ul</span> qui ont le rôle « liste », et que vous mettez <span lang="en">list-style: none</span>, la liste ne sera toujours pas reconnue comme une liste. Et si vous ciblez juste le <span lang="en">ul</span> en mettant <span lang="en">list-style</span> — pas à « none » cette fois-ci, mais vide — ça sera reconnu comme une liste. Bref, <span lang="en">Safari</span> n'est pas très stable là-dessus.
+
+Je vous propose tout simplement — malheureusement je n'ai pas de solution miracle — d'aller remettre le rôle « liste » sur vos éléments. Après, parfois la question, c'est : est-ce que vous avez vraiment besoin d'une liste ? Une liste, on peut l'utiliser dans une navigation pour faire une liste de liens, mais on peut faire aussi une liste de produits, et dans ce cas-là vous pouvez par exemple utiliser une balise <span lang="en">article</span>, et là vous n'avez pas besoin de surcharger le style. J'ai dit <span lang="en">article</span>, pas <span lang="en">div</span>, parce que je mène le combat anti-div : pas de soupe de div, évitez les div, il y a des balises sémantiques, utilisez-les, s'il vous plaît, merci — ceux qui étaient là l'année dernière connaissent déjà mon combat.
+
+## <span lang="en">Reset</span> : <span lang="en">outline</span>
+
+Même délire pour supprimer le style des bordures ou des boutons : il y a déjà des gens qui ont fait <span lang="en">border: none</span> — c'est normal, par pitié, résistez, vos <span lang="en">designers</span> sont fous — mais surtout, l'<span lang="en">outline</span>, ça a une utilité : quand vous naviguez au clavier, ça permet de voir quel élément a le <span lang="en">focus</span>. Si vous supprimez l'<span lang="en">outline</span>, on ne voit plus sur quoi on est.
+
+Deuxième chose : si votre utilisateur utilise le mode fort contraste, ça va changer les bordures et les contours, et si vous les avez supprimés, ça ne marchera tout simplement plus. Donc si vraiment vous devez les enlever visuellement, mettez-les en <span lang="en">transparent</span> plutôt qu'en <span lang="en">none</span> : vous les rendez invisibles, mais ça ne casse pas le mode fort contraste. Dans le futur, vous pourrez utiliser une <span lang="en">media query</span> spécifique pour détecter ce mode et appliquer un style en conséquence. Mais de manière générale, laissez les <span lang="en">outline</span> tranquilles — vous pouvez plutôt les personnaliser avec la charte graphique de votre entreprise pour faire quelque chose d'un peu plus joli, mais laissez-les, s'il vous plaît, merci, c'est tout pour moi.
+
+## Cacher un élément : <span lang="en">visually-hidden</span> et <span lang="en">sr-only</span>
+
+Ensuite, « caché » — normalement ça devait être écrit « cache-cache », mais j'ai oublié de le corriger, je trouvais ça plus drôle comme ça.
+
+L'idée, c'est <span lang="en">visually-hidden</span>, ou <span lang="en">sr-only</span> : est-ce que ce sont des noms qui vous disent quelque chose ? Je vais expliquer vite fait. En gros, quand vous avez un élément que vous voulez rendre accessible aux lecteurs d'écran, mais pas aux personnes qui voient votre site, vous utilisez une classe utilitaire qui s'appelle souvent <span lang="en">visually-hidden</span>, ou <span lang="en">sr-only</span> si vous utilisez <span lang="en">Tailwind</span>.
+
+Qu'est-ce que ça fait ? Première ligne, <span lang="en">position: absolute</span> : ça sort l'élément du flux de la page. Ensuite, <span lang="en">width: 1px</span> : l'élément ne fait plus qu'un pixel carré, et l'<span lang="en">overflow</span> coupe tout ce qui dépasse. Ensuite, <span lang="en">clip-path</span> permet de supprimer l'affichage — par exemple, si votre élément avait du rouge en fond, on le verrait sinon. Et enfin, <span lang="en">white-space: nowrap</span> évite que le texte passe à la ligne. Concrètement, sur le site vous ne voyez pas l'élément, alors qu'il est bien présent dans le code.
+
+C'est un truc que j'ai découvert récemment, parce que je l'utilisais beaucoup en accessibilité, notamment pour ce qu'on appelle les <span lang="en">skip links</span>. Ce sont des petits liens : si vous naviguez au clavier sur un site et que vous appuyez sur <span lang="en">Tab</span>, un lien apparaît qui vous permet de sauter directement au contenu principal, sans avoir à vous taper tous les liens inutiles. <span lang="en">Ikea</span> a ça, et c'est bien implémenté, donc bravo à eux. Il y a un exemple du type « Aller au contenu principal ».
+
+L'idée, c'est vraiment d'ajouter un sélecteur du type <span lang="en">.skip-link\:not(\:focus)\:not(\:active)</span>, ce qui veut dire : cacher l'élément lorsqu'il n'a pas le <span lang="en">focus</span> et qu'il n'est pas actif. Pourquoi ? Parce que si vous voulez que votre utilisateur puisse interagir avec l'élément et que vous mettez juste <span lang="en">visually-hidden</span> en dur, ça peut poser des problèmes d'interaction. L'idée, c'est vraiment de dire : si tu es actif, ce code ne s'applique pas. C'est le cas par exemple pour ce bouton : dès que je fais <span lang="en">Tab</span>, le <span lang="en">focus</span> passe dessus, et je peux quand même interagir, appuyer sur <span lang="en">Entrée</span>, et ça me redirige vers la bonne section. Si vous utilisez <span lang="en">Tailwind</span>, ça donnerait quelque chose comme <span lang="en">.sr-only\:focus, .sr-only\:active</span> — bon, il fallait peut-être pas prendre <span lang="en">Tailwind</span> comme exemple pour cette partie-là.
+
+## Bouton icône
+
+Ensuite, bouton icône : ça, c'est peut-être un truc que vous avez fait — votre <span lang="en">designer</span> vous a demandé une super <span lang="en">navbar</span>, et il y a un bouton qui n'a pas de libellé. Je ne conseille pas. On se dit que tout le monde comprend le cœur, sauf que, patatras, un jour votre CSS, pour X ou Y raison, ne charge pas — ça arrive plus qu'on ne le pense. Du coup, ou même si votre <span lang="en">SVG</span> ne charge pas, votre utilisateur ne voit rien : il ne sait pas qu'il y a un lien, il ne peut pas cliquer.
+
+Qu'est-ce qu'il faut faire ? L'idée la plus simple, c'est d'ajouter un <span lang="en">span</span> dans le bouton, de lui mettre la classe <span lang="en">visually-hidden</span> qu'on a vue avant — le <span lang="en">span</span> n'est pas <span lang="en">focusable</span>, c'est le bouton qui l'est, donc pas besoin de se prendre la tête là-dessus — et de mettre votre libellé entre les balises du <span lang="en">span</span>. Du coup, si le CSS ou le <span lang="en">SVG</span> ne charge pas, votre bouton reste toujours interactif. Il y a une autre solution, un peu plus compliquée, avec <span lang="en">aria-label</span> ou <span lang="en">aria-labelledby</span>, mais la règle des <span lang="en">ARIA</span>, c'est d'éviter d'en utiliser si on peut, parce que c'est compliqué. Toujours préférer une solution HTML pure.
+
+## <span lang="en">Layout</span> : <span lang="en">Flexbox</span> et <span lang="en">Grid</span>
+
+Et là vous voyez « <span lang="en">Flexbox</span> », vous vous dites : mais qu'est-ce qu'elle raconte, <span lang="en">Flexbox</span> c'est la vie, elle est folle. Oui, mais ça, c'est un truc que j'ai codé il y a quatre ou cinq ans : on m'a demandé de faire une grille de produits, donc j'ai fait du <span lang="en">display: flex</span>, <span lang="en">justify-content: space-between</span> — il n'y avait pas encore de <span lang="en">gap</span> à l'époque, donc je gérais mes marges un peu bizarrement.
+
+Ce qui s'est passé, c'est que quand mes pages avaient le bon nombre de produits, tout était aligné parfaitement. Mais dès qu'on arrivait sur la dernière page, on se retrouvait avec deux cartes espacées comme si elles avaient divorcé. Et là, tu es en mode « qu'est-ce que je vais faire ». Donc tu vas sur <span lang="en">Stack Overflow</span>, à l'époque, parce qu'il n'y avait pas encore <span lang="en">ChatGPT</span>, et on te propose de mettre des pseudo-éléments, de calculer en JS pour placer la carte. Non, non, non : il y a <span lang="en">Grid</span>. En fait, <span lang="en">Grid</span>, c'est deux lignes (le <span lang="en">gap</span>, je ne le compte pas), et voilà, c'est carré, peu importe le nombre de cartes, ce sera toujours aligné et beau. Et je sais, <span lang="en">Grid</span> ça fait peur, moi-même je trouve ça un peu pénible, mais du coup j'ai appris deux choses avec : faire une grille basique, et centrer un élément. Je vous le conseille : si vous voulez commencer avec <span lang="en">Grid</span>, faites déjà ça, et vous pourrez faire beaucoup de choses.
+
+## <span lang="en">display: contents</span>
+
+Dernière chose : <span lang="en">display: contents</span>. Dans de rares cas — vous savez, <span lang="en">Flexbox</span>, c'est une histoire de <span lang="en">flex item</span> et de <span lang="en">flex parent</span> — imaginez une <span lang="en">nav</span> qui est en <span lang="en">flex</span> : elle est le parent, et ses enfants directs, ses <span lang="en">flex items</span>, seraient techniquement un <span lang="en">ul</span> et une <span lang="en">div</span>. Ça veut dire que si je fais un <span lang="en">justify-content: space-between</span>, ce serait mon <span lang="en">ul</span> et ma <span lang="en">div</span> qui se retrouveraient côte à côte. Sauf que moi, je préférais aligner les éléments enfants de ces deux éléments-là, donc mes <span lang="en">li</span> et mes <span lang="en">a</span>. Ce que je peux faire, c'est utiliser <span lang="en">display: contents</span> sur le <span lang="en">ul</span> et sur la <span lang="en">div</span>. Si je fais ça, c'est comme si les boîtes n'existaient plus, et les enfants directs de ma <span lang="en">nav</span> deviennent mes <span lang="en">li</span> et mes <span lang="en">a</span>. C'est plus facile ensuite de gérer les <span lang="en">gap</span>, et ça peut être pas mal si vous avez une <span lang="en">nav</span> avec une barre de recherche, des éléments de navigation, des boutons — parce que les alignements verticaux et horizontaux, parfois, c'est pénible. Voilà, c'est <span lang="en">cool</span>.
+
+Non ? Pourquoi ? Parce qu'il y a des devs qui militent pour qu'on arrête d'utiliser <span lang="en">display: contents</span> : ce n'est pas stable sur <span lang="en">Safari</span>, mais pas seulement. Ce que ça fait, en fait, c'est que ça supprime votre boîte, elle n'est pas rendue. Et si votre boîte avait une valeur sémantique — par exemple un <span lang="en">ul</span>, qui a le rôle « liste » — normalement le <span lang="en">li</span> est enfant du <span lang="en">ul</span>, mais là ce n'est plus le cas : vous vous retrouvez avec des éléments qui ont le rôle « item de liste » sans parent portant le rôle correspondant. Ça peut poser des problèmes d'accessibilité, et si vous travaillez pour une grosse boîte ou un service public, il faut vraiment faire attention à ce genre de choses.
+
+Donc on aimerait bien pouvoir utiliser <span lang="en">display: contents</span>, mais ce n'est pas encore vraiment possible. En attendant, je vous en parle quand même, parce que le jour où ça marchera vraiment, ça va sauver des vies — mais ce n'est pas le cas aujourd'hui, donc ne l'utilisez pas. Ça aussi, je l'ai vu tourner sur <span lang="en">Twitter</span>, et les gens étaient en mode « oui, oui, on va l'utiliser ». Non, s'il vous plaît, ne l'utilisez pas. Si vous voulez quand même l'utiliser, faites-le sur des éléments non sémantiques, par exemple une <span lang="en">div</span>, ce sera <span lang="en">ok</span>. Et sinon, débrouillez-vous pour aligner vos éléments sans <span lang="en">display: contents</span>, à la bonne franquette, comme on faisait avant.
+
+## Conclusion
+
+Pour conclure : d'où vient le souci, d'où viennent toutes ces « bonnes pratiques » — utiliser <span lang="en">visually-hidden</span>, les 62,5 %, et cetera ? Ce sont des choses qui sont là depuis des années : le truc des 62,5 % émerge en 2004, a été popularisé en 2016, et est revenu en 2020. Il y a des astuces qui sont là depuis longtemps, mais c'est simplement parce qu'on essaie de se faciliter la vie, de se donner de bons conseils, de partager. Il y a aussi des influenceurs <span lang="en">tech</span> qui partagent des astuces sans vraiment creuser, ou sans donner toute la vérité. Donc si vous voyez une astuce et que vous avez un doute, testez-la, et si vous avez encore des doutes, vous pouvez venir sur le site de cascade.fr : il y a un <span lang="en">Discord</span> de passionné·e·s d'intégration, ça touche au CSS, au HTML, et cetera, avec un canal d'aide. Dernièrement, on y a parlé de la meilleure façon d'intégrer des <span lang="en">SVG</span> dans un site — <span lang="en">sprites</span> ou <span lang="en">icon fonts</span> pour les icônes — c'était passionnant.
+
+Donc si vous aimez le CSS, le HTML, si vous avez des questions, n'hésitez pas à venir. Vous pouvez me suivre sur <span lang="en">LinkedIn</span> et me laisser un retour. Et là, on ne le voit pas, mais il y a une photo de mon chat, qui aimait beaucoup s'asseoir devant mon ordinateur pendant que je préparais cette conférence — et effacer des choses aussi. Et ça, c'est moi quand j'ai fait cette conférence.
+
+Voilà, merci.
