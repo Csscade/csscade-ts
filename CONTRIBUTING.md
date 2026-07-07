@@ -8,7 +8,9 @@ There are two ways to contribute:
 
 ---
 
-## Table of Contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
 - [Getting started](#getting-started)
 - [Project layout](#project-layout)
@@ -30,6 +32,8 @@ There are two ways to contribute:
   - [Commit messages](#commit-messages)
   - [Pull requests](#pull-requests)
   - [Reporting issues](#reporting-issues)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
@@ -255,8 +259,22 @@ Csscade is committed to accessibility. Contributions must respect WCAG 2.2 and R
 
 ### Validation with Playwright & Axe-core
 
+Before opening your pull request, run an automated accessibility audit on just the page(s) you wrote or edited:
+
 1. Ensure the app is running: `pnpm dev`
-2. Run accessibility checks: `pnpm test:ui`
+2. Run: `pnpm test:a11y:content`
+
+This automatically detects any new or modified file under `src/content/{articles,tips,talks}` — comparing your branch against `origin/main` and including uncommitted changes — and audits the matching page (`/articles/your-slug`, `/tips/your-slug`, or `/talks/your-slug`) in both light and dark theme. No setup or arguments needed; just write your content and run the command.
+
+Like the full site suite, this check enforces the same set of standards: WCAG 2.0/2.1/2.2 (A, AA, AAA), axe best-practice rules, and RGAA v4.
+
+If no violation is found, you'll see the test(s) pass. If nothing changed under `src/content/`, the test is skipped with a message telling you so — that's expected if you haven't added or edited content yet.
+
+If a violation is found, the failure output is a plain-language report, not raw JSON: the rule that failed, its severity, the CSS selector and HTML of the offending element, and a link to the fix guidance for that rule.
+
+To also check the full site (all static and list pages, not just your new content), run: `pnpm test:ui`
+
+**In CI:** this same check (`pnpm test:a11y:content`) runs automatically on every pull request that touches `src/content/**`, via the `Content accessibility check` workflow. It compares your PR branch against the base branch to find your new or modified content, so you don't need to configure anything — just open the PR. The readable report is printed directly in the job log if it fails.
 
 ---
 

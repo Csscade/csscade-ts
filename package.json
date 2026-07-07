@@ -25,6 +25,7 @@
     "test:component": "vitest run --project component",
     "test:storybook": "vitest run --project storybook",
     "test:ui": "vitest run --project storybook && playwright test tests/a11y.spec.ts",
+    "test:a11y:content": "playwright test tests/a11y-content.spec.ts",
     "test:lighthouse": "playwright test tests/lighthouse.spec.ts",
     "test:report": "playwright show-report"
   },

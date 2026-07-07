@@ -1,28 +1,7 @@
-import { AxeBuilder } from "@axe-core/playwright";
-import { expect, type Page, test } from "@playwright/test";
+import { test } from "@playwright/test";
+import { expectNoA11yViolations, type Theme } from "./utils/axe";
 
 const baseUrl = "http://localhost:3000";
-
-type Theme = "light" | "dark";
-
-const runAxe = async (page: Page, theme: Theme, path: string) => {
-  await page.addInitScript((t) => localStorage.setItem("theme", t), theme);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto(`${baseUrl}${path}`);
-  await page.waitForLoadState("networkidle");
-  return new AxeBuilder({ page })
-    .withTags([
-      "wcag2a",
-      "wcag2aa",
-      "wcag2aaa",
-      "wcag21a",
-      "wcag21aa",
-      "wcag22aa",
-      "best-practice",
-      "RGAAv4",
-    ])
-    .analyze();
-};
 
 const staticPages = [
   { name: "homepage", path: "/" },
@@ -45,9 +24,7 @@ for (const theme of ["light", "dark"] as const satisfies Theme[]) {
         test(`${name} should not have any automatically detectable accessibility violations`, async ({
           page,
         }) => {
-          const results = await runAxe(page, theme, path);
-
-          expect(results.violations).toEqual([]);
+          await expectNoA11yViolations(page, theme, baseUrl, path);
         });
       }
     });
@@ -57,9 +34,7 @@ for (const theme of ["light", "dark"] as const satisfies Theme[]) {
         test(`${name} should not have any automatically detectable accessibility violations`, async ({
           page,
         }) => {
-          const results = await runAxe(page, theme, path);
-
-          expect(results.violations).toEqual([]);
+          await expectNoA11yViolations(page, theme, baseUrl, path);
         });
       }
     });

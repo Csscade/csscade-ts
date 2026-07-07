@@ -67,7 +67,11 @@ Playwright + axe-core end-to-end accessibility tests live in `tests/`:
 
 `tests/a11y.spec.ts` runs the same 8 pages (homepage, `/a-propos`, `/mentions-legales`, `/recherche`, `/articles`, `/authors`, `/talks`, `/tips`) against both themes (`data-theme="light"` and `data-theme="dark"`), via `pnpm test:ui`.
 
-**Standards enforced** (via `.withTags()`):
+`tests/a11y-content.spec.ts` audits contributor content instead: it diffs `src/content/{articles,tips,talks}` against the PR base branch (or the working tree locally) to find new/modified files, then runs axe against the matching `/articles|tips|talks/{slug}` page(s) in both themes. Run locally via `pnpm test:a11y:content`; runs automatically in CI on PRs touching `src/content/**` via `.github/workflows/pr-content-a11y.yml`.
+
+Shared axe/report logic (`runAxe`, `expectNoA11yViolations`, `formatViolations`, `printViolations`) lives in `tests/utils/axe.ts`.
+
+**Standards enforced** (via `.withTags()` in `runAxe`, shared by both suites):
 
 | Tag | Standard |
 |---|---|
@@ -76,6 +80,8 @@ Playwright + axe-core end-to-end accessibility tests live in `tests/`:
 | `wcag22aa` | WCAG 2.2 AA |
 | `best-practice` | axe best-practice rules |
 | `RGAAv4` | RGAA 4 |
+
+Do not remove this tag list to "run everything" — axe-core disables 16 of its 105 rules by default, and calling `.analyze()` with no tags only runs 89 of them. This tag list runs 93: it force-enables 4 rules that are real and current but opt-in (`target-size` — WCAG 2.2 AA 2.5.8 — plus three AAA rules: `color-contrast-enhanced`, `identical-links-same-purpose`, `meta-refresh-no-exceptions`), while still excluding the 5 deprecated and 7 experimental rules that neither an empty filter nor this list ever runs. Verified with `AxeBuilder`'s `.passes`/`.violations`/`.incomplete`/`.inapplicable` rule IDs.
 
 **Theme seeding:** each test calls `page.addInitScript(() => localStorage.setItem("theme", "light/dark"))` before navigation so the `ToggleTheme` component picks up the correct theme on mount.
 
