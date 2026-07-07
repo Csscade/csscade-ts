@@ -9,6 +9,12 @@ export const ArticleSchema = z.object({
   publishedAt: z.iso.date(),
   categories: z.array(z.string()),
   originalUrl: z.url().optional(),
+  coverImage: z
+    .object({
+      src: z.url(),
+      alt: z.string(),
+    })
+    .optional(),
   content: z.string(),
 });
 

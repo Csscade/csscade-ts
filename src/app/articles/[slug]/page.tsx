@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ArticleDetailPage } from "@/ui-kit/pages/Articles/ArticleDetailPage";
-import { getAllArticles } from "@/usecases/articles";
+import { getAllArticles, getReadingTime } from "@/usecases/articles";
 import { getAllAuthors, resolveAuthorCredit } from "@/usecases/authors";
 
 export const generateStaticParams = async () => {
@@ -27,7 +27,14 @@ export default async function Page({
     ? resolveAuthorCredit(article.coAuthor, authors)
     : undefined;
 
+  const readingTime = getReadingTime(article.content);
+
   return (
-    <ArticleDetailPage article={article} author={author} coAuthor={coAuthor} />
+    <ArticleDetailPage
+      article={article}
+      author={author}
+      coAuthor={coAuthor}
+      readingTime={readingTime}
+    />
   );
 }

@@ -5,6 +5,11 @@
   padding: 1.5rem;
   gap: 1.5rem;
 
+  .article-card__cover {
+    width: 100%;
+    object-fit: cover;
+  }
+
   .article-card__header {
     display: flex;
     align-items: flex-start;
