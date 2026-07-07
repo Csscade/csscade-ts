@@ -3,7 +3,7 @@ import { z } from "zod";
 export const AuthorSchema = z.object({
   name: z.string(),
   slug: z.string(),
-  avatar: z.url(),
+  avatar: z.union([z.url(), z.string().startsWith("/")]),
   pronouns: z.string().optional(),
   website: z.url().optional(),
   bluesky: z.url().optional(),

@@ -1,6 +1,8 @@
 import { clsx } from "clsx";
 import "./Avatar.css";
 
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 export type AvatarProps = {
   src: string;
   alt: string;
@@ -21,10 +23,11 @@ export const Avatar = ({
       className={clsx("avatar-link", border && "avatar-border", className)}
     >
       <img
-        src={src}
+        src={src.startsWith("/") ? `${basePath}${src}` : src}
         alt={alt}
         width={size}
         height={size}
+        loading="lazy"
         className="avatar-image"
       />
     </figure>

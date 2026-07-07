@@ -26,6 +26,7 @@ There are two ways to contribute:
     - [Tip Frontmatter](#tip-frontmatter)
     - [Talk Frontmatter](#talk-frontmatter)
     - [Author Frontmatter](#author-frontmatter)
+  - [Assets & Media](#assets--media)
   - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
   - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
 - [Common Guidelines](#common-guidelines)
@@ -228,7 +229,7 @@ slidesUrl: "https://slides.com/yourslides"  # optional
 ---
 name: "Your Name"
 slug: "your-name-slug"
-avatar: "https://example.com/avatar.jpg"
+avatar: "/authors/your-name-slug.jpg"  # local path (preferred) or a full URL
 pronouns: "they/them"           # optional
 website: "https://example.com"  # optional
 bluesky: "https://bsky.app/profile/yourname.bsky.social"  # optional
@@ -236,6 +237,32 @@ mastodon: "https://mastodon.social/@yourname"              # optional
 github: "https://github.com/yourname"                     # optional
 linkedin: "https://linkedin.com/in/yourname"              # optional
 ---
+```
+
+### Assets & Media
+
+Self-host every image, video, or avatar you add — never link directly to an external host (Giphy, a CMS's image CDN, a raw GitHub/LinkedIn avatar URL, etc.). External hotlinks add extra DNS/TLS round-trips on every page load, aren't optimized, and can silently break — some CDNs serve signed URLs that expire.
+
+- **Where to put files**: `public/articles/{your-slug}/`, `public/tips/{your-slug}/`, or `public/authors/{author-slug}.jpg` for avatars.
+- **How to reference them**: use a root-relative path, e.g. `/articles/your-slug/screenshot.webp`. The `MdxImg`/`MdxVideo` overrides (and the `Avatar` component, for author frontmatter) automatically prefix the GitHub Pages sub-path in production — never hardcode it yourself.
+- **Formats**: prefer WebP or AVIF for images, MP4 for motion. **Never commit an animated GIF** — a typical reaction GIF weighs 1–2 MB, while the same clip as a muted, looping MP4 is often 10x smaller. If your source is a GIF (e.g. from Giphy), look for a `.mp4` rendition of it (Giphy exposes one for every GIF, usually named `giphy-downsized-small.mp4`) instead of downloading the `.gif` itself.
+- **Size**: compress before committing. As a rough guide, keep individual article images under ~50 KB and video clips under ~300 KB — one unoptimized asset can outweigh the rest of the page combined.
+- **Author avatars**: `avatar` in the author frontmatter accepts either a full URL or a local root-relative path — prefer the local path for the reasons above.
+
+Example of a decorative looping clip replacing what would otherwise be a GIF:
+
+```mdx
+<figure>
+  <video
+    src="/articles/your-slug/reaction.mp4"
+    aria-label="Description of what's happening"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+  <figcaption>Caption</figcaption>
+</figure>
 ```
 
 ### Accessibility (WCAG & RGAA)
@@ -253,7 +280,7 @@ Csscade is committed to accessibility. Contributions must respect WCAG 2.2 and R
   ```
   Common language codes: `en` (English), `de` (German), `es` (Spanish), `ja` (Japanese).
 - **Interactive elements**: Ensure links and buttons have clear, descriptive labels.
-- **Multimedia**: Captions required; no autoplay; `title` attribute on iframes.
+- **Multimedia**: Captions required for videos that convey information; `title` attribute on iframes. Silent, purely decorative looping clips (the GIF-replacement pattern above) may autoplay muted — anything else must not autoplay and needs visible playback controls.
 - **Keyboard navigation**: All interactive elements must be keyboard-accessible.
 - **Screen reader support**: All interactive elements must work with screen readers.
 

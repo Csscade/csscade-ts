@@ -4,6 +4,7 @@ import { rehypeShikiPlugin } from "./plugins/rehype-shiki";
 import { rehypeSlug } from "./plugins/rehype-slug";
 import { rehypeTableAccessibility } from "./plugins/rehype-table-accessibility";
 import { remarkAbbr } from "./plugins/remark-abbr";
+import { remarkBasePath } from "./plugins/remark-base-path";
 import { remarkDeflist } from "./plugins/remark-deflist";
 import { remarkDirective } from "./plugins/remark-directive";
 import { remarkEmoji } from "./plugins/remark-emoji";
@@ -27,6 +28,7 @@ export const remarkPlugins: any[] = [
   remarkSupersub,
   remarkIns,
   remarkFlexibleMarkers,
+  remarkBasePath,
 ];
 
 /* biome-ignore lint/suspicious/noExplicitAny: unified plugin types are complex to unify across different remark/rehype versions */
