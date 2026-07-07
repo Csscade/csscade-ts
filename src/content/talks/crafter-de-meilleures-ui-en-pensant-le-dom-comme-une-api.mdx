@@ -1,0 +1,242 @@
+---
+title: "Crafter de meilleures UI, en pensant le DOM comme une API"
+slug: "crafter-de-meilleures-ui-en-pensant-le-dom-comme-une-api"
+author: "manon-carbonnel"
+categories: ["Craft"]
+publishedAt: "2026-07-07"
+abstract: >-
+  Arrivant souvent sur les projets en "mode pompier", j'ai acquis des
+  réflexes lorsqu'il s'agit de rapidement corriger ou terminer
+  l'intégration d'application web.
+
+  Mais comment faire pour maintenir ces bonnes pratiques une fois le feu
+  éteint ? Comment améliorer le code sans casser l'UI ? Comment bien
+  démarrer l'intégration d'une nouvelle application ? Nos UI sont autant
+  utilisées par des humains que par des lecteurs d'écran, ou encore des
+  outils de test et des robots... il faut donc penser le DOM comme une
+  API, et pas seulement reproduire une maquette. Autour de cet axe, je
+  vous propose quelques outils et idées d'ateliers collaboratifs pour
+  développer des interfaces testables, modulaires et accessibles.
+
+  Et pourquoi pas un Design System ? Vous repartirez avec une nouvelle
+  vision du métier de l'intégration web, des pratiques et quelques
+  outils à utiliser dès demain pour améliorer le quotidien de votre
+  projet.
+level: "intermédiaire"
+youtubeId: "jZGWoGgeeJ0"
+slidesUrl: "https://docs.google.com/presentation/d/1ycOe2C-MI0oHWCAy9nqnIxcVHB_K4q-Uw36IZY8bVTo/edit?usp=sharing"
+---
+
+## Introduction
+
+Merci d'être là, je suis super contente. On va parler aujourd'hui de <span lang="en">craft</span>, parce que j'entends toujours parler de <span lang="en">software craftsmanship</span>, souvent en <span lang="en">backend</span>, un peu en <span lang="en">frontend</span>, mais c'est souvent ce que j'appelle le bac à sable du <span lang="en">front</span>. Aujourd'hui je vais vous parler du <span lang="en">front</span>, du <span lang="en">front</span>, du <span lang="en">front</span>, du <span lang="en">front</span>. Vous êtes prêts ?
+
+Donc je m'appelle Manon Carbonnel, je suis dev web et intégratrice, je suis fan de CSS. J'espère que je ne suis pas la seule — est-ce qu'il y en a qui détestent, genre allez-y, hein, je ne vais pas vous manger ? Ah, quand même, ok, je vais essayer de vous convaincre un peu, on va voir. Et j'aime beaucoup aussi tout ce qui est lié à la coopération, donc le <span lang="en">mob programming</span>, l'agilité, et cetera, donc on va en parler un petit peu aussi.
+
+Je prends une petite seconde pour vous parler de mon <span lang="en">meetup</span> qui s'appelle Cascade, un petit jeu de mot avec CSS. C'est une petite communauté de passionnés d'intégration web, on a bientôt un site web qui va sortir, on va pouvoir poster des articles, du dessin en CSS, des tutos, un tas de choses. Donc je vous invite à suivre et rejoindre notre <span lang="en">Discord</span>.
+
+Une petite <span lang="en">roadmap</span> pour aujourd'hui : le fameux mode pompier, ça m'arrive très souvent en fait d'être appelée à revenir sur une mission pour dépanner, donc on va un peu voir comment faire pour réagir à chaud. Et plus ça va aller, plus je vais prendre un peu de hauteur pour parler de la qualité de code, et puis enfin de la conception et de la coopération.
+
+## Le mode pompier
+
+Le mode pompier, c'est une phrase qu'on m'a déjà dite plusieurs fois : « Dis Manon, est-ce que tu peux venir nous aider, la deadline est dans une semaine et nous on déteste ça et on n'est pas bons. » Donc, ok, on va voir comment ça se passe.
+
+Souvent le code CSS, je trouve, c'est compliqué à maintenir quand je vais sur des projets existants, surtout quand les gens n'aiment pas ce qu'ils font, pas envie de se prendre la tête sur le nommage et le rangement. Je me retrouve avec des choses comme ça — on va prendre le bouton là, qui vient de l'ancien doc de <span lang="en">Tailwind</span>, et je vais m'en servir tout au long de la présentation pour servir d'exemple.
+
+J'arrive sur le projet pour dépanner, et euh, je vois ce code HTML là pour le bouton, je vais le lire avec vous : j'ai un span auquel on attribue un rôle « button », j'ai des classes — d'abord une classe en <span lang="en">camelCase</span> `headerButton`, ensuite une classe orientée objet `Button`, et ensuite une classe utilitaire `padding-10`. En plus de ça, ça va être surchargé parce que j'ai un `background-color: navy` en style inline, et j'ai une div à l'intérieur de mon span avec le texte. Ça, ça va vous saigner un peu les yeux — moi aussi, un peu, hein. On n'est pas là pour juger, on est là pour aider.
+
+Donc après on va regarder le CSS, peut-être que le CSS est mieux que le HTML. Alors, j'ai un fichier de 12 656 lignes au moins, il y a tout dedans, ok. Alors je vais scroller, je vais aller chercher mes classes avec un petit Ctrl+F. Là, déjà, dans mon `.headerButton`, dans ma classe, le `color` n'a pas de point-virgule, je ne sais pas si ça marche ou pas. En plus, c'est écrit `white`, et en dessous on utilise plutôt un hexadécimal, donc ce n'est pas la même convention au niveau des unités.
+
+Après j'ai ma classe générique — du coup `.button` c'est plus générique qu'un `.headerButton` qui est plus précis, mais il est chargé après et il a le même niveau de force de sélecteur, donc là ça prend le gris, donc là je me demande : mon bouton, il doit avoir quelle couleur ? Et après j'ai ma classe utilitaire, mais en fait mon fichier CSS là, il ne sert à rien, parce que de toute façon j'ai un attribut `style` dans mon span qui va tout écraser.
+
+Donc comment je fais pour maintenir ce code-là sans casser quelque chose ailleurs ? Est-ce que si je change l'une de ces classes, je vais avoir des répercussions sur d'autres boutons ? Est-ce que j'ai des classes qui servent seulement pour celui-ci ? Je ne sais pas encore, je viens d'arriver. Ça vous parle, ça ? Vous avez déjà vu des choses comme ça ? Oui ? Je vous le souhaite pas.
+
+## Refactorer le HTML et le CSS
+
+Alors du coup on va parler de <span lang="en">refactoring</span> en <span lang="en">craft</span> : comment refactorer du HTML/CSS ? Ce qu'il faut comprendre, c'est que le concept de cascade, c'est ce qui fait peur souvent, alors que moi je trouve que c'est ce qui fait la puissance de CSS.
+
+On va voir la proximité aux balises HTML, qui va définir quelle règle va être appliquée sur notre élément. On l'a vu tout à l'heure : la balise `style` était la plus forte, donc c'est elle qui prenait le pas sur la définition dans le fichier CSS. Ensuite, j'ai la spécificité des sélecteurs, qui va avoir un niveau de force, et enfin j'ai le fameux mot-clé `important`, qu'il ne faut jamais utiliser mais qu'on voit parfois. Tout ça impacte directement le rendu, avec les mêmes règles CSS, juste selon leur emplacement.
+
+Alors un petit point sur la spécificité : ça se calcule en points. En fait, l'attribut, le type de balise, c'est un point ; une classe, un attribut `data-*`, c'est dix points ; et un id, c'est cent points. Et ça se cumule — par exemple ici, un id, c'est cent points ; là j'ai une classe et un type, ça fait onze points.
+
+Et souvent, quand vous avez besoin d'utiliser un `!important`, c'est parce que vous surchargez un élément avec un sélecteur qui est plus puissant que le vôtre. Pour y accéder, on utilise plutôt le même niveau de force de sélecteur pour écraser cette règle-là — notamment si vous faites du Bootstrap, réutiliser le même sélecteur pour écraser la règle et avoir le rendu que vous voulez. Ça vous évite d'utiliser des `!important` : comme votre code est chargé après celui de la librairie, avec un même niveau de force de sélecteur, ça va prendre le pas et vous n'avez plus besoin de vous prendre la tête.
+
+Voilà, j'ai appris il n'y a pas si longtemps que ça que c'était calculé en points comme ça, c'est pour ça que je trouvais ça important de vous l'indiquer ici, parce qu'on dit toujours qu'un id c'est plus fort qu'une classe, mais au-delà de ça c'était un peu flou pour moi.
+
+## Tester le HTML et le CSS
+
+Bon, ok, maintenant on va tester le HTML/CSS, comment on fait ? Il y a des tests en CSS, ah, comment on va faire ? Les tests unitaires, au sens où on l'entend, pour moi ce n'est pas exactement ça. Il existe, avec certains préprocesseurs, des tests unitaires sur les fonctions qu'on peut créer, mais ce n'est pas sur tout le code. Par contre, on peut faire du test de composants, ça, ça peut être cool.
+
+Ça ne sert à rien de faire un <span lang="en">snapshot</span> du DOM, puisqu'il va changer si on le refactore — on sait qu'il y aura forcément un avant/après qui vont être différents, donc c'est inutile. Par contre, on peut faire un <span lang="en">screenshot</span>, modifier notre code et voir si le rendu est toujours le même : ça, ça peut être chouette à faire.
+
+Alors, comment je vais faire, par quoi je vais commencer ? Ça fait déjà beaucoup de choses. Je vais faire du « <span lang="en">tidy first</span> » : je vais mettre un linter, un formateur, je vais gagner du temps pour ranger, pour me retrouver, pour voir ce qui est mal écrit, ce qui est appliqué ou pas — déjà rendre le changement facile. Et puis je vais le mettre dans un <span lang="en">Git hook</span>, comme ça je le lance avant de pousser du code, et puis je le mets dans une <span lang="en">pipeline</span>.
+
+Et en plus, pour refactorer du code en plus d'intégrer du nouveau code, je vais utiliser les mêmes outils, et en plus là je vais utiliser mon fameux test de régression visuelle dont je parlais tout à l'heure. Donc on peut quand même tester des choses, on peut s'assurer de certaines choses, et là moi je me sens plus sereine pour commencer.
+
+Un petit test de régression, ça ressemble à ça : vous avez votre avant/après, et ce qui a changé ressort dans une autre couleur. Donc dès lundi, si vous arrivez en mode pompier sur un projet, vous pouvez utiliser ces outils-là : un linter — le linter officiel de CSS, <span lang="en">Stylelint</span> — un formateur de code — c'est bien connu, sûrement, je ne vous apprends rien — et pour les tests de régression ou non-régression visuelle, j'aime beaucoup ces outils-là.
+
+J'aime beaucoup <span lang="en">Playwright</span>, parce qu'il me permet de faire du test de composants et de pouvoir faire des <span lang="en">screenshots</span> automatiques. Si vous faites du <span lang="en">Storybook</span>, c'est hyper chouette, ça vous permet d'avoir des sortes de <span lang="en">merge requests</span> avec le rendu visuel de vos composants, vous pouvez coopérer dessus, avoir des commentaires, et voir la fameuse diff visuelle que je vous ai montrée juste avant. Et vous avez aussi <span lang="en">Loki</span>, qui est une version en local en fait de test de régression visuelle, et ça, ça fonctionne plutôt bien avec ces outils.
+
+## Est-ce que refactorer suffit ?
+
+Ok, jusque-là je ne vous perds pas ? Ok. Bon, le code est refactoré, le feu est éteint, c'est cool, mais est-ce que ça suffit ? Si c'est joli, ça marche, c'est bien rendu, ce n'est plus cassé, la deadline de la semaine est finie — maintenant est-ce qu'on s'arrête là ? Mais moi je n'ai pas envie de m'arrêter là, et je vous jure que ce sont des phrases qu'on m'a dites, je n'exagère pas du tout. Je n'aime pas qu'on réduise le HTML/CSS à « c'est joli, c'est pas joli » — pour un outil utilisable par des milliers de gens, je trouve que c'est un peu réducteur. Donc je vais vous parler un peu de qualité.
+
+## Le DOM, une API à soigner
+
+Je parle du DOM depuis tout à l'heure, une définition s'impose : le DOM, c'est le Document Object Model. Comment ça marche ? On envoie du HTML, on récupère un arbre, avec le CSS et le CSSOM derrière, et un troisième arbre composite avec le JavaScript, qu'on appelle le <span lang="en">render tree</span>, et avec des couches de peinture et de <span lang="en">layout</span>, pardon, on obtient des pages web. Et ça, c'est le navigateur qui le fait, avec du <span lang="en">Rust</span>, avec du C++. Donc on a vraiment des langages qui sont faits pour travailler ensemble — en fait c'est ce qu'on appelle des langages « <span lang="en">domain specific</span> », donc HTML et CSS ne sont pas des langages généralistes, mais sont vraiment faits pour s'interfacer.
+
+Pourquoi c'est important ? Parce que ces arbres-là, c'est ce qui va nous permettre après de naviguer dans le code qu'on fait, que ce soit en termes de rendu, mais pas seulement, parce qui utilise ces API en fait ? Ben, vous et moi, les êtres humains, on va voir le rendu dans notre page, que ce soit quand on développe la page ou quand on consulte des sites web. Mais on va voir aussi les outils d'aide à l'accessibilité, qui vont utiliser le DOM ; on va voir des robots d'indexation, pour le SEO notamment ; et enfin nos outils de test dont je parlais tout à l'heure — eux aussi, ils sont très utiles, ils ont besoin d'avoir une interface avec un DOM propre pour sélectionner les éléments.
+
+Du coup, pour moi, c'est autant de raisons de dire que ce n'est pas juste du joli, mais qu'on a un vrai intérêt à aller améliorer la qualité du code à cet endroit-là.
+
+## La conception : <span lang="en">atomic design</span>
+
+Alors comment on va les concevoir ? Par contre, en <span lang="en">backend</span>, on va avoir tout un tas d'acronymes, de DDD, de BDD, des architectures, et cetera. Comment on fait en <span lang="en">frontend</span> ? Alors moi j'aime beaucoup l'<span lang="en">atomic design</span>, je suis sûre que ça parle à plusieurs personnes dans la salle.
+
+C'est un découpage des composants graphiques qui a été conceptualisé par Brad Frost en 2016, et qui part du plus petit élément possible de votre application. Imaginez un <span lang="en">design system</span> où les plus petits éléments, comme les icônes, les textes, sont présentés sous le nom d'« atome », l'élément le plus atomique possible. Quand ces éléments se combinent — par exemple un bouton avec un texte et une icône dedans — ça fait une « molécule », parce qu'il est déjà composite, mais il est toujours petit. Et les plus grands éléments s'appellent des « organismes », par exemple une <span lang="en">data table</span>, une chose comme ça. Ces éléments-là, on va les intégrer dans des espaces de notre page qu'on appelle des « <span lang="en">templates</span> », et ça donne des « pages ».
+
+Alors je vulgarise beaucoup, parce que l'<span lang="en">atomic design</span> c'est un sujet à part entière, mais ce qui est intéressant, c'est qu'on a un vrai découpage en termes de design, que je vais réutiliser en fait dans mon application.
+
+## Comment ça s'intègre en code
+
+Alors comment ça s'intègre en code ? On a la partie HTML et la partie CSS. S'il vous plaît, évitez les soupes de div, ça ressemble à ça — si vous faites comme moi, vous tournez la tête sur la gauche, vous verrez que ça fait un bol de soupe avec les div, là. Il ne faut pas faire ça, ce n'est pas bien, et moi je ne faisais que ça avant : je m'attardais vraiment sur le nommage de mes classes CSS et j'oubliais complètement la partie HTML, que je négligeais, et à tort, parce que c'est très important. En fait, c'est ça qui va permettre au navigateur d'avoir les bases en accessibilité.
+
+Je vous invite à utiliser des balises sémantiques, donc tout ce qui va être HTML5, et si vous ne savez pas comment faire, un truc très cool c'est le <span lang="en">HTML5 element flowchart</span>. On va peut-être le parcourir vite fait : quand on démarre un bloc, est-ce que c'est un bloc de navigation ? Oui, ben on va appeler ça une balise `nav`. Alors ce n'est pas ça, ok, est-ce que ça a du sens par lui-même, cet élément-là ? Alors ben on va faire carrément une balise `article`. Est-ce que c'est requis pour comprendre le contenu courant ? Non, ben on peut mettre en `aside`, et cetera, et cetera. Et si vraiment il n'y a pas de sémantique du tout, qu'il n'y a pas de sens logique, là on va utiliser une div, parce que ça, ça peut être un wrapper, quelque chose comme ça.
+
+Bon, c'est assez simple, après c'est un peu du par cœur ou de la recherche sur cette partie-là, parce que ça reste très déclaratif comme langage, il y a de plus en plus de balises, il y en a plein que je ne connaissais pas, il y a même des conférences là-dessus qui sont très intéressantes.
+
+Et enfin je vais faire un petit point sur l'accessibilité, du coup, puisque je vous parlais des balises HTML5. Et tout à l'heure on avait un span avec `role="button"` — vous vous rappelez, faut pas faire ça. Il vaut mieux ne pas faire d'ARIA que de faire du mauvais ARIA, parce que ça perturbe vraiment les utilisateurs. Donc ce n'est pas pour remplacer le HTML sémantique, ça peut être bien pour les éléments non sémantiques, ou pour compléter quelque chose, donner de l'information, de la métadonnée en plus.
+
+Par exemple, des fois, quand on a toutes nos capacités visuelles et qu'on conçoit une application, on n'est pas incité à prendre en compte le contexte, et à avoir des boutons avec un texte très court, par exemple « Envoyer ». Mais si votre bouton n'est pas lu au bon endroit de la page par un lecteur d'écran, ben « Envoyer », envoyer quoi ? Une personne qui n'utilise pas ses yeux de la même manière que moi ne va pas forcément savoir ce qui est envoyé. Et du coup ça peut être cool de mettre un petit label en plus, pour dire que c'est un e-mail que j'envoie — j'ai pris un exemple bateau, mais dans plein de cas c'est comme ça, notamment sur des liens, des boutons. Le bouton, c'est ce qu'on utilise le plus dans une interface, donc là ça peut être cool.
+
+## Nommer et organiser son CSS
+
+Je crois que j'ai fait le tour sur le HTML, je vais passer au CSS : comment je vais nommer mes composants ? Je vais reprendre en fait, comme je vous disais, l'<span lang="en">atomic design</span>, et donc je vais séparer mes éléments : les éléments de gauche, pour moi, c'est ce que je vais appeler mon kit de librairie de composants, et à droite, ça va être les endroits où j'en ai besoin pour faire quelque chose de métier, pour la logique business.
+
+Donc je vais utiliser un langage selon ce dont vous avez besoin — orienté objet CSS, ou BEM, encore que BEM, je n'aime pas sa rigidité — et donc je vais utiliser des mots sémantiques après pour nommer mes classes. Au-dessus, un bouton c'est un bouton, mais il sert à quoi dans mon contexte, tout simplement. Et après, c'est l'organisation des feuilles de style à l'aide d'un préprocesseur, si vous voulez, mais c'est vrai qu'aujourd'hui CSS a tellement d'ajouts que c'est de moins en moins nécessaire, voire ça va disparaître, je pense.
+
+Donc moi je range tout simplement mes composants comme ça : je vais créer un dossier pour les atomes, un pour les molécules, un pour les organismes, et je mets un underscore en début de mon fichier, par convention, pour indiquer que c'est un fichier partiel qui va être importé par un fichier central. Donc en bas j'ai mon thème CSS, qui va contenir en fait mon point d'entrée, j'ai mon fichier de variables qui va être ensuite appelé par les autres fichiers, et ainsi de suite.
+
+Si par contre j'utilise un <span lang="en">framework</span> comme <span lang="en">Bootstrap</span>, je vais reprendre la même hiérarchie, je veux rester dans la même philosophie que les outils que j'utilise jusqu'au bout. En plus, ce qui est bien fait, c'est que la documentation de <span lang="en">Bootstrap</span> est rangée de la même manière que le code est rangé, donc c'est très facile à rechercher, c'est aussi hyper facile pour une nouvelle personne dans votre équipe de s'y retrouver, parce que si elle connaît l'outil, ou si elle cherche la doc, ben c'est rangé pareil. Ce sont des petites choses qui paraissent bêtes mais qui font gagner énormément de temps, et on passe plus de temps à lire du code qu'à en écrire.
+
+Alors mon approche à moi, c'est de faire — et là je sors les mots — du CACC, le « <span lang="en">content agnostic component</span> », et en plus, de faire de la « <span lang="en">composition over subclassing</span> ». Il y a un article du créateur de <span lang="en">Twind</span> qui, dans son article, décrit cette façon de faire. Moi je déteste les classes utilitaires, donc je vous invite à ne pas me croire sur parole, à vous faire votre propre avis et à aller voir son article, parce que je trouve, moi, que les classes utilitaires et le BEM extrême, ça casse ce principe de cascade — qui fait peut-être peur, je ne sais pas. Moi j'aime bien que ce soit relatif, j'aime bien la puissance de CSS qui permet d'aller chercher des composants dans d'autres composants, d'avoir des sélecteurs complexes, et de ne pas avoir des chemins précis et cassants.
+
+Et donc ça va ressembler à ça : moi, si j'écris moi-même le même bouton que tout à l'heure, il va être dans mon <span lang="en">header</span>. Ok, dans ce cas-là, j'ai une balise HTML `header`, je peux lui mettre une classe, après je vais avoir une section, c'est le « <span lang="en">get started</span> », le point d'entrée de mon application, et mon bouton, ce n'est pas un span avec `role="button"`, c'est bien une balise `Button`, et il n'a pas un nommage sémantique, il a vraiment un nom de composant, donc il est `Button`, et il est de type `primary`, et je vais composer avec ces deux classes plutôt que d'avoir un `Button--primary`.
+
+Au niveau de mon code CSS, je vais avoir un fichier dédié pour le style des boutons, qui va avoir sa couleur par défaut de fond et de texte, et qui, dans le cadre `primary`, va aller surcharger la couleur du fond. Mais là, en plus de ça, ce n'est pas juste un bouton fort, un bouton principal, il a un style encore plus fort, parce que c'est le premier bouton de l'application, c'est celui qu'on voit dès le début de la page. Donc dans mon contexte « <span lang="en">get started</span> », mon bouton va avoir une couleur différente, et si jamais ça casse parce que j'ai déplacé quelque chose et que mon bouton n'est plus dans la bonne balise HTML, ce n'est pas grave, ça va retomber dans le design classique, dans le reste de mon design system, ça va rester cohérent avec le reste de mon application.
+
+Donc j'aime beaucoup cette approche-là, que je trouve très simple, et qui a des sélecteurs super légers — en fait mon DOM, il est très, très, très léger, là. Je trouve que c'est mon approche.
+
+## Tester ces composants
+
+Et maintenant, comment on va la tester ? Souvent la montagne quand même — je mets une montagne, du coup — souvent j'entends « les tests, c'est fragile », « c'est trop dur à maintenir », ou alors « c'est trop long à écrire ». Ça vous parle, ça ? Je ne suis pas la seule à dire ça, vous le pensez des fois ? Ça donne pas envie de tester, non ? Ouais. Et il y a des technos qui sont pourtant aujourd'hui... le CSS, en général, difficile à tester, c'est comment on sélectionne les éléments du DOM. On n'a pas envie d'utiliser des sélecteurs CSS complexes, on ne sait pas si on doit se baser sur le contenu ou sur le <span lang="en">XPath</span>, pardon.
+
+Donc moi, ce que j'aime bien utiliser, ce sont les attributs destinés aux utilisateurs, ce qu'on appelle les « <span lang="en">user facing attributes</span> », qui sont le rôle de l'élément, son label, le texte, le <span lang="en">placeholder</span>, le texte à l'intérieur, parce que c'est avec ça qu'interagissent les humains qui utilisent l'application. Les utilisateurs n'ont pas grand-chose à faire de nos classes CSS et du nommage, c'est le rendu qui compte.
+
+Par contre, il y a des fois où on ne peut pas prévoir ce contenu texte — si on est dans une liste, par exemple, un truc dynamique, là on va avoir besoin d'un sélecteur pour dire « le n-ième élément de la liste » ; par exemple, là on peut utiliser effectivement les sélecteurs CSS, comme on faisait à l'époque.
+
+Ce que je n'aime pas, c'est les sélecteurs absolus, c'est très fragile, parce que si vous regardez le code qui est écrit, tout le chemin, du parent jusqu'à l'enfant, est écrit en dur. Ça veut dire que si demain je déplace un bloc dans mon HTML, mon test ne passe plus, alors que la cascade, ça permet justement d'aller parcourir les éléments dans le CSS pour aller chercher ce qu'on veut modifier. C'est ça qui rend fragile, c'est vraiment le sélecteur.
+
+Alors, les gens qui aiment les classes utilitaires, je ne vous ai pas oubliés — dans ce cas, ce que je vous conseille de faire, c'est de ne pas ajouter de classes sémantiques juste pour être sélectionnable, parce que pour moi ça n'a pas de sens, il faut aller jusqu'au bout. Si vous faites du classe utilitaire, c'est cool dans ces cas-là, utilisez peut-être un `data-testid`, comme le préconisait <span lang="en">Cypress</span> jusqu'à pas longtemps. Et donc, en sémantique, moi j'ai juste à récupérer la classe qui m'intéresse.
+
+Vous avez donc les deux approches que je vous conseille. Moi, on va faire un test pour le bouton, là : quels éléments j'ai à ma disposition pour le choisir ? Dans le DOM, je vais avoir la classe de ses parents, donc le header, j'ai la classe de mon bouton lui-même et son variant, je peux avoir un `data-id`, et j'ai son contenu aussi, le texte.
+
+Eh ben, si j'utilise par exemple <span lang="en">Testing Library</span>, que je vous conseille très, très fortement, je vais <span lang="en">render</span> mon <span lang="en">header</span>, pardon, et là ben je vais aller récupérer par le texte « <span lang="en">Get started</span> » mon élément, et je n'ai pas besoin de me demander où est-ce qu'il est dans mon DOM, en fait c'est son contenu qui m'intéresse — je peux aussi lui passer une traduction, ça marche. Sinon je peux récupérer par `data-testid`, ou enfin, si vraiment je n'ai pas d'autre solution, je passe par le sélecteur, et c'est super simple à utiliser, c'est vraiment une lib qui est trop bien, qui marche d'enfer, et d'ailleurs <span lang="en">Microsoft</span> <span lang="en">Playwright</span> a repris les mêmes sélecteurs, mêmes <span lang="en">locators</span> du coup dans son API. Et après vous faites vos assertions et vos tests.
+
+## Accessibilité
+
+Alors je vais parler un petit peu d'accessibilité. On a un référentiel — d'ailleurs, on a le référentiel WCAG, en France c'est le RGAA — il y a trois niveaux d'accessibilité, et en plus, en 2025, vous savez que les règles se sont durcies en France, donc c'est important que vous vous intéressiez à l'accessibilité. Moi j'ai fait cette formation il n'y a pas longtemps avec Access42, je vous la conseille.
+
+Mais même si vous n'êtes pas formé au développement de logiciel et de sites web accessibles, je vous conseille d'utiliser un outil qui s'appelle <span lang="en">axe</span>, et qui vous permet de couvrir 20 à 30 % des erreurs d'accessibilité — c'est déjà énorme, ça veut dire qu'avant même de vous former, vous pouvez contribuer, en fait, ça va faire quelque chose de bien. Et <span lang="en">axe</span>, ça fonctionne par une extension de navigateur, ça fonctionne avec <span lang="en">Lighthouse</span>, ça fonctionne en test automatisé et en job de <span lang="en">pipeline</span>, ça marche avec la plupart des outils de test qu'on utilise aujourd'hui, même avec <span lang="en">Playwright</span>, c'est super bien.
+
+Voilà, c'est un petit effort mais ça vous permet d'avoir du code propre sur ce côté-là. Donc dès lundi, un petit truc pour accéder au DOM, je vous conseille vraiment d'utiliser <span lang="en">Testing Library</span>, parce que c'est trop bien, en plus ça marche avec <span lang="en">Vitest</span>, <span lang="en">Jest</span>, en plus c'est la même API que pour <span lang="en">Playwright</span>, donc pour vos tests de composants, ça marche aussi ; pour du <span lang="en">end-to-end</span>, ça marche aussi. Et en plus, <span lang="en">axe</span>, vous pouvez le lancer avec <span lang="en">Vitest</span> et avec <span lang="en">Playwright</span>, quoi demander de mieux franchement ?
+
+Je trouve que tous ces outils sont simples, s'intègrent bien, et ont la même API. Le mieux, c'est que je réduis ma charge cognitive, c'est plus facile à aborder, c'est le même nommage. Donc voilà, ce sont mes petits outils préférés.
+
+## Bien conçu, bien codé, ça suffit ?
+
+Ok, alors maintenant on a un truc qui est beau, et on a un truc qui est bien fait, ok, bien conçu — est-ce que bien codé, ça suffit ? Est-ce que ce qu'on fait, notre métier, c'est juste de faire du code ? Est-ce qu'on est là pour vraiment juste être sur notre écran tout seuls et puis envoyer des pull requests ? Moi je ne trouve pas, je n'aime pas ça, je vais prendre un peu de hauteur.
+
+Vous avez peut-être fait de l'<span lang="en">ensemble programming</span>, ou du <span lang="en">mob programming</span>, ou disons — maintenant le papa du <span lang="en">mob</span>, il parle de « <span lang="en">software teaming</span> », et je trouve que c'est vachement bien, parce que du coup ce n'est pas juste coder, c'est faire des choses ensemble, c'est rencontrer, échanger, concevoir, développer, designer avec des personnes diverses, même si ces personnes ne sont pas techniques en fait.
+
+## Pratiques agiles pour mieux coopérer
+
+Et pour ça, je vais vous montrer quelques pratiques agiles que je trouve chouettes. Les trois amigos, peut-être que ça vous parle déjà : c'est quand on fait du <span lang="en">refinement</span> de <span lang="en">story</span>, on va dire de besoin métier, on va essayer de mettre au moins une personne du métier, de la tech et de la qualité dans la même pièce pour discuter de la fonctionnalité — qu'est-ce qu'on souhaite, comment est-ce qu'on peut le réaliser, est-ce que c'est réalisable déjà, et puis comment on peut le tester.
+
+Mais moi je vous invite aussi à rajouter une personne dès que c'est du <span lang="en">front</span>, en design, en fait, parce que lui, c'est dès le début, et c'est de la recherche, c'est de la cohérence — ce n'est pas après. Ça se fait vraiment avec la boucle de <span lang="en">feedback</span> la plus courte possible, il vaut mieux faire ça que de faire des réunions horribles toutes les trois semaines en fin de sprint, il n'y a rien de pire. Moi je préfère se caler vingt minutes et être sur la même voie, et pouvoir développer sereinement.
+
+Je vous invite à faire ça quand vous avez la chance d'avoir quelqu'un au design, ce qui n'est pas toujours le cas — des fois, moi, en tant qu'intégratrice, on me dit : « Bah tu connais, tu veux nous trouver un truc ? » Bah non, ce n'est pas mon métier, en fait, je peux peut-être me débrouiller mais je vais sûrement faire des erreurs, et je n'ai pas envie de les assumer, donc je vais renvoyer vers quelqu'un de design plutôt.
+
+Un autre truc cool, c'est l'<span lang="en">example mapping</span>, vous en avez peut-être déjà fait, ça ne marche pas qu'en <span lang="en">front</span> d'ailleurs, c'est un outil qui nous vient du BDD et qui permet de discuter de fonctionnalités à l'aide d'exemples. Et des fois, quand vous n'avez pas de designer, comment vous faites ? Ben vous pouvez très bien vous baser sur un site web qui existe déjà, en allant dans votre navigateur, montrer à quoi ça ressemble dans votre tête, ou peut-être même éditer à la volée le CSS de la page et dire : « ah, ça ressemblerait à ça », vous faites votre <span lang="en">screenshot</span>, vous avez votre maquette. C'est peut-être bête, mais c'est mieux que de partir du principe qu'on s'est compris, parce que la communication, en vrai, il faut partir du principe qu'elle a échoué — ça marche toujours comme ça, là vous vérifiez, c'est un peu plus sûr. Et puis l'<span lang="en">example mapping</span>, c'est cool aussi pour mieux découper son besoin, en fait, et pour être sûr qu'on ne développe pas des choses qui sont inutiles et qui n'auront pas vraiment d'impact sur nos utilisateurs.
+
+## Le <span lang="en">craft</span> n'a aucun sens sans accessibilité
+
+Le <span lang="en">craft</span> n'a aucun sens sans accessibilité. Dans le manifeste du <span lang="en">software craftsmanship</span>, on dit « des logiciels qui fonctionnent, mais qui sont aussi bien conçus » — d'accord, mais s'ils ne sont pas utilisables par plein de gens, moi je trouve que si je ne fais pas quelque chose d'accessible, je suis excluante, et je ne veux pas faire ça. Bien fait, c'est jusqu'au bout, sinon ça n'a aucun intérêt. On fait des sites web pour des humains, et ça se fait autant au design qu'au dev, tout le temps, donc je voulais vraiment leur dire, parce que je ne vois pas souvent des gens dans le <span lang="en">craft</span> qui parlent de ça. Et donc je vous invite vraiment à faire une formation certifiante, comme celle d'Access42 que j'ai passée il n'y a pas longtemps.
+
+Une autre pratique aussi, un peu plus design cette fois-ci, c'est l'utilisation des personas. Un biais qu'on peut avoir, c'est d'imaginer des personnes plutôt que de les baser sur des données de personnes réelles — en fait le problème de ça, c'est qu'on a des biais, on a beaucoup de biais, on a beaucoup de stéréotypes, on a beaucoup de clichés, et on va les retrouver dans nos personas. On va oublier des parcours, on peut être discriminant, on peut oublier des usages, et on peut par exemple faire des choses comme se baser sur la couleur pour nos interfaces, et quand on a des personnes qui ont une dyschromatopsie, un daltonisme, ou une vision floue, qui ne voient juste pas les couleurs, en fait notre application devient incompréhensible. C'est un biais que je donne par exemple, mais il y en a plein, plein, plein, plein, plein. C'est pour ça que je trouve très intéressant de travailler à plusieurs, et de réfléchir à plusieurs, et de ne pas faire que du code tête baissée, même si des fois c'est très confortable, et que moi aussi j'adore être avec ma musique et mon petit thé et être tranquille — mais pas tout le temps.
+
+## Le design system comme produit
+
+Et enfin, si vous faites un <span lang="en">design system</span>, il faut le partager, le documenter, faire un <span lang="en">showcase</span> accessible — c'est hyper important, parce que sinon on ne sait pas à quoi ressemblent nos composants. L'idéal, c'est d'avoir une sorte de bac à sable, type <span lang="en">Storybook</span>. Et enfin, éviter les composants usine à <span lang="en">props</span> — ça m'est arrivé d'utiliser des composants dans un <span lang="en">design system</span> qui avaient je ne sais pas, vingt-cinq <span lang="en">props</span> différentes, donc des options qui en plus se combinent. Des fois je n'ai aucune idée de ce à quoi ça va rendre si je n'ai pas de bac à sable, et encore, je n'ai pas le temps en fait de jouer avec tout ça, de connaître par cœur tous les composants.
+
+Donc plus c'est simple et plus c'est découpé avec l'<span lang="en">atomic design</span>, mieux c'est. Et si les autres équipes ont envie de composants plus complexes, elles peuvent très bien réutiliser et développer leurs propres composants, ce n'est pas un problème, on n'est pas obligé de répondre à tout pour tout le monde. Mieux vaut avoir son identité à soi, de produit, et vraiment traiter le <span lang="en">design system</span> comme un produit — je vous renvoie d'ailleurs vers une conférence de Cécile Fredfouo à Devoxx qui parlait de ça, parce que je ne peux pas couvrir ce sujet, je n'ai pas le temps.
+
+Donc ce que je vous propose aussi d'essayer, en plus des outils qu'on a vus tout à l'heure : si vous partez de <span lang="en">Figma</span>, c'est souvent ce qui est utilisé aujourd'hui en termes de design, utilisez <span lang="en">Storybook</span>, vous pouvez importer des <span lang="en">design tokens</span> depuis <span lang="en">Figma</span>, qui vont donner vos variables de couleur, un tas de choses. Vous pouvez aussi faire un lien entre votre <span lang="en">Figma</span> et votre <span lang="en">Storybook</span> pour coopérer autour de ça. Vous avez <span lang="en">Chromatic</span>, qui va vous faire un <span lang="en">build</span> de tous vos composants de <span lang="en">design system</span> avec les tests de régression visuelle dont je parlais plus tôt, et en plus vous pouvez, pour le documenter — parce que la documentation n'est pas qu'orientée tech — <span lang="en">Storybook</span>, c'est une documentation technique, c'est un bac à sable, on peut lancer des tests dedans, on peut manuellement regarder à quoi va ressembler un composant, avec des soucis d'accessibilité, ou lancer des tests avec <span lang="en">Playwright</span> dedans. Mais c'est une documentation technique, et un <span lang="en">design system</span>, c'est l'image de marque de votre entreprise, ça a un autre sens. Et donc, dans ces cas-là, une application <span lang="en">zero-code</span> sert vachement bien pour ça, puisqu'on peut même intégrer notre <span lang="en">Figma</span> et notre <span lang="en">Storybook</span> dans notre documentation, et là vous avez vraiment quelque chose de complet.
+
+## En résumé
+
+En résumé : on ne rend pas les applis « <span lang="en">sexy</span> », s'il vous plaît, ne dites pas ça, je n'aime pas ça. En plus, moi, quand j'ai commencé à faire du CSS, c'est parce que j'étais une des seules filles de ma classe, et on m'a dit : « Bah toi tu vas faire du CSS », et puis eux ils vont faire du <span lang="en">Java</span>. J'étais dégoûtée, un peu, mais j'ai bien aimé le CSS, genre vraiment.
+
+## Est-ce que CSS est un vrai langage de programmation ?
+
+Et donc je vais vous demander, après tout ce que je viens de vous montrer : est-ce que ce sont de vrais langages de programmation, le HTML et le CSS, ou pas ? Qui dit non ? Qui dit oui ? Qui ne sait pas ? Ouais, ok, il y a plus de oui et de je-ne-sais-pas. Je vais demander sur les réseaux sociaux — les gens, vous êtes mitigés, la plupart non, il y a quand même pas mal de oui. Et ce qu'il faut savoir, c'est que ce même sondage a été fait il y a plus de dix ans, et c'était exactement les mêmes résultats, à quelques pourcentages près, genre vraiment c'était très, très, très similaire.
+
+Vous voulez une réponse ? <span lang="en">Spoiler</span> : la réponse est oui. La réponse c'est oui, et j'en suis sûre et certaine. Mais si vous n'êtes pas d'accord, faites comme ça en fait, et soignez votre code, s'il vous plaît, parce que c'est utile, c'est vraiment intéressant. En plus, ce n'est pas juste apprendre CSS par cœur, parce que le DOM, CSS, HTML, ce sont des API qu'il faut soigner, comme on l'a vu, et vraiment c'est chouette, comme ça vous me faites plaisir en plus.
+
+Et voilà, je vous remercie.
+
+## Bonus : qu'est-ce que programmer ?
+
+Normalement je n'ai plus trop de temps pour des questions, si vous voulez, mon petit bonus — tu confirmes exactement ? Est-ce que vous aimez les histoires ? Ouais, ok. J'ai deux questions avant le bonus, c'est la partie qui m'intéresse le plus personnellement.
+
+Donc, qu'est-ce que c'est, programmer ? Je demandais si c'était des langages de programmation, le HTML/CSS, les gens ont dit non — là, c'est quoi, programmer ? Ah, quelqu'un veut se risquer à une définition, ce n'est pas facile, on ne vous jugera pas. Ouais, non, c'est dur.
+
+Ah, j'en ai lu plusieurs, celle que j'aime bien, c'est que ce sont des instructions données à un ordinateur pour qu'il puisse agir selon nos souhaits, soit via un logiciel qui va être sur ce même ordinateur, soit directement avec la machine.
+
+Qu'est-ce que c'est, un langage de programmation ? Avant de savoir si oui ou non, il faut savoir ce que c'est. Non, vous ne risquez toujours pas de définition ? Ah, vas-y — il y a un peu de ça, mais ce n'est pas exactement complet, merci pour ton idée. C'est un mode de communication entre un humain et une machine.
+
+Du coup, ce que tu viens de dire, avec une grammaire spécifique à cet effet, ça veut dire qu'on ne peut pas se parler en HTML/CSS entre humains, ça n'a aucun sens, on ne va pas s'écrire une lettre en HTML/CSS — ça peut être rigolo, mais un peu long quand même, ce n'est pas très efficace et ce n'est pas très naturel. Donc, déjà, j'ai un premier indice sur si ce sont des langages : nous, en français, en anglais, on parle une langue, pas un langage.
+
+On programme quoi, si ce sont des langages de programmation, avec du CSS ? Qu'est-ce qu'on programme avec ? Ah, plein de trucs en fait : des pages web, d'accord, mais aussi des e-mails, des jeux vidéo, des présentations comme avec <span lang="en">Slides</span>, du dessin avec une seule div des fois, on peut faire aussi des automates cellulaires mathématiques. Vous ne me croyez pas ? Hop, on peut faire un démineur en CSS pur, il n'a pas de JS, c'est cool, je peux mourir — enfin, à un moment je pense, mais allez, là je vais mourir, c'est sûr. Boum. On peut aussi faire explorer une mine — merci Jérémy pour le lien — et ouais, il n'y a pas de JS, et on peut avoir plein de trucs, on peut voir notre panier, notre petit truc, et ouais, on peut faire plein de trucs.
+
+Alors, bon, je vous invite à regarder, parce que c'est vraiment cool, on peut faire plein de trucs. Pour voir les dessins, je vous invite à attendre que le site de Cascade soit sorti, on a des dessinateurs de ouf dans les clips, j'avoue que c'est cool.
+
+Alors, c'est des langages de quoi, donc, de programmation ? C'est moi qui vous le dis, du coup vous pouvez ne pas être d'accord, mais c'est mon point de vue : ils sont effectivement déclaratifs, ce ne sont pas des langages généralistes, ils sont, comme on l'a vu tout à l'heure, <span lang="en">domain specific</span>, déjà ils sont faits pour interagir ensemble, HTML et CSS, mais en plus dans le contexte d'un navigateur, et ils ont ce qu'on appelle un flux de contrôle qui est implicite.
+
+Quand vous faites, je ne sais pas, du <span lang="en">Python</span>, vous pouvez changer l'ordre dans lequel vont être exécutées les choses, avec des boucles, avec un tas de choses. CSS, c'est lu ligne par ligne, peu importe ce que vous faites, c'est lu ligne par ligne, et c'est après la cascade, avec les niveaux de sélecteur et cetera, qui va prendre le pas pour appliquer le code qu'on a écrit. HTML, c'est pareil, ce sont les mêmes attributs que CSS, mais en plus c'est un langage de balisage — ce n'est pas une langue qui se parle, ça reste de la programmation.
+
+## CSS peut-il tout faire ? Turing-complétude
+
+Bon, ça permet de faire quoi avec CSS ? On a des variables, les <span lang="en">custom properties</span>, ce sont des variables, on a des fonctions natives, mais on a aussi des fonctions qu'on peut écrire avec un préprocesseur, et on a des fonctions mathématiques dans CSS — et les maths, ce n'est pas de la programmation ? Hmm. Et en plus, en HTML, on peut importer du code, même d'autres langages, du JS, du CSS, ça peut faire plein de choses.
+
+Et en plus de ça, est-ce que ça ne pourrait pas être Turing-complet ? C'est souvent ce qu'on dit : ah, ou c'est pas Turing-complet, ce ne sont pas de vrais langages. Ah, ben vous allez voir. Bon, Turing, je ne vous le présente plus, c'est quoi, Turing-complet ? Un système formel est dit Turing-complet s'il possède un pouvoir expressif au moins équivalent à celui des machines de Turing. Dans un tel système, il est donc possible de programmer n'importe quelle machine de Turing.
+
+Bon, ok, c'est un peu vieux tout ça, et par exemple, SQL 99, c'est Turing-complet, parce que maintenant on a des requêtes récursives — avant, ça ne l'était pas. Et puis on a John Horton Conway, vous voyez, qui a créé le jeu de la vie, qui est un automate cellulaire mathématique, c'est un jeu de simulation sans joueur, du coup, qui est très simple et qui est Turing-complet, il y en a d'autres. Ça ressemble à ça, le jeu de la vie, en tout petit, hein, il y a une super vidéo <span lang="en">YouTube</span> là-dessus, je vous invite à aller voir, vraiment c'est bluffant.
+
+Ok, bon, je vais quelque part avec tout ça, vous allez voir. Petite histoire : du coup il y a Steven Wolfram, du coup, un mathématicien, puis son assistant, qui ont travaillé sur les automates cellulaires, et en 2004, monsieur Cook a prouvé que l'automate cellulaire élémentaire numéro 110 de Wolfram est Turing-universel, Turing-complet. C'est ce truc — c'est beau, hein, c'est pixelisé, hein — et ben ça, on peut l'intégrer avec du HTML plus CSS, plus un <span lang="en">user</span>, parce que ça ne sert à rien sans ça, on est faits pour intégrer avec des pages web. On a la règle 110, et Turing-complet, tada, et ça, c'est très cool, ça ressemble à ça.
+
+J'ai un automate cellulaire, mais c'est chiant comme jeu, je vous l'avoue, il y a plus rigolo.
+
+## <span lang="en">FizzBuzz</span> en CSS
+
+Bon voilà, ok, est-ce qu'on peut écrire des algorithmes en CSS ? Ben je ne sais pas, peut-être qu'on peut faire un <span lang="en">FizzBuzz</span> — vous avez déjà fait le kata <span lang="en">FizzBuzz</span> ? Non ? Ça vous parle, c'est un truc qu'on donne aux enfants : si un nombre est divisible par 3, on écrit « <span lang="en">Fizz</span> », divisible par 5, on écrit « <span lang="en">Buzz</span> », et s'il est divisible par 3 et 5, on écrit « <span lang="en">FizzBuzz</span> ».
+
+Ok, je peux le faire en TDD en intégration web ? Bah ouais, avec <span lang="en">Playwright</span>, je peux — comment je vais faire ? Ben j'ai ma liste de div, là, j'ai fait une div <span lang="en">soup</span>, désolée, et je peux me servir des pseudo-éléments, et dire, avec un pseudo-élément — pardon, si — voilà, je peux rajouter mon contenu « <span lang="en">Fizz</span> », « <span lang="en">Buzz</span> » ou « <span lang="en">FizzBuzz</span> », selon quel élément enfant on est. Puis voilà, du coup j'ai mon <span lang="en">FizzBuzz</span>.
+
+Je peux aussi utiliser des classes et les afficher ou les masquer selon ce même sélecteur, et du coup là, mon algorithme, vous ne le voyez pas parce que c'est juste un sélecteur, mais en fait il est là : si mod (division) c'est tous les trois éléments, j'ai bien mon « si », alors mets-moi le contenu « <span lang="en">Fizz</span> » en `::after`. « Si... alors », c'est juste que ce n'est pas écrit pareil qu'en <span lang="en">Python</span>, en <span lang="en">Java</span> ou en PHP. Mais en plus de ça, ce n'est pas le troisième enfant, c'est tous les troisièmes enfants, donc je vais aller parcourir, je vais aller boucler sur tous les éléments de ma page qui correspondent à ce sélecteur-là.
+
+C'est pour ça que la cascade, c'est trop stylé : ça boucle, ça fait des conditions, des boucles, enfin c'est c'est la vraie algorithmie en fait, c'est trop bien. Voilà, pour moi c'est ça, la programmation, c'est trop stylé. Et la personne dont j'ai suivi la conférence, qui a fait ça, elle a fait <span lang="en">FizzBuzz</span> comme ça, au lieu d'écrire, elle a mis des couleurs, c'est trop, trop beau, donc si on le recharge, c'est trop, trop bien.
+
+Est-ce que je peux faire ça ? Regardez, c'est trop beau. Et du coup, le <span lang="en">FizzBuzz</span>, je l'ai fait en kata avec <span lang="en">Playwright</span>, et si vous voulez essayer avec moi, n'hésitez pas à me contacter pour le faire, c'est vraiment très cool. Ça vous apprend à faire du test de composants justement, ça vous apprend à utiliser plein d'autres outils, et à penser autrement l'intégration web.
+
+Voilà, j'espère que je vous ai convaincus, je ne sais pas si c'est le cas, mais c'est cool, voilà, merci.

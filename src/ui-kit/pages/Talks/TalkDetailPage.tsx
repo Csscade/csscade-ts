@@ -66,9 +66,16 @@ export const TalkDetailPage = ({
                 ))}
               </div>
             )}
-            {talk.abstract && (
-              <p className="talk-page__abstract-intro">{talk.abstract}</p>
-            )}
+            {talk.abstract &&
+              talk.abstract
+                .split("\n")
+                .map((paragraph) => paragraph.trim())
+                .filter(Boolean)
+                .map((paragraph) => (
+                  <p key={paragraph} className="talk-page__abstract-intro">
+                    {paragraph}
+                  </p>
+                ))}
           </div>
         </header>
 

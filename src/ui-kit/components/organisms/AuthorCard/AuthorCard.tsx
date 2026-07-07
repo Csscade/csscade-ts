@@ -1,8 +1,11 @@
 import {
   faBluesky,
+  faCodepen,
+  faDev,
   faGithub,
   faLinkedin,
   faMastodon,
+  faMedium,
 } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRightLong, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +25,9 @@ export interface AuthorCardData {
   mastodon?: string;
   github?: string;
   linkedin?: string;
+  medium?: string;
+  devto?: string;
+  codepen?: string;
   bio?: React.ReactNode;
 }
 
@@ -117,6 +123,36 @@ export const AuthorCard = ({
                 iconOnly
                 icon={<FontAwesomeIcon icon={faLinkedin} aria-hidden />}
                 ariaLabel="icône LinkedIn"
+                target="_blank"
+              />
+            )}
+
+            {author.medium && (
+              <StyledLink
+                href={author.medium}
+                iconOnly
+                icon={<FontAwesomeIcon icon={faMedium} aria-hidden />}
+                ariaLabel="icône Medium"
+                target="_blank"
+              />
+            )}
+
+            {author.devto && (
+              <StyledLink
+                href={author.devto}
+                iconOnly
+                icon={<FontAwesomeIcon icon={faDev} aria-hidden />}
+                ariaLabel="icône dev.to"
+                target="_blank"
+              />
+            )}
+
+            {author.codepen && (
+              <StyledLink
+                href={author.codepen}
+                iconOnly
+                icon={<FontAwesomeIcon icon={faCodepen} aria-hidden />}
+                ariaLabel="icône CodePen"
                 target="_blank"
               />
             )}

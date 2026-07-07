@@ -21,6 +21,9 @@ export const AuthorCardContent = ({ author }: Props) => {
     mastodon: author.mastodon,
     github: author.github,
     linkedin: author.linkedin,
+    medium: author.medium,
+    devto: author.devto,
+    codepen: author.codepen,
     bio: (
       <MDXRemote
         source={author.content}

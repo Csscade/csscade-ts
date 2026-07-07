@@ -1,0 +1,147 @@
+---
+title: "Pourquoi les devs n'aiment pas le CSS ?"
+slug: "pourquoi-les-devs-naiment-pas-le-css"
+author: "manon-carbonnel"
+publishedAt: "2022-07-08"
+categories: ["CSS", "Craft"]
+originalUrl: "https://medium.com/@manon.carbonnel/why-dont-developers-like-css-947a1b2ecaaf"
+---
+
+<figure>
+  <img alt="Personage en difficulté avec des stores vénitiens" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2liNjlheTdmc2ZlaHM5dmRoYmI5MjNxZ3locG5sZDNlaWp2bzB5dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yYSSBtDgbbRzq/giphy.gif" />
+  <figcaption>Peter Griffin - <span lang="en">American Dad</span></figcaption>
+</figure>
+
+Il me semblait évident d'écrire mon premier article sur l'intégration web sur cette phrase si populaire :
+
+> "Je n'aime pas le CSS"
+
+Qui n'a pas déjà entendu ou dit cette phrase ? Pour être honnête, à chaque fois que je l'entends, j'ai envie de répondre que l'on aime ce que l'on maîtrise.
+
+## Un « vrai » langage ?
+
+Je vous propose de déconstruire cette idée reçue :
+
+> "CSS n'est pas un langage de programmation."
+
+SPOILER : Oui, CSS est un langage de programmation (HTML aussi).
+
+Prenons un peu de recul et revenons à la base :
+
+Qu'est-ce que c'est que programmer ? C'est donner des instructions à un ordinateur en bas niveau ou via un logiciel, pour qu'il puisse agir selon nos souhaits, le langage servant uniquement à donner ces instructions. Et pour cause : si le langage n'était pas interprété, nos sites web afficheraient des suites de balises HTML et des lignes de CSS.
+
+Ça n'est pas non plus un langage naturel : il n'est pas destiné à la communication entre les êtres humains, mais pour des programmes. Certes, il nécessite un navigateur pour être interprété, mais tout langage a besoin de son support pour fonctionner.
+
+Avec, on peut faire :
+- Des pages web
+- Des emails
+- Des [jeux vidéo](https://benjaminaster.com/css-minecraft/)
+- Des présentations (<span lang="en">slides</span>)
+- Du dessin (parfois avec une seule div !)
+- Des automates cellulaires mathématiques
+- Des katas comme [FizzBuzz](https://codepen.io/laras126/pen/dyNQMdq)
+- ...
+
+On a même nativement :
+- des [fonctions mathématiques](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Values_and_units/Using_math_functions)
+- des [custom properties](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties) (<span lang="en">aka</span>: variables)
+- des [fonctions personnalisées](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Custom_functions_and_mixins/Using_custom_functions) (depuis 2025)
+
+> "CSS n'est pas un langage Turing complet."
+
+Turing complet veut dire "possède un pouvoir expressif au moins équivalent à celui des machines de Turing".
+
+Si CSS n'est effectivement pas Turing complet à lui tout seul (comme c'est le cas des langages HTML et SQL), combiné au HTML et des interactions humaines, on peut l'utiliser pour encoder la fameuse règle 110, et ainsi obtenir un ensemble Turing complet.
+
+Destiné à être utilisé avec du HTML dans un navigateur (<span lang="en">domain specific</span>), il indique bien des comportements aux navigateurs web (couleurs, animations, transitions, positionnements, événements, …)
+
+Un vrai langage donc, avec toutes les possibilités qu'il offre pour nous permettre de réaliser des interfaces non seulement belles, mais aussi pratiques et accessibles, qui elles, sont destinées à des humains.
+
+## La cascade
+
+Ce qui rend CSS si différent des autres langages, c'est bien les priorités qui arrivent avec la notion de cascade.
+
+Au-delà de l'ordre de lecture des lignes de code par les navigateurs, plusieurs éléments influencent la manière dont on en rédige les règles : la proximité avec la balise HTML, la précision pour sélectionner les éléments (class, id, state), et même certains mots clés comme `!important`.
+
+Cette cascade introduit également une notion qui rappelle la portée dynamique, un concept de théorie des langages assez éloigné du fonctionnement de la majorité des langages généralistes.
+Dans ceux-ci (Python, JavaScript, Java…), c'est la portée lexicale qui prévaut : le contexte d'exécution d'une fonction est fixé une fois pour toutes à l'écriture du code, sans dépendre de qui l'appelle ni depuis où.
+Avec CSS, la logique se rapproche davantage d'un système à portée dynamique : la valeur finale appliquée à un élément dépend de tout ce qui l'entoure au moment du rendu (règles chargées ailleurs, position dans le DOM, spécificité de sélecteurs, ordre des feuilles de style), plutôt que d'être figée par la seule déclaration de la règle.
+L'analogie a ses limites, mais elle illustre bien pourquoi ce langage peut dérouter les personnes habituées à un fonctionnement plus prévisible.
+
+> "CSS est difficile."
+
+Ce langage est déclaratif et ne comporte ainsi aucune possibilité de contrôle de son ordre d'exécution explicite (ni boucle, ni condition).
+L'exécution de ses règles est faite de manière linéaire par un navigateur (ligne par ligne) et de manière implicite. Utilisé sans pré-processeur comme SASS ou LESS, il ne comporte ni classes au sens objet, ni espaces de noms, ni de possibilité d'écrire ses propres fonctions… Serait-il donc plus difficile de l'utiliser en comparaison avec des langages explicites ou dynamiques, à usage général comme Python ?
+
+Pourtant, il n'évolue pas fréquemment par rapport à un langage comme JavaScript.
+De ce fait, passer un minimum de temps à apprendre le concept de cascade, les priorités, sélecteurs et positionnements suffit à se sentir à l'aise avec les feuilles de style.
+
+Dans le milieu professionnel, j'ai rapidement constaté que le développement <span lang="en">backend</span> suscite davantage de prestige chez beaucoup de personnes.
+Il est vrai qu'après avoir passé du temps de conception sur de l'architecture et des design patterns ou de résolution de bugs complexes, il soit frustrant de buter sur le positionnement d'un élément dans une page…
+Mais encore une fois, il est dommage de hiérarchiser les étapes de création d'une application.
+
+L'importance de l'UI et l'UX n'est plus à démontrer, que ce soit pour des raisons d'accessibilité, d'image de marque ou pour générer du trafic sur nos applications.
+Et plus on maîtrise nos outils, plus il est facile d'atteindre ces objectifs.
+
+## Maîtriser la Force
+
+Une autre raison qui peut expliquer les difficultés rencontrées avec CSS, vient de la formation initiale à nos métiers.
+
+De mon expérience, l'apprentissage de CSS est fait de manière éclair dans l'enseignement du code.
+En un sens, cela se comprend : il y a tellement de concepts importants et complexes à apprendre, mais il est regrettable de faire l'impasse sur l'une des étapes cruciales de création d'un site web.
+Sachant que l'impression de progression avec ce langage est très rapide et très agréable : un simple refresh est nécessaire pour vérifier le résultat de son travail.
+
+Ensuite, tous les projets ne requièrent pas de développer des applications qui ont une interface graphique.
+Pour les projets destinés aux utilisateur·ices internes aux entreprises, un <span lang="en">design système</span> pré-fait comme <span lang="en">Bootstrap</span> suffit souvent.
+Et beaucoup de sites publics faits avec WordPress se basent sur d'excellents thèmes proposés par la communauté.
+
+Selon les domaines métier, il n'est pas évident d'être confronté à du CSS régulièrement et donc de progresser.
+Et quand il faut éditer du code fait par quelqu'un qui ne maîtrisait pas le langage et n'était pas motivé par son outil, c'est souvent frustrant et fait à la va vite.
+
+C'est donc un endroit du code où la qualité technique se trouve lésée, alors que nous voulons des applications maintenables et évolutives.
+Comme écrit dans le Manifeste Agile « _Une attention continue à l'excellence technique et à une bonne conception renforce l'Agilité_ » et le Manifeste <span lang="en">Software Craftsmanship</span> « _Pas seulement des logiciels opérationnels, mais aussi des logiciels bien conçus_ ». Rien que ça.
+
+## Noble art
+
+En général, quand je dis que je suis développeuse et intégratrice web, ça n'impressionne pas beaucoup. Au mieux, cela peut soulager certaines personnes, car je peux potentiellement aider le reste de l'équipe à résoudre les redoutables tickets de bugs d'UI.
+
+<figure>
+  <img alt={`"Je suis programmeur" "Quel langage ?" "CSS" les autres langages l'attaquent`} src="https://miro.medium.com/v2/resize:fit:1000/format:webp/1*TxV5fKEbj32ypcLPMm3MuA.jpeg" />
+  <figcaption>Credits @Geoffrey Dieffenbach</figcaption>
+</figure>
+
+Par contre, quand je dis que je suis développeuse « <span lang="en">fullstack</span> » et experte en CSS, je remarque que ça inspire davantage. Et pourtant j'ai déjà entendu :
+
+> "L'intégration, les couleurs, le design, c'est plus pour les femmes."
+
+Ce stéréotype sur l'appréhension des couleurs et le fait de créer des interfaces « sexys » ne date pas d'hier et est pourtant tenace : il serait plus valorisant (et masculin) de développer des applications côté métier que côté UI, ou même d'en réaliser le design.
+
+Ce point mériterait un article à lui seul, mais j'y vois une nouvelle tentative de hiérarchiser l'importance et la valeur d'une partie du développement par rapport à d'autres.
+
+> "Pas envie de se prendre la tête juste pour un placement de bouton."
+
+Il y a donc un paradoxe entre l'impression de difficulté et le manque de noblesse que l'on attribue au langage.
+Il serait à la fois trop simple pour être considéré comme langage de programmation, et trop difficile pour être apprécié.
+
+Certaines personnes hésitent, voire retirent les mentions de HTML et CSS dans leur CV. Et c'est un vrai sujet.
+
+<figure>
+  <img alt={`"So, what languages do you code into ?" "HTML and CSS" lol`} src="https://miro.medium.com/v2/resize:fit:1104/format:webp/1*bwayaRlxGmR6bjiXBTXIyw.jpeg" />
+  <figcaption>Exemple d'entretien technique</figcaption>
+</figure>
+
+## En résumé
+
+CSS est un langage déclaratif et <span lang="en">domain specific</span>, qui serait trop peu complexe, mais trop compliqué pour plaire.
+Pourtant, je vous l’assure, non seulement c’est très utile, mais :
+
+<figure>
+  <img alt={"CSS is awesome"} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Vez7RV7y2jQXXrjJSEvP2Q.jpeg" />
+  <figcaption>Bold statement</figcaption>
+</figure>
+
+Et qui dit langage de programmation dit bonnes pratiques de code. Nous pourrons donc aborder les notions de debug, linters, architecture, optimisations, pré-processeurs… Mais ça, c'est pour de prochains articles :wink:
+
+Je veux absolument vous montrer tout ce potentiel, des bonnes pratiques et des astuces pour coder de superbes applications.
+
+**Alors, suivez-nous pour ne rien manquer.**
