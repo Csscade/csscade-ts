@@ -11,6 +11,6 @@
   }
 
   &.avatar-border {
-    border: 2px solid var(--avatar-border-color);
+    border: 1px solid var(--avatar-border-color);
   }
 }
