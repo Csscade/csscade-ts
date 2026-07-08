@@ -16,6 +16,7 @@ const meta: Meta<typeof Badge> = {
       control: { type: "radio" },
     },
     rounded: { control: "boolean" },
+    showIcon: { control: "boolean" },
   },
 };
 
@@ -60,6 +61,13 @@ export const Rounded: Story = {
   args: {
     children: "Rounded Badge",
     rounded: true,
+  },
+};
+
+export const WithoutIcon: Story = {
+  args: {
+    children: "Without Icon",
+    showIcon: false,
   },
 };
 

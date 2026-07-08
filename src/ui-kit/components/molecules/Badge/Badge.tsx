@@ -11,6 +11,7 @@ export type BadgeProps = {
   children: ReactNode;
   color?: string;
   iconPosition?: BadgeIconPosition;
+  showIcon?: boolean;
   rounded?: boolean;
   className?: string;
 };
@@ -19,6 +20,7 @@ export const Badge = ({
   children,
   color,
   iconPosition = "right",
+  showIcon = true,
   rounded = false,
   className,
 }: BadgeProps) => {
@@ -33,9 +35,11 @@ export const Badge = ({
       style={color ? ({ "--badge-color": color } as React.CSSProperties) : {}}
     >
       <span className="badge__content">{children}</span>
-      <div className="badge__icon">
-        <FontAwesomeIcon icon={faPlay} />
-      </div>
+      {showIcon && (
+        <div className="badge__icon">
+          <FontAwesomeIcon icon={faPlay} />
+        </div>
+      )}
     </div>
   );
 };
