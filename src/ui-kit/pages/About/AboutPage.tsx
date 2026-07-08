@@ -32,16 +32,41 @@ export const AboutPage = ({ qaScores }: AboutPageProps) => {
               autour du web moderne.
             </p>
             <p>
-              Créée en 2021 par Manon Carbonnel, Csscade est née d'un constat
-              simple : l'intégration web est souvent réduite à "faire du CSS",
-              alors qu'elle demande en réalité des compétences techniques,
-              créatives et humaines essentielles à la qualité du web.
+              Fondée en 2021 par une équipe de six passionné·es du web, Csscade
+              est née d'un constat simple : l'intégration web est souvent
+              réduite à "faire du CSS", alors qu'elle demande en réalité des
+              compétences techniques, créatives et humaines essentielles à la
+              qualité du web.
             </p>
             <p>
               Nous pensons qu'un bon front-end ne se limite pas à une interface
               esthétique. Il doit être accessible, performant, maintenable,
               éco-conçu et agréable à utiliser comme à développer.
             </p>
+          </section>
+
+          <section className="about-page__section">
+            <h2>L'équipe fondatrice</h2>
+            <ul className="about-page__list">
+              <li>
+                <strong>Manon Carbonnel</strong> — Présidente
+              </li>
+              <li>
+                <strong>Amy Ndiaye</strong> — Secrétaire et trésorière
+              </li>
+              <li>
+                <strong>François Eoche</strong>
+              </li>
+              <li>
+                <strong>Melvin Lemoine</strong>
+              </li>
+              <li>
+                <strong>Dorian Guilmain</strong>
+              </li>
+              <li>
+                <strong>Nicolas Leport</strong>
+              </li>
+            </ul>
           </section>
 
           <section className="about-page__section">
