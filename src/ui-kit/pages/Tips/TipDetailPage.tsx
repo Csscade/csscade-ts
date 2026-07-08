@@ -28,7 +28,7 @@ export const TipDetailPage = ({
               <span className="font-semibold">
                 par{" "}
                 {author ? (
-                  <StyledLink href={`/authors/${author.slug}`}>
+                  <StyledLink href={`/authors/${author.slug}`} prefetch={false}>
                     {author.name}
                   </StyledLink>
                 ) : (
@@ -52,6 +52,7 @@ export const TipDetailPage = ({
                     href={`/articles/category/${category.toLowerCase()}`}
                     className="article-card__category"
                     bordered
+                    prefetch={false}
                   >
                     {category}
                   </StyledLink>

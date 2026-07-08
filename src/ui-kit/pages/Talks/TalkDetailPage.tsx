@@ -30,7 +30,7 @@ export const TalkDetailPage = ({
               <span className="font-semibold">
                 par{" "}
                 {author ? (
-                  <StyledLink href={`/authors/${author.slug}`}>
+                  <StyledLink href={`/authors/${author.slug}`} prefetch={false}>
                     {author.name}
                   </StyledLink>
                 ) : (
@@ -60,6 +60,7 @@ export const TalkDetailPage = ({
                     className="article-card__category"
                     bordered
                     ariaLabel={`Voir tous les articles de la catégorie ${category}`}
+                    prefetch={false}
                   >
                     {category}
                   </StyledLink>

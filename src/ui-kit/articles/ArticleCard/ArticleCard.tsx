@@ -57,7 +57,11 @@ export function ArticleCard({
       {showAuthor && author && (
         <div className="article-card__author-container">
           {authorUrl ? (
-            <StyledLink href={authorUrl} className="article-card__author">
+            <StyledLink
+              href={authorUrl}
+              className="article-card__author"
+              prefetch={false}
+            >
               Par {author}
             </StyledLink>
           ) : (
@@ -88,6 +92,7 @@ export function ArticleCard({
                   bordered
                   className="article-card__category"
                   ariaLabel={`Voir tous les articles de la catégorie ${category}`}
+                  prefetch={false}
                 >
                   {category}
                 </StyledLink>
