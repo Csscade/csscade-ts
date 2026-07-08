@@ -87,6 +87,7 @@ export default function RootLayout({
         the global link color transition from firing on every anchor on mount. */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static script constant, no user input involved */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="stylesheet" href={`${basePath}/print.css`} media="print" />
       </head>
       <body>
         <Navigation
