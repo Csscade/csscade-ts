@@ -103,6 +103,8 @@ Do not remove this tag list to "run everything" — axe-core disables 16 of its 
 
 Each page is audited with three device configurations (`deviceConfigurations`): `mobile` (Lighthouse's default config), `desktop` (`lighthouse/core/config/desktop-config.js`), and `ecoindex` (see below). Each test launches its own Chromium instance with `--remote-debugging-port` (required by Lighthouse's CDP connection) rather than reusing the shared Playwright fixture browser.
 
+The `mobile` config uses Lighthouse's simulated throttling (4x CPU slowdown + slow 4G), which is calibrated against the host machine's raw CPU speed — on GitHub Actions' shared runners `performance` alone can swing 20+ points below a local run of the same build. `desktop` and `ecoindex` disable throttling (`cpuSlowdownMultiplier: 1`) and are the real performance gates at 90; `mobile`'s own thresholds (`mobileThresholds`) drop `performance` from the assertion for this reason, while `opts.onlyCategories` still forces the category to run so it's reported in `lighthouse-report/*-mobile.json` and rolled into `qa-scores.json`.
+
 Performance scores are only meaningful against a production build — run `pnpm build && pnpm start` before `pnpm test:lighthouse`; scores measured against `pnpm dev` (unminified, Turbopack HMR) will be misleadingly low.
 
 This site uses `output: "export"`, so `"start"` serves the static `out/` directory (via `serve`) instead of running `next start`, which does not support static exports. `PAGES_BASE_PATH` (GitHub Pages sub-path) is only set in CI via `actions/configure-pages`, so local builds are root-relative and `pnpm start` serves correctly at `http://localhost:3000`.

@@ -21,6 +21,19 @@ const thresholds = {
   seo: 90,
 };
 
+// Lighthouse's default (mobile) config simulates a 4x CPU slowdown calibrated
+// against the host machine's raw speed. GitHub Actions' shared runners score
+// far below a typical dev laptop, so `performance` alone swings 20+ points
+// between local and CI runs. `desktop` and `ecoindex` disable that throttling
+// and stay the real performance gate; mobile still runs and reports the
+// category (kept in `onlyCategories` below) for the qa-scores badge, it's
+// just not asserted here.
+const mobileThresholds = {
+  accessibility: 90,
+  "best-practices": 90,
+  seo: 90,
+};
+
 const pages = [
   { name: "homepage", slug: "home", path: "/" },
   { name: "about page", slug: "a-propos", path: "/a-propos" },
@@ -41,13 +54,20 @@ type DeviceType = "mobile" | "desktop" | "ecoindex";
 const deviceConfigurations: {
   label: DeviceType;
   config: Config | undefined;
+  thresholds: Record<string, number>;
   opts?: Flags;
 }[] = [
-  { label: "mobile", config: undefined },
-  { label: "desktop", config: desktopConfig },
+  {
+    label: "mobile",
+    config: undefined,
+    thresholds: mobileThresholds,
+    opts: { onlyCategories: Object.keys(thresholds) },
+  },
+  { label: "desktop", config: desktopConfig, thresholds },
   {
     label: "ecoindex",
     config: ecoindexConfig,
+    thresholds,
     opts: {
       onlyCategories: [
         ...Object.keys(thresholds),
@@ -62,6 +82,7 @@ type LighthouseFixtures = {
     path: string;
     slug: string;
     config?: Config;
+    thresholds: Record<string, number>;
     opts?: Flags;
   }) => Promise<void>;
 };
@@ -74,7 +95,7 @@ const test = base.extend<LighthouseFixtures>({
       args: [`--remote-debugging-port=${port}`],
     });
 
-    await use(async ({ path, slug, config, opts }) => {
+    await use(async ({ path, slug, config, thresholds, opts }) => {
       const reportPath = `${reportDir}/${slug}.html`;
 
       try {
@@ -108,7 +129,12 @@ const test = base.extend<LighthouseFixtures>({
 });
 
 test.describe("Lighthouse", () => {
-  for (const { label, config, opts } of deviceConfigurations) {
+  for (const {
+    label,
+    config,
+    thresholds: deviceThresholds,
+    opts,
+  } of deviceConfigurations) {
     test.describe(label, () => {
       for (const { name, slug, path } of pages) {
         test(`${name} should meet Lighthouse score thresholds (${label})`, async ({
@@ -118,6 +144,7 @@ test.describe("Lighthouse", () => {
             path,
             slug: `${slug}-${label}`,
             config,
+            thresholds: deviceThresholds,
             opts,
           });
         });
