@@ -12,11 +12,18 @@
 }
 
 .badge__content {
+  display: inline-flex;
+  align-items: center;
   background-color: var(--background-primary);
   font-weight: 300;
   font-size: 0.9rem;
   white-space: nowrap;
   border: 1px solid var(--badge-color);
+  padding: 0.25rem 0.5rem;
+
+  &:has(> *) {
+    padding: 0;
+  }
 
   > * {
     padding: 0.25rem 0.5rem;

@@ -66,7 +66,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
           <div className={"footer__section"}>
             <h2 className={"footer__title"}>Qualité</h2>
             <div className={"footer__links"}>
-              <Badge rounded={true}>
+              <Badge rounded={true} showIcon={false}>
                 <StyledLink
                   href="/a-propos#qualite"
                   ariaLabel="Voir le détail du score Lighthouse sur la page À propos"
@@ -74,7 +74,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
                   Lighthouse {lighthouseAverage}
                 </StyledLink>
               </Badge>
-              <Badge rounded={true}>
+              <Badge rounded={true} showIcon={false}>
                 <StyledLink
                   href="/a-propos#qualite"
                   ariaLabel="Voir le détail du score d'accessibilité Axe sur la page À propos"
@@ -82,7 +82,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
                   Axe {qaScores.axe.score}%
                 </StyledLink>
               </Badge>
-              <Badge rounded={true}>
+              <Badge rounded={true} showIcon={false}>
                 <StyledLink
                   href="/a-propos#qualite"
                   ariaLabel="Voir le détail du score EcoIndex sur la page À propos"
