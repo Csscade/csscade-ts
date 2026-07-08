@@ -42,7 +42,15 @@ const pages = [
     slug: "mentions-legales",
     path: "/mentions-legales",
   },
-  { name: "search page", slug: "recherche", path: "/recherche" },
+  // The search page is intentionally `noindex` (it's a results view, not
+  // indexable content), which makes Lighthouse's `is-crawlable` SEO audit
+  // fail by design. Skip the `seo` category for this page only.
+  {
+    name: "search page",
+    slug: "recherche",
+    path: "/recherche",
+    skipCategories: ["seo"],
+  },
   { name: "articles list page", slug: "articles", path: "/articles" },
   { name: "authors list page", slug: "authors", path: "/authors" },
   { name: "talks list page", slug: "talks", path: "/talks" },
@@ -136,15 +144,23 @@ test.describe("Lighthouse", () => {
     opts,
   } of deviceConfigurations) {
     test.describe(label, () => {
-      for (const { name, slug, path } of pages) {
+      for (const { name, slug, path, skipCategories } of pages) {
         test(`${name} should meet Lighthouse score thresholds (${label})`, async ({
           runLighthouseAudit,
         }) => {
+          const pageThresholds = skipCategories
+            ? Object.fromEntries(
+                Object.entries(deviceThresholds).filter(
+                  ([category]) => !skipCategories.includes(category),
+                ),
+              )
+            : deviceThresholds;
+
           await runLighthouseAudit({
             path,
             slug: `${slug}-${label}`,
             config,
-            thresholds: deviceThresholds,
+            thresholds: pageThresholds,
             opts,
           });
         });
