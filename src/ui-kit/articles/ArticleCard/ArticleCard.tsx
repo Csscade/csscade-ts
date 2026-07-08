@@ -2,6 +2,8 @@ import { format, parseISO } from "date-fns";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./ArticleCard.css";
 
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 type ArticleCardProps = {
   title: string;
   publishedAt: string;
@@ -34,7 +36,11 @@ export function ArticleCard({
       {coverImage && (
         <img
           className="article-card__cover"
-          src={coverImage.src}
+          src={
+            coverImage.src.startsWith("/")
+              ? `${basePath}${coverImage.src}`
+              : coverImage.src
+          }
           alt={coverImage.alt}
           loading="lazy"
         />

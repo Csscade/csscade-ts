@@ -8,6 +8,8 @@ import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink"
 import type { AuthorCredit } from "@/usecases/authors";
 import "./ArticleDetailPage.css";
 
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 interface ArticleDetailPageProps {
   article: Article;
   author: Author | undefined;
@@ -83,7 +85,11 @@ export const ArticleDetailPage = ({
             {article.coverImage && (
               <img
                 className="article-page__cover"
-                src={article.coverImage.src}
+                src={
+                  article.coverImage.src.startsWith("/")
+                    ? `${basePath}${article.coverImage.src}`
+                    : article.coverImage.src
+                }
                 alt={article.coverImage.alt}
               />
             )}

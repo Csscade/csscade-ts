@@ -193,6 +193,9 @@ categories:
   - CSS
   - Accessibility
 originalUrl: "https://example.com/original-post"  # optional — link back to the original publication
+coverImage:                        # optional
+  src: "/articles/your-article-slug/cover.webp"  # local path (preferred) or a full URL
+  alt: "Description of the cover image"
 ---
 ```
 
@@ -203,6 +206,7 @@ originalUrl: "https://example.com/original-post"  # optional — link back to th
 title: "Your Tip Title"
 slug: "your-tip-slug"
 author: "author-slug"
+coAuthor: "Co-author Name"          # optional — name of a guest co-author
 categories:
   - CSS
 ---
@@ -215,11 +219,12 @@ categories:
 title: "Your Talk Title"
 slug: "your-talk-slug"
 author: "author-slug"
+coAuthor: "Co-author Name"          # optional — name of a guest co-author
 publishedAt: "YYYY-MM-DD"
 categories:
   - CSS
 abstract: "A short summary of the talk."
-level: "débutant"       # débutant | intermédiaire | expert
+level: "débutant·e"       # optional — débutant·e | intermédiaire | expert·e
 youtubeId: "dQw4w9WgXcQ"  # optional
 slidesUrl: "https://slides.com/yourslides"  # optional
 ---
@@ -231,13 +236,16 @@ slidesUrl: "https://slides.com/yourslides"  # optional
 ---
 name: "Your Name"
 slug: "your-name-slug"
-avatar: "/authors/your-name-slug.jpg"  # local path (preferred) or a full URL
+avatar: "/authors/your-name-slug.webp"  # local path (preferred) or a full URL
 pronouns: "they/them"           # optional
 website: "https://example.com"  # optional
 bluesky: "https://bsky.app/profile/yourname.bsky.social"  # optional
 mastodon: "https://mastodon.social/@yourname"              # optional
 github: "https://github.com/yourname"                     # optional
 linkedin: "https://linkedin.com/in/yourname"              # optional
+medium: "https://medium.com/@yourname"                    # optional
+devto: "https://dev.to/yourname"                          # optional
+codepen: "https://codepen.io/yourname"                    # optional
 ---
 ```
 
@@ -245,9 +253,10 @@ linkedin: "https://linkedin.com/in/yourname"              # optional
 
 Self-host every image, video, or avatar you add — never link directly to an external host (Giphy, a CMS's image CDN, a raw GitHub/LinkedIn avatar URL, etc.). External hotlinks add extra DNS/TLS round-trips on every page load, aren't optimized, and can silently break — some CDNs serve signed URLs that expire.
 
-- **Where to put files**: `public/articles/{your-slug}/`, `public/tips/{your-slug}/`, or `public/authors/{author-slug}.jpg` for avatars.
+- **Where to put files**: `public/articles/{your-slug}/`, `public/tips/{your-slug}/`, or `public/authors/{author-slug}.webp` for avatars.
 - **How to reference them**: use a root-relative path, e.g. `/articles/your-slug/screenshot.webp`. The `MdxImg`/`MdxVideo` overrides (and the `Avatar` component, for author frontmatter) automatically prefix the GitHub Pages sub-path in production — never hardcode it yourself.
-- **Formats**: prefer WebP or AVIF for images, MP4 for motion. **Never commit an animated GIF** — a typical reaction GIF weighs 1–2 MB, while the same clip as a muted, looping MP4 is often 10x smaller. If your source is a GIF (e.g. from Giphy), look for a `.mp4` rendition of it (Giphy exposes one for every GIF, usually named `giphy-downsized-small.mp4`) instead of downloading the `.gif` itself.
+- **Formats**: every raster image (photos, screenshots, avatars, decorative/background assets) **must be WebP** — no exceptions for PNG/JPEG, whether in `public/` or in `src/ui-kit/styles/assets/`. Use MP4 for motion (see below). The only images exempt from this rule are icons and favicons (`public/favicons/`, anything rendered through an icon component), which stay in their platform-required format (ICO/PNG/SVG). **Never commit an animated GIF** — a typical reaction GIF weighs 1–2 MB, while the same clip as a muted, looping MP4 is often 10x smaller. If your source is a GIF (e.g. from Giphy), look for a `.mp4` rendition of it (Giphy exposes one for every GIF, usually named `giphy-downsized-small.mp4`) instead of downloading the `.gif` itself.
+- **Converting to WebP**: `cwebp -q 85 source.jpg -o output.webp` for photos, `cwebp -lossless source.png -o output.webp` for flat/UI graphics (frames, patterns, illustrations with sharp edges or transparency). Install via `brew install webp` if `cwebp` isn't available.
 - **Size**: compress before committing. As a rough guide, keep individual article images under ~50 KB and video clips under ~300 KB — one unoptimized asset can outweigh the rest of the page combined.
 - **Author avatars**: `avatar` in the author frontmatter accepts either a full URL or a local root-relative path — prefer the local path for the reasons above.
 

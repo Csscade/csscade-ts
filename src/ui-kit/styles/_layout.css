@@ -94,5 +94,5 @@ main > section {
 
 .textured-background {
   background-color: var(--background-primary);
-  background-image: url("assets/background-grid.png");
+  background-image: url("assets/background-grid.webp");
 }

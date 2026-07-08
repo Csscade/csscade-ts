@@ -11,7 +11,7 @@ export const ArticleSchema = z.object({
   originalUrl: z.url().optional(),
   coverImage: z
     .object({
-      src: z.url(),
+      src: z.union([z.url(), z.string().startsWith("/")]),
       alt: z.string(),
     })
     .optional(),

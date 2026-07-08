@@ -12,7 +12,6 @@ export const TalkSchema = z.object({
   level: z.enum(["débutant·e", "intermédiaire", "expert·e"]).optional(),
   youtubeId: z.string().optional(),
   slidesUrl: z.url().optional(),
-  transcript: z.string().optional(),
   content: z.string(),
 });
 
