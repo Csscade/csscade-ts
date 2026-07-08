@@ -12,8 +12,8 @@ export const MentionsLegalesPage = () => {
             <p>
               En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour
               la confiance dans l'économie numérique, il est précisé aux
-              utilisateurs du site internet <strong>csscade.fr</strong>{" "}
-              l'identité des différents intervenants dans le cadre de sa
+              utilisateur·ices du site internet <strong>csscade.fr</strong>{" "}
+              l'identité des différent·es intervenant·es dans le cadre de sa
               réalisation et de son suivi :
             </p>
             <p>
@@ -34,15 +34,17 @@ export const MentionsLegalesPage = () => {
               systèmes et logiciels informatiques
             </p>
             <p>
-              <strong>Directeur de la publication :</strong> L'équipe Csscade
+              <strong>Directeur·rice de la publication :</strong> L'équipe
+              Csscade
             </p>
           </section>
 
           <section className="legal-page__section">
             <h2>2. Hébergement</h2>
             <p>
-              Le site est hébergé par OVH SAS, dont le siège social est situé 2
-              rue Kellermann — 59100 Roubaix — France, joignable au 1007.
+              Le site est hébergé par GitHub, Inc., dont le siège social est
+              situé 88 Colin P Kelly Jr Street, San Francisco, CA 94107,
+              États-Unis.
             </p>
           </section>
 
@@ -50,15 +52,19 @@ export const MentionsLegalesPage = () => {
             <h2>3. Propriété intellectuelle et contrefaçons</h2>
             <p>
               Csscade est propriétaire des droits de propriété intellectuelle ou
-              détient les droits d'usage sur tous les éléments accessibles sur
-              le site internet, notamment les textes, images, graphismes, logos,
-              vidéos, architecture, icônes et sons.
+              détient les droits d'usage sur les éléments techniques et
+              graphiques du site internet : logos, graphismes, architecture,
+              icônes et sons. Les contenus rédactionnels (articles, astuces,
+              présentations de talks, images et vidéos qui les accompagnent)
+              restent la propriété de leurs auteur·ices respectif·ves, qui en
+              conservent la paternité — voir la section 4.
             </p>
             <p>
               Toute reproduction, représentation, modification, publication,
               adaptation de tout ou partie des éléments du site, quel que soit
               le moyen ou le procédé utilisé, est interdite, sauf autorisation
-              écrite préalable de Csscade.
+              écrite préalable de Csscade ou, pour les contenus rédactionnels,
+              de leur auteur·ice.
             </p>
             <p>
               Cette restriction ne concerne pas le code source du site, publié
@@ -94,8 +100,8 @@ export const MentionsLegalesPage = () => {
             <h2>5. Limitations de responsabilité</h2>
             <p>
               Csscade ne pourra être tenu pour responsable des dommages directs
-              et indirects causés au matériel de l'utilisateur lors de l'accès
-              au site csscade.fr.
+              et indirects causés au matériel de l'utilisateur·ice lors de
+              l'accès au site csscade.fr.
             </p>
             <p>
               Csscade décline toute responsabilité quant à l'utilisation qui
