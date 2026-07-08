@@ -71,7 +71,17 @@ const deviceConfigurations: {
     thresholds: mobileThresholds,
     opts: { onlyCategories: Object.keys(thresholds) },
   },
-  { label: "desktop", config: desktopConfig, thresholds },
+  {
+    label: "desktop",
+    config: desktopConfig,
+    thresholds,
+    // Explicit, so per-page threshold filtering (see `skipCategories` below)
+    // never shrinks the set of categories Lighthouse actually audits —
+    // `playwright-lighthouse` defaults onlyCategories from `thresholds` when
+    // this isn't set, which would silently drop skipped categories from the
+    // report JSON that qa:scores depends on.
+    opts: { onlyCategories: Object.keys(thresholds) },
+  },
   {
     label: "ecoindex",
     config: ecoindexConfig,
