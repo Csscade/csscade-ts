@@ -1,21 +1,20 @@
 /* Print stylesheet: strip chrome/decoration, keep only readable content and save ink. */
 
-.navigation,
-.footer,
-.skip-link,
-.toggle-theme,
-.code-playground .run {
-  display: none !important;
+.navigation.navigation,
+.footer.footer,
+.toggle-theme.toggle-theme,
+.code-playground .run.run {
+  display: none;
 }
 
-html,
-[data-theme],
-body {
-  background: #fff !important;
+html[data-theme],
+body,
+.main.main {
+  background: #fff;
   color: #000;
 }
 
-.textured-background {
+.textured-background.textured-background {
   background-image: none;
 }
 
