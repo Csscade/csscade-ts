@@ -3,7 +3,7 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPalette } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DISCORD_URL, LINKEDIN_URL } from "@/config/social-links";
 import type { QaScores } from "@/entities/qa-scores/qa-scores";
@@ -75,6 +75,16 @@ export const AboutPage = ({ qaScores }: AboutPageProps) => {
                 </p>
                 <StyledLink href="/talks" bordered={true}>
                   Voir les conférences
+                </StyledLink>
+              </li>
+              <li className="about-page__content-item">
+                <h3>Design System</h3>
+                <p>
+                  Notre bibliothèque de composants, documentée et testée dans
+                  Storybook, pour un front-end cohérent et accessible.
+                </p>
+                <StyledLink href="/storybook" bordered={true} target="_blank">
+                  <FontAwesomeIcon icon={faPalette} /> Voir le Storybook
                 </StyledLink>
               </li>
             </ul>
