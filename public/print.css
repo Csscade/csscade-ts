@@ -1,0 +1,53 @@
+/* Print stylesheet: strip chrome/decoration, keep only readable content and save ink. */
+
+.navigation,
+.footer,
+.skip-link,
+.toggle-theme,
+.code-playground .run {
+  display: none !important;
+}
+
+html,
+[data-theme],
+body {
+  background: #fff !important;
+  color: #000;
+}
+
+.textured-background {
+  background-image: none;
+}
+
+.main,
+#maincontent {
+  margin: 0;
+  max-width: 100%;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.article-page a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 0.85em;
+  word-break: break-all;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  break-after: avoid;
+}
+
+img,
+pre,
+table,
+figure {
+  break-inside: avoid;
+}
