@@ -4,6 +4,7 @@ import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
 import "@/ui-kit/styles/theme.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
+import { DEFAULT_OG_IMAGE_PATH, SITE_DESCRIPTION } from "@/config/seo";
 import { Footer } from "@/ui-kit/components/templates/Footer/Footer";
 import { Navigation } from "@/ui-kit/components/templates/Navigation/Navigation";
 import { getAllArticles } from "@/usecases/articles";
@@ -48,7 +49,7 @@ const themeInitScript = `
 
 export const metadata: Metadata = {
   title: "Csscade",
-  description: "Csscade website",
+  description: SITE_DESCRIPTION,
   metadataBase: new URL(siteUrl),
   icons: {
     icon: [
@@ -58,6 +59,23 @@ export const metadata: Metadata = {
     apple: [
       { url: `${basePath}/favicons/apple-touch-icon.png`, sizes: "180x180" },
     ],
+  },
+  openGraph: {
+    title: "Csscade",
+    description: SITE_DESCRIPTION,
+    url: siteUrl,
+    siteName: "Csscade",
+    locale: "fr_FR",
+    type: "website",
+    images: [
+      { url: `${basePath}${DEFAULT_OG_IMAGE_PATH}`, width: 1200, height: 630 },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Csscade",
+    description: SITE_DESCRIPTION,
+    images: [`${basePath}${DEFAULT_OG_IMAGE_PATH}`],
   },
 };
 
