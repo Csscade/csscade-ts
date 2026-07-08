@@ -108,7 +108,11 @@ export const AboutPage = ({ qaScores }: AboutPageProps) => {
                   Notre bibliothèque de composants, documentée et testée dans
                   Storybook, pour un front-end cohérent et accessible.
                 </p>
-                <StyledLink href="/storybook" bordered={true} target="_blank">
+                <StyledLink
+                  href="/storybook/?path=/docs/introduction--docs"
+                  bordered={true}
+                  target="_blank"
+                >
                   <FontAwesomeIcon icon={faPalette} /> Voir le Storybook
                 </StyledLink>
               </li>
@@ -131,6 +135,17 @@ export const AboutPage = ({ qaScores }: AboutPageProps) => {
                 des articles ou des astuces en MDX.
               </li>
             </ul>
+            <p>
+              Le code est publié sous licence{" "}
+              <StyledLink href="https://github.com/Csscade/csscade-ts/blob/main/LICENSE">
+                MIT
+              </StyledLink>{" "}
+              : vos contributions de code sont donc acceptées sous cette même
+              licence. Le contenu (articles, astuces, conférences) reste soumis
+              à un régime différent — vous en conservez la paternité, voir nos{" "}
+              <StyledLink href="/mentions-legales">mentions légales</StyledLink>
+              .
+            </p>
             <p>
               Nous accordons une importance capitale à l'
               <strong>accessibilité</strong> (respect des normes WCAG 2.2 et
