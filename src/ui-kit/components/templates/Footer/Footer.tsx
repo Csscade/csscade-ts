@@ -26,7 +26,10 @@ export const Footer = ({ qaScores }: FooterProps) => {
     <footer className={"footer"}>
       <div className={"footer__content"}>
         <div className={"footer__section"}>
-          <span className={"footer__brand"}>Csscade</span>
+          <div className={"footer__brand-row"}>
+            <span className={"footer__brand"}>CSScade</span>
+            <small className={"footer__pronunciation"}>/kskad/</small>
+          </div>
           <p className={"footer__description"}>
             La référence pour qui aime l'intégration web.
           </p>
