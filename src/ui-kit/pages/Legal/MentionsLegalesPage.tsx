@@ -91,6 +91,16 @@ export const MentionsLegalesPage = () => {
               csscade.fr.
             </p>
           </section>
+
+          <section className="legal-page__section">
+            <h2>6. Crédits</h2>
+            <p>
+              <strong>Design :</strong> Amy Ndiaye
+            </p>
+            <p>
+              <strong>Logo :</strong> Dorian Guilmain
+            </p>
+          </section>
         </div>
       </main>
     </>
