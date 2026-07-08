@@ -22,6 +22,18 @@ export const MentionsLegalesPage = () => {
               <a href="mailto:hello@csscade.fr">hello@csscade.fr</a>
             </p>
             <p>
+              <strong>SIREN :</strong> 909 170 334
+              <br />
+              <strong>SIRET (siège) :</strong> 909 170 334 00017
+              <br />
+              <strong>N° RNA :</strong> W353022209
+              <br />
+              <strong>Catégorie juridique :</strong> Association déclarée
+              <br />
+              <strong>Activité principale (APE) :</strong> 62.02A — Conseil en
+              systèmes et logiciels informatiques
+            </p>
+            <p>
               <strong>Directeur de la publication :</strong> L'équipe Csscade
             </p>
           </section>
