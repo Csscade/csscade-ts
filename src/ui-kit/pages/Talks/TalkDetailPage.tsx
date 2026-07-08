@@ -85,7 +85,7 @@ export const TalkDetailPage = ({
             <div className="talk-page__video-inner">
               <iframe
                 className="talk-page__video"
-                src={`https://www.youtube.com/embed/${talk.youtubeId}`}
+                src={`https://www.youtube-nocookie.com/embed/${talk.youtubeId}`}
                 title={`Vidéo de la conférence : ${talk.title}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

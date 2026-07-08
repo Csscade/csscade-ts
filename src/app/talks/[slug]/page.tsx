@@ -93,7 +93,7 @@ export default async function Page({
         description: resolveTalkDescription(talk),
         uploadDate: talk.publishedAt,
         thumbnailUrl: resolveTalkImage(talk).url,
-        embedUrl: `https://www.youtube.com/embed/${talk.youtubeId}`,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${talk.youtubeId}`,
         url: `${siteUrl}talks/${talk.slug}/`,
       })
     : null;
