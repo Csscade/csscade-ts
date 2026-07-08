@@ -10,8 +10,8 @@
   /* BORDER COLORS */
   --border-color: var(--color-light);
   --border-color-reverse: var(--color-dark);
-  --border-image: url("../assets/frame_dark-mode.png");
-  --border-image-reverse: url("../assets/frame_light-mode.png");
+  --border-image: url("../assets/frame_dark-mode.webp");
+  --border-image-reverse: url("../assets/frame_light-mode.webp");
   --avatar-border-color: var(--color-light-muted);
 
   /* BACKGROUND COLORS */

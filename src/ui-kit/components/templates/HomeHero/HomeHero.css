@@ -19,7 +19,7 @@
     max-width: var(--container-max-width);
     overflow: hidden;
     background-color: var(--background-primary);
-    background-image: url("../../../styles/assets/background-grid.png");
+    background-image: url("../../../styles/assets/background-grid.webp");
 
     .home-hero__main {
       display: flex;

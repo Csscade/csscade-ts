@@ -42,7 +42,7 @@
 .author-page__articles,
 .author-page__talks {
   background-color: var(--background-primary);
-  background-image: url("../../styles/assets/background-grid.png");
+  background-image: url("../../styles/assets/background-grid.webp");
 }
 
 .author-page__tips {

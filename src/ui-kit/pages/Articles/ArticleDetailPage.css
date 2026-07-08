@@ -2,7 +2,7 @@
   .article-page__header {
     margin: auto;
     background-color: var(--background-primary);
-    background-image: url("../../styles/assets/background-grid.png");
+    background-image: url("../../styles/assets/background-grid.webp");
     padding: clamp(3rem, 5vw, 6rem) 0;
 
     .article-page__header-wrapper {
@@ -68,7 +68,7 @@
     margin: auto;
     padding: 2rem;
     background-color: var(--background-primary);
-    background-image: url("../../styles/assets/background-grid.png");
+    background-image: url("../../styles/assets/background-grid.webp");
 
     .author-card {
       max-width: calc(var(--article-max-width) + 6rem);
