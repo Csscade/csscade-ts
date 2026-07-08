@@ -48,6 +48,16 @@ export const MentionsLegalesPage = () => {
               le moyen ou le procédé utilisé, est interdite, sauf autorisation
               écrite préalable de Csscade.
             </p>
+            <p>
+              Cette restriction ne concerne pas le code source du site, publié
+              en open source sous licence MIT sur{" "}
+              <a href="https://github.com/Csscade/csscade-ts">GitHub</a>. La
+              licence MIT s'applique uniquement au code (composants, logique
+              applicative, outillage) — elle ne couvre ni les contenus
+              rédactionnels (articles, astuces, présentations de talks), ni la
+              marque et les éléments graphiques de Csscade, qui restent soumis
+              aux droits décrits ci-dessus.
+            </p>
           </section>
 
           <section className="legal-page__section">
