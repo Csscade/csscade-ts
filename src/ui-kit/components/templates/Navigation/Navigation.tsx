@@ -106,11 +106,11 @@ export const Navigation = ({
               <li>
                 <StyledLink
                   href="/authors"
-                  aria-label="Voir les auteurs et autrices"
+                  aria-label="Voir l'équipe éditoriale"
                   aria-current={currentPage("/authors")}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Auteur·ices
+                  Équipe éditoriale
                 </StyledLink>
               </li>
             )}

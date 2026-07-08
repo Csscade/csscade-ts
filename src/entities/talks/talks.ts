@@ -9,7 +9,7 @@ export const TalkSchema = z.object({
   categories: z.array(z.string()),
   publishedAt: z.iso.date(),
   abstract: z.string(),
-  level: z.enum(["débutant·e", "intermédiaire", "expert·e"]).optional(),
+  level: z.enum(["découverte", "intermédiaire", "expertise"]).optional(),
   youtubeId: z.string().optional(),
   slidesUrl: z.url().optional(),
   content: z.string(),

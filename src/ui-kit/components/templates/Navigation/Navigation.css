@@ -128,7 +128,7 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .container {
       margin: 0 2rem;
     }
@@ -151,19 +151,15 @@
 
       ul {
         flex-direction: row;
+        align-items: center;
         width: fit-content;
-        gap: 2rem;
+        gap: 2.5rem;
 
         li {
           font-size: 1rem;
+          white-space: nowrap;
         }
       }
-    }
-  }
-
-  @media (min-width: 992px) {
-    .nav ul {
-      gap: 2.5rem;
     }
   }
 }
