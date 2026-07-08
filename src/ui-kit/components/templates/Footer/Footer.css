@@ -56,14 +56,24 @@
     flex: 2;
   }
 
+  .footer__brand-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
   .footer__brand {
     font-size: var(--fs-h4);
     font-weight: 700;
     font-family: var(--font-secondary), serif;
     line-height: 1;
-    display: flex;
-    justify-content: center;
     margin: 0;
+  }
+
+  .footer__pronunciation {
+    color: var(--font-color-muted);
+    white-space: nowrap;
   }
 
   .footer__description {
@@ -95,15 +105,9 @@
   }
 
   .styled-link--icon {
-    border: none;
-
     svg {
       width: 1.5rem;
       height: 1.5rem;
-    }
-
-    &:hover {
-      border: none;
     }
   }
 
@@ -114,7 +118,7 @@
     transition: color 0.2s;
 
     &:hover {
-      color: var(--font-color);
+      color: var(--color-primary);
     }
   }
 
@@ -152,9 +156,12 @@
       gap: 1rem;
     }
 
-    .footer__brand,
     .footer__title {
       display: block;
+    }
+
+    .footer__brand-row {
+      justify-content: flex-start;
     }
   }
 }
