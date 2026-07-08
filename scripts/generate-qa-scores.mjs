@@ -120,6 +120,62 @@ function collectLighthouseScore() {
   };
 }
 
+// Standard EcoIndex grade scale — https://www.ecoindex.fr/comment-ca-marche/#le-calcul-de-la-note
+const ECOINDEX_GRADE_THRESHOLDS = [
+  [80, "A"],
+  [70, "B"],
+  [55, "C"],
+  [40, "D"],
+  [25, "E"],
+  [10, "F"],
+];
+
+function gradeForEcoindexScore(score) {
+  for (const [threshold, grade] of ECOINDEX_GRADE_THRESHOLDS) {
+    if (score > threshold) return grade;
+  }
+  return "G";
+}
+
+function collectEcoindexScore() {
+  if (!existsSync(LIGHTHOUSE_DIR)) {
+    throw new Error(
+      `Missing ${LIGHTHOUSE_DIR}/ — run \`pnpm test:lighthouse\` first.`,
+    );
+  }
+
+  const files = readdirSync(LIGHTHOUSE_DIR).filter((file) =>
+    file.endsWith("-ecoindex.json"),
+  );
+
+  if (files.length === 0) {
+    throw new Error(
+      `No EcoIndex JSON reports found in ${LIGHTHOUSE_DIR}/ — run \`pnpm test:lighthouse\` first.`,
+    );
+  }
+
+  const totals = { score: 0, water: 0, ghg: 0 };
+
+  for (const file of files) {
+    const report = JSON.parse(
+      readFileSync(path.join(LIGHTHOUSE_DIR, file), "utf8"),
+    );
+    totals.score += Number(report.audits["eco-index-score"].numericValue);
+    totals.water += Number(report.audits["eco-index-water"].numericValue);
+    totals.ghg += Number(report.audits["eco-index-ghg"].numericValue);
+  }
+
+  const count = files.length;
+  const score = round(totals.score / count);
+
+  return {
+    score,
+    grade: gradeForEcoindexScore(score),
+    water: Math.round((totals.water / count) * 100) / 100,
+    ghg: Math.round((totals.ghg / count) * 100) / 100,
+  };
+}
+
 function collectStorybookScore() {
   if (!existsSync(STORYBOOK_REPORT_PATH)) {
     throw new Error(
@@ -142,12 +198,14 @@ async function main() {
   const lighthouse = collectLighthouseScore();
   const storybook = collectStorybookScore();
   const axe = await collectAxeScore();
+  const ecoindex = collectEcoindexScore();
 
   const output = {
     generatedAt: new Date().toISOString(),
     lighthouse,
     axe,
     storybook,
+    ecoindex,
   };
 
   writeFileSync(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`);

@@ -26,20 +26,21 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-| Topic              | Technology                        |
-|--------------------|-----------------------------------|
-| Main Framework     | 	Next.js (App Router)             |
-| Language           | 	TypeScript                       |
-| Package manager    | 	pnpm                             |
-| Linter / formatter | 	Biome                            |
-| Build              | 	Turbopack                        |
-| Design System      | 	Storybook + Vite                 |
-| Style              | 	Native CSS                       |
-| Content            | 	MarkdownX with Zod & gray-matter |
-| Pre-push            | 	Lefthook                         |
-| Unit / component tests | Vitest                       |
-| Accessibility tests | Playwright + Axe-core            |
-| Performance tests  | 	Playwright + Lighthouse          |
+| Topic                      | Technology                         |
+|----------------------------|------------------------------------|
+| Main Framework             | 	Next.js (App Router)              |
+| Language                   | 	TypeScript                        |
+| Package manager            | 	pnpm                              |
+| Linter / formatter         | 	Biome                             |
+| Build                      | 	Turbopack                         |
+| Design System              | 	Storybook + Vite                  |
+| Style                      | 	Native CSS                        |
+| Content                    | 	MarkdownX with Zod & gray-matter  |
+| Pre-push                   | 	Lefthook                          |
+| Unit / component tests     | Vitest                             |
+| Accessibility tests        | Playwright + Axe-core              |
+| Performance tests          | 	Playwright + Lighthouse           |
+| Environmental impact tests | Playwright + Lighthouse + EcoIndex |
 
 ![next badge](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs)
 ![pnpm badge](https://img.shields.io/badge/Typescript-000000?style=flat&logo=typescript)
@@ -106,7 +107,7 @@ Storybook component tests (Vitest, browser mode) + accessibility tests (Playwrig
 pnpm test:ui
 ```
 
-Lighthouse performance/accessibility/SEO audits — requires a **production build**, scores measured against `pnpm dev` are misleadingly low:
+Lighthouse performance/accessibility/SEO audits, plus an EcoIndex (environmental impact) pass — requires a **production build**, scores measured against `pnpm dev` are misleadingly low:
 
 ```bash
 pnpm build
@@ -120,7 +121,7 @@ Playwright tests generate an HTML report at `playwright-report/index.html`, view
 npx playwright show-report
 ```
 
-`test:ui` and `test:lighthouse` also run on demand in CI via the `QA on demand` GitHub Actions workflow (`workflow_dispatch` — triggered manually from the Actions tab, not on every push).
+`test:ui` and `test:lighthouse` also run on demand in CI via the `QA on demand` GitHub Actions workflow (`workflow_dispatch` — triggered manually from the Actions tab, not on every push). That workflow also regenerates `src/content/qa-scores.json` (via `pnpm qa:scores`), which feeds the Lighthouse/Axe/EcoIndex badges shown in the site's footer and on the [/a-propos](https://csscade.fr/a-propos) page.
 
 ## Agent Skills
 

@@ -98,17 +98,17 @@ Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` la
 
 **Where to add things:**
 
-| What | Where |
-|---|---|
-| New type or schema | `src/entities/{topic}/` |
-| New repository (reads from `src/content/`) | `src/infrastructure/{topic}/` — expose a `read*` function |
-| New use case or business logic | `src/usecases/{topic}.ts` — calls `read*`, exports named functions |
-| New remark/rehype plugin | `src/infrastructure/mdx/plugins/` |
-| New UI component | `src/ui-kit/components/` |
-| New full-page component | `src/ui-kit/pages/` |
-| New route | `src/app/` (thin `page.tsx` only — JSX goes in `ui-kit/pages/`) |
-| New MDX content | `src/content/{articles,tips,talks,authors}/` |
-| New static constant (no runtime/env dependency) | `src/config/{topic}.ts` |
+| What                                            | Where                                                              |
+|-------------------------------------------------|--------------------------------------------------------------------|
+| New type or schema                              | `src/entities/{topic}/`                                            |
+| New repository (reads from `src/content/`)      | `src/infrastructure/{topic}/` — expose a `read*` function          |
+| New use case or business logic                  | `src/usecases/{topic}.ts` — calls `read*`, exports named functions |
+| New remark/rehype plugin                        | `src/infrastructure/mdx/plugins/`                                  |
+| New UI component                                | `src/ui-kit/components/`                                           |
+| New full-page component                         | `src/ui-kit/pages/`                                                |
+| New route                                       | `src/app/` (thin `page.tsx` only — JSX goes in `ui-kit/pages/`)    |
+| New MDX content                                 | `src/content/{articles,tips,talks,authors}/`                       |
+| New static constant (no runtime/env dependency) | `src/config/{topic}.ts`                                            |
 
 ---
 
@@ -154,7 +154,7 @@ pnpm dev        # must be running
 pnpm test:ui
 ```
 
-**Performance tests (Playwright + Lighthouse):**
+**Performance & environmental impact tests (Playwright + Lighthouse + EcoIndex):**
 
 Scores are only meaningful against a production build — running against `pnpm dev` (unminified, Turbopack HMR) gives misleadingly low results.
 
@@ -164,11 +164,13 @@ pnpm start       # must be running
 pnpm test:lighthouse
 ```
 
-Checks `performance` (80), `accessibility` (90), `best-practices` (90), and `seo` (90) thresholds on 8 representative pages.
+Checks `performance` (90), `accessibility` (90), `best-practices` (90), and `seo` (90) thresholds on 8 representative pages, for both a mobile and a desktop pass. A third "ecoindex" pass (via the `lighthouse-plugin-ecoindex-core` plugin) audits the same 8 pages against the CNUMR RWEB referential (print CSS, cache headers, HTTP/2, minification, inline assets, etc.) and computes the EcoIndex score, grade, water and GHG estimates — same methodology as the [GreenIT-Analysis](https://github.com/cnumr/GreenIT-Analysis) browser extension, but scriptable and JSON-exportable.
 
 Playwright test runs (both `test:ui` and `test:lighthouse`) generate an HTML report — view it with `npx playwright show-report`.
 
-**In CI:** `pnpm lint` and `pnpm test` (architecture rules) run on every push to `main` via `deploy.yml`. `test:ui` and `test:lighthouse` are heavier and currently run on demand only, via the `QA on demand` workflow (`workflow_dispatch`, triggered manually from the Actions tab).
+**QA scores:** `pnpm qa:scores` (`scripts/generate-qa-scores.mjs`) reads the Lighthouse JSON reports (`lighthouse-report/*.json`), the Storybook test report, and runs Axe-core, then writes the averaged scores to `src/content/qa-scores.json`. This file feeds the Lighthouse/Axe/EcoIndex badges in the footer and the detailed breakdown on `/a-propos`. Requires `test:ui` and `test:lighthouse` to have run first.
+
+**In CI:** `pnpm lint` and `pnpm test` (architecture rules) run on every push to `main` via `deploy.yml`. `test:ui`, `test:lighthouse`, and `qa:scores` are heavier and currently run on demand only, via the `QA on demand` workflow (`workflow_dispatch`, triggered manually from the Actions tab), which also commits the refreshed `qa-scores.json` back to `main`.
 
 ---
 

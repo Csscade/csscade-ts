@@ -21,8 +21,9 @@ export const QaScoresDetails = ({ qaScores }: QaScoresDetailsProps) => {
       <h2 id="qualite-title">Qualité &amp; Accessibilité</h2>
       <p>
         Nous auditons automatiquement chaque page du site avec{" "}
-        <strong>Lighthouse</strong> et <strong>Axe-core</strong>. Dernière
-        mesure : {generatedAt}.
+        <strong>Lighthouse</strong>, <strong>Axe-core</strong> et{" "}
+        <strong>EcoIndex</strong> (référentiel RWEB du Collectif Conception
+        Numérique Responsable). Dernière mesure : {generatedAt}.
       </p>
 
       <div className="about-page__subsection">
@@ -56,6 +57,26 @@ export const QaScoresDetails = ({ qaScores }: QaScoresDetailsProps) => {
               {qaScores.axe.score}% — {qaScores.axe.rulesPassed}/
               {qaScores.axe.rulesTotal} règles validées
             </p>
+          </li>
+        </ul>
+      </div>
+
+      <div className="about-page__subsection">
+        <h3>EcoIndex</h3>
+        <ul className="about-page__content-list">
+          <li className="about-page__content-item">
+            <h4>Impact environnemental</h4>
+            <p>
+              {qaScores.ecoindex.score}/100 — Note {qaScores.ecoindex.grade}
+            </p>
+          </li>
+          <li className="about-page__content-item">
+            <h4>Eau consommée</h4>
+            <p>{qaScores.ecoindex.water} cl par visite</p>
+          </li>
+          <li className="about-page__content-item">
+            <h4>Gaz à effet de serre</h4>
+            <p>{qaScores.ecoindex.ghg} g eqCO2 par visite</p>
           </li>
         </ul>
       </div>
