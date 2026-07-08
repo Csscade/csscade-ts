@@ -54,10 +54,18 @@ export const Footer = ({ qaScores }: FooterProps) => {
 
         <div className={"footer__section"}>
           <h2 className={"footer__title"}>Légal</h2>
-          <StyledLink href="/a-propos" className="footer__legal-link">
+          <StyledLink
+            href="/a-propos"
+            className="footer__legal-link"
+            prefetch={false}
+          >
             À Propos
           </StyledLink>
-          <StyledLink href="/mentions-legales" className="footer__legal-link">
+          <StyledLink
+            href="/mentions-legales"
+            className="footer__legal-link"
+            prefetch={false}
+          >
             Mentions Légales
           </StyledLink>
         </div>
@@ -70,6 +78,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
                 <StyledLink
                   href="/a-propos#qualite"
                   ariaLabel="Voir le détail du score Lighthouse sur la page À propos"
+                  prefetch={false}
                 >
                   Lighthouse {lighthouseAverage}
                 </StyledLink>
@@ -78,6 +87,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
                 <StyledLink
                   href="/a-propos#qualite"
                   ariaLabel="Voir le détail du score d'accessibilité Axe sur la page À propos"
+                  prefetch={false}
                 >
                   Axe {qaScores.axe.score}%
                 </StyledLink>
@@ -86,6 +96,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
                 <StyledLink
                   href="/a-propos#qualite"
                   ariaLabel="Voir le détail du score EcoIndex sur la page À propos"
+                  prefetch={false}
                 >
                   EcoIndex {qaScores.ecoindex.grade}
                 </StyledLink>
