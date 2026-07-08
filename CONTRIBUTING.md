@@ -33,6 +33,7 @@ There are two ways to contribute:
   - [Commit messages](#commit-messages)
   - [Pull requests](#pull-requests)
   - [Reporting issues](#reporting-issues)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -343,6 +344,10 @@ When filing an issue, please include:
 - Description of the issue and expected behavior.
 - Steps to reproduce.
 - Environment details (OS, browser, Node version).
+
+### License
+
+Code contributions (components, logic, tooling) are accepted under the project's [MIT license](./LICENSE). Content contributions (articles, tips, talks) are not — you keep authorship and can request removal at any time, per the [mentions légales](https://csscade.fr/mentions-legales).
 
 ---
 
