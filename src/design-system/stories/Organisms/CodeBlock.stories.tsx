@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useGlobals } from "storybook/preview-api";
 import { CopyButton } from "@/ui-kit/components/atoms/CopyButton/CopyButton";
 import { useHighlighter } from "@/ui-kit/components/organisms/CodeEditor/useHighlighter";
+import "../stories.css";
 
 const meta = {
   title: "Organisms/Code Block",
@@ -55,14 +56,7 @@ const me = { id: 1, name: "Junie" };
 greet(me);`;
 
     return (
-      <div
-        style={{
-          width: "600px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-        }}
-      >
+      <div className="story-code-panel">
         <div>
           <SyntaxHighlightedCode
             language="typescript"
@@ -93,14 +87,7 @@ export const Plain: StoryObj = {
 console.log(x);`;
 
     return (
-      <div
-        style={{
-          width: "600px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-        }}
-      >
+      <div className="story-code-panel">
         <div>
           <p>Plain Code Block (without Shiki):</p>
           <div className="pre-wrapper">

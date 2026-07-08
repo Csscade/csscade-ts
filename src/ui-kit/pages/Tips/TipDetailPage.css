@@ -9,6 +9,13 @@
       max-width: var(--article-max-width);
       margin: auto;
       padding-inline: 1rem;
+      opacity: 0;
+      animation: slide-up 0.8s ease-out forwards;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        opacity: 1;
+      }
     }
   }
 

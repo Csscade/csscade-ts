@@ -5,7 +5,7 @@ import { type EditorTheme, useEditorTheme } from "./useEditorTheme";
 import { useHighlighter } from "./useHighlighter";
 
 export interface CodeEditorProps {
-  height?: string;
+  fixedHeight?: boolean;
   defaultLanguage?: string;
   defaultValue?: string;
   value?: string;
@@ -16,7 +16,7 @@ export interface CodeEditorProps {
 }
 
 export const CodeEditor = ({
-  height,
+  fixedHeight = false,
   defaultLanguage = "typescript",
   defaultValue = "",
   value,
@@ -42,9 +42,8 @@ export const CodeEditor = ({
 
   return (
     <div
-      className={`code-editor-container ${containerClassName}`}
+      className={`code-editor-container ${fixedHeight ? "code-editor-container--fixed-height" : ""} ${containerClassName}`}
       data-shiki-theme={currentTheme}
-      style={{ height, minHeight: "60px" }}
     >
       <CopyButton code={code} className="button button--icon" />
       <div className="shiki-editor">

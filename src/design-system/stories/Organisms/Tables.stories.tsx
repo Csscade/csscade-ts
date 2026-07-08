@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import "@/ui-kit/articles/ArticleContent/ArticleContent.css";
+import "../stories.css";
 
 const meta = {
   title: "Organisms/Tables",
@@ -104,7 +105,7 @@ export const AlignedTable: StoryObj = {
 
 export const ResponsiveTable: StoryObj = {
   render: () => (
-    <div className="article-content" style={{ maxWidth: "600px" }}>
+    <div className="article-content story-max-width-600">
       <section className="table-wrapper" aria-label="Responsive table">
         <table>
           <thead>

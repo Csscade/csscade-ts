@@ -4,7 +4,35 @@
   justify-content: stretch;
   width: 100%;
 
-  .talks-list {
+  .last-talks__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 3rem;
     margin: 30px auto;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .last-talks {
+    .last-talks__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .last-talks__list .article-card__title {
+    animation: slide-up linear both;
+    animation-timeline: view();
+    animation-range: entry;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .last-talks__list .article-card__title {
+    animation: none;
   }
 }

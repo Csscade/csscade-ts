@@ -28,3 +28,16 @@
     }
   }
 }
+
+.tips__list .article-card__title {
+  opacity: 0;
+  animation: slide-up 0.6s ease-out calc(0.1s + var(--card-index, 0) * 60ms)
+    forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tips__list .article-card__title {
+    animation: none;
+    opacity: 1;
+  }
+}

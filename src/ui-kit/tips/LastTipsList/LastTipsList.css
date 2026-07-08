@@ -16,3 +16,17 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@supports (animation-timeline: view()) {
+  .last-tips__list .article-card__title {
+    animation: slide-up linear both;
+    animation-timeline: view();
+    animation-range: entry;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .last-tips__list .article-card__title {
+    animation: none;
+  }
+}

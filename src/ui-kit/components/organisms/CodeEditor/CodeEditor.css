@@ -1,5 +1,10 @@
 .code-editor-container {
   position: relative;
+  min-height: 60px;
+}
+
+.code-editor-container--fixed-height {
+  height: 200px;
 }
 
 .code-editor-container .copy {
