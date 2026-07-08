@@ -54,11 +54,11 @@ export const MentionsLegalesPage = () => {
             <h2>4. Droit d'auteur des contributions</h2>
             <p>
               Les articles, astuces et contenus publiés sur Csscade sont rédigés
-              par des contributeur·ices qui en conservent la paternité. Lorsque
-              du contenu a été initialement publié sur un blog ou une source
+              par des personnes qui en conservent la paternité. Lorsque du
+              contenu a été initialement publié sur un blog ou une source
               externe, un lien vers la publication originale est
-              systématiquement indiqué, dès lors que l'auteur·ice le précise,
-              par respect du droit d'auteur.
+              systématiquement indiqué, dès lors que cela est précisé, par
+              respect du droit d'auteur.
             </p>
             <p>
               Toute personne ayant contribué à Csscade peut demander le retrait

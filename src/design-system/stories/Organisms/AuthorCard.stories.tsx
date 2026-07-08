@@ -27,7 +27,7 @@ export const Default: Story = {
       linkedin: "https://linkedin.com/in/csscade",
       bio: (
         <p>
-          Passionné·es de CSS et <span lang="en">design systems</span>.
+          Fan de CSS et <span lang="en">design systems</span>.
         </p>
       ),
     },

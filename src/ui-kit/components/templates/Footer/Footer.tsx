@@ -28,7 +28,7 @@ export const Footer = ({ qaScores }: FooterProps) => {
         <div className={"footer__section"}>
           <span className={"footer__brand"}>Csscade</span>
           <p className={"footer__description"}>
-            La référence pour les devs passionné·es d'intégration web.
+            La référence pour qui aime l'intégration web.
           </p>
         </div>
 
