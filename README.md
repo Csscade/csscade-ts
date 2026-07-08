@@ -139,6 +139,7 @@ This project uses Agent Skills to provide specialized instructions to AI assista
 Available skills:
 
 - [Accessibility](.agents/skills/accessibility/SKILL.md): Rules and project conventions for RGAA-aligned accessibility.
+- [Front-end CSS conventions](.agents/skills/front/SKILL.md): BEM naming and CSS nesting-depth rules for `src/ui-kit`.
 
 ## License
 
