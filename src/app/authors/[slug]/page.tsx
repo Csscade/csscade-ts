@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { resolveImageUrl } from "@/config/seo";
+import { resolveImageUrl, toAbsoluteUrl, toJsonLd } from "@/config/seo";
+import type { Author } from "@/entities/authors/authors";
 import { AuthorPage } from "@/ui-kit/pages/Author/AuthorPage";
 import { getAllArticles } from "@/usecases/articles";
 import { getAllAuthors } from "@/usecases/authors";
@@ -8,6 +9,12 @@ import { getAllTalks } from "@/usecases/talks";
 import { getAllTips } from "@/usecases/tips";
 
 const basePath = process.env.PAGES_BASE_PATH ?? "";
+const siteUrl = process.env.PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+const resolveAuthorDescription = (author: Author) => {
+  const de = /^[aeiouhàâéèêëîïôùû]/i.test(author.name) ? "d'" : "de ";
+  return `Articles, tips et talks ${de}${author.name} sur Csscade.`;
+};
 
 export const generateStaticParams = async () => {
   const authors = getAllAuthors();
@@ -25,13 +32,15 @@ export async function generateMetadata({
   const author = getAllAuthors().find((a) => a.slug === slug);
   if (!author) return {};
 
-  const de = /^[aeiouhàâéèêëîïôùû]/i.test(author.name) ? "d'" : "de ";
-  const description = `Articles, tips et talks ${de}${author.name} sur Csscade.`;
+  const description = resolveAuthorDescription(author);
   const imageUrl = resolveImageUrl(author.avatar, basePath);
 
   return {
     title: author.name,
     description,
+    alternates: {
+      canonical: `/authors/${author.slug}`,
+    },
     openGraph: {
       title: author.name,
       description,
@@ -70,7 +79,37 @@ export default async function Page({
   const allTalks = getAllTalks();
   const talks = allTalks.filter((talk) => talk.author === slug);
 
+  const jsonLd = toJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author.name,
+    image: toAbsoluteUrl(resolveImageUrl(author.avatar, basePath), siteUrl),
+    url: `${siteUrl}authors/${author.slug}/`,
+    sameAs: [
+      author.website,
+      author.bluesky,
+      author.mastodon,
+      author.github,
+      author.linkedin,
+      author.medium,
+      author.devto,
+      author.codepen,
+    ].filter((url): url is string => Boolean(url)),
+  });
+
   return (
-    <AuthorPage author={author} articles={articles} tips={tips} talks={talks} />
+    <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD serialized via toJsonLd, which escapes "<"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
+      <AuthorPage
+        author={author}
+        articles={articles}
+        tips={tips}
+        talks={talks}
+      />
+    </>
   );
 }

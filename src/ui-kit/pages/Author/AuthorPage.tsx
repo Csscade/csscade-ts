@@ -28,7 +28,7 @@ export const AuthorPage = ({
     <div className="author-page">
       <div className="author-page__header">
         <div className="author-page__header-wrapper">
-          <AuthorCardContent author={author} />
+          <AuthorCardContent author={author} headingLevel="h1" />
         </div>
       </div>
 

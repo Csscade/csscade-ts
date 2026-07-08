@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import {
   SearchResultsFallback,
@@ -7,6 +8,17 @@ import { getAllArticles } from "@/usecases/articles";
 import { getAllAuthors } from "@/usecases/authors";
 import { getAllTalks } from "@/usecases/talks";
 import { getAllTips } from "@/usecases/tips";
+
+export const metadata: Metadata = {
+  title: "Recherche",
+  alternates: {
+    canonical: "/recherche",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function Page() {
   const articles = getAllArticles();

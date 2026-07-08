@@ -8,9 +8,10 @@ import { rehypePlugins, remarkPlugins } from "@/usecases/mdx";
 
 interface Props {
   author: Author;
+  headingLevel?: "h1" | "h3";
 }
 
-export const AuthorCardContent = ({ author }: Props) => {
+export const AuthorCardContent = ({ author, headingLevel }: Props) => {
   const mappedAuthor: AuthorCardData = {
     name: author.name,
     slug: author.slug,
@@ -37,5 +38,5 @@ export const AuthorCardContent = ({ author }: Props) => {
     ),
   };
 
-  return <AuthorCard author={mappedAuthor} />;
+  return <AuthorCard author={mappedAuthor} headingLevel={headingLevel} />;
 };

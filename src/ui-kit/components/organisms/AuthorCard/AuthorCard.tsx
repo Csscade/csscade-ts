@@ -34,12 +34,17 @@ export interface AuthorCardData {
 interface AuthorCardProps {
   author: AuthorCardData;
   variant?: "default" | "mini";
+  /** Heading level for the author's name — "h1" when this card is the page's main heading. */
+  headingLevel?: "h1" | "h3";
 }
 
 export const AuthorCard = ({
   author,
   variant = "default",
+  headingLevel = "h3",
 }: AuthorCardProps) => {
+  const Heading = headingLevel;
+
   if (variant === "mini") {
     return (
       <aside className="author-card author-card--mini" aria-label={author.name}>
@@ -70,7 +75,7 @@ export const AuthorCard = ({
 
         <div className="author-card__info">
           <div className="author-card__name-row">
-            <h3 className="author-card__name">{author.name}</h3>
+            <Heading className="author-card__name">{author.name}</Heading>
 
             {author.pronouns && (
               <span className="author-card__pronouns">({author.pronouns})</span>
