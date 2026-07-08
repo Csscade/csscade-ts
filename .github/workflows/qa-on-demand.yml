@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.QA_SCORES_PAT }}
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
@@ -85,7 +87,12 @@ jobs:
 
       - name: Open PR with updated QA scores
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # A PAT, not the default GITHUB_TOKEN: PRs/pushes made with the
+          # default token don't trigger other workflows (anti-recursion
+          # guard), so ci.yml's `pull_request` trigger never fires and the
+          # required "ci" status check never appears — the PR then sits
+          # open forever even with auto-merge enabled.
+          GH_TOKEN: ${{ secrets.QA_SCORES_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
