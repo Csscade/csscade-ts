@@ -129,4 +129,4 @@ This project uses Agent Skills to provide specialized instructions to AI assista
 
 Available skills:
 
-- [Accessibility](./.agent/skills/accessibility/SKILL.md): Rules and project conventions for RGAA-aligned accessibility.
+- [Accessibility](.agents/skills/accessibility/SKILL.md): Rules and project conventions for RGAA-aligned accessibility.
