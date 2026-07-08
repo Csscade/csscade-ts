@@ -24,7 +24,7 @@ export const CodePlayground = (props: CodeEditorProps) => {
     setOutput([]);
 
     const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
+    iframe.className = "code-playground__sandbox";
     iframe.sandbox.add("allow-scripts");
 
     const html = `

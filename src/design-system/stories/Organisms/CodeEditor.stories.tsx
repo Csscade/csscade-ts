@@ -36,7 +36,7 @@ console.log("Add more lines to see it grow!");`,
 
 export const FixedHeight: Story = {
   args: {
-    height: "200px",
+    fixedHeight: true,
     defaultLanguage: "typescript",
     defaultValue: `const theme = "fixed";
 console.log("This editor has a fixed height of 200px");`,

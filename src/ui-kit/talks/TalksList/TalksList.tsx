@@ -2,6 +2,7 @@ import type { Author } from "@/entities/authors/authors";
 import type { Talk } from "@/entities/talks/talks";
 import { ArticleCard } from "@/ui-kit/articles/ArticleCard/ArticleCard";
 import "./TalksList.css";
+import type React from "react";
 
 interface TalksListProps {
   talks: Talk[];
@@ -19,11 +20,16 @@ export const TalksList = ({
   const getAuthor = (talk: Talk) => authors.find((a) => a.slug === talk.author);
 
   return (
-    <ul className="talks-list">
-      {talks.map((talk) => {
+    <ul className="talks__list">
+      {talks.map((talk, index) => {
         const author = getAuthor(talk);
         return (
-          <li key={talk.slug}>
+          <li
+            key={talk.slug}
+            style={
+              { "--card-index": Math.min(index, 8) } as React.CSSProperties
+            }
+          >
             <ArticleCard
               title={talk.title}
               publishedAt={talk.publishedAt}

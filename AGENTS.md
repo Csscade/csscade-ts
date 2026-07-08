@@ -57,6 +57,10 @@ Infrastructure exposes low-level `read*` functions (raw I/O). Application wraps 
 
 Biome enforces: double quotes, semicolons, no `any`, no `console.log` (only `console.warn`/`console.error`), imports ordered alphabetically by group (builtin → external → internal → parent → sibling → index).
 
+### Frontend
+
+- No `style` attributes in the DOM. Never use inline styles (`style={{...}}` in JSX, or setting `.style.*` in JS/TS) — all styling must come from CSS files (CSS Modules, global stylesheets). This includes dynamic/conditional styling: express it with CSS classes and CSS variables (`var(--...)`) set via `className`, not inline `style` props.
+
 ## Testing
 
 - **One `expect` per test.** Each `it()` block must contain exactly one `expect()` call. Split multi-assertion tests into separate, focused tests.
@@ -91,7 +95,7 @@ Do not remove this tag list to "run everything" — axe-core disables 16 of its 
 - Images adjacent to their text label must use `alt=""` to avoid `image-redundant-alt`.
 - Content outside `<main>` must be in a semantic landmark. Use `<section aria-labelledby="...">` (not `<div role="region">`) for page-level title banners — Biome enforces native elements over ARIA roles.
 - Do not add a second top-level `<header>` (banner landmark); the navigation already owns that role.
-- Inline `backgroundColor` styles must use CSS variables (`var(--background-secondary)`) rather than hardcoded rgba values so they adapt to dark mode.
+- No inline styles at all (see [Frontend](#frontend) conventions above) — use CSS classes/variables (`var(--background-secondary)`) instead of hardcoded rgba values so colors adapt to dark mode.
 
 ### Lighthouse tests
 

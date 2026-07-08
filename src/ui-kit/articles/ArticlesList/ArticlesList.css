@@ -32,3 +32,16 @@
 .articles__list:has(> li:only-child) {
   grid-template-columns: 1fr;
 }
+
+.articles__list .article-card__title {
+  opacity: 0;
+  animation: slide-up 0.6s ease-out calc(0.1s + var(--card-index, 0) * 60ms)
+    forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .articles__list .article-card__title {
+    animation: none;
+    opacity: 1;
+  }
+}

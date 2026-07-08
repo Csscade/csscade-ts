@@ -51,7 +51,7 @@ export function ArticleCard({
         href={url}
         ariaLabel={`Lire l'article : ${title}`}
       >
-        <Heading>{title}</Heading>
+        <Heading className="article-card__title">{title}</Heading>
       </StyledLink>
 
       {showAuthor && author && (

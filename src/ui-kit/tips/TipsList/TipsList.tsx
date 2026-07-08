@@ -2,6 +2,7 @@ import type { Author } from "@/entities/authors/authors";
 import type { Tip } from "@/entities/tips/tips";
 import { ArticleCard } from "@/ui-kit/articles/ArticleCard/ArticleCard";
 import "./TipsList.css";
+import type React from "react";
 
 interface TipsListProps {
   tips: Tip[];
@@ -20,10 +21,15 @@ export const TipsList = ({
 
   return (
     <ul className="tips__list">
-      {tips.map((tip) => {
+      {tips.map((tip, index) => {
         const author = getAuthor(tip);
         return (
-          <li key={tip.slug}>
+          <li
+            key={tip.slug}
+            style={
+              { "--card-index": Math.min(index, 8) } as React.CSSProperties
+            }
+          >
             <ArticleCard
               title={tip.title}
               publishedAt=""

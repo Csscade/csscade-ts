@@ -19,6 +19,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import "@/ui-kit/articles/ArticleContent/ArticleContent.css";
+import "../stories.css";
 
 const meta = {
   title: "Atoms/Icons",
@@ -32,10 +33,7 @@ export default meta;
 
 export const SolidIcons: StoryObj = {
   render: () => (
-    <div
-      className="article-content"
-      style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}
-    >
+    <div className="article-content story-icon-row">
       <FontAwesomeIcon icon={faHouse} />
       <FontAwesomeIcon icon={faCheck} />
       <FontAwesomeIcon icon={faTriangleExclamation} />
@@ -47,10 +45,7 @@ export const SolidIcons: StoryObj = {
 
 export const RegularIcons: StoryObj = {
   render: () => (
-    <div
-      className="article-content"
-      style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}
-    >
+    <div className="article-content story-icon-row">
       <FontAwesomeIcon icon={faEnvelope} />
       <FontAwesomeIcon icon={faUser} />
       <FontAwesomeIcon icon={faStar} />
@@ -60,10 +55,7 @@ export const RegularIcons: StoryObj = {
 
 export const BrandIcons: StoryObj = {
   render: () => (
-    <div
-      className="article-content"
-      style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}
-    >
+    <div className="article-content story-icon-row">
       <FontAwesomeIcon icon={faBluesky} />
       <FontAwesomeIcon icon={faMastodon} />
       <FontAwesomeIcon icon={faLinkedin} />
@@ -74,10 +66,7 @@ export const BrandIcons: StoryObj = {
 
 export const IconSizes: StoryObj = {
   render: () => (
-    <div
-      className="article-content"
-      style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}
-    >
+    <div className="article-content story-icon-row--baseline">
       <FontAwesomeIcon icon={faHouse} size="xs" />
       <FontAwesomeIcon icon={faHouse} size="sm" />
       <FontAwesomeIcon icon={faHouse} />

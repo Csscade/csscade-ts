@@ -4,6 +4,7 @@ import * as Solid from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { clsx } from "clsx";
+import "../stories.css";
 
 const allIcons = { ...Brands, ...Solid };
 const iconNames = Object.keys(allIcons).filter(
@@ -59,8 +60,7 @@ const meta = {
         {iconOnly ? <span className="sr-only">{label}</span> : label}
         {icon && (
           <span
-            className={clsx(!iconOnly && "button__icon")}
-            style={{ display: "inline-flex" }}
+            className={clsx(!iconOnly && "button__icon", "story-inline-icon")}
           >
             {icon}
           </span>
@@ -93,13 +93,7 @@ export const Reversed: Story = {
     ) : null;
 
     return (
-      <div
-        style={{
-          backgroundColor: "var(--background-reverse)",
-          padding: "5rem",
-          borderRadius: "var(--br-normal)",
-        }}
-      >
+      <div className="story-reversed-panel">
         <button
           type="button"
           disabled={args.disabled}
@@ -116,8 +110,10 @@ export const Reversed: Story = {
           )}
           {icon && (
             <span
-              className={clsx(!args.iconOnly && "button--icon")}
-              style={{ display: "inline-flex" }}
+              className={clsx(
+                !args.iconOnly && "button--icon",
+                "story-inline-icon",
+              )}
             >
               {icon}
             </span>

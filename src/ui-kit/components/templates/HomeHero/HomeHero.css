@@ -77,24 +77,24 @@
       }
 
       .home-hero__badge--html {
-        top: 25%;
-        left: 0;
+        top: 14.5%;
+        left: 3%;
         --badge-color: var(--color-lightgreen);
         --badge-font-color: var(--color-dark);
         animation-delay: 0.15s;
       }
 
       .home-hero__badge--css {
-        top: 39%;
-        left: 66%;
+        top: 26.5%;
+        left: 67%;
         --badge-color: var(--color-lightpurple);
         --badge-font-color: var(--color-dark);
         animation-delay: 0.3s;
       }
 
       .home-hero__badge--a11y {
-        top: 75%;
-        left: 25%;
+        top: 67%;
+        left: 9%;
         --badge-color: var(--color-blue);
         --badge-font-color: var(--color-dark, #191e25);
         animation-delay: 0.45s;
@@ -116,6 +116,23 @@
           flex-direction: row;
         }
       }
+
+      .home-hero__aside {
+        .home-hero__badge--html {
+          top: 14%;
+          left: 1%;
+        }
+
+        .home-hero__badge--css {
+          top: 29.5%;
+          left: 66%;
+        }
+
+        .home-hero__badge--a11y {
+          top: 70%;
+          left: 22%;
+        }
+      }
     }
   }
 }
@@ -132,6 +149,21 @@
       .home-hero__aside {
         padding-top: 4rem;
         justify-content: flex-end;
+
+        .home-hero__badge--html {
+          top: 29%;
+          left: -5%;
+        }
+
+        .home-hero__badge--css {
+          top: 41.5%;
+          left: 71%;
+        }
+
+        .home-hero__badge--a11y {
+          top: 74%;
+          left: 15%;
+        }
       }
     }
 
@@ -145,6 +177,75 @@
 @media screen and (min-width: 992px) {
   .home-hero {
     padding: 1rem 5rem;
+
+    .home-hero__wrapper {
+      .home-hero__aside {
+        .home-hero__badge--html {
+          top: 28%;
+          left: -3%;
+        }
+
+        .home-hero__badge--css {
+          top: 41%;
+          left: 67%;
+        }
+
+        .home-hero__badge--a11y {
+          top: 75%;
+          left: 16%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .home-hero {
+    padding: 1rem 5rem;
+
+    .home-hero__wrapper {
+      .home-hero__aside {
+        .home-hero__badge--html {
+          top: 27%;
+          left: 0;
+        }
+
+        .home-hero__badge--css {
+          top: 40%;
+          left: 67%;
+        }
+
+        .home-hero__badge--a11y {
+          top: 75%;
+          left: 20.5%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .home-hero {
+    padding: 1rem 5rem;
+
+    .home-hero__wrapper {
+      .home-hero__aside {
+        .home-hero__badge--html {
+          top: 25%;
+          left: 2%;
+        }
+
+        .home-hero__badge--css {
+          top: 39%;
+          left: 66%;
+        }
+
+        .home-hero__badge--a11y {
+          top: 75%;
+          left: 25%;
+        }
+      }
+    }
   }
 }
 

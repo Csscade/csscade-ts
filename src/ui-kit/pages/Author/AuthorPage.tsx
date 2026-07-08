@@ -7,6 +7,7 @@ import { ArticlesList } from "@/ui-kit/articles/ArticlesList/ArticlesList";
 import { AuthorCardContent } from "@/ui-kit/articles/AuthorCard/AuthorCardContent";
 import { TalksList } from "@/ui-kit/talks/TalksList/TalksList";
 import "./AuthorPage.css";
+import type React from "react";
 
 interface AuthorPageProps {
   author: Author;
@@ -51,17 +52,25 @@ export const AuthorPage = ({
             <div className="author-page__section-container">
               <h2 className="author-page__title">Ses tips</h2>
               <div className="author-page__articles-list">
-                {tips.map((tip) => (
-                  <ArticleCard
+                {tips.map((tip, index) => (
+                  <div
                     key={tip.slug}
-                    title={tip.title}
-                    url={`/tips/${tip.slug}`}
-                    categories={tip.categories}
-                    publishedAt=""
-                    author={author.name}
-                    showAuthor={false}
-                    headingLevel={3}
-                  />
+                    style={
+                      {
+                        "--card-index": Math.min(index, 8),
+                      } as React.CSSProperties
+                    }
+                  >
+                    <ArticleCard
+                      title={tip.title}
+                      url={`/tips/${tip.slug}`}
+                      categories={tip.categories}
+                      publishedAt=""
+                      author={author.name}
+                      showAuthor={false}
+                      headingLevel={3}
+                    />
+                  </div>
                 ))}
               </div>
             </div>

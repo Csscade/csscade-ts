@@ -1,17 +1,17 @@
-.category_page {
+.category-page {
   background: transparent;
   margin: 0 auto;
   padding: 1rem 1rem 0;
   max-width: var(--container-max-width);
 
   .articles__list,
-  .talks-list,
+  .talks__list,
   .tips__list {
     margin: 2rem auto;
   }
 }
 
-.category_page__section-title {
+.category-page__section-title {
   font-family: var(--font-secondary), sans-serif;
   font-size: var(--fs-h2);
   margin: 2rem 0 0;

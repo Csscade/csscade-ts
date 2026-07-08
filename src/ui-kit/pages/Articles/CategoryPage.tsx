@@ -26,10 +26,10 @@ export const CategoryPage = ({
   return (
     <>
       <PageHeader title={`Catégorie ${category}`} />
-      <main id="maincontent" className="category_page main">
+      <main id="maincontent" className="category-page main">
         {articles.length > 0 && (
           <section>
-            <h2 className="category_page__section-title">Articles</h2>
+            <h2 className="category-page__section-title">Articles</h2>
             <ArticlesList
               articles={articles}
               authors={authors}
@@ -40,14 +40,14 @@ export const CategoryPage = ({
 
         {talks.length > 0 && (
           <section>
-            <h2 className="category_page__section-title">Conférences</h2>
+            <h2 className="category-page__section-title">Conférences</h2>
             <TalksList talks={talks} authors={authors} headingLevel={3} />
           </section>
         )}
 
         {tips.length > 0 && (
           <section>
-            <h2 className="category_page__section-title">Tips</h2>
+            <h2 className="category-page__section-title">Tips</h2>
             <TipsList tips={tips} authors={authors} headingLevel={3} />
           </section>
         )}
