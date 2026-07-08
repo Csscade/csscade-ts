@@ -20,6 +20,12 @@ export const QaScoresSchema = z.object({
     testsPassed: z.number().int().nonnegative(),
     testsTotal: z.number().int().nonnegative(),
   }),
+  ecoindex: z.object({
+    score: ScoreSchema,
+    grade: z.enum(["A", "B", "C", "D", "E", "F", "G"]),
+    water: z.number().nonnegative(),
+    ghg: z.number().nonnegative(),
+  }),
 });
 
 export type QaScores = z.infer<typeof QaScoresSchema>;

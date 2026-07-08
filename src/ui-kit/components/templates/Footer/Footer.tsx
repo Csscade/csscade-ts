@@ -82,6 +82,14 @@ export const Footer = ({ qaScores }: FooterProps) => {
                   Axe {qaScores.axe.score}%
                 </StyledLink>
               </Badge>
+              <Badge rounded={true}>
+                <StyledLink
+                  href="/a-propos#qualite"
+                  ariaLabel="Voir le détail du score EcoIndex sur la page À propos"
+                >
+                  EcoIndex {qaScores.ecoindex.grade}
+                </StyledLink>
+              </Badge>
             </div>
           </div>
         )}

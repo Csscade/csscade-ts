@@ -1,7 +1,14 @@
 import { existsSync } from "node:fs";
 import { test as base, chromium } from "@playwright/test";
+import type { Config, Flags } from "lighthouse";
 import desktopConfig from "lighthouse/core/config/desktop-config.js";
+import ecoindexConfigJson from "lighthouse-plugin-ecoindex-core/helpers/custom-config";
 import { playAudit } from "playwright-lighthouse";
+
+// lighthouse-plugin-ecoindex-core pins its own nested `lighthouse` version,
+// so its Config type is structurally distinct from ours — safe to assert
+// through, this is verified to work correctly at runtime.
+const ecoindexConfig = ecoindexConfigJson as unknown as Config;
 
 // Requires a production build: run `pnpm build && pnpm start` before this suite.
 const baseUrl = "http://localhost:3000";
@@ -29,21 +36,33 @@ const pages = [
   { name: "tips list page", slug: "tips", path: "/tips" },
 ];
 
-type DeviceType = "mobile" | "desktop";
+type DeviceType = "mobile" | "desktop" | "ecoindex";
 
 const deviceConfigurations: {
   label: DeviceType;
-  config: typeof desktopConfig | undefined;
+  config: Config | undefined;
+  opts?: Flags;
 }[] = [
   { label: "mobile", config: undefined },
   { label: "desktop", config: desktopConfig },
+  {
+    label: "ecoindex",
+    config: ecoindexConfig,
+    opts: {
+      onlyCategories: [
+        ...Object.keys(thresholds),
+        "lighthouse-plugin-ecoindex-core",
+      ],
+    },
+  },
 ];
 
 type LighthouseFixtures = {
   runLighthouseAudit: (page: {
     path: string;
     slug: string;
-    config?: typeof desktopConfig;
+    config?: Config;
+    opts?: Flags;
   }) => Promise<void>;
 };
 
@@ -55,7 +74,7 @@ const test = base.extend<LighthouseFixtures>({
       args: [`--remote-debugging-port=${port}`],
     });
 
-    await use(async ({ path, slug, config }) => {
+    await use(async ({ path, slug, config, opts }) => {
       const reportPath = `${reportDir}/${slug}.html`;
 
       try {
@@ -67,6 +86,7 @@ const test = base.extend<LighthouseFixtures>({
           port,
           thresholds,
           config,
+          opts,
           reports: {
             formats: { html: true, json: true },
             directory: reportDir,
@@ -88,7 +108,7 @@ const test = base.extend<LighthouseFixtures>({
 });
 
 test.describe("Lighthouse", () => {
-  for (const { label, config } of deviceConfigurations) {
+  for (const { label, config, opts } of deviceConfigurations) {
     test.describe(label, () => {
       for (const { name, slug, path } of pages) {
         test(`${name} should meet Lighthouse score thresholds (${label})`, async ({
@@ -98,6 +118,7 @@ test.describe("Lighthouse", () => {
             path,
             slug: `${slug}-${label}`,
             config,
+            opts,
           });
         });
       }
