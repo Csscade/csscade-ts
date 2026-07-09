@@ -143,6 +143,7 @@
       width: auto;
       height: auto;
       flex-direction: row;
+      flex-wrap: wrap;
       padding: 0;
       transform: none;
       box-shadow: none;
@@ -150,9 +151,11 @@
       justify-content: flex-end;
       align-items: center;
       gap: 1rem;
+      row-gap: 0.5rem;
 
       ul {
         flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         width: fit-content;
         gap: 2.5rem;

@@ -118,6 +118,16 @@ export const MentionsLegalesPage = () => {
             <p>
               <strong>Logo :</strong> Dorian Guilmain
             </p>
+            <p>
+              <strong>Police OpenDyslexic :</strong> Abbie Gonzalez, sous
+              licence SIL Open Font License 1.1 —{" "}
+              <a href="https://opendyslexic.org">opendyslexic.org</a>
+            </p>
+            <p>
+              <strong>Police Luciole :</strong> Laurent Bourcellier & Jonathan
+              Perez, sous licence Creative Commons Attribution 4.0 —{" "}
+              <a href="https://luciole-vision.com">luciole-vision.com</a>
+            </p>
           </section>
         </div>
       </main>

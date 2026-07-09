@@ -47,6 +47,17 @@ const themeInitScript = `
 })();
 `;
 
+const fontInitScript = `
+(function () {
+  try {
+    var font = localStorage.getItem("font");
+    if (font === "opendyslexic" || font === "luciole") {
+      document.documentElement.setAttribute("data-font", font);
+    }
+  } catch (e) {}
+})();
+`;
+
 export const metadata: Metadata = {
   title: "Csscade",
   description: SITE_DESCRIPTION,
@@ -105,6 +116,8 @@ export default function RootLayout({
         the global link color transition from firing on every anchor on mount. */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static script constant, no user input involved */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static script constant, no user input involved */}
+        <script dangerouslySetInnerHTML={{ __html: fontInitScript }} />
         <link rel="stylesheet" href={`${basePath}/print.css`} media="print" />
       </head>
       <body>
