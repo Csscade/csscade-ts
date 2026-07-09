@@ -50,12 +50,7 @@ export const HomeHero = () => {
             className="home-hero__badge home-hero__badge--a11y"
             rounded={true}
           >
-            <StyledLink
-              href="/articles/category/accessibilité"
-              ariaLabel="Voir tous les articles de la catégorie accessibilité"
-            >
-              accessibilité
-            </StyledLink>
+            accessibilité
           </Badge>
         </div>
       </div>
