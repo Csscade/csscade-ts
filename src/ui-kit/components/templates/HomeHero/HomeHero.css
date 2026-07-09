@@ -17,6 +17,7 @@
     flex-direction: column;
     gap: clamp(1rem, 3vw, 2rem);
     max-width: var(--container-max-width);
+    margin: 0 auto;
     overflow: hidden;
     background-color: var(--background-primary);
     background-image: url("../../../styles/assets/background-grid.webp");

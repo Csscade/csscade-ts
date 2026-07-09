@@ -85,6 +85,7 @@ main > section {
 
 .container {
   max-width: var(--container-max-width);
+  margin: 0 auto;
 }
 
 .framed-four-corners {

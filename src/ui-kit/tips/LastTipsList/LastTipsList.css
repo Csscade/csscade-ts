@@ -8,6 +8,10 @@
   margin: 0;
   padding: 0;
 
+  li {
+    min-width: 0;
+  }
+
   @media screen and (min-width: 576px) {
     grid-template-columns: repeat(2, 1fr);
   }

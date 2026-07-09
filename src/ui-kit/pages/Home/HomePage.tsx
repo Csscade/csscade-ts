@@ -25,38 +25,44 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
       <main id="maincontent" className="main">
         {articles.length > 0 && (
           <section className="last-articles">
-            <h2 className="section_title">Les derniers articles</h2>
-            <LastArticlesList articles={articles} authors={authors} />
-            <footer>
-              <StyledLink href={"/articles"} bordered={true}>
-                Tous les articles
-                <FontAwesomeIcon icon={faArrowRightLong} />
-              </StyledLink>
-            </footer>
+            <div className="container">
+              <h2 className="section_title">Les derniers articles</h2>
+              <LastArticlesList articles={articles} authors={authors} />
+              <footer>
+                <StyledLink href={"/articles"} bordered={true}>
+                  Tous les articles
+                  <FontAwesomeIcon icon={faArrowRightLong} />
+                </StyledLink>
+              </footer>
+            </div>
           </section>
         )}
         {tips.length > 0 && (
           <section className="last-tips">
-            <h2 className="section_title">Les dernières astuces</h2>
-            <LastTipsList tips={tips} authors={authors} />
-            <footer>
-              <StyledLink href={"/tips"} bordered={true}>
-                Toutes les astuces
-                <FontAwesomeIcon icon={faArrowRightLong} />
-              </StyledLink>
-            </footer>
+            <div className="container">
+              <h2 className="section_title">Les dernières astuces</h2>
+              <LastTipsList tips={tips} authors={authors} />
+              <footer>
+                <StyledLink href={"/tips"} bordered={true}>
+                  Toutes les astuces
+                  <FontAwesomeIcon icon={faArrowRightLong} />
+                </StyledLink>
+              </footer>
+            </div>
           </section>
         )}
         {talks.length > 0 && (
           <section className="last-talks">
-            <h2 className="section_title">Les dernières conférences</h2>
-            <LastTalksList talks={talks} authors={authors} />
-            <footer>
-              <StyledLink href={"/talks"} bordered={true}>
-                Toutes les conférences
-                <FontAwesomeIcon icon={faArrowRightLong} />
-              </StyledLink>
-            </footer>
+            <div className="container">
+              <h2 className="section_title">Les dernières conférences</h2>
+              <LastTalksList talks={talks} authors={authors} />
+              <footer>
+                <StyledLink href={"/talks"} bordered={true}>
+                  Toutes les conférences
+                  <FontAwesomeIcon icon={faArrowRightLong} />
+                </StyledLink>
+              </footer>
+            </div>
           </section>
         )}
       </main>
