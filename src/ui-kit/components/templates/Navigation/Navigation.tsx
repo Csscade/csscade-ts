@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "@/ui-kit/components/atoms/Images/Logo";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
+import { ToggleFont } from "@/ui-kit/components/molecules/ToggleFont/ToggleFont";
 import { ToggleTheme } from "@/ui-kit/components/molecules/ToggleTheme/ToggleTheme";
 import "./Navigation.css";
 
@@ -125,6 +126,7 @@ export const Navigation = ({
               </StyledLink>
             </li>
           </ul>
+          <ToggleFont />
           <ToggleTheme />
         </nav>
       </div>
