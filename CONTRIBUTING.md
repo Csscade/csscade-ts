@@ -74,7 +74,8 @@ csscade-ts/
 │  ├─ infrastructure/      # External adapters: file-system repositories, MDX pipeline
 │  ├─ config/              # Static constants, no process.env, no external libs
 │  └─ ui-kit/              # React components, design system, page-level components
-├─ tests/                  # Playwright accessibility tests
+├─ tests/                  # Playwright tests: accessibility, Lighthouse/EcoIndex, content a11y
+├─ scripts/                # One-off/CI scripts (e.g. QA scores generation)
 ├─ biome.json              # Biome config (lint/format)
 ├─ lefthook.yml            # Git hooks
 └─ vitest.config.ts        # Vitest config (Storybook component tests)
@@ -87,7 +88,7 @@ csscade-ts/
 The codebase follows hexagonal architecture (ports & adapters). Each layer may only depend on layers listed below it — never on layers above.
 
 ```
-app/            ← Next.js pages: routing, Next.js exports only (generateStaticParams, generateMetadata)
+app/            ← Next.js pages: routing, Next.js exports only (generateStaticParams, generateMetadata, dynamic)
 ui-kit/         ← React components and page components; no Next.js framework code, no infrastructure imports
 usecases/    ← Use cases and services; the only layer allowed to import from infrastructure
 infrastructure/ ← External adapters: file-system repositories (`read*`), MDX pipeline
@@ -140,24 +141,22 @@ Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.
 
 ### Tests
 
-**Unit tests (architecture layer rules):**
+| Command | Suite | Triggered when |
+|---|---|---|
+| `pnpm test` | All Vitest projects (unit, component, storybook) | Local pre-push hook |
+| `pnpm test:arch-unit` | Vitest — architecture layer rules | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
+| `pnpm test:component` | Vitest — Storybook component tests | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
+| `pnpm test:ui` | Storybook tests + Playwright a11y (8 pages × 2 themes) | `QA on demand` only (manual) |
+| `pnpm test:a11y:content` | Playwright — a11y on new/changed MDX content | PRs touching `src/content/**` (`pr-content-a11y.yml`) |
+| `pnpm test:lighthouse` | Playwright — Lighthouse + EcoIndex (8 pages × 3 devices) | `QA on demand` only (manual) |
+| `pnpm qa:scores` | Aggregates results into `qa-scores.json` | `QA on demand` only (manual) |
 
-```bash
-pnpm test
-```
-
-**Component tests (Vitest + Storybook, browser mode) and accessibility tests (Playwright + Axe-core):**
-
-Both run through `test:ui`. The accessibility part needs the dev server running; the Storybook part spins up its own headless browser and doesn't.
+`test:ui` and `test:a11y:content` need the dev server running; `test:lighthouse` needs a production build — `pnpm dev` scores are misleadingly low (unminified, Turbopack HMR).
 
 ```bash
 pnpm dev        # must be running
 pnpm test:ui
 ```
-
-**Performance & environmental impact tests (Playwright + Lighthouse + EcoIndex):**
-
-Scores are only meaningful against a production build — running against `pnpm dev` (unminified, Turbopack HMR) gives misleadingly low results.
 
 ```bash
 pnpm build
@@ -165,13 +164,9 @@ pnpm start       # must be running
 pnpm test:lighthouse
 ```
 
-Checks `performance` (90), `accessibility` (90), `best-practices` (90), and `seo` (90) thresholds on 8 representative pages, for both a mobile and a desktop pass. A third "ecoindex" pass (via the `lighthouse-plugin-ecoindex-core` plugin) audits the same 8 pages against the CNUMR RWEB referential (print CSS, cache headers, HTTP/2, minification, inline assets, etc.) and computes the EcoIndex score, grade, water and GHG estimates — same methodology as the [GreenIT-Analysis](https://github.com/cnumr/GreenIT-Analysis) browser extension, but scriptable and JSON-exportable.
+`pnpm qa:scores` aggregates the Lighthouse, Storybook, and Axe results into `src/content/qa-scores.json` (feeds the footer badges and the `/a-propos` breakdown) — requires `test:ui` and `test:lighthouse` to have run first.
 
-Playwright test runs (both `test:ui` and `test:lighthouse`) generate an HTML report — view it with `npx playwright show-report`.
-
-**QA scores:** `pnpm qa:scores` (`scripts/generate-qa-scores.mjs`) reads the Lighthouse JSON reports (`lighthouse-report/*.json`), the Storybook test report, and runs Axe-core, then writes the averaged scores to `src/content/qa-scores.json`. This file feeds the Lighthouse/Axe/EcoIndex badges in the footer and the detailed breakdown on `/a-propos`. Requires `test:ui` and `test:lighthouse` to have run first.
-
-**In CI:** `pnpm lint` and `pnpm test` (architecture rules) run on every push to `main` via `deploy.yml`. `test:ui`, `test:lighthouse`, and `qa:scores` are heavier and currently run on demand only, via the `QA on demand` workflow (`workflow_dispatch`, triggered manually from the Actions tab), which also commits the refreshed `qa-scores.json` back to `main`.
+View any Playwright HTML report with `npx playwright show-report`.
 
 ---
 
@@ -225,7 +220,7 @@ publishedAt: "YYYY-MM-DD"
 categories:
   - CSS
 abstract: "A short summary of the talk."
-level: "débutant·e"       # optional — débutant·e | intermédiaire | expert·e
+level: "découverte"       # optional — découverte | intermédiaire | expertise
 youtubeId: "dQw4w9WgXcQ"  # optional
 slidesUrl: "https://slides.com/yourslides"  # optional
 ---
@@ -252,30 +247,13 @@ codepen: "https://codepen.io/yourname"                    # optional
 
 ### Assets & Media
 
-Self-host every image, video, or avatar you add — never link directly to an external host (Giphy, a CMS's image CDN, a raw GitHub/LinkedIn avatar URL, etc.). External hotlinks add extra DNS/TLS round-trips on every page load, aren't optimized, and can silently break — some CDNs serve signed URLs that expire.
+Self-host every image or avatar — never hotlink an external host (Giphy, a CMS's CDN, etc.); it adds latency, isn't optimized, and can silently break if the URL expires.
 
-- **Where to put files**: `public/articles/{your-slug}/`, `public/tips/{your-slug}/`, or `public/authors/{author-slug}.webp` for avatars.
-- **How to reference them**: use a root-relative path, e.g. `/articles/your-slug/screenshot.webp`. The `MdxImg`/`MdxVideo` overrides (and the `Avatar` component, for author frontmatter) automatically prefix the GitHub Pages sub-path in production — never hardcode it yourself.
-- **Formats**: every raster image (photos, screenshots, avatars, decorative/background assets) **must be WebP** — no exceptions for PNG/JPEG, whether in `public/` or in `src/ui-kit/styles/assets/`. Use MP4 for motion (see below). The only images exempt from this rule are icons and favicons (`public/favicons/`, anything rendered through an icon component), which stay in their platform-required format (ICO/PNG/SVG). **Never commit an animated GIF** — a typical reaction GIF weighs 1–2 MB, while the same clip as a muted, looping MP4 is often 10x smaller. If your source is a GIF (e.g. from Giphy), look for a `.mp4` rendition of it (Giphy exposes one for every GIF, usually named `giphy-downsized-small.mp4`) instead of downloading the `.gif` itself.
-- **Converting to WebP**: `cwebp -q 85 source.jpg -o output.webp` for photos, `cwebp -lossless source.png -o output.webp` for flat/UI graphics (frames, patterns, illustrations with sharp edges or transparency). Install via `brew install webp` if `cwebp` isn't available.
-- **Size**: compress before committing. As a rough guide, keep individual article images under ~50 KB and video clips under ~300 KB — one unoptimized asset can outweigh the rest of the page combined.
-- **Author avatars**: `avatar` in the author frontmatter accepts either a full URL or a local root-relative path — prefer the local path for the reasons above.
-
-Example of a decorative looping clip replacing what would otherwise be a GIF:
-
-```mdx
-<figure>
-  <video
-    src="/articles/your-slug/reaction.mp4"
-    aria-label="Description of what's happening"
-    autoPlay
-    loop
-    muted
-    playsInline
-  />
-  <figcaption>Caption</figcaption>
-</figure>
-```
+- **Location**: `public/articles/{your-slug}/`, `public/tips/{your-slug}/`, or `public/authors/{author-slug}.webp` for avatars.
+- **Reference**: a root-relative path, e.g. `/articles/your-slug/screenshot.webp`. `MdxImg`/`Avatar` prefix the GitHub Pages sub-path automatically — never hardcode it.
+- **Format**: static images **must be WebP** (no PNG/JPEG). Use a GIF only for motion — no videos. Icons/favicons are exempt (ICO/PNG/SVG).
+- **Convert**: `cwebp -q 85 source.jpg -o output.webp` for photos, `cwebp -lossless source.png -o output.webp` for flat/UI graphics. `brew install webp` if `cwebp` isn't available.
+- **Size**: compress before committing — keep images under ~50 KB.
 
 ### Accessibility (WCAG & RGAA)
 
@@ -292,28 +270,24 @@ Csscade is committed to accessibility. Contributions must respect WCAG 2.2 and R
   ```
   Common language codes: `en` (English), `de` (German), `es` (Spanish), `ja` (Japanese).
 - **Interactive elements**: Ensure links and buttons have clear, descriptive labels.
-- **Multimedia**: Captions required for videos that convey information; `title` attribute on iframes. Silent, purely decorative looping clips (the GIF-replacement pattern above) may autoplay muted — anything else must not autoplay and needs visible playback controls.
+- **Multimedia**: `title` attribute required on iframes.
 - **Keyboard navigation**: All interactive elements must be keyboard-accessible.
 - **Screen reader support**: All interactive elements must work with screen readers.
 
 ### Validation with Playwright & Axe-core
 
-Before opening your pull request, run an automated accessibility audit on just the page(s) you wrote or edited:
+Before opening your PR, audit the page(s) you wrote or edited:
 
-1. Ensure the app is running: `pnpm dev`
-2. Run: `pnpm test:a11y:content`
+```bash
+pnpm dev                 # must be running
+pnpm test:a11y:content
+```
 
-This automatically detects any new or modified file under `src/content/{articles,tips,talks}` — comparing your branch against `origin/main` and including uncommitted changes — and audits the matching page (`/articles/your-slug`, `/tips/your-slug`, or `/talks/your-slug`) in both light and dark theme. No setup or arguments needed; just write your content and run the command.
+It detects new/modified files under `src/content/{articles,tips,talks}` (vs. `origin/main`, including uncommitted changes) and audits the matching page in both themes, against the same standards as the full suite: WCAG 2.0/2.1/2.2 (A/AA/AAA), axe best-practice rules, RGAA v4. No content changed → the test is skipped. A violation prints a plain-language report (rule, severity, selector, fix link), not raw JSON.
 
-Like the full site suite, this check enforces the same set of standards: WCAG 2.0/2.1/2.2 (A, AA, AAA), axe best-practice rules, and RGAA v4.
+Run `pnpm test:ui` to check the whole site instead of just your content.
 
-If no violation is found, you'll see the test(s) pass. If nothing changed under `src/content/`, the test is skipped with a message telling you so — that's expected if you haven't added or edited content yet.
-
-If a violation is found, the failure output is a plain-language report, not raw JSON: the rule that failed, its severity, the CSS selector and HTML of the offending element, and a link to the fix guidance for that rule.
-
-To also check the full site (all static and list pages, not just your new content), run: `pnpm test:ui`
-
-**In CI:** this same check (`pnpm test:a11y:content`) runs automatically on every pull request that touches `src/content/**`, via the `Content accessibility check` workflow. It compares your PR branch against the base branch to find your new or modified content, so you don't need to configure anything — just open the PR. The readable report is printed directly in the job log if it fails.
+**In CI:** runs automatically on any PR touching `src/content/**`, via the `Content accessibility check` workflow — nothing to configure.
 
 ---
 

@@ -1,12 +1,12 @@
 import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
 
-const SRC_TAGS = new Set(["img", "video", "source"]);
+const SRC_TAGS = new Set(["img"]);
 
-// Raw JSX tags (<img>, <video>) in MDX content bypass the `components` override
-// map entirely (unlike markdown-syntax elements), so MdxImg/MdxVideo's basePath
-// prefixing never runs for them. Prefix root-relative `src` values here instead,
-// at compile time, so local assets resolve correctly under the GitHub Pages sub-path.
+// Raw JSX tags (<img>) in MDX content bypass the `components` override map
+// entirely (unlike markdown-syntax elements), so MdxImg's basePath prefixing
+// never runs for them. Prefix root-relative `src` values here instead, at
+// compile time, so local assets resolve correctly under the GitHub Pages sub-path.
 export const remarkBasePath = () => {
   const basePath = process.env.PAGES_BASE_PATH ?? "";
 
