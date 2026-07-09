@@ -97,7 +97,7 @@
   .nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 80%;
     height: 100vh;
     background: var(--background-primary);
@@ -106,11 +106,12 @@
     gap: 2rem;
     align-items: flex-start;
     padding: 5rem 2rem 2rem 2rem;
-    transition: right 0.3s ease;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 
     &.open {
-      right: 0;
+      transform: translateX(0);
     }
 
     ul {
@@ -143,6 +144,7 @@
       height: auto;
       flex-direction: row;
       padding: 0;
+      transform: none;
       box-shadow: none;
       background: transparent;
       justify-content: flex-end;

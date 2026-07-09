@@ -11,9 +11,29 @@
 
 .author-card__header {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  flex-direction: column;
   gap: 1.5rem;
+
+  .author-card__avatar {
+    align-self: center;
+
+    .avatar-image {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .author-card__header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .author-card__avatar {
+      align-self: auto;
+    }
+  }
 }
 
 .author-card__info {
@@ -31,7 +51,7 @@
 
 .author-card__name {
   margin: 0;
-  font-size: var(--fs-h4);
+  font-size: clamp(2rem, 5vw, 1.75rem);
 }
 
 .author-card__pronouns {
@@ -40,6 +60,7 @@
 
 .author-card__socials {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
 }
 
