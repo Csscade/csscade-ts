@@ -89,7 +89,7 @@
     line-height: 1;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 0 0 0.5rem;
   }
 
   .footer__links {
@@ -158,6 +158,7 @@
 
     .footer__title {
       display: block;
+      margin-bottom: 1rem;
     }
 
     .footer__brand-row {

@@ -50,7 +50,7 @@
 
   .tip-page__footer {
     margin: auto;
-    padding: 2rem 1rem;
+    padding: 2rem;
     background-color: var(--background-primary);
     background-image: url("../../styles/assets/background-grid.webp");
 

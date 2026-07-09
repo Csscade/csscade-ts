@@ -33,7 +33,8 @@
 
   .article-page__meta {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
     opacity: 0;
     animation: slide-up 0.8s ease-out 0.15s forwards;
@@ -45,7 +46,19 @@
   }
 
   .article-page__meta-separator {
+    display: none;
     color: var(--font-color-muted);
+  }
+
+  @media screen and (min-width: 576px) {
+    .article-page__meta {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .article-page__meta-separator {
+      display: inline;
+    }
   }
 
   .article-page__categories {

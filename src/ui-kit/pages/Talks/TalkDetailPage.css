@@ -110,7 +110,7 @@
 
   .talk-page__footer {
     margin: auto;
-    padding: 2rem 0;
+    padding: 2rem;
     background-color: var(--background-primary);
     background-image: url("../../styles/assets/background-grid.webp");
 
