@@ -96,15 +96,24 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/content/qa-scores.json
 
-          if git diff --cached --quiet; then
+          if git diff --quiet -- src/content/qa-scores.json; then
             echo "No score changes to commit"
             exit 0
           fi
 
+          # The job runs for several minutes before reaching this step (install,
+          # Playwright, lint, build, Lighthouse...), so the initial checkout of
+          # main can be stale by now. Re-fetch and replay the score change onto
+          # the current tip right before committing — otherwise the PR branch
+          # diverges from main mid-run, GitHub marks it out of date, and
+          # auto-merge silently disables itself instead of merging.
+          git stash push -- src/content/qa-scores.json
+          git fetch origin main
           branch="chore/qa-scores-${{ github.run_id }}"
-          git checkout -b "$branch"
+          git checkout -B "$branch" origin/main
+          git stash pop
+          git add src/content/qa-scores.json
           git commit -m "chore: update QA scores"
           git push origin "$branch"
 
