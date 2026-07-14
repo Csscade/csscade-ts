@@ -25,6 +25,7 @@
   .last-tips__list .article-card__title {
     animation: slide-up linear both;
     animation-timeline: view();
+    /* noinspection CssInvalidPropertyValue: `entry` is a valid animation-range timeline-range-name, IDE's CSS spec predates it */
     animation-range: entry;
   }
 }

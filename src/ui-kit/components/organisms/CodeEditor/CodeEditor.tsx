@@ -1,3 +1,4 @@
+import type React from "react";
 import { useRef, useState } from "react";
 import "./CodeEditor.css";
 import { CopyButton } from "@/ui-kit/components/atoms/CopyButton/CopyButton";
