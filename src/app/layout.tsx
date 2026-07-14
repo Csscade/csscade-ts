@@ -1,6 +1,11 @@
 import { clsx } from "clsx";
 import type { Metadata } from "next";
-import { Fira_Code, Playfair_Display, Poppins } from "next/font/google";
+import {
+  Comic_Relief,
+  Fira_Code,
+  Playfair_Display,
+  Poppins,
+} from "next/font/google";
 import "@/ui-kit/styles/theme.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
@@ -30,6 +35,12 @@ const monospaceFont = Fira_Code({
   variable: "--font-mono",
 });
 
+const comicFont = Comic_Relief({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-comic",
+});
+
 const basePath = process.env.PAGES_BASE_PATH ?? "";
 const siteUrl = process.env.PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -51,7 +62,7 @@ const fontInitScript = `
 (function () {
   try {
     var font = localStorage.getItem("font");
-    if (font === "opendyslexic" || font === "luciole") {
+    if (font === "opendyslexic" || font === "luciole" || font === "comic-relief") {
       document.documentElement.setAttribute("data-font", font);
     }
   } catch (e) {}
@@ -108,6 +119,7 @@ export default function RootLayout({
         primaryFont.className,
         secondaryFont.className,
         monospaceFont.variable,
+        comicFont.variable,
       )}
       suppressHydrationWarning
     >

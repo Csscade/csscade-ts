@@ -5,16 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import "./ToggleFont.css";
 
-type FontChoice = "default" | "opendyslexic" | "luciole";
+type FontChoice = "default" | "opendyslexic" | "luciole" | "comic-relief";
 
 const FONT_OPTIONS: { value: FontChoice; label: string }[] = [
   { value: "default", label: "Par défaut" },
   { value: "opendyslexic", label: "OpenDyslexic" },
   { value: "luciole", label: "Luciole" },
+  { value: "comic-relief", label: "Comic Sans 😏" },
 ];
 
 const isFontChoice = (value: string | null): value is FontChoice =>
-  value === "opendyslexic" || value === "luciole";
+  value === "opendyslexic" || value === "luciole" || value === "comic-relief";
 
 export const ToggleFont = () => {
   const [font, setFont] = useState<FontChoice>("default");

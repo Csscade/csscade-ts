@@ -77,3 +77,9 @@
   --font-primary: "Luciole", sans-serif;
   --font-secondary: "Luciole", sans-serif;
 }
+
+/* Comic Relief — SIL Open Font License 1.1 — a free, joke alternative to Comic Sans MS */
+[data-font="comic-relief"] {
+  --font-primary: var(--font-comic), "Comic Sans MS", cursive, sans-serif;
+  --font-secondary: var(--font-comic), "Comic Sans MS", cursive, sans-serif;
+}
