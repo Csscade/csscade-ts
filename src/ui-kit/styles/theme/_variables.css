@@ -38,6 +38,7 @@
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Playfair Display", "Poppins", sans-serif;
   --font-mono: "Fira Code", monospace;
+  --font-comic: "Comic Relief", cursive, sans-serif;
 
   /* TYPOGRAPHY */
   --fs-h1: clamp(2rem, 8vw, 3.5rem);

@@ -75,7 +75,7 @@ export const ToggleFont = () => {
       <button
         type="button"
         ref={buttonRef}
-        className="font-toggle__button"
+        className="font-toggle__button icon-toggle-button"
         aria-expanded={isOpen}
         aria-controls="font-toggle-panel"
         onClick={() => setIsOpen((prev) => !prev)}

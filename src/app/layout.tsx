@@ -39,6 +39,8 @@ const comicFont = Comic_Relief({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-comic",
+  adjustFontFallback: false,
+  fallback: ["cursive", "sans-serif"],
 });
 
 const basePath = process.env.PAGES_BASE_PATH ?? "";

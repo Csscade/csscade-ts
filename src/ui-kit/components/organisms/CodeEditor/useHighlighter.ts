@@ -11,14 +11,20 @@ export const useHighlighter = (
   const [highlightedCode, setHighlightedCode] = useState<string>("");
 
   useEffect(() => {
+    let cancelled = false;
     const initHighlighter = async () => {
       const h = await createHighlighter({
         themes: ["github-dark", "github-light"],
         langs: ["typescript", "javascript", "css", "html", "markdown", "json"],
       });
-      setHighlighter(h);
+      if (!cancelled) {
+        setHighlighter(h);
+      }
     };
-    initHighlighter();
+    void initHighlighter();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
