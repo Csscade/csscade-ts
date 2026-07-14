@@ -1,3 +1,4 @@
+import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import { PageHeader } from "@/ui-kit/components/templates/PageHeader/PageHeader";
 import "./MentionsLegalesPage.css";
 
@@ -19,7 +20,9 @@ export const MentionsLegalesPage = () => {
             <p>
               <strong>Propriétaire du site :</strong> Association Csscade (Loi
               1901) — Contact :{" "}
-              <a href="mailto:hello@csscade.fr">hello@csscade.fr</a>
+              <StyledLink href="mailto:hello@csscade.fr">
+                hello@csscade.fr
+              </StyledLink>
             </p>
             <p>
               <strong>SIREN :</strong> 909 170 334
@@ -69,9 +72,11 @@ export const MentionsLegalesPage = () => {
             <p>
               Cette restriction ne concerne pas le code source du site, publié
               en open source sous licence MIT sur{" "}
-              <a href="https://github.com/Csscade/csscade-ts">GitHub</a>. La
-              licence MIT s'applique uniquement au code (composants, logique
-              applicative, outillage) — elle ne couvre ni les contenus
+              <StyledLink href="https://github.com/Csscade/csscade-ts">
+                GitHub
+              </StyledLink>
+              . La licence MIT s'applique uniquement au code (composants,
+              logique applicative, outillage) — elle ne couvre ni les contenus
               rédactionnels (articles, astuces, présentations de talks), ni la
               marque et les éléments graphiques de Csscade, qui restent soumis
               aux droits décrits ci-dessus.
@@ -91,8 +96,10 @@ export const MentionsLegalesPage = () => {
             <p>
               Toute personne ayant contribué à Csscade peut demander le retrait
               de son contenu à tout moment, par simple envoi d'un e-mail à{" "}
-              <a href="mailto:hello@csscade.fr">hello@csscade.fr</a>. La demande
-              sera traitée dans les meilleurs délais.
+              <StyledLink href="mailto:hello@csscade.fr">
+                hello@csscade.fr
+              </StyledLink>
+              . La demande sera traitée dans les meilleurs délais.
             </p>
           </section>
 
@@ -119,14 +126,47 @@ export const MentionsLegalesPage = () => {
               <strong>Logo :</strong> Dorian Guilmain
             </p>
             <p>
+              <strong>Police Poppins :</strong> Indian Type Foundry & Jonny
+              Pinhorn, sous licence SIL Open Font License 1.1 —{" "}
+              <StyledLink href="https://fonts.google.com/specimen/Poppins">
+                fonts.google.com/specimen/Poppins
+              </StyledLink>
+            </p>
+            <p>
+              <strong>Police Playfair Display :</strong> Claus Eggers Sørensen,
+              sous licence SIL Open Font License 1.1 —{" "}
+              <StyledLink href="https://fonts.google.com/specimen/Playfair+Display">
+                fonts.google.com/specimen/Playfair+Display
+              </StyledLink>
+            </p>
+            <p>
+              <strong>Police Fira Code :</strong> Nikita Prokopov, basée sur
+              Fira Mono (Mozilla, Erik Spiekermann & Carrois Type Design), sous
+              licence SIL Open Font License 1.1 —{" "}
+              <StyledLink href="https://fonts.google.com/specimen/Fira+Code">
+                fonts.google.com/specimen/Fira+Code
+              </StyledLink>
+            </p>
+            <p>
               <strong>Police OpenDyslexic :</strong> Abbie Gonzalez, sous
               licence SIL Open Font License 1.1 —{" "}
-              <a href="https://opendyslexic.org">opendyslexic.org</a>
+              <StyledLink href="https://opendyslexic.org">
+                opendyslexic.org
+              </StyledLink>
             </p>
             <p>
               <strong>Police Luciole :</strong> Laurent Bourcellier & Jonathan
               Perez, sous licence Creative Commons Attribution 4.0 —{" "}
-              <a href="https://luciole-vision.com">luciole-vision.com</a>
+              <StyledLink href="https://luciole-vision.com">
+                luciole-vision.com
+              </StyledLink>
+            </p>
+            <p>
+              <strong>Police Comic Sans 😏 (Comic Relief) :</strong> Jeff Davis,
+              sous licence SIL Open Font License 1.1 —{" "}
+              <StyledLink href="https://fonts.google.com/specimen/Comic+Relief">
+                fonts.google.com/specimen/Comic+Relief
+              </StyledLink>
             </p>
           </section>
         </div>
