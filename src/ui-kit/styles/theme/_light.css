@@ -7,6 +7,11 @@
   --font-reverse: var(--color-light);
   --font-reverse-muted: var(--color-light-muted);
 
+  /* --color-primary (#59b7d3) fails contrast as text/icon/border color on
+     this theme's light backgrounds (~2.3:1). Use a darkened stand-in for
+     those uses; backgrounds can keep --color-primary as-is. */
+  --color-primary-strong: var(--color-dark-muted);
+
   /* BORDER COLORS */
   --border-color: var(--color-dark);
   --border-color-reverse: var(--color-light);

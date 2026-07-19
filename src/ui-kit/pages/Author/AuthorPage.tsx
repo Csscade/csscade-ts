@@ -32,7 +32,7 @@ export const AuthorPage = ({
         </div>
       </div>
 
-      <main id="maincontent">
+      <main id="maincontent" tabIndex={-1}>
         {articles.length > 0 && (
           <section className="author-page__articles">
             <div className="author-page__section-container">

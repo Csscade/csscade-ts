@@ -26,7 +26,7 @@ export const CategoryPage = ({
   return (
     <>
       <PageHeader title={`Catégorie ${category}`} />
-      <main id="maincontent" className="category-page main">
+      <main id="maincontent" tabIndex={-1} className="category-page main">
         {articles.length > 0 && (
           <section>
             <h2 className="category-page__section-title">Articles</h2>

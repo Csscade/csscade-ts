@@ -66,8 +66,6 @@ export const ToggleFont = () => {
 
   const handleSelect = (value: FontChoice) => {
     setFont(value);
-    setIsOpen(false);
-    buttonRef.current?.focus();
   };
 
   return (
@@ -90,8 +88,13 @@ export const ToggleFont = () => {
       >
         <legend className="sr-only">Police de lecture</legend>
         {FONT_OPTIONS.map((option) => (
-          <label key={option.value} className="font-toggle__option">
+          <label
+            key={option.value}
+            className="font-toggle__option"
+            htmlFor={`reading-font-${option.value}`}
+          >
             <input
+              id={`reading-font-${option.value}`}
               type="radio"
               name="reading-font"
               value={option.value}

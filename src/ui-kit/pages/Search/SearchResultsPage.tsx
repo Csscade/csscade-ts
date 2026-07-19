@@ -21,7 +21,7 @@ interface SearchResultsPageProps {
 export const SearchResultsFallback = () => (
   <>
     <PageHeader title="Recherche" />
-    <main id="maincontent" className="search-results main" />
+    <main id="maincontent" tabIndex={-1} className="search-results main" />
   </>
 );
 
@@ -68,7 +68,7 @@ export const SearchResultsPage = ({
   return (
     <>
       <PageHeader title={q ? `Résultats pour « ${q} »` : "Recherche"} />
-      <main id="maincontent" className="search-results main">
+      <main id="maincontent" tabIndex={-1} className="search-results main">
         {q && !hasResults && (
           <p className="search-results__empty">
             Aucun résultat pour cette recherche.

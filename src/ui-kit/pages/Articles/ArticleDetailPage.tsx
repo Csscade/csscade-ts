@@ -1,4 +1,5 @@
 import { format, parseISO } from "date-fns";
+import { fr } from "date-fns/locale";
 import type { Article } from "@/entities/articles/articles";
 import type { Author } from "@/entities/authors/authors";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
@@ -24,13 +25,16 @@ export const ArticleDetailPage = ({
   readingTime,
 }: ArticleDetailPageProps) => {
   return (
-    <main id="maincontent">
+    <main id="maincontent" tabIndex={-1}>
       <article className="article-page">
         <header className="article-page__header">
           <div className="article-page__header-wrapper">
             <h1 className="article-page__title">{article.title}</h1>
             <p className="article-page__meta">
-              Publié le {format(parseISO(article.publishedAt), "dd/MM/yy")}
+              Publié le{" "}
+              {format(parseISO(article.publishedAt), "d MMMM yyyy", {
+                locale: fr,
+              })}
               <span className="article-page__meta-separator" aria-hidden="true">
                 &bull;
               </span>

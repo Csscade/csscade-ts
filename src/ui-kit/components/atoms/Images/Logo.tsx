@@ -9,6 +9,7 @@ export const Logo: React.FC<React.SVGProps<SVGSVGElement>> = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="logo"
+      role="img"
     >
       <title>Csscade logo</title>
       <rect

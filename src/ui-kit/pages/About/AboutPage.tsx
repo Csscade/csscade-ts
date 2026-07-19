@@ -22,7 +22,7 @@ export const AboutPage = ({ qaScores }: AboutPageProps) => {
   return (
     <>
       <PageHeader title="À Propos" />
-      <main id="maincontent" className="about-page">
+      <main id="maincontent" tabIndex={-1} className="about-page">
         <div className="about-page__container">
           <section className="about-page__section">
             <h2>Notre mission</h2>

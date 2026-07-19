@@ -12,7 +12,7 @@ export const AuthorsListPage = ({ authors }: AuthorsListPageProps) => {
   return (
     <>
       <PageHeader title="L'équipe éditoriale" />
-      <main id="maincontent" className="authors-list-page">
+      <main id="maincontent" tabIndex={-1} className="authors-list-page">
         <div className="container">
           <ul className="authors-list">
             {authors.map((author, index) => (
