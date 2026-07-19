@@ -12,6 +12,7 @@ import type React from "react";
 import { DEFAULT_OG_IMAGE_PATH, SITE_DESCRIPTION } from "@/config/seo";
 import { Footer } from "@/ui-kit/components/templates/Footer/Footer";
 import { Navigation } from "@/ui-kit/components/templates/Navigation/Navigation";
+import { RouteAnnouncer } from "@/ui-kit/components/templates/RouteAnnouncer/RouteAnnouncer";
 import { getAllArticles } from "@/usecases/articles";
 import { getAllAuthors } from "@/usecases/authors";
 import { getQaScores } from "@/usecases/qa-scores";
@@ -72,7 +73,10 @@ const fontInitScript = `
 `;
 
 export const metadata: Metadata = {
-  title: "Csscade",
+  title: {
+    default: "Csscade",
+    template: "%s | Csscade",
+  },
   description: SITE_DESCRIPTION,
   metadataBase: new URL(siteUrl),
   icons: {
@@ -135,6 +139,7 @@ export default function RootLayout({
         <link rel="stylesheet" href={`${basePath}/print.css`} media="print" />
       </head>
       <body>
+        <RouteAnnouncer />
         <Navigation
           hasArticles={hasArticles}
           hasTips={hasTips}

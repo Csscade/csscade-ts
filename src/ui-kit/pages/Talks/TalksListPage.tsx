@@ -13,7 +13,7 @@ export const TalksListPage = ({ talks, authors }: TalksListPageProps) => {
   return (
     <>
       <PageHeader title="Conférences" />
-      <main id="maincontent" className="talks-list-page">
+      <main id="maincontent" tabIndex={-1} className="talks-list-page">
         <div className="container">
           {talks.length > 0 ? (
             <TalksList talks={talks} authors={authors} />

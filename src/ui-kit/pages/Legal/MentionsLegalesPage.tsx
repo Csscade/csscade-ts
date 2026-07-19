@@ -6,7 +6,7 @@ export const MentionsLegalesPage = () => {
   return (
     <>
       <PageHeader title="Mentions Légales" />
-      <main id="maincontent" className="legal-page">
+      <main id="maincontent" tabIndex={-1} className="legal-page">
         <div className="legal-page__container">
           <section className="legal-page__section">
             <h2>1. Édition du site</h2>

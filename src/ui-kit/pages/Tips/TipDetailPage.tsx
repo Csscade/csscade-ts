@@ -19,7 +19,7 @@ export const TipDetailPage = ({
   coAuthor,
 }: TipDetailPageProps) => {
   return (
-    <main id="maincontent">
+    <main id="maincontent" tabIndex={-1}>
       <article className="tip-page">
         <header className="tip-page__header">
           <div className="tip-page__header-wrapper">

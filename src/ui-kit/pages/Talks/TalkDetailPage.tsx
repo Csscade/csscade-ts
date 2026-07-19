@@ -1,4 +1,5 @@
 import { format, parseISO } from "date-fns";
+import { fr } from "date-fns/locale";
 import type { Author } from "@/entities/authors/authors";
 import type { Talk } from "@/entities/talks/talks";
 import { ArticleContent } from "@/ui-kit/articles/ArticleContent/ArticleContent";
@@ -20,13 +21,16 @@ export const TalkDetailPage = ({
   coAuthor,
 }: TalkDetailPageProps) => {
   return (
-    <main id="maincontent">
+    <main id="maincontent" tabIndex={-1}>
       <article className="talk-page">
         <header className="talk-page__header">
           <div className="talk-page__header-wrapper">
             <h1 className="talk-page__title">{talk.title}</h1>
             <p className="talk-page__meta">
-              Publié le {format(parseISO(talk.publishedAt), "dd/MM/yy")}
+              Publié le{" "}
+              {format(parseISO(talk.publishedAt), "d MMMM yyyy", {
+                locale: fr,
+              })}
               <span className="font-semibold">
                 par{" "}
                 {author ? (

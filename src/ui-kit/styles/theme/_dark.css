@@ -14,6 +14,11 @@
   --border-image-reverse: url("../assets/frame_light-mode.webp");
   --avatar-border-color: var(--color-light-muted);
 
+  /* --color-primary (#59b7d3) already passes contrast against this theme's
+     dark backgrounds, so keep it as-is here (see _light.css for why the
+     light theme needs a darker stand-in). */
+  --color-primary-strong: var(--color-primary);
+
   /* BACKGROUND COLORS */
   --background-primary: var(--color-dark);
   --background-secondary: var(--color-dark);

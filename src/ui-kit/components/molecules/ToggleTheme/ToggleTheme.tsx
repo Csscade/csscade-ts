@@ -28,7 +28,6 @@ export const ToggleTheme = () => {
       type="button"
       className={`theme-toggle icon-toggle-button theme-toggle--${theme}`}
       onClick={handleToggle}
-      aria-pressed={theme === "dark"}
     >
       <span className="sr-only">
         Activer le thème {theme === "dark" ? "sombre" : "clair"}

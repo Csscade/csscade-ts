@@ -21,7 +21,7 @@ export const ArticlesListPage = ({
   return (
     <>
       <PageHeader title="Articles" />
-      <main id="maincontent" className="articles_page main">
+      <main id="maincontent" tabIndex={-1} className="articles_page main">
         <ArticlesList articles={articles} authors={authors} />
 
         <Pagination

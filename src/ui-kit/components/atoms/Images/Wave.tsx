@@ -8,6 +8,7 @@ export const Wave: React.FC<React.SVGProps<SVGSVGElement>> = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="wave"
+      role="img"
     >
       <title>
         Version minimaliste de La Grande Vague de Kanagawa d'Hokusai

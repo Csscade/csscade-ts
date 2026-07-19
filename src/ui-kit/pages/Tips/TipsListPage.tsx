@@ -21,7 +21,7 @@ export const TipsListPage = ({
   return (
     <>
       <PageHeader title="Astuces" />
-      <main id="maincontent" className="tips_page main">
+      <main id="maincontent" tabIndex={-1} className="tips_page main">
         <TipsList tips={tips} authors={authors} />
 
         {totalPages > 1 && (

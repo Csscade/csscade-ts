@@ -1,4 +1,5 @@
 import { format, parseISO } from "date-fns";
+import { fr } from "date-fns/locale";
 import { StyledLink } from "@/ui-kit/components/molecules/StyledLink/StyledLink";
 import "./ArticleCard.css";
 
@@ -73,7 +74,8 @@ export function ArticleCard({
       {publishedAt && (
         <div className="article-card__metadata">
           <time dateTime={publishedAt}>
-            Publié le {format(parseISO(publishedAt), "dd/MM/yy")}
+            Publié le{" "}
+            {format(parseISO(publishedAt), "d MMMM yyyy", { locale: fr })}
           </time>
         </div>
       )}

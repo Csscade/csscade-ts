@@ -22,7 +22,7 @@ export const HomePage = ({ articles, authors, tips, talks }: HomePageProps) => {
   return (
     <>
       <HomeHero />
-      <main id="maincontent" className="main">
+      <main id="maincontent" tabIndex={-1} className="main">
         {articles.length > 0 && (
           <section className="last-articles">
             <div className="container">
