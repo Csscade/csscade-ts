@@ -10,6 +10,7 @@ import { remarkDirective } from "./plugins/remark-directive";
 import { remarkEmoji } from "./plugins/remark-emoji";
 import { remarkFlexibleMarkers } from "./plugins/remark-flexible-markers";
 import { remarkGfm } from "./plugins/remark-gfm";
+import { remarkGifPlayer } from "./plugins/remark-gif-player";
 import { remarkIns } from "./plugins/remark-ins";
 import { remarkSmartypants } from "./plugins/remark-smartypants";
 import { remarkSupersub } from "./plugins/remark-supersub";
@@ -29,6 +30,7 @@ export const remarkPlugins: any[] = [
   remarkIns,
   remarkFlexibleMarkers,
   remarkBasePath,
+  remarkGifPlayer,
 ];
 
 /* biome-ignore lint/suspicious/noExplicitAny: unified plugin types are complex to unify across different remark/rehype versions */
