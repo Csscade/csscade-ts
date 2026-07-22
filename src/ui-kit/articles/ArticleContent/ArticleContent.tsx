@@ -3,10 +3,12 @@ import { MdxAnchor } from "@/ui-kit/components/atoms/MdxAnchor/MdxAnchor";
 import { MdxImg } from "@/ui-kit/components/atoms/MdxImg/MdxImg";
 import { MdxPre } from "@/ui-kit/components/atoms/MdxPre/MdxPre";
 import { GifPlayer } from "@/ui-kit/components/molecules/GifPlayer/GifPlayer";
+import { CssPlayground } from "@/ui-kit/components/organisms/CssPlayground/CssPlayground";
 import { rehypePlugins, remarkPlugins } from "@/usecases/mdx";
 import "./ArticleContent.css";
 
 const components = {
+  CssPlayground,
   GifPlayer,
   a: MdxAnchor,
   img: MdxImg,
