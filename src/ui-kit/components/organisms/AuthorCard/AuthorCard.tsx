@@ -47,7 +47,10 @@ export const AuthorCard = ({
 
   if (variant === "mini") {
     return (
-      <aside className="author-card author-card--mini" aria-label={author.name}>
+      <article
+        className="author-card author-card--mini"
+        aria-label={author.name}
+      >
         <Link href={`/authors/${author.slug}`} className="author-card__link">
           <Avatar
             src={author.avatar}
@@ -58,16 +61,16 @@ export const AuthorCard = ({
           />
           <span className="author-card__name">{author.name}</span>
         </Link>
-      </aside>
+      </article>
     );
   }
 
   return (
-    <aside className="author-card framed-four-corners">
+    <article className="author-card framed-four-corners">
       <div className="author-card__header">
         <Avatar
           src={author.avatar}
-          alt={author.name}
+          alt=""
           size={80}
           className="author-card__avatar"
           border
@@ -82,87 +85,103 @@ export const AuthorCard = ({
             )}
           </div>
 
-          <div className="author-card__socials">
+          <ul className="author-card__socials">
             {author.website && (
-              <StyledLink
-                href={author.website}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faGlobe} aria-hidden />}
-                ariaLabel="icône globe"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.website}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faGlobe} aria-hidden />}
+                  ariaLabel={`Voir le site web de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.bluesky && (
-              <StyledLink
-                href={author.bluesky}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faBluesky} aria-hidden />}
-                ariaLabel="icône Bluesky"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.bluesky}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faBluesky} aria-hidden />}
+                  ariaLabel={`Voir le profil Bluesky de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.mastodon && (
-              <StyledLink
-                href={author.mastodon}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faMastodon} aria-hidden />}
-                ariaLabel="icône Mastodon"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.mastodon}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faMastodon} aria-hidden />}
+                  ariaLabel={`Voir le profil Mastodon de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.github && (
-              <StyledLink
-                href={author.github}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faGithub} aria-hidden />}
-                ariaLabel="icône GitHub"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.github}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faGithub} aria-hidden />}
+                  ariaLabel={`Voir le profil GitHub de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.linkedin && (
-              <StyledLink
-                href={author.linkedin}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faLinkedin} aria-hidden />}
-                ariaLabel="icône LinkedIn"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.linkedin}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faLinkedin} aria-hidden />}
+                  ariaLabel={`Voir le profil LinkedIn de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.medium && (
-              <StyledLink
-                href={author.medium}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faMedium} aria-hidden />}
-                ariaLabel="icône Medium"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.medium}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faMedium} aria-hidden />}
+                  ariaLabel={`Voir le profil Medium de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.devto && (
-              <StyledLink
-                href={author.devto}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faDev} aria-hidden />}
-                ariaLabel="icône dev.to"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.devto}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faDev} aria-hidden />}
+                  ariaLabel={`Voir le profil dev.to de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
 
             {author.codepen && (
-              <StyledLink
-                href={author.codepen}
-                iconOnly
-                icon={<FontAwesomeIcon icon={faCodepen} aria-hidden />}
-                ariaLabel="icône CodePen"
-                target="_blank"
-              />
+              <li>
+                <StyledLink
+                  href={author.codepen}
+                  iconOnly
+                  icon={<FontAwesomeIcon icon={faCodepen} aria-hidden />}
+                  ariaLabel={`Voir le profil CodePen de ${author.name}`}
+                  target="_blank"
+                />
+              </li>
             )}
-          </div>
+          </ul>
         </div>
       </div>
 
@@ -173,6 +192,6 @@ export const AuthorCard = ({
           Voir ses publications <FontAwesomeIcon icon={faArrowRightLong} />
         </StyledLink>
       </div>
-    </aside>
+    </article>
   );
 };

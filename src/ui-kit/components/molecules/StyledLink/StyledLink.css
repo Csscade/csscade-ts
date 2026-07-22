@@ -13,7 +13,7 @@
 }
 
 .styled-link:hover {
-  color: var(--color-primary);
+  color: var(--color-primary-strong);
 }
 
 /* ---------- Variant ---------- */
@@ -44,7 +44,7 @@
 }
 
 .styled-link--bordered:hover {
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-strong);
 }
 
 /* ------------ Icon ------------ */
@@ -65,8 +65,8 @@
   text-decoration: none;
 
   &:hover {
-    color: var(--color-primary);
-    border-color: var(--color-primary);
+    color: var(--color-primary-strong);
+    border-color: var(--color-primary-strong);
   }
 
   svg {
