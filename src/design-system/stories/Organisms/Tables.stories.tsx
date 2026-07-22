@@ -106,7 +106,12 @@ export const AlignedTable: StoryObj = {
 export const ResponsiveTable: StoryObj = {
   render: () => (
     <div className="article-content story-max-width-600">
-      <section className="table-wrapper" aria-label="Responsive table">
+      <section
+        className="table-wrapper"
+        aria-label="Responsive table"
+        // biome-ignore lint/a11y/noNoninteractiveTabindex: the wrapper is a horizontally scrollable region and must be keyboard-focusable so it can be scrolled without a mouse (axe scrollable-region-focusable); this mirrors the tabindex the rehype-table-accessibility plugin adds at runtime
+        tabIndex={0}
+      >
         <table>
           <thead>
             <tr>
