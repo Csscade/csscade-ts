@@ -167,17 +167,23 @@ export const AboutPage = ({ qaScores }: AboutPageProps) => {
               croyons fermement au partage et à l'entraide. Rejoignez-nous pour
               échanger, poser vos questions et grandir ensemble.
             </p>
-            <div className="about-page__cta">
-              <StyledLink href={DISCORD_URL} bordered={true}>
-                <FontAwesomeIcon icon={faDiscord} /> Rejoindre le Discord
-              </StyledLink>
-              <StyledLink href={LINKEDIN_URL} bordered={true}>
-                <FontAwesomeIcon icon={faLinkedin} /> Suivre sur LinkedIn
-              </StyledLink>
-              <StyledLink href="mailto:hello@csscade.fr" bordered={true}>
-                <FontAwesomeIcon icon={faEnvelope} /> Nous contacter
-              </StyledLink>
-            </div>
+            <ul className="about-page__cta">
+              <li>
+                <StyledLink href={DISCORD_URL} bordered={true}>
+                  <FontAwesomeIcon icon={faDiscord} /> Rejoindre le Discord
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink href={LINKEDIN_URL} bordered={true}>
+                  <FontAwesomeIcon icon={faLinkedin} /> Suivre sur LinkedIn
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink href="mailto:hello@csscade.fr" bordered={true}>
+                  <FontAwesomeIcon icon={faEnvelope} /> Nous contacter
+                </StyledLink>
+              </li>
+            </ul>
           </section>
         </div>
       </main>
