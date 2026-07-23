@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { useGlobals } from "storybook/preview-api";
+import { useEffect, useState } from "react";
 import { CopyButton } from "@/ui-kit/components/atoms/CopyButton/CopyButton";
-import { useHighlighter } from "@/ui-kit/components/organisms/CodeEditor/useHighlighter";
+import { getHighlighter } from "@/ui-kit/components/organisms/CodeEditor/useHighlighter";
 import "../stories.css";
 
 const meta = {
@@ -17,13 +17,28 @@ export default meta;
 const SyntaxHighlightedCode = ({
   code,
   language,
-  theme,
 }: {
   code: string;
   language: string;
-  theme: "github-dark" | "github-light";
 }) => {
-  const highlightedCode = useHighlighter(code, language, theme);
+  const [highlightedCode, setHighlightedCode] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    void getHighlighter().then((highlighter) => {
+      if (cancelled) return;
+      setHighlightedCode(
+        highlighter.codeToHtml(code, {
+          lang: language,
+          themes: { light: "github-light", dark: "github-dark" },
+          defaultColor: false,
+        }),
+      );
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [code, language]);
 
   // Note: we use dangerouslySetInnerHTML because Shiki returns raw HTML.
   // We wrap it in .pre-wrapper and add CopyButton to match ArticleContent.tsx
@@ -40,9 +55,6 @@ const SyntaxHighlightedCode = ({
 
 export const Highlighted: StoryObj = {
   render: () => {
-    const [globals] = useGlobals();
-    const theme = globals.theme === "dark" ? "github-dark" : "github-light";
-
     const code = `interface User {
   id: number;
   name: string;
@@ -58,17 +70,12 @@ greet(me);`;
     return (
       <div className="story-code-panel">
         <div>
-          <SyntaxHighlightedCode
-            language="typescript"
-            theme={theme}
-            code={code}
-          />
+          <SyntaxHighlightedCode language="typescript" code={code} />
         </div>
         <div>
           <p>Written in Markdown as:</p>
           <SyntaxHighlightedCode
             language="markdown"
-            theme={theme}
             code={`\`\`\`typescript
 ${code}
 \`\`\``}
@@ -81,8 +88,6 @@ ${code}
 
 export const Plain: StoryObj = {
   render: () => {
-    const [globals] = useGlobals();
-    const theme = globals.theme === "dark" ? "github-dark" : "github-light";
     const code = `const x = 10;
 console.log(x);`;
 
@@ -101,7 +106,6 @@ console.log(x);`;
           <p>Written in Markdown as:</p>
           <SyntaxHighlightedCode
             language="markdown"
-            theme={theme}
             code={`\`\`\`
 ${code}
 \`\`\``}
