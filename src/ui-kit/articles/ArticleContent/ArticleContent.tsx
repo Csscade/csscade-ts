@@ -22,6 +22,13 @@ export function ArticleContent({ content }: { content: string }) {
         source={content}
         components={components}
         options={{
+          // next-mdx-remote strips JSX expression attributes (e.g. html={`...`})
+          // by default as an anti-injection safeguard for untrusted content. Content
+          // here is trusted at build time: `output: "export"` means this only ever
+          // compiles during `next build`/CI, never against live visitor input, and
+          // every article goes through human PR review before it reaches main/deploy.
+          // Components like CssPlayground rely on expression props, so re-enable them.
+          blockJS: false,
           mdxOptions: {
             remarkPlugins,
             rehypePlugins,
