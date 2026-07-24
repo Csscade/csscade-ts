@@ -1,0 +1,312 @@
+---
+title: "Comment centrer une div ?"
+slug: "comment-centrer-une-div"
+author: "manon-carbonnel"
+publishedAt: "2026-07-24"
+categories: ["CSS", "Tutoriel"]
+---
+
+<figure>
+  <img
+    src="/articles/comment-centrer-une-div/one-does-not-simply.webp"
+    alt="Meme avec Boromir qui dit qu'on ne centre pas simplement une div"
+  />
+  <figcaption>Boromir - <span lang="en">The Lord of the Rings</span></figcaption>
+</figure>
+
+À l'époque des mises en page en tableaux, puis en `float`, le centrage horizontal était simple avec `margin: 0 auto`.
+Le centrage vertical, lui, n'avait aucune solution propre : on bricolait.
+Cette galère bien réelle est devenue, au début des années 2010, la question de chaque dev junior... et le symbole de l'absurdité (supposée !) de CSS.
+
+Sauf que <span lang="en">Flexbox</span> (généralisé vers 2015) puis <span lang="en">Grid</span> (2017) ont réglé le problème depuis longtemps : le meme a pourtant survécu à sa propre obsolescence.
+
+Je me demande bien pourquoi : CSS c'est génial, c'est tout. Quoi qu'en disent les rageux. :sunglasses:
+
+Résultat, en 2026, centrer un élément n'a jamais été aussi simple.
+Le nouveau problème n'est plus qu'il manque une solution : c'est qu'il en existe plein, et qu'on ne sait plus laquelle choisir.
+
+Je vous propose donc un tour d'horizon des méthodes que j'ai vu le plus utilisées, de la plus moderne et concise à la plus ancienne et bricolée (j'ai dû chercher pour certaines).
+Chaque exemple a sa <span lang="en">sandbox</span> : modifiez le HTML et le CSS directement pour voir le rendu.
+
+Dans tous les cas, on part de la même structure : un conteneur `.box` avec une hauteur, et un élément enfant `.item` à centrer horizontalement **et** verticalement.
+
+## Un préalable : <span lang="en">block</span> et <span lang="en">inline</span>
+
+Toutes les méthodes ci-dessous supposent un implicite : que l'élément à centrer se comporte comme une boîte `block`. Ce n'est pas toujours le cas, et ça change tout.
+
+Par défaut, chaque élément HTML a un type de boîte :
+
+- **`block`** (`<div>`, `<p>`, `<section>`…) prend toute la largeur disponible et respecte `width`, `height` et `margin`.
+- **`inline`** (`<span>`, `<a>`, `<strong>`…) suit le flux du texte : `width`, `height` et `margin: auto` n'ont strictement aucun effet dessus.
+- **`inline-block`** cumule les deux : il suit le flux comme de l'`inline`, mais respecte `width` et `height` — c'est justement ce qui permet à la méthode 7 (`line-height` + `vertical-align`) de fonctionner sur du texte.
+
+Gardez ça en tête pour la suite : si une technique de centrage ne fonctionne pas chez vous, la première chose à vérifier, c'est le `display` de l'élément.
+
+## 1. <span lang="en">Grid + place-content</span> : la plus concise
+
+Une grille et une seule propriété. [`place-content`](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/place-content) est un raccourci pour `align-content` et `justify-content` : deux axes centrés d'un coup.
+Difficile de faire plus court.
+
+<CssPlayground
+  label="Grid + place-content: center"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    height: 200px;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+
+    display: grid;
+    place-content: center;
+  }
+
+  .item {
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+À noter : [`place-items: center`](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/place-items) fait un résultat similaire, mais centre chaque élément dans sa cellule plutôt que le bloc de contenu dans la grille.
+Pour un seul enfant, le résultat visuel est identique.
+
+## 2. <span lang="en">Flexbox</span> : la reine
+
+Si vous ne deviez retenir qu'une méthode, c'est celle-ci.
+
+Flexbox est supporté partout, prévisible, et s'étend naturellement à plusieurs éléments enfants.
+Trois lignes, mais très parlantes : le code dit simplement ce qu'il fait.
+
+<CssPlayground
+  label="Flexbox : justify-content + align-items"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    height: 200px;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item {
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+Comme pour la grille, `place-content: center` fonctionne aussi sur un conteneur `flex` si vous voulez raccourcir encore.
+
+:::default
+**Tips** : Pour apprendre Flexbox, il y a [Flexbox Froggy](/tips/apprendre-flexbox-avec-css-froggy/) :frog:
+:::
+
+## 3. <span lang="en">Margin auto</span> : l'astuce élégante
+
+Une fois l'élément parent en `grid` (ou `flex`), un simple `margin: auto` sur l'élément enfant le place automatiquement à marges égales de chaque côté : donc au centre.
+Très minimaliste.
+
+<CssPlayground
+  label="Grid parent + margin: auto sur l'enfant"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    height: 200px;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+
+    display: grid;
+  }
+
+  .item {
+    margin: auto;
+
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+## 4. <span lang="en">Align content</span> sur un bloc : la nouveauté
+
+Depuis 2024, [`align-content`](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/align-content) fonctionne aussi sur les conteneurs en flux normal (block), sans passer par flex ou grid.
+Pour centrer verticalement un bloc, une seule propriété suffit désormais sur l'élément parent.
+Combinez avec `text-align: center` pour l'horizontale.
+
+<CssPlayground
+  label="align-content sur un conteneur block"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    height: 200px;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+
+    align-content: center;
+    text-align: center;
+  }
+
+  .item {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+Superbe, mais récente : vérifiez le support si vous ciblez de vieux navigateurs.
+
+## 5. <span lang="en">Position absolute + transform</span> : le classique historique
+
+L'incontournable d'avant Flexbox, toujours utile quand on doit sortir un élément du flux (une modale, un badge).
+`position: absolute` place le coin haut-gauche au centre, puis on recule l'élément de la moitié de sa propre taille avec `translate(-50%, -50%)`.
+Pas besoin de calculer un nombre de pixels de tête.
+
+<CssPlayground
+  label="position: absolute + transform: translate(-50%, -50%)"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    position: relative;
+    height: 200px;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+  }
+
+  .item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+## 6. <span lang="en">Inset</span> : la capillotractée
+
+Variante du positionnement absolu : on tend l'élément enfant vers les quatre bords avec [`inset: 0`](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/inset), puis `margin: auto` répartit l'espace restant.
+Pas mal, mais l'élément enfant doit avoir une largeur et une hauteur définies (ou intrinsèques) pour qu'il reste de l'espace à distribuer.
+
+<CssPlayground
+  label="position: absolute + inset: 0 + margin: auto"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    position: relative;
+    height: 200px;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+  }
+
+  .item {
+    position: absolute;
+    inset: 0;
+    width: 140px;
+    height: 50px;
+    margin: auto;
+
+    display: grid;
+    place-content: center;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+## 7. <span lang="en">Line height</span> : la vieille école
+
+Avant tout ça, on centrait apparemment du contenu en ligne à coups de `line-height` égal à la hauteur du conteneur et de `vertical-align`.
+Ça marche encore pour du texte simple sur une ligne, mais ça devient vite ingérable dès qu'il y a plusieurs lignes ou du contenu de hauteur variable.
+
+<CssPlayground
+  label="line-height + vertical-align (contenu en ligne)"
+  html={`<div class="box">
+    <span class="item">Centre-moi</span>
+  </div>`}
+  css={`.box {
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+  }
+
+  .item {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
+
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+## 8. <span lang="en">Table cell</span> : comme on faisait dans les temps anciens
+
+Le plus ancien de la liste, celui qu'on utilisait pour émuler l'alignement vertical des tableaux sans écrire de `<table>`.
+Ça fonctionne mais c'est verbeux et surtout sémantiquement inadapté.
+
+<CssPlayground
+  label="display: table-cell + vertical-align: middle"
+  html={`<div class="box">
+    <div class="item">Centre-moi</div>
+  </div>`}
+  css={`.box {
+    display: table-cell;
+    width: 100vw;
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px dashed #cbd5db;
+    border-radius: 8px;
+  }
+
+  .item {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    background: #59b7d3;
+    color: #fff;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+  }`}
+/>
+
+## Alors, laquelle choisir ?
+
+- **La plus lisible**, <span lang="en">Flexbox</span> : parlante, extensible.
+- **La plus concise**, `display: grid; place-content: center;` : 37 caractères
+- **Celle hors du flux** (modale, tooltip, badge), le duo `position: absolute` + `transform` reste la référence
+- **Celles pour étaler sa culture**, les méthodes 7 et 8
+
+Le meme pourrait-il disparaître ?
+
+## Liste plus complète
+
+- [Le guide complet de CSS Tricks](https://css-tricks.com/centering-css-complete-guide/)
+- [L'état du centrage en CSS en 2026](https://css-tricks.com/the-state-of-css-centering-in-2026/) et 100 façons plus ou moins clean de centrer horizontalement et verticalement par [Temani Afif](https://css-tricks.com/author/afiftemani/).
