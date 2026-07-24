@@ -21,7 +21,7 @@ export const ArticlesList = ({
     authors.find((a) => a.slug === article.author);
 
   return (
-    <ul className="articles__list">
+    <ul className="articles__list list-grid">
       {articles.map((article, index) => {
         const author = getAuthor(article);
         return (

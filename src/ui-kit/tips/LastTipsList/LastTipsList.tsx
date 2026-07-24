@@ -19,7 +19,7 @@ export const LastTipsList = ({
   const getAuthor = (tip: Tip) => authors.find((a) => a.slug === tip.author);
 
   return (
-    <ul className="last-tips__list">
+    <ul className="last-tips__list list-grid list-grid--featured">
       {visible.map((tip) => {
         const author = getAuthor(tip);
         return (
