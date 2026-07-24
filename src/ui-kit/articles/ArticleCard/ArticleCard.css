@@ -22,7 +22,8 @@
     flex-direction: column;
     gap: 0.5rem;
     padding-right: 5rem;
-    text-decoration: none;  flex: 1 1 auto;
+    text-decoration: none;
+    flex: 1 1 auto;
     justify-content: flex-start;
 
     h2 {
