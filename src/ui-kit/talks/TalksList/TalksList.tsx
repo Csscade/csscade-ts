@@ -20,7 +20,7 @@ export const TalksList = ({
   const getAuthor = (talk: Talk) => authors.find((a) => a.slug === talk.author);
 
   return (
-    <ul className="talks__list">
+    <ul className="talks__list list-grid">
       {talks.map((talk, index) => {
         const author = getAuthor(talk);
         return (

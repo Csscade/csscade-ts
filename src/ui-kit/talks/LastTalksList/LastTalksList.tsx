@@ -19,7 +19,7 @@ export const LastTalksList = ({
   const getAuthor = (talk: Talk) => authors.find((a) => a.slug === talk.author);
 
   return (
-    <ul className="last-talks__list">
+    <ul className="last-talks__list list-grid list-grid--featured">
       {visible.map((talk) => {
         const author = getAuthor(talk);
         return (
