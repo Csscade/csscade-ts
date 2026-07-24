@@ -16,7 +16,7 @@ describe("findCssError", () => {
 
   it("accepts nested at-rules", () => {
     expect(
-      findCssError("@media (min-width: 1px) { .a { color: red; } }"),
+      findCssError("@media screen and (min-width: 1px) { .a { color: red; } }"),
     ).toBeNull();
   });
 

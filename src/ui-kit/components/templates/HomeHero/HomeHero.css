@@ -104,7 +104,7 @@
   }
 }
 
-@media (min-width: 576px) {
+@media screen and (min-width: 576px) {
   .home-hero {
     .home-hero__search-container {
       bottom: 1rem;
@@ -138,7 +138,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .home-hero {
     padding: 1rem 2rem;
 
