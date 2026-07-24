@@ -63,7 +63,7 @@ export const TipDetailPage = ({
         </header>
         <ArticleContent content={tip.content} />
         <div className="tip-page__footer">
-          {author && <AuthorCardContent author={author} />}
+          {author && <AuthorCardContent author={author} headingLevel="h2" />}
         </div>
       </article>
     </main>

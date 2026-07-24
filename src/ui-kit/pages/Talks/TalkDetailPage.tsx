@@ -116,7 +116,7 @@ export const TalkDetailPage = ({
         </div>
 
         <div className="talk-page__footer">
-          {author && <AuthorCardContent author={author} />}
+          {author && <AuthorCardContent author={author} headingLevel="h2" />}
         </div>
       </article>
     </main>

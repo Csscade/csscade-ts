@@ -8,7 +8,7 @@ import { rehypePlugins, remarkPlugins } from "@/usecases/mdx";
 
 interface Props {
   author: Author;
-  headingLevel?: "h1" | "h3";
+  headingLevel?: "h1" | "h2" | "h3";
 }
 
 export const AuthorCardContent = ({ author, headingLevel }: Props) => {
