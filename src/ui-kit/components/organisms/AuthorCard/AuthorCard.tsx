@@ -35,7 +35,7 @@ interface AuthorCardProps {
   author: AuthorCardData;
   variant?: "default" | "mini";
   /** Heading level for the author's name — "h1" when this card is the page's main heading. */
-  headingLevel?: "h1" | "h3";
+  headingLevel?: "h1" | "h2" | "h3";
 }
 
 export const AuthorCard = ({
