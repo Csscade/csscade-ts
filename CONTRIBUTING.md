@@ -68,7 +68,7 @@ csscade-ts/
 ├─ public/                 # Static assets served by Next.js
 ├─ src/
 │  ├─ app/                 # Next.js App Router — routes and layouts only
-│  ├─ usecases/         # Use cases: data access, pagination, sorting
+│  ├─ usecases/            # Use cases: data access, pagination, sorting
 │  ├─ content/             # MDX source files (articles, tips, talks, authors)
 │  ├─ entities/              # Pure types and Zod schemas — no external lib imports
 │  ├─ infrastructure/      # External adapters: file-system repositories, MDX pipeline
@@ -90,9 +90,9 @@ The codebase follows hexagonal architecture (ports & adapters). Each layer may o
 ```
 app/            ← Next.js pages: routing, Next.js exports only (generateStaticParams, generateMetadata, dynamic)
 ui-kit/         ← React components and page components; no Next.js framework code, no infrastructure imports
-usecases/    ← Use cases and services; the only layer allowed to import from infrastructure
+usecases/       ← Use cases and services; the only layer allowed to import from infrastructure
 infrastructure/ ← External adapters: file-system repositories (`read*`), MDX pipeline
-entities/         ← Pure types and Zod schemas; no external lib imports
+entities/       ← Pure types and Zod schemas; no external lib imports
 config/         ← Static constants; no process.env, no external libs, no imports from other layers
 ```
 
@@ -141,15 +141,15 @@ Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.
 
 ### Tests
 
-| Command | Suite | Triggered when |
-|---|---|---|
-| `pnpm test` | All Vitest projects (unit, component, storybook) | Local pre-push hook |
-| `pnpm test:arch-unit` | Vitest — architecture layer rules | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
-| `pnpm test:component` | Vitest — Storybook component tests | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
-| `pnpm test:ui` | Storybook tests + Playwright a11y (8 pages × 2 themes) | `QA on demand` only (manual) |
-| `pnpm test:a11y:content` | Playwright — a11y on new/changed MDX content | PRs touching `src/content/**` (`pr-content-a11y.yml`) |
-| `pnpm test:lighthouse` | Playwright — Lighthouse + EcoIndex (8 pages × 3 devices) | `QA on demand` only (manual) |
-| `pnpm qa:scores` | Aggregates results into `qa-scores.json` | `QA on demand` only (manual) |
+| Command                  | Suite                                                    | Triggered when                                                           |
+|--------------------------|----------------------------------------------------------|--------------------------------------------------------------------------|
+| `pnpm test`              | All Vitest projects (unit, component, storybook)         | Local pre-push hook                                                      |
+| `pnpm test:arch-unit`    | Vitest — architecture layer rules                        | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
+| `pnpm test:component`    | Vitest — Storybook component tests                       | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
+| `pnpm test:ui`           | Storybook tests + Playwright a11y (8 pages × 2 themes)   | `QA on demand` only (manual)                                             |
+| `pnpm test:a11y:content` | Playwright — a11y on new/changed MDX content             | PRs touching `src/content/**` (`pr-content-a11y.yml`)                    |
+| `pnpm test:lighthouse`   | Playwright — Lighthouse + EcoIndex (8 pages × 3 devices) | `QA on demand` only (manual)                                             |
+| `pnpm qa:scores`         | Aggregates results into `qa-scores.json`                 | `QA on demand` only (manual)                                             |
 
 `test:ui` and `test:a11y:content` need the dev server running; `test:lighthouse` needs a production build — `pnpm dev` scores are misleadingly low (unminified, Turbopack HMR).
 

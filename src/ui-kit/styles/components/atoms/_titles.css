@@ -10,6 +10,11 @@ h6 {
   font-family: var(--font-secondary), sans-serif;
   overflow-wrap: break-word;
 
+  span,
+  small {
+    font-family: var(--font-secondary), sans-serif;
+  }
+
   a {
     text-decoration: none;
   }

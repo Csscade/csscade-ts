@@ -18,6 +18,10 @@
     margin: 0;
   }
 
+  .alert p {
+    margin-block: 0;
+  }
+
   img,
   video {
     display: block;

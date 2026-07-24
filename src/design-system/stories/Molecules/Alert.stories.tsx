@@ -14,7 +14,7 @@ export default meta;
 export const Default: StoryObj = {
   render: () => (
     <div className="article-content">
-      <div className="alert">
+      <div className="alert alert-default">
         <p>
           <strong>Some text</strong>
         </p>
@@ -24,7 +24,7 @@ export const Default: StoryObj = {
       <div className="pre-wrapper">
         <pre>
           <code>
-            {`:::
+            {`:::default
 Some text
 :::`}
           </code>
