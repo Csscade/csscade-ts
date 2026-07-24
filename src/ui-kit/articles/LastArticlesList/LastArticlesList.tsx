@@ -16,7 +16,7 @@ export const LastArticlesList = ({
     authors.find((a) => a.slug === article.author);
 
   return (
-    <ul className="last-articles__list">
+    <ul className="last-articles__list list-grid list-grid--featured">
       {articles.map((article) => {
         const author = getAuthor(article);
         return (

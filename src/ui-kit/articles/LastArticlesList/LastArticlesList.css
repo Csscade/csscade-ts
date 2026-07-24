@@ -1,22 +1,7 @@
 .last-articles {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  width: 100%;
-
   .last-articles__list {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: min-content;
     grid-gap: 3rem;
     margin: 30px auto;
-    width: 100%;
-    list-style: none;
-    padding: 0;
-
-    li {
-      min-width: 0;
-    }
 
     .article-card {
       .article-card__first-paragraph {
@@ -26,35 +11,14 @@
   }
 }
 
-@media screen and (min-width: 576px) {
-  .last-articles {
-    .last-articles__list {
-      &:has(li:nth-child(2)) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      &:has(li:nth-child(3)) {
-        grid-template-rows: repeat(2, 1fr);
-
-        li:first-child .article-card {
-          grid-area: 1 / 1 / 3 / 2;
-        }
-      }
-    }
+@media screen and (min-width: 1200px) {
+  .last-articles__list:not(:has(li:nth-child(2))) {
+    grid-template-columns: 1fr;
   }
 }
 
-@supports (animation-timeline: view()) {
-  .last-articles__list .article-card__title {
-    animation: slide-up linear both;
-    animation-timeline: view();
-    /* noinspection CssInvalidPropertyValue: `entry` is a valid animation-range timeline-range-name, IDE's CSS spec predates it */
-    animation-range: entry;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .last-articles__list .article-card__title {
-    animation: none;
+@media screen and (min-width: 1400px) {
+  .last-articles__list:not(:has(li:nth-child(2))) {
+    grid-template-columns: 1fr;
   }
 }

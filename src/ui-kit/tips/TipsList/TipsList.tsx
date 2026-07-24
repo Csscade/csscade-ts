@@ -20,7 +20,7 @@ export const TipsList = ({
   const getAuthor = (tip: Tip) => authors.find((a) => a.slug === tip.author);
 
   return (
-    <ul className="tips__list">
+    <ul className="tips__list list-grid">
       {tips.map((tip, index) => {
         const author = getAuthor(tip);
         return (
