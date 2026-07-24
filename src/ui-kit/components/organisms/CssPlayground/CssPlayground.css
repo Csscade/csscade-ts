@@ -19,7 +19,7 @@
   align-items: stretch;
 }
 
-@media (min-width: 48rem) {
+@media screen and (min-width: 48rem) {
   .css-playground__body {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
