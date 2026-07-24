@@ -7,7 +7,7 @@ export const myRemarkDirectivePlugin = () => {
       if (node.type === "containerDirective" || node.type === "leafDirective") {
         if (!node.data) node.data = {};
         const data = node.data;
-        const type = node.name ?? "info";
+        const type = node.name || "info";
         data.hName = "div";
         data.hProperties = {
           ...(node.attributes ?? {}),

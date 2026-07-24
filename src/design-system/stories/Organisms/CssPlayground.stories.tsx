@@ -94,7 +94,7 @@ export const WithCssError: Story = {
     label: "CSS avec accolade manquante",
     html: `<p class="note">Csscade</p>`,
     css: `.note {
-  color: rebeccapurple;
+  color: #59b7d3;
   font-weight: 600;
 /* accolade fermante manquante */`,
   },
@@ -113,7 +113,7 @@ export const WithHtmlError: Story = {
     label: "HTML avec guillemet d'attribut non fermé",
     html: `<p class="note>Csscade</p>`,
     css: `.note {
-  color: rebeccapurple;
+  color: #59b7d3;
 }`,
   },
 };
