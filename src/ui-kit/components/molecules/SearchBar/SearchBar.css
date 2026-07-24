@@ -71,7 +71,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .search-bar__input {
     width: 350px;
   }
