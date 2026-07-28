@@ -25,7 +25,7 @@ Je me demande bien pourquoi : CSS c'est génial, c'est tout. Quoi qu'en disent l
 Résultat, en 2026, centrer un élément n'a jamais été aussi simple.
 Le problème n'est plus l'absence de solution : c'est plutôt l'embarras du choix.
 
-Je vous propose donc un tour d'horizon des méthodes que j'ai vues le plus utilisées, de la plus moderne et concise à la plus ancienne et bricolée (j'ai dû chercher pour certaines).
+Je vous propose donc un tour d'horizon des méthodes que j'ai vues le plus être utilisées, de la plus moderne et concise à la plus ancienne et bricolée (j'ai dû chercher pour certaines).
 Chaque exemple a sa <span lang="en">sandbox</span> : modifiez le HTML et le CSS directement pour voir le rendu.
 
 Dans tous les cas, on part de la même structure : un conteneur `.box` avec une hauteur, et un élément enfant `.item` à centrer horizontalement **et** verticalement.
@@ -107,7 +107,7 @@ Trois lignes, mais très parlantes : le code dit simplement ce qu'il fait.
 Comme pour la grille, `place-content: center` fonctionne aussi sur un conteneur `flex` si vous voulez raccourcir encore.
 
 :::default
-**Tips** : Pour apprendre Flexbox, il y a [Flexbox Froggy](/tips/apprendre-flexbox-avec-css-froggy/) :frog:
+**<strong lang="en">Tips</strong>** : Pour s'y entrainer, il y a [Flexbox Froggy](/tips/apprendre-flexbox-avec-css-froggy/) :frog:
 :::
 
 ## 3. <span lang="en">Margin auto</span> : l'astuce élégante
@@ -174,7 +174,7 @@ Superbe, mais récente : vérifiez le support si vous ciblez d'anciens navigateu
 ## 5. <span lang="en">Position absolute + transform</span> : le classique historique
 
 L'incontournable d'avant Flexbox, toujours utile quand on doit sortir un élément du flux (une modale, un badge).
-`position: absolute` place le coin haut-gauche au centre, puis on recule l'élément de la moitié de sa propre taille avec `translate(-50%, -50%)`.
+`position: absolute` place le coin haut-gauche au centre, puis on décale l'élément de la moitié de sa propre taille avec `translate(-50%, -50%)`.
 Pas besoin de calculer un nombre de pixels de tête.
 
 <CssPlayground
@@ -279,7 +279,7 @@ Le plus ancien de la liste, celui que l'on utilisait pour émuler l'alignement v
   </div>`}
   css={`.box {
     display: table-cell;
-    width: 100vw;
+    width: calc(100vw - 2rem);
     height: 200px;
     text-align: center;
     vertical-align: middle;
