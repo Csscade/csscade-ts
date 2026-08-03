@@ -132,6 +132,7 @@
       color: var(--font-reverse);
     }
 
+    /* biome-ignore lint/style/noDescendingSpecificity: scoped to a different table (.docblock-argstable) than the .sbdocs-content td rule above — no real conflict */
     .docblock-argstable tbody tr:last-of-type td {
       border-bottom: 0.5px solid var(--border-color);
     }
