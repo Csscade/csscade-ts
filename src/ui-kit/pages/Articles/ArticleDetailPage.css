@@ -61,6 +61,22 @@
     }
   }
 
+  .article-page__tldr {
+    margin-top: 1rem;
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.2s forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  .article-page__tldr-label {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+  }
+
   .article-page__categories {
     display: flex;
     gap: 1rem;
