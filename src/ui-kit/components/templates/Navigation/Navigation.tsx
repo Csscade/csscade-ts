@@ -63,6 +63,7 @@ export const Navigation = ({
                 aria-label="Voir la page d'accueil"
                 aria-current={currentPage("/", true)}
                 onClick={() => setIsMenuOpen(false)}
+                prefetch={false}
               >
                 Accueil
               </StyledLink>
@@ -74,6 +75,7 @@ export const Navigation = ({
                   aria-label="Voir tous les articles"
                   aria-current={currentPage("/articles")}
                   onClick={() => setIsMenuOpen(false)}
+                  prefetch={false}
                 >
                   Articles
                 </StyledLink>
@@ -86,6 +88,7 @@ export const Navigation = ({
                   aria-label="Voir toutes les astuces"
                   aria-current={currentPage("/tips")}
                   onClick={() => setIsMenuOpen(false)}
+                  prefetch={false}
                 >
                   Astuces
                 </StyledLink>
@@ -98,6 +101,7 @@ export const Navigation = ({
                   aria-label="Voir toutes les conférences"
                   aria-current={currentPage("/talks")}
                   onClick={() => setIsMenuOpen(false)}
+                  prefetch={false}
                 >
                   Conférences
                 </StyledLink>
@@ -110,6 +114,7 @@ export const Navigation = ({
                   aria-label="Voir l'équipe éditoriale"
                   aria-current={currentPage("/authors")}
                   onClick={() => setIsMenuOpen(false)}
+                  prefetch={false}
                 >
                   Équipe éditoriale
                 </StyledLink>
@@ -121,6 +126,7 @@ export const Navigation = ({
                 aria-label="A propos de Csscade"
                 aria-current={currentPage("/a-propos")}
                 onClick={() => setIsMenuOpen(false)}
+                prefetch={false}
               >
                 A Propos
               </StyledLink>
