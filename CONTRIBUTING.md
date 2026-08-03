@@ -1,10 +1,10 @@
 # Contributing to Csscade
 
-Thanks for your interest in improving Csscade! This document explains how to set up your environment, follow the project conventions, and open a great pull request.
+Thanks for your interest in improving Csscade! Whether you want to share a CSS trick or dive into the codebase, this document explains how to set up your environment, follow the project conventions, and open a great pull request.
 
 There are two ways to contribute:
-1. [Contributing to the Website itself](#contributing-to-the-website-itself): improving the code, UI, or design system.
-2. [Contributing Content](#contributing-content-articles-or-tips): writing articles or code tips using MDX and respecting accessibility guidelines.
+1. [Contributing Content](#contributing-content-articles-tips--talks): writing articles, tips, or talk write-ups using MDX — no coding required. **Most contributions start here.**
+2. [Contributing to the Website itself](#contributing-to-the-website-itself): improving the code, UI, or design system.
 
 ---
 
@@ -13,14 +13,8 @@ There are two ways to contribute:
 **Table of Contents**
 
 - [Getting started](#getting-started)
-- [Project layout](#project-layout)
-- [Architecture](#architecture)
-- [Contributing to the Website itself](#contributing-to-the-website-itself)
-  - [Development workflow](#development-workflow)
-  - [Storybook](#storybook)
-  - [Linting and formatting](#linting-and-formatting)
-  - [Tests](#tests)
-- [Contributing Content (Articles or Tips)](#contributing-content-articles-or-tips)
+- [Contributing Content (Articles, Tips & Talks)](#contributing-content-articles-tips--talks)
+  - [Quick start](#quick-start)
   - [MDX Guidelines](#mdx-guidelines)
     - [Article Frontmatter](#article-frontmatter)
     - [Tip Frontmatter](#tip-frontmatter)
@@ -29,6 +23,13 @@ There are two ways to contribute:
   - [Assets & Media](#assets--media)
   - [Accessibility (WCAG & RGAA)](#accessibility-wcag--rgaa)
   - [Validation with Playwright & Axe-core](#validation-with-playwright--axe-core)
+- [Contributing to the Website itself](#contributing-to-the-website-itself)
+  - [Project layout](#project-layout)
+  - [Architecture](#architecture)
+  - [Development workflow](#development-workflow)
+  - [Storybook](#storybook)
+  - [Linting and formatting](#linting-and-formatting)
+  - [Tests](#tests)
 - [Common Guidelines](#common-guidelines)
   - [Commit messages](#commit-messages)
   - [Pull requests](#pull-requests)
@@ -61,118 +62,24 @@ Environment variables: `.env.production` (gitignored) sets `PUBLIC_SITE_URL` and
 
 ---
 
-## Project layout
+## Contributing Content (Articles, Tips & Talks)
 
-```
-csscade-ts/
-├─ public/                 # Static assets served by Next.js
-├─ src/
-│  ├─ app/                 # Next.js App Router — routes and layouts only
-│  ├─ usecases/            # Use cases: data access, pagination, sorting
-│  ├─ content/             # MDX source files (articles, tips, talks, authors)
-│  ├─ entities/              # Pure types and Zod schemas — no external lib imports
-│  ├─ infrastructure/      # External adapters: file-system repositories, MDX pipeline
-│  ├─ config/              # Static constants, no process.env, no external libs
-│  └─ ui-kit/              # React components, design system, page-level components
-├─ tests/                  # Playwright tests: accessibility, Lighthouse/EcoIndex, content a11y
-├─ scripts/                # One-off/CI scripts (e.g. QA scores generation)
-├─ biome.json              # Biome config (lint/format)
-├─ lefthook.yml            # Git hooks
-└─ vitest.config.ts        # Vitest config (Storybook component tests)
-```
+You don't need to touch a single line of application code to contribute: sharing a CSS trick, writing an article, or transcribing a talk is just as valuable, and it's the easiest way to get started. All content is written in MDX (Markdown + React components) and lives in `src/content/`.
 
----
+### Quick start
 
-## Architecture
-
-The codebase follows hexagonal architecture (ports & adapters). Each layer may only depend on layers listed below it — never on layers above.
-
-```
-app/            ← Next.js pages: routing, Next.js exports only (generateStaticParams, generateMetadata, dynamic)
-ui-kit/         ← React components and page components; no Next.js framework code, no infrastructure imports
-usecases/       ← Use cases and services; the only layer allowed to import from infrastructure
-infrastructure/ ← External adapters: file-system repositories (`read*`), MDX pipeline
-entities/       ← Pure types and Zod schemas; no external lib imports
-config/         ← Static constants; no process.env, no external libs, no imports from other layers
-```
-
-Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` layer wraps them into named use cases (`getAllArticles`, `getPaginatedArticles`, …) that are the only entry point for the rest of the app.
-
-**Where to add things:**
-
-| What                                            | Where                                                              |
-|-------------------------------------------------|--------------------------------------------------------------------|
-| New type or schema                              | `src/entities/{topic}/`                                            |
-| New repository (reads from `src/content/`)      | `src/infrastructure/{topic}/` — expose a `read*` function          |
-| New use case or business logic                  | `src/usecases/{topic}.ts` — calls `read*`, exports named functions |
-| New remark/rehype plugin                        | `src/infrastructure/mdx/plugins/`                                  |
-| New UI component                                | `src/ui-kit/components/`                                           |
-| New full-page component                         | `src/ui-kit/pages/`                                                |
-| New route                                       | `src/app/` (thin `page.tsx` only — JSX goes in `ui-kit/pages/`)    |
-| New MDX content                                 | `src/content/{articles,tips,talks,authors}/`                       |
-| New static constant (no runtime/env dependency) | `src/config/{topic}.ts`                                            |
-
----
-
-## Contributing to the Website itself
-
-### Development workflow
-
-- Run the app in dev mode (Turbopack): `pnpm dev`
-- Type-check: `pnpm exec tsc --noEmit`
-- Build for production: `pnpm build`
-- Preview the production build: `pnpm start` (serves the static `out/` export via `serve` — `next start` doesn't support `output: "export"`)
-
-### Storybook
-
-We use Storybook to develop and document UI components.
-
-- Run Storybook: `pnpm storybook`
-- Build Storybook: `pnpm storybook:build`
-
-### Linting and formatting
-
-We use [Biome](https://biomejs.dev/) for linting and formatting. A pre-push hook (via Lefthook) runs `pnpm lint` and `pnpm test` on the whole repo before every push.
-
-- Check all files: `pnpm lint`
-- Auto-format: `pnpm format`
-
-Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.log` (only `console.warn`/`console.error`, via the `noConsole` rule), imports ordered alphabetically by group.
-
-### Tests
-
-| Command                  | Suite                                                    | Triggered when                                                           |
-|--------------------------|----------------------------------------------------------|--------------------------------------------------------------------------|
-| `pnpm test`              | All Vitest projects (unit, component, storybook)         | Local pre-push hook                                                      |
-| `pnpm test:arch-unit`    | Vitest — architecture layer rules                        | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
-| `pnpm test:component`    | Vitest — Storybook component tests                       | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
-| `pnpm test:ui`           | Storybook tests + Playwright a11y (8 pages × 2 themes)   | `QA on demand` only (manual)                                             |
-| `pnpm test:a11y:content` | Playwright — a11y on new/changed MDX content             | PRs touching `src/content/**` (`pr-content-a11y.yml`)                    |
-| `pnpm test:lighthouse`   | Playwright — Lighthouse + EcoIndex (8 pages × 3 devices) | `QA on demand` only (manual)                                             |
-| `pnpm qa:scores`         | Aggregates results into `qa-scores.json`                 | `QA on demand` only (manual)                                             |
-
-`test:ui` and `test:a11y:content` need the dev server running; `test:lighthouse` needs a production build — `pnpm dev` scores are misleadingly low (unminified, Turbopack HMR).
-
-```bash
-pnpm dev        # must be running
-pnpm test:ui
-```
-
-```bash
-pnpm build
-pnpm start       # must be running
-pnpm test:lighthouse
-```
-
-`pnpm qa:scores` aggregates the Lighthouse, Storybook, and Axe results into `src/content/qa-scores.json` (feeds the footer badges and the `/a-propos` breakdown) — requires `test:ui` and `test:lighthouse` to have run first.
-
-View any Playwright HTML report with `npx playwright show-report`.
-
----
-
-## Contributing Content (Articles or Tips)
-
-You can share your knowledge by contributing articles, CSS tips, or talk transcripts. All content is written in MDX (Markdown + React components) and lives in `src/content/`.
+1. Fork the repo and run `pnpm install` then `pnpm dev` (see [Getting started](#getting-started)).
+2. Pick a type and create one file in the matching folder — the filename becomes the slug:
+   - `src/content/articles/your-slug.mdx`
+   - `src/content/tips/your-slug.mdx`
+   - `src/content/talks/your-slug.mdx`
+3. Add the frontmatter for your content type — see [MDX Guidelines](#mdx-guidelines) below.
+4. New author? Add yourself once in `src/content/authors/your-name-slug.mdx` — see [Author Frontmatter](#author-frontmatter).
+5. Write your content below the frontmatter, in French, starting headings at `##` (see [Accessibility](#accessibility-wcag--rgaa)).
+6. Preview it live at `http://localhost:3000` while `pnpm dev` is running.
+7. Adding an image? Self-host it as WebP — see [Assets & Media](#assets--media).
+8. Before opening your PR, run the accessibility check — see [Validation](#validation-with-playwright--axe-core).
+9. Open a PR with a `content(...)` commit — see [Commit messages](#commit-messages).
 
 ### MDX Guidelines
 
@@ -184,6 +91,7 @@ title: "Your Article Title"
 slug: "your-article-slug"
 author: "author-slug"
 coAuthor: "Co-author Name"          # optional — name of a guest co-author
+tldr: "One or two sentences summarizing the article."  # optional — short summary
 publishedAt: "YYYY-MM-DD"
 categories:
   - CSS
@@ -288,6 +196,111 @@ It detects new/modified files under `src/content/{articles,tips,talks}` (vs. `or
 Run `pnpm test:ui` to check the whole site instead of just your content.
 
 **In CI:** runs automatically on any PR touching `src/content/**`, via the `Content accessibility check` workflow — nothing to configure.
+
+---
+
+## Contributing to the Website itself
+
+### Project layout
+
+```
+csscade-ts/
+├─ public/                 # Static assets served by Next.js
+├─ src/
+│  ├─ app/                 # Next.js App Router — routes and layouts only
+│  ├─ usecases/         # Use cases: data access, pagination, sorting
+│  ├─ content/             # MDX source files (articles, tips, talks, authors)
+│  ├─ entities/              # Pure types and Zod schemas — no external lib imports
+│  ├─ infrastructure/      # External adapters: file-system repositories, MDX pipeline
+│  ├─ config/              # Static constants, no process.env, no external libs
+│  └─ ui-kit/              # React components, design system, page-level components
+├─ tests/                  # Playwright tests: accessibility, Lighthouse/EcoIndex, content a11y
+├─ scripts/                # One-off/CI scripts (e.g. QA scores generation)
+├─ biome.json              # Biome config (lint/format)
+├─ lefthook.yml            # Git hooks
+└─ vitest.config.ts        # Vitest config (Storybook component tests)
+```
+
+### Architecture
+
+The codebase follows hexagonal architecture (ports & adapters). Each layer may only depend on layers listed below it — never on layers above.
+
+```
+app/            ← Next.js pages: routing, Next.js exports only (generateStaticParams, generateMetadata, dynamic)
+ui-kit/         ← React components and page components; no Next.js framework code, no infrastructure imports
+usecases/    ← Use cases and services; the only layer allowed to import from infrastructure
+infrastructure/ ← External adapters: file-system repositories (`read*`), MDX pipeline
+entities/         ← Pure types and Zod schemas; no external lib imports
+config/         ← Static constants; no process.env, no external libs, no imports from other layers
+```
+
+Infrastructure exposes low-level `read*` functions (raw I/O). The `usecases/` layer wraps them into named use cases (`getAllArticles`, `getPaginatedArticles`, …) that are the only entry point for the rest of the app.
+
+**Where to add things:**
+
+| What                                            | Where                                                              |
+|-------------------------------------------------|--------------------------------------------------------------------|
+| New type or schema                              | `src/entities/{topic}/`                                            |
+| New repository (reads from `src/content/`)      | `src/infrastructure/{topic}/` — expose a `read*` function          |
+| New use case or business logic                  | `src/usecases/{topic}.ts` — calls `read*`, exports named functions |
+| New remark/rehype plugin                        | `src/infrastructure/mdx/plugins/`                                  |
+| New UI component                                | `src/ui-kit/components/`                                           |
+| New full-page component                         | `src/ui-kit/pages/`                                                |
+| New route                                       | `src/app/` (thin `page.tsx` only — JSX goes in `ui-kit/pages/`)    |
+| New MDX content                                 | `src/content/{articles,tips,talks,authors}/`                       |
+| New static constant (no runtime/env dependency) | `src/config/{topic}.ts`                                            |
+
+### Development workflow
+
+- Run the app in dev mode (Turbopack): `pnpm dev`
+- Type-check: `pnpm exec tsc --noEmit`
+- Build for production: `pnpm build`
+- Preview the production build: `pnpm start` (serves the static `out/` export via `serve` — `next start` doesn't support `output: "export"`)
+
+### Storybook
+
+We use Storybook to develop and document UI components.
+
+- Run Storybook: `pnpm storybook`
+- Build Storybook: `pnpm storybook:build`
+
+### Linting and formatting
+
+We use [Biome](https://biomejs.dev/) for linting and formatting. A pre-push hook (via Lefthook) runs `pnpm lint` and `pnpm test` on the whole repo before every push.
+
+- Check all files: `pnpm lint`
+- Auto-format: `pnpm format`
+
+Conventions enforced by Biome: double quotes, semicolons, no `any`, no `console.log` (only `console.warn`/`console.error`, via the `noConsole` rule), imports ordered alphabetically by group.
+
+### Tests
+
+| Command | Suite | Triggered when |
+|---|---|---|
+| `pnpm test` | All Vitest projects (unit, component, storybook) | Local pre-push hook |
+| `pnpm test:arch-unit` | Vitest — architecture layer rules | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
+| `pnpm test:component` | Vitest — Storybook component tests | Every PR (`ci.yml`), every push to `main` (`deploy.yml`), `QA on demand` |
+| `pnpm test:ui` | Storybook tests + Playwright a11y (8 pages × 2 themes) | `QA on demand` only (manual) |
+| `pnpm test:a11y:content` | Playwright — a11y on new/changed MDX content | PRs touching `src/content/**` (`pr-content-a11y.yml`) |
+| `pnpm test:lighthouse` | Playwright — Lighthouse + EcoIndex (8 pages × 3 devices) | `QA on demand` only (manual) |
+| `pnpm qa:scores` | Aggregates results into `qa-scores.json` | `QA on demand` only (manual) |
+
+`test:ui` and `test:a11y:content` need the dev server running; `test:lighthouse` needs a production build — `pnpm dev` scores are misleadingly low (unminified, Turbopack HMR).
+
+```bash
+pnpm dev        # must be running
+pnpm test:ui
+```
+
+```bash
+pnpm build
+pnpm start       # must be running
+pnpm test:lighthouse
+```
+
+`pnpm qa:scores` aggregates the Lighthouse, Storybook, and Axe results into `src/content/qa-scores.json` (feeds the footer badges and the `/a-propos` breakdown) — requires `test:ui` and `test:lighthouse` to have run first.
+
+View any Playwright HTML report with `npx playwright show-report`.
 
 ---
 
