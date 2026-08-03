@@ -10,6 +10,7 @@ import "@/ui-kit/styles/theme.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type React from "react";
 import { DEFAULT_OG_IMAGE_PATH, SITE_DESCRIPTION } from "@/config/seo";
+import { ConsoleWelcome } from "@/ui-kit/components/templates/ConsoleWelcome/ConsoleWelcome";
 import { Footer } from "@/ui-kit/components/templates/Footer/Footer";
 import { Navigation } from "@/ui-kit/components/templates/Navigation/Navigation";
 import { RouteAnnouncer } from "@/ui-kit/components/templates/RouteAnnouncer/RouteAnnouncer";
@@ -139,6 +140,7 @@ export default function RootLayout({
         <link rel="stylesheet" href={`${basePath}/print.css`} media="print" />
       </head>
       <body>
+        <ConsoleWelcome />
         <RouteAnnouncer />
         <Navigation
           hasArticles={hasArticles}
