@@ -46,10 +46,11 @@ Avec HTML et CSS, on peut faire :
 - Des katas comme [FizzBuzz](https://codepen.io/laras126/pen/dyNQMdq)
 - ...
 
-En CSS on a même nativement :
+En CSS, on a même nativement :
 - des [fonctions mathématiques](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Values_and_units/Using_math_functions)
 - des [custom properties](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties) (<span lang="en">aka</span>: variables)
 - des [fonctions personnalisées](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Custom_functions_and_mixins/Using_custom_functions) (depuis 2025)
+- une forme de boucle et de logique conditionnelle, portée par les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Selectors) qui parcourent en continu et de manière récursive les éléments du DOM
 
 > "CSS n'est pas un langage Turing complet."
 
@@ -74,8 +75,8 @@ L'analogie a ses limites, mais elle illustre bien pourquoi ce langage peut déro
 
 > "CSS est difficile."
 
-Ce langage est déclaratif et ne comporte ainsi aucune possibilité de contrôle de son ordre d'exécution explicite (ni boucle, ni condition).
-L'exécution de ses règles est faite de manière linéaire par un navigateur (ligne par ligne) et de manière implicite. Utilisé sans pré-processeur comme SASS ou LESS, il ne comporte ni classes au sens objet, ni espaces de noms, ni de possibilité d'écrire ses propres fonctions… Serait-il donc plus difficile de l'utiliser en comparaison avec des langages explicites ou dynamiques, à usage général comme Python ?
+Ce langage est déclaratif et ne comporte ainsi aucune possibilité de contrôle de son ordre d'exécution explicite : ni boucle, ni condition explicite, en dehors du if implicite porté par les sélecteurs — y compris les sélecteurs `nth-*` — qui appliquent un style dès qu'un ou plusieurs éléments correspondent à leur motif.
+L'exécution de ses règles est faite de manière linéaire par un navigateur (ligne par ligne) et de manière implicite. Utilisé sans pré-processeur comme SASS ou LESS, il ne comporte ni classes au sens objet, ni espaces de noms, ni de possibilité d'écrire ses propres fonctions avant 2025… Serait-il donc plus difficile de l'utiliser en comparaison avec des langages explicites ou dynamiques, à usage général comme Python ?
 
 Pourtant, il n'évolue pas fréquemment par rapport à un langage comme JavaScript.
 De ce fait, passer un minimum de temps à apprendre le concept de cascade, les priorités, sélecteurs et positionnements suffit à se sentir à l'aise avec les feuilles de style.
