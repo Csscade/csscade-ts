@@ -43,6 +43,7 @@ export function Pagination({
               href={hrefForPage(currentPage - 1)}
               rel="prev"
               aria-label="Page précédente"
+              prefetch={false}
             >
               <span aria-hidden="true">←</span>
               <span className="sr-only">Précédent</span>
@@ -68,6 +69,7 @@ export function Pagination({
                   className="pagination__item-link"
                   href={hrefForPage(page)}
                   aria-label={`Aller à la page ${page}`}
+                  prefetch={false}
                 >
                   {page}
                 </Link>
@@ -83,6 +85,7 @@ export function Pagination({
               href={`${basePath}/${currentPage + 1}`}
               rel="next"
               aria-label="Page suivante"
+              prefetch={false}
             >
               <span className="sr-only">Suivant</span>
               <span aria-hidden="true">→</span>
