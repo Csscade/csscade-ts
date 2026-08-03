@@ -71,16 +71,15 @@ export const TalkDetailPage = ({
                 ))}
               </div>
             )}
-            {talk.abstract &&
-              talk.abstract
-                .split("\n")
-                .map((paragraph) => paragraph.trim())
-                .filter(Boolean)
-                .map((paragraph) => (
-                  <p key={paragraph} className="talk-page__abstract-intro">
-                    {paragraph}
-                  </p>
-                ))}
+            {talk.abstract
+              ?.split("\n")
+              .map((paragraph) => paragraph.trim())
+              .filter(Boolean)
+              .map((paragraph) => (
+                <p key={paragraph} className="talk-page__abstract-intro">
+                  {paragraph}
+                </p>
+              ))}
           </div>
         </header>
 
