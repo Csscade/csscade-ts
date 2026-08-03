@@ -51,7 +51,11 @@ export const AuthorCard = ({
         className="author-card author-card--mini"
         aria-label={author.name}
       >
-        <Link href={`/authors/${author.slug}`} className="author-card__link">
+        <Link
+          href={`/authors/${author.slug}`}
+          className="author-card__link"
+          prefetch={false}
+        >
           <Avatar
             src={author.avatar}
             alt=""

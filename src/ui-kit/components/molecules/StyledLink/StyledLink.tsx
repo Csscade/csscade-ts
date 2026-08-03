@@ -23,6 +23,7 @@ export const StyledLink = ({
   className = "",
   ariaLabel,
   icon,
+  prefetch = false,
   ...props
 }: StyledLinkProps) => {
   const isExternal = href.startsWith("http");
@@ -43,6 +44,7 @@ export const StyledLink = ({
       aria-label={iconOnly ? undefined : ariaLabel}
       target={target}
       rel={rel}
+      prefetch={prefetch}
       {...props}
     >
       {iconOnly && ariaLabel && <span className="sr-only">{ariaLabel}</span>}
