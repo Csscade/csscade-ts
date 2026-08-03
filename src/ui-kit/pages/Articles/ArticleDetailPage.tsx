@@ -61,6 +61,14 @@ export const ArticleDetailPage = ({
                 </>
               )}
             </p>
+            {article.tldr && (
+              <p className="article-page__tldr">
+                <span lang="en" className="article-page__tldr-label">
+                  TL;DR :
+                </span>{" "}
+                <em>{article.tldr}</em>
+              </p>
+            )}
             {article.categories && (
               <div className="article-page__categories">
                 {article.categories.map((category) => (
