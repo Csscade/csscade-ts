@@ -1,8 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { extname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-const SRC = new URL("../../src", import.meta.url).pathname;
+const SRC = fileURLToPath(new URL("../../src", import.meta.url));
 
 function collectFiles(dir: string): string[] {
   const results: string[] = [];
