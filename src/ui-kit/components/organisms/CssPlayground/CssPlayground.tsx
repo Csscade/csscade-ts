@@ -132,7 +132,7 @@ export const CssPlayground = ({
     // colorScheme must stay a dependency: otherwise this timeout's closure
     // goes stale on a theme change and later overwrites the corrected
     // srcDoc below with the old scheme once it fires.
-  }, [htmlCode, cssCode, colorScheme]);
+  }, [htmlCode, cssCode, javascriptCode, colorScheme]);
 
   // Theme toggles are a discrete action, not typing: reflect them
   // immediately instead of waiting on the input debounce above.
