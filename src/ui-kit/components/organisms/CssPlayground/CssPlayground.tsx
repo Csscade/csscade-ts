@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
-import { CodeEditor } from '@/ui-kit/components/organisms/CodeEditor/CodeEditor';
-import { findPreviewError } from './previewErrors';
-import { useIsDarkTheme } from './useIsDarkTheme';
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { CodeEditor } from "@/ui-kit/components/organisms/CodeEditor/CodeEditor";
+import { findPreviewError } from "./previewErrors";
+import { useIsDarkTheme } from "./useIsDarkTheme";
 
-import './CssPlayground.css';
+import "./CssPlayground.css";
 
 export interface CssPlaygroundProps {
   /** Initial HTML markup shown in the preview and the HTML editor. */
@@ -73,7 +73,7 @@ const buildDocument = (
   html: string,
   css: string,
   javascript: string,
-  colorScheme: 'light' | 'dark'
+  colorScheme: "light" | "dark",
 ) => {
   return `<!doctype html>
 <html lang="fr">
@@ -98,30 +98,30 @@ const buildDocument = (
 };
 
 export const CssPlayground = ({
-  html = '',
-  css = '',
-  javascript = '',
+  html = "",
+  css = "",
+  javascript = "",
   label,
-  htmlLabel = 'Éditeur HTML',
-  cssLabel = 'Éditeur CSS',
-  javascriptLabel = 'Éditeur Javascript',
+  htmlLabel = "Éditeur HTML",
+  cssLabel = "Éditeur CSS",
+  javascriptLabel = "Éditeur Javascript",
   previewTitle,
   fixedHeight = false,
 }: CssPlaygroundProps) => {
   const isDarkTheme = useIsDarkTheme();
-  const colorScheme = isDarkTheme ? 'dark' : 'light';
+  const colorScheme = isDarkTheme ? "dark" : "light";
   const [htmlCode, setHtmlCode] = useState(html);
   const [cssCode, setCssCode] = useState(css);
   const [javascriptCode, setJavascriptCode] = useState(javascript);
   const [srcDoc, setSrcDoc] = useState(() =>
-    buildDocument(html, css, javascript, colorScheme)
+    buildDocument(html, css, javascript, colorScheme),
   );
   const [previewError, setPreviewError] = useState<string | null>(() =>
-    findPreviewError(html, css)
+    findPreviewError(html, css),
   );
 
   const iframeTitle =
-    previewTitle ?? (label ? `Aperçu HTML/CSS : ${label}` : 'Aperçu HTML/CSS');
+    previewTitle ?? (label ? `Aperçu HTML/CSS : ${label}` : "Aperçu HTML/CSS");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -154,7 +154,7 @@ export const CssPlayground = ({
             <CodeEditor
               defaultLanguage="html"
               value={htmlCode}
-              onChange={(value) => setHtmlCode(value ?? '')}
+              onChange={(value) => setHtmlCode(value ?? "")}
               label={htmlLabel}
               fixedHeight={fixedHeight}
               containerClassName="css-playground__editor"
@@ -165,19 +165,19 @@ export const CssPlayground = ({
             <CodeEditor
               defaultLanguage="css"
               value={cssCode}
-              onChange={(value) => setCssCode(value ?? '')}
+              onChange={(value) => setCssCode(value ?? "")}
               label={cssLabel}
               fixedHeight={fixedHeight}
               containerClassName="css-playground__editor"
             />
           </div>
-          {javascript !== '' && (
+          {javascript !== "" && (
             <div className="css-playground__panel">
               <span className="css-playground__label">Javascript</span>
               <CodeEditor
                 defaultLanguage="js"
                 value={javascriptCode}
-                onChange={(value) => setJavascriptCode(value ?? '')}
+                onChange={(value) => setJavascriptCode(value ?? "")}
                 label={javascriptLabel}
                 fixedHeight={fixedHeight}
                 containerClassName="css-playground__editor"
