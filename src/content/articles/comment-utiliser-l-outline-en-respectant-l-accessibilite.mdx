@@ -1,0 +1,275 @@
+---
+title: "Comment utiliser l'outline en respectant l'accessibilité ?"
+slug: 'comment-utiliser-l-outline-en-respectant-l-accessibilite'
+author: 'emmanuelle-aboaf'
+tldr: 'Mettre outline:none par défaut pertube la navigation au clavier'
+publishedAt: '2026-09-01'
+categories: ['CSS', 'Tutoriel', 'accessibilité']
+---
+
+En tant que développeur ou développeuse, l'instinct serait de mettre `outline:none` dès qu'on voit les contours bleus ou noirs (selon le navigateur utilisé) qui apparaissent sur les éléments focusables dont les liens et les boutons. On trouve cela moche, peu esthétique et inutile, alors on le supprime.
+
+Pourtant, la propriété CSS <span lang="en">outline</span> est essentielle, surtout pour l'accessibilité numérique. Beaucoup de personnes naviguent uniquement au clavier. En désactivant l'outline sans solution de rechange, vous les empêchez tout simplement de savour où elles se trouvent dans la page, rendant leur navigation difficile, voire impossible.
+
+1. Sans outline
+
+Essayez de naviguer ci-dessous de lien en lien avec la touche `Tab`.
+
+<CssPlayground
+  label="Exemple avec la valeur CSS outline:none"
+  html={`
+    <ul>
+      <li>
+        <a href="/">Accueil</a>
+      </li>
+      <li>
+        <a href="/articles/">Articles</a>
+      </li>
+      <li>
+        <a href="/tips/">Astuces</a>
+      </li>
+      <li>
+        <a href="/talks/">Conférences</a>
+      </li>
+      <li>
+        <a href="/authors/">Équipe éditoriale</a>
+      </li>
+      <li>
+        <a href="/a-propos/">A Propos</a>
+      </li>
+    </ul>
+  `}
+  css={`
+    a {
+      outline: none;
+    }
+  `}
+/>
+
+Vous pouvez le constater, sans la propriété `outline`, vous ne savez pas où vous vous trouvez parmi les liens.
+
+2. Avec outline
+
+Regardons ce que cela donne avec la propriété CSS et ses valeurs par défaut : `outline:auto`.
+
+<CssPlayground
+  label="Exemple avec la valeur CSS outline:auto"
+  html={`
+    <ul>
+      <li>
+        <a href="/">Accueil</a>
+      </li>
+      <li>
+        <a href="/articles/">Articles</a>
+      </li>
+      <li>
+        <a href="/tips/">Astuces</a>
+      </li>
+      <li>
+        <a href="/talks/">Conférences</a>
+      </li>
+      <li>
+        <a href="/authors/">Équipe éditoriale</a>
+      </li>
+      <li>
+        <a href="/a-propos/">A Propos</a>
+      </li>
+    </ul>
+  `}
+  css={`
+    a {
+      outline: auto;
+    }
+  `}
+/>
+
+Avec `outline:auto`, le contour apparaît systématiquement et une légère animation se déclenche à chaque changement de focus lors de la navigation au clavier. Nous sommes d'accord pour dire que ce comportement n'est pas esthétique et que l'animation est peu visible.
+
+Comment faire pour le rendre esthétique et surtout le faire apparaître uniquement quand c'est nécessaire ?
+
+3. Les pseudos-classes CSS : focus, focus-visible et focus-within
+
+On peut utiliser une des trois pseudo-classes CSS : `:focus`, `:focus-visible` et `:focus-within`. Quelle est la différence entre les trois ?
+
+3.1 `:focus`
+
+Que ce soit avec la souris ou le clavier, lorsqu'un élément reçoit le focus, son style reste appliqué en permanence. Ce comportement peut être génant, c'est pourquoi des développeurs et développeuses ont préféré supprimer le contour en utilisant `outline:none`;
+
+<CssPlayground
+  label="Exemple avec la pseudo-classe focus"
+  html={`<button type="button">Clique-moi</button>`}
+  css={`
+    button {
+      color:var(--font-color);
+      background-color: var(--background-primary);
+      border:0.15em solid var(--font-color);
+    }
+
+    button:hover {
+      color:var(--background-primary);
+      background-color: var(--font-color);
+      border:0.15em solid var(--background-primary);
+    }
+
+    button:focus {
+      border-color:transparent;
+      outline: 0.25rem solid var(--color-primary-strong);
+    }
+
+`}
+  javascript={`
+
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", () => {
+      alert("Hello World !");
+    });
+
+`}
+/>
+
+3.2 `:focus-visible`
+
+La pseudo-classe `:focus-visible` est spécifique à la navigation au clavier. Par conséquent, l'élément focusable n'est mis en évidence que lorsqu'il reçoit le focus via le clavier. Cela évite donc d'afficher systématiquement le contour lors d'une interaction à la souris.
+
+<CssPlayground
+  label="Exemple avec la pseudo-classe focus-visible"
+  html={`<button type="button" onclick="alert('Hello World !')">Clique-moi</button>`}
+  css={`
+    button {
+      color:var(--font-color);
+      background-color: var(--background-primary);
+      border:0.15em solid var(--font-color);
+    }
+
+    button:hover {
+      color:var(--background-primary);
+      background-color: var(--font-color);
+      border:0.15em solid var(--background-primary);
+    }
+
+    button:focus-visible {
+      border-color:transparent;
+      outline: 0.25rem solid var(--color-primary-strong);
+    }
+
+`}
+/>
+
+3.3 `:focus-within`
+
+Quant à la pseudo-classe `focus-within`, elle cible l'élément et ses descendants lorsqu'un élément interne reçoit le focus. Le contour ou le style associé s'applique donc dès qu'un descendant est focusable, que l'interaction se fasse à la souris ou au clavier.
+
+<CssPlayground
+  label="Exemple avec la pseudo-classe focus-within"
+  html={`
+    <form role="form">    
+      <fieldset>
+        <legend>Contact</legend>
+        <div class="group">
+          <label for="txtNom">Votre nom :</label>
+          <input type="text" id="txtNom" />
+        </div>
+        <div class="group">
+          <label for="txtPrenom">Votre prénom :</label>
+          <input type="text" id="txtPrenom" />
+        </div>
+      </fieldset>
+    </form>
+
+`}
+  css={`
+.group {
+display:flex;
+flex-direction: column;
+margin-bottom: 1em;
+}
+
+.group:focus-within {
+outline: 0.25rem solid var(--color-primary-strong);
+}
+`}
+/>
+
+C'est pourquoi, dans la grande majorité des cas, on préfère la pseudo-classe `focus-visible`, car elle est plus sobre.
+
+La pseudo-classe `:hover` s'applique aux interactions à la souris tandis que `focus-visible` gère la navigation au clavier. Lorsqu'on style un élément interactif, il est recommandé de **combiner** `:hover` et `:focus-visible` pour assurer une expérience utilisateur accessible.
+
+4. Le style avec outline ou autre
+
+Vous pouvez définir un style personnalisé pour le contour (`outline`) en utilisant `outline-color`, `outline-style` et `outline-offset`, de la même manière que pour la bordure (`border`).
+
+Tout comme pour la propriété `border`, vous pouvez tout regrouper dans la pseudo-classe `outline` avec une déclaration comme : `outline: 0.1em solid red`;
+
+Notez cependant que vous n'êtes pas obligé d'utiliser la propriété outline. Vous pouvez tout à fait styliser l'élément en utilisant d'autres propriétés CSS (comme `box-shadow`, `border` ou `text-decoration`) au sein de votre pseudo-classe :focus-visible.
+
+<CssPlayground
+  label="Exemple avec le style personnalisé"
+  html={`
+    <ul>
+      <li>
+        <a href="/">Accueil</a>
+      </li>
+      <li>
+        <a href="/articles/">Articles</a>
+      </li>
+      <li>
+        <a href="/tips/">Astuces</a>
+      </li>
+      <li>
+        <a href="/talks/">Conférences</a>
+      </li>
+      <li>
+        <a href="/authors/">Équipe éditoriale</a>
+      </li>
+      <li>
+        <a href="/a-propos/">A Propos</a>
+      </li>
+    </ul>
+  `}
+  css={`
+    * {
+      outline: none;
+    }
+
+    li{
+      margin-bottom: 1em;
+    }
+
+    a {
+      color: var(--font-color);
+      text-decoration:underline;
+    }
+
+    a:focus-visible,
+    a:hover {
+      text-underline-offset: 0.5rem;
+      text-decoration-color:var(--color-primary-strong);
+      text-decoration-thickness: 0.25em;
+    }
+
+`}
+/>
+
+5. Conclusion
+
+Vous savez désormais qu'il ne faut jamais désactiver le contour avec `outline: none` **sans prévoir une alternative** pour les utilisateurs et utilisatrices naviguant au clavier. Cette mesure est essentielle pour garantir l'accessibilité de vos éléments focusables, tels que les liens, les boutons, les champs de saisie ou encore les menus déroulants.
+
+6. Sources
+
+Je vous invite à lire la documentation MDN sur ces attributs CSS :
+
+<ul>
+  <li>
+    <a href="https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/outline">
+      <span lang="en">outline</span>
+    </a>
+  </li>
+  <li>
+    <a href="https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Selectors/:focus-visible">
+      focus-visible
+    </a>
+  </li>
+</ul>
+
+Article corrigé avec Euria.
