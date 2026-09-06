@@ -7,9 +7,9 @@ import { CodeEditor } from "@/ui-kit/components/organisms/CodeEditor/CodeEditor"
 import { findPreviewError } from "./previewErrors";
 import { useIsDarkTheme } from "./useIsDarkTheme";
 
-import "./CssPlayground.css";
+import "./Playground.css";
 
-export interface CssPlaygroundProps {
+export interface PlaygroundProps {
   /** Initial HTML markup shown in the preview and the HTML editor. */
   html?: string;
   /** Initial CSS applied to the preview and shown in the CSS editor. */
@@ -97,7 +97,7 @@ const buildDocument = (
 </html>`;
 };
 
-export const CssPlayground = ({
+export const Playground = ({
   html = "",
   css = "",
   javascript = "",
@@ -107,7 +107,7 @@ export const CssPlayground = ({
   javascriptLabel = "Éditeur Javascript",
   previewTitle,
   fixedHeight = false,
-}: CssPlaygroundProps) => {
+}: PlaygroundProps) => {
   const isDarkTheme = useIsDarkTheme();
   const colorScheme = isDarkTheme ? "dark" : "light";
   const [htmlCode, setHtmlCode] = useState(html);
@@ -142,60 +142,60 @@ export const CssPlayground = ({
   }, [colorScheme]);
 
   return (
-    <figure className="css-playground">
+    <figure className="playground">
       {label && (
-        <figcaption className="css-playground__caption">{label}</figcaption>
+        <figcaption className="playground__caption">{label}</figcaption>
       )}
 
-      <div className="css-playground__body">
-        <div className="css-playground__editors">
-          <div className="css-playground__panel">
-            <span className="css-playground__label">HTML</span>
+      <div className="playground__body">
+        <div className="playground__editors">
+          <div className="playground__panel">
+            <span className="playground__label">HTML</span>
             <CodeEditor
               defaultLanguage="html"
               value={htmlCode}
               onChange={(value) => setHtmlCode(value ?? "")}
               label={htmlLabel}
               fixedHeight={fixedHeight}
-              containerClassName="css-playground__editor"
+              containerClassName="playground__editor"
             />
           </div>
-          <div className="css-playground__panel">
-            <span className="css-playground__label">CSS</span>
+          <div className="playground__panel">
+            <span className="playground__label">CSS</span>
             <CodeEditor
               defaultLanguage="css"
               value={cssCode}
               onChange={(value) => setCssCode(value ?? "")}
               label={cssLabel}
               fixedHeight={fixedHeight}
-              containerClassName="css-playground__editor"
+              containerClassName="playground__editor"
             />
           </div>
           {javascript !== "" && (
-            <div className="css-playground__panel">
-              <span className="css-playground__label">Javascript</span>
+            <div className="playground__panel">
+              <span className="playground__label">Javascript</span>
               <CodeEditor
                 defaultLanguage="js"
                 value={javascriptCode}
                 onChange={(value) => setJavascriptCode(value ?? "")}
                 label={javascriptLabel}
                 fixedHeight={fixedHeight}
-                containerClassName="css-playground__editor"
+                containerClassName="playground__editor"
               />
             </div>
           )}
         </div>
 
-        <div className="css-playground__panel">
-          <span className="css-playground__label">Rendu</span>
-          <div className="css-playground__preview-wrapper">
+        <div className="playground__panel">
+          <span className="playground__label">Rendu</span>
+          <div className="playground__preview-wrapper">
             <iframe
-              className="css-playground__preview"
+              className="playground__preview"
               title={iframeTitle}
               sandbox="allow-scripts allow-modals"
               srcDoc={srcDoc}
             />
-            <p role="status" className="css-playground__error">
+            <p role="status" className="playground__error">
               {previewError && (
                 <>
                   <FontAwesomeIcon icon={faTriangleExclamation} aria-hidden />

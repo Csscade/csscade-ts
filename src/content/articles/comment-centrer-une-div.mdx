@@ -48,7 +48,7 @@ Gardez ça en tête pour la suite : si une technique de centrage ne fonctionne p
 Une grille et une seule propriété. [`place-content`](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/place-content) est un raccourci pour `align-content` et `justify-content` : deux axes centrés d'un coup.
 Difficile de faire plus court.
 
-<CssPlayground
+<Playground
   label="Grid + place-content: center"
   html={`<div class="box">
     <div class="item">Centre-moi</div>
@@ -81,7 +81,7 @@ Si vous ne deviez retenir qu'une méthode, c'est celle-ci.
 Flexbox est supporté partout, prévisible, et s'étend naturellement à plusieurs éléments enfants.
 Trois lignes, mais très parlantes : le code dit simplement ce qu'il fait.
 
-<CssPlayground
+<Playground
   label="Flexbox : justify-content + align-items"
   html={`<div class="box">
     <div class="item">Centre-moi</div>
@@ -116,7 +116,7 @@ Comme pour la grille, `place-content: center` fonctionne aussi sur un conteneur 
 Une fois l'élément parent en `grid` (ou `flex`), un simple `margin: auto` sur l'élément enfant le place automatiquement à marges égales de chaque côté : donc au centre.
 Très minimaliste.
 
-<CssPlayground
+<Playground
   label="Grid parent + margin: auto sur l'enfant"
   html={`<div class="box">
     <div class="item">Centre-moi</div>
@@ -146,7 +146,7 @@ Depuis 2024, [`align-content`](https://developer.mozilla.org/fr/docs/Web/CSS/Ref
 Pour centrer verticalement un bloc, une seule propriété suffit désormais sur l'élément parent.
 Combinez avec `text-align: center` pour l'horizontale.
 
-<CssPlayground
+<Playground
   label="align-content sur un conteneur block"
   html={`<div class="box">
     <div class="item">Centre-moi</div>
@@ -178,7 +178,7 @@ L'incontournable d'avant Flexbox, toujours utile quand on doit sortir un éléme
 `position: absolute` place le coin haut-gauche au centre, puis on décale l'élément de la moitié de sa propre taille avec `translate(-50%, -50%)`.
 Pas besoin de calculer un nombre de pixels de tête.
 
-<CssPlayground
+<Playground
   label="position: absolute + transform: translate(-50%, -50%)"
   html={`<div class="box">
     <div class="item">Centre-moi</div>
@@ -209,7 +209,7 @@ Pas besoin de calculer un nombre de pixels de tête.
 Variante du positionnement absolu : on tend l'élément enfant vers les quatre bords avec [`inset: 0`](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Properties/inset), puis `margin: auto` répartit l'espace restant.
 Pas mal, mais l'élément enfant doit avoir une largeur et une hauteur définies (ou intrinsèques) pour qu'il reste de l'espace à distribuer.
 
-<CssPlayground
+<Playground
   label="position: absolute + inset: 0 + margin: auto"
   html={`<div class="box">
     <div class="item">Centre-moi</div>
@@ -242,7 +242,7 @@ Pas mal, mais l'élément enfant doit avoir une largeur et une hauteur définies
 Avant tout ça, on centrait apparemment du contenu en ligne à coups de `line-height` égal à la hauteur du conteneur et de `vertical-align`.
 Ça marche encore pour du texte simple sur une ligne, mais ça devient vite ingérable dès qu'il y a plusieurs lignes ou du contenu de hauteur variable.
 
-<CssPlayground
+<Playground
   label="line-height + vertical-align (contenu en ligne)"
   html={`<div class="box">
     <span class="item">Centre-moi</span>
@@ -273,7 +273,7 @@ Avant tout ça, on centrait apparemment du contenu en ligne à coups de `line-he
 Le plus ancien de la liste, celui que l'on utilisait pour émuler l'alignement vertical des tableaux sans écrire de `<table>`.
 Ça fonctionne mais c'est verbeux et surtout sémantiquement inadapté.
 
-<CssPlayground
+<Playground
   label="display: table-cell + vertical-align: middle"
   html={`<div class="box">
     <div class="item">Centre-moi</div>

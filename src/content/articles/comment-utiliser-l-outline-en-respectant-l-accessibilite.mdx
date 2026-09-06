@@ -15,7 +15,7 @@ Pourtant, la propriété CSS <span lang="en">outline</span> est essentielle, sur
 
 Essayez de naviguer ci-dessous de lien en lien avec la touche `Tab`.
 
-<CssPlayground
+<Playground
   label="Exemple avec la valeur CSS outline:none"
   html={`
     <ul>
@@ -52,7 +52,7 @@ Vous pouvez le constater, sans la propriété `outline`, vous ne savez pas où v
 
 Regardons ce que cela donne avec la propriété CSS et ses valeurs par défaut : `outline:auto`.
 
-<CssPlayground
+<Playground
   label="Exemple avec la valeur CSS outline:auto"
   html={`
     <ul>
@@ -95,7 +95,7 @@ On peut utiliser une des trois pseudo-classes CSS : `:focus`, `:focus-visible` e
 
 Que ce soit avec la souris ou le clavier, lorsqu'un élément reçoit le focus, son style reste appliqué en permanence. Ce comportement peut être génant, c'est pourquoi des développeurs et développeuses ont préféré supprimer le contour en utilisant `outline:none`;
 
-<CssPlayground
+<Playground
   label="Exemple avec la pseudo-classe focus"
   html={`<button type="button">Clique-moi</button>`}
   css={`
@@ -132,7 +132,7 @@ Que ce soit avec la souris ou le clavier, lorsqu'un élément reçoit le focus, 
 
 La pseudo-classe `:focus-visible` est spécifique à la navigation au clavier. Par conséquent, l'élément focusable n'est mis en évidence que lorsqu'il reçoit le focus via le clavier. Cela évite donc d'afficher systématiquement le contour lors d'une interaction à la souris.
 
-<CssPlayground
+<Playground
   label="Exemple avec la pseudo-classe focus-visible"
   html={`<button type="button" onclick="alert('Hello World !')">Clique-moi</button>`}
   css={`
@@ -160,7 +160,7 @@ La pseudo-classe `:focus-visible` est spécifique à la navigation au clavier. P
 
 Quant à la pseudo-classe `focus-within`, elle cible l'élément et ses descendants lorsqu'un élément interne reçoit le focus. Le contour ou le style associé s'applique donc dès qu'un descendant est focusable, que l'interaction se fasse à la souris ou au clavier.
 
-<CssPlayground
+<Playground
   label="Exemple avec la pseudo-classe focus-within"
   html={`
     <form role="form">    
@@ -203,7 +203,7 @@ Tout comme pour la propriété `border`, vous pouvez tout regrouper dans la pseu
 
 Notez cependant que vous n'êtes pas obligé d'utiliser la propriété outline. Vous pouvez tout à fait styliser l'élément en utilisant d'autres propriétés CSS (comme `box-shadow`, `border` ou `text-decoration`) au sein de votre pseudo-classe :focus-visible.
 
-<CssPlayground
+<Playground
   label="Exemple avec le style personnalisé"
   html={`
     <ul>

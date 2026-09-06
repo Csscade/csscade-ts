@@ -1,18 +1,18 @@
-.css-playground {
+.playground {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin: 0;
 }
 
-.css-playground__caption {
+.playground__caption {
   font-family: var(--font-secondary);
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--font-color);
 }
 
-.css-playground__body {
+.playground__body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -20,26 +20,26 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .css-playground__body {
+  .playground__body {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
-.css-playground__editors {
+.playground__editors {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   min-width: 0;
 }
 
-.css-playground__panel {
+.playground__panel {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
   min-width: 0;
 }
 
-.css-playground__label {
+.playground__label {
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -47,19 +47,19 @@
   color: var(--font-color-muted);
 }
 
-.css-playground__editor {
+.playground__editor {
   border-radius: var(--br-normal);
   overflow: hidden;
 }
 
-.css-playground__preview-wrapper {
+.playground__preview-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   height: 100%;
 }
 
-.css-playground__preview {
+.playground__preview {
   display: block;
   width: 100%;
   min-height: 18rem;
@@ -70,7 +70,7 @@
   resize: vertical;
 }
 
-.css-playground__error {
+.playground__error {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -83,6 +83,6 @@
   line-height: 1.4;
 }
 
-.css-playground__error:empty {
+.playground__error:empty {
   display: none;
 }

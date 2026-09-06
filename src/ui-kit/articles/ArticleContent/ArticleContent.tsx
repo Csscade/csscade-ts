@@ -3,12 +3,12 @@ import { MdxAnchor } from "@/ui-kit/components/atoms/MdxAnchor/MdxAnchor";
 import { MdxImg } from "@/ui-kit/components/atoms/MdxImg/MdxImg";
 import { MdxPre } from "@/ui-kit/components/atoms/MdxPre/MdxPre";
 import { GifPlayer } from "@/ui-kit/components/molecules/GifPlayer/GifPlayer";
-import { CssPlayground } from "@/ui-kit/components/organisms/CssPlayground/CssPlayground";
+import { Playground } from "@/ui-kit/components/organisms/Playground/Playground";
 import { rehypePlugins, remarkPlugins } from "@/usecases/mdx";
 import "./ArticleContent.css";
 
 const components = {
-  CssPlayground,
+  Playground,
   GifPlayer,
   a: MdxAnchor,
   img: MdxImg,
@@ -27,7 +27,7 @@ export function ArticleContent({ content }: { content: string }) {
           // here is trusted at build time: `output: "export"` means this only ever
           // compiles during `next build`/CI, never against live visitor input, and
           // every article goes through human PR review before it reaches main/deploy.
-          // Components like CssPlayground rely on expression props, so re-enable them.
+          // Components like Playground rely on expression props, so re-enable them.
           blockJS: false,
           mdxOptions: {
             remarkPlugins,
