@@ -11,7 +11,7 @@ En tant que développeur ou développeuse, l'instinct serait de mettre `outline:
 
 Pourtant, la propriété CSS <span lang="en">outline</span> est essentielle, surtout pour l'accessibilité numérique. Beaucoup de personnes naviguent uniquement au clavier. En désactivant l'outline sans solution de rechange, vous les empêchez tout simplement de savour où elles se trouvent dans la page, rendant leur navigation difficile, voire impossible.
 
-1. Sans outline
+## 1. Sans outline
 
 Essayez de naviguer ci-dessous de lien en lien avec la touche `Tab`.
 
@@ -50,7 +50,7 @@ Essayez de naviguer ci-dessous de lien en lien avec la touche `Tab`.
 
 Vous pouvez le constater, sans la propriété `outline`, vous ne savez pas où vous vous trouvez parmi les liens.
 
-2. Avec outline
+## 2. Avec outline
 
 Regardons ce que cela donne avec la propriété CSS et ses valeurs par défaut : `outline:auto`.
 
@@ -91,11 +91,11 @@ Avec `outline:auto`, le contour apparaît systématiquement et une légère anim
 
 Comment faire pour le rendre esthétique et surtout le faire apparaître uniquement quand c'est nécessaire ?
 
-3. Les pseudos-classes CSS : focus, focus-visible et focus-within
+## 3. Les pseudos-classes CSS : focus, focus-visible et focus-within
 
 On peut utiliser une des trois pseudo-classes CSS : `:focus`, `:focus-visible` et `:focus-within`. Quelle est la différence entre les trois ?
 
-3.1 `:focus`
+### 3.1 `:focus`
 
 Que ce soit avec la souris ou le clavier, lorsqu'un élément reçoit le focus, son style reste appliqué en permanence. Ce comportement peut être génant, c'est pourquoi des développeurs et développeuses ont préféré supprimer le contour en utilisant `outline:none`;
 
@@ -132,7 +132,7 @@ Que ce soit avec la souris ou le clavier, lorsqu'un élément reçoit le focus, 
 `}
 />
 
-3.2 `:focus-visible`
+### 3.2 `:focus-visible`
 
 La pseudo-classe `:focus-visible` est spécifique à la navigation au clavier. Par conséquent, l'élément focusable n'est mis en évidence que lorsqu'il reçoit le focus via le clavier. Cela évite donc d'afficher systématiquement le contour lors d'une interaction à la souris.
 
@@ -160,7 +160,7 @@ La pseudo-classe `:focus-visible` est spécifique à la navigation au clavier. P
 `}
 />
 
-3.3 `:focus-within`
+### 3.3 `:focus-within`
 
 Quant à la pseudo-classe `focus-within`, elle cible l'élément et ses descendants lorsqu'un élément interne reçoit le focus. Le contour ou le style associé s'applique donc dès qu'un descendant est focusable, que l'interaction se fasse à la souris ou au clavier.
 
@@ -199,7 +199,7 @@ C'est pourquoi, dans la grande majorité des cas, on préfère la pseudo-classe 
 
 La pseudo-classe `:hover` s'applique aux interactions à la souris tandis que `focus-visible` gère la navigation au clavier. Lorsqu'on style un élément interactif, il est recommandé de **combiner** `:hover` et `:focus-visible` pour assurer une expérience utilisateur accessible.
 
-4. Le style avec outline ou autre
+## 4. Le style avec outline ou autre
 
 Vous pouvez définir un style personnalisé pour le contour (`outline`) en utilisant `outline-color`, `outline-style` et `outline-offset`, de la même manière que pour la bordure (`border`).
 
@@ -255,11 +255,11 @@ Notez cependant que vous n'êtes pas obligé d'utiliser la propriété outline. 
 `}
 />
 
-5. Conclusion
+## 5. Conclusion
 
 Vous savez désormais qu'il ne faut jamais désactiver le contour avec `outline: none` **sans prévoir une alternative** pour les utilisateurs et utilisatrices naviguant au clavier. Cette mesure est essentielle pour garantir l'accessibilité de vos éléments focusables, tels que les liens, les boutons, les champs de saisie ou encore les menus déroulants.
 
-6. Sources
+## 6. Sources
 
 Je vous invite à lire la documentation MDN sur ces attributs CSS :
 
