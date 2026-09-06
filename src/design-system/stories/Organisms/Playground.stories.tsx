@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { CssPlayground } from "@/ui-kit/components/organisms/CssPlayground/CssPlayground";
+import { Playground } from "@/ui-kit/components/organisms/Playground/Playground";
 
-const meta: Meta<typeof CssPlayground> = {
-  title: "Organisms/CSS Playground",
-  component: CssPlayground,
+const meta: Meta<typeof Playground> = {
+  title: "Organisms/Playground",
+  component: Playground,
   parameters: {
     layout: "padded",
     a11y: { test: "error" },
@@ -52,7 +52,7 @@ Le composant analyse donc le code à chaque frappe (<small lang="en">debounce</s
 };
 
 export default meta;
-type Story = StoryObj<typeof CssPlayground>;
+type Story = StoryObj<typeof Playground>;
 
 export const Flexbox: Story = {
   args: {
@@ -151,5 +151,40 @@ export const CssDrawing: Story = {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }`,
+  },
+};
+
+export const WithJavascript: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Un troisième éditeur Javascript apparaît dès que la prop `javascript` est renseignée, en plus du HTML et du CSS.",
+      },
+    },
+  },
+  args: {
+    label: "Compteur de clics",
+    html: `<button type="button" id="counter">Cliqué 0 fois</button>`,
+    css: `button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #59b7d3;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3d495a;
+}`,
+    javascript: `const button = document.getElementById("counter");
+let count = 0;
+
+button.addEventListener("click", () => {
+  count += 1;
+  button.textContent = \`Cliqué \${count} fois\`;
+});`,
   },
 };

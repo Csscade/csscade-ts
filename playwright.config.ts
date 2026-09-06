@@ -2,7 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests",
-  // Content pages embedding several CssPlayground editors produce a DOM with hundreds of
+  // Content pages embedding several Playground editors produce a DOM with hundreds of
   // Shiki-highlighted <span> tokens across many code blocks. axe-core's scan itself (93
   // rules: wcag2aaa + best-practice + RGAAv4) takes ~30s on such a page — confirmed by
   // timing AxeBuilder.analyze() in isolation, independent of page load or highlighter
